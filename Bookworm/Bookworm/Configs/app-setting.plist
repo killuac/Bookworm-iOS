@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>server</key>
+	<dict>
+		<key>protocol</key>
+		<string>http</string>
+		<key>host</key>
+		<string>www.bookworm.com</string>
+		<key>port</key>
+		<integer>8080</integer>
+	</dict>
+	<key>isUpdated</key>
+	<true/>
+	<key>isShowOperationTip</key>
+	<true/>
+</dict>
+</plist>

@@ -1,0 +1,22 @@
+platform :ios, "8.0"
+use_frameworks!
+inhibit_all_warnings!
+
+target 'Bookworm' do
+
+pod 'AFNetworking'
+pod 'SDWebImage'
+pod 'RegExCategories'
+pod 'pop'
+pod 'FMDB'
+pod 'Masonry'
+pod 'Aspects'
+pod 'JSONModel'
+pod 'KVOController'
+pod 'GVUserDefaults'
+pod 'SVProgressHUD', :head
+pod 'UMengAnalytics-NO-IDFA'
+#pod 'JSQSystemSoundPlayer', '~>2.0'
+#pod 'JSQMessagesViewController', '~>7.2'
+
+end
