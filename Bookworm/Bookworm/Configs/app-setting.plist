@@ -7,9 +7,9 @@
 		<key>protocol</key>
 		<string>http</string>
 		<key>host</key>
-		<string>www.bookworm.com</string>
+		<string>www.bookworm.cc</string>
 		<key>port</key>
-		<integer>8080</integer>
+		<real>8080</real>
 	</dict>
 	<key>isUpdated</key>
 	<true/>

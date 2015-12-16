@@ -16,13 +16,21 @@ FOUNDATION_EXPORT NSString *const SYSessionManagerRequestFailedNotification;
 
 + (nullable instancetype)sharedSessionManager;
 
+- (nullable NSURLSessionDataTask *)HEAD:(NSString *)URLString
+                             parameters:(nullable id)parameters
+                                success:(nullable void (^)(NSURLSessionDataTask *task))success;
+
 - (nullable NSURLSessionDataTask *)GET:(NSString *)URLString
                             parameters:(nullable id)parameters
                                success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success;
 
-- (nullable NSURLSessionDataTask *)PUT:(NSString *)URLString
-                            parameters:(nullable id)parameters
+- (nullable NSURLSessionDataTask *)GET:(NSString *)URLString
+                              progress:(nullable void (^)(NSProgress *downloadProgress)) downloadProgress
                                success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success;
+
+- (nullable NSURLSessionDataTask *)PATCH:(NSString *)URLString
+                              parameters:(nullable id)parameters
+                                 success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success;
 
 - (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
                              parameters:(nullable id)parameters

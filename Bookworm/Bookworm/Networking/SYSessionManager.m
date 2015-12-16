@@ -46,6 +46,21 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     #endif
 }
 
+- (NSURLSessionDataTask *)HEAD:(NSString *)URLString
+                    parameters:(id)parameters
+                       success:(void (^)(NSURLSessionDataTask *))success
+{
+    [self setHTTPHeaderFields];
+    
+    return [self HEAD:URLString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task) {
+        if ([self checkResponseStatus:task]) {
+            success(task);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self showErrorTip:error];
+    }];
+}
+
 - (NSURLSessionDataTask *)GET:(NSString *)URLString
                    parameters:(id)parameters
                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
@@ -53,7 +68,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     [self setHTTPHeaderFields];
     
     return [self GET:URLString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([self checkResponseStatus:responseObject]) {
+        if ([self checkResponseStatus:task]) {
             success(task, responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -61,12 +76,27 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     }];
 }
 
-- (NSURLSessionDataTask *)PUT:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success
+- (NSURLSessionDataTask *)GET:(NSString *)URLString
+                     progress:(void (^)(NSProgress *))downloadProgress
+                      success:(void (^)(NSURLSessionDataTask *, id responseObject))success
 {
     [self setHTTPHeaderFields];
     
-    return [self PUT:URLString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([self checkResponseStatus:responseObject]) {
+    return [self GET:URLString parameters:nil progress:downloadProgress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([self checkResponseStatus:task]) {
+            success(task, responseObject);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self showErrorTip:error];
+    }];
+}
+
+- (NSURLSessionDataTask *)PATCH:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success
+{
+    [self setHTTPHeaderFields];
+    
+    return [self PATCH:URLString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([self checkResponseStatus:task]) {
             success(task, responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -81,7 +111,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     [self setHTTPHeaderFields];
     
     return [self POST:URLString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([self checkResponseStatus:responseObject]) {
+        if ([self checkResponseStatus:task]) {
             success(task, responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -96,8 +126,9 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
 {
     [self setHTTPHeaderFields];
     
-    return [self POST:URLString parameters:parameters constructingBodyWithBlock:block progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([self checkResponseStatus:responseObject]) {
+    return [self POST:URLString parameters:parameters constructingBodyWithBlock:block progress:nil
+              success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([self checkResponseStatus:task]) {
             success(task, responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -105,9 +136,25 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     }];
 }
 
-- (BOOL)checkResponseStatus:(id)responseObject
+- (BOOL)checkResponseStatus:(NSURLSessionDataTask *)task
 {
-    return YES;
+    #if DEBUG
+        NSLog(@"RESPONSE STATUS: %@", task.response);
+    #endif
+    
+    NSHTTPURLResponse *response = (id)task.response;
+    BOOL isSuccess = (response.statusCode == 200 || response.statusCode == 201);
+    
+    if (!isSuccess) {
+        if (response.statusCode == 401) {
+            // TODO: Access token invalid, only show tip message
+        } else {
+            [SVProgressHUD showErrorWithStatus:response.allHeaderFields[@"X-Tip-Message"]];
+        }
+        [SVProgressHUD dismiss];
+    }
+    
+    return isSuccess;
 }
 
 - (void)showErrorTip:(NSError *)error
