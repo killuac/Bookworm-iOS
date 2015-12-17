@@ -10,6 +10,7 @@
 #import "FMDB.h"
 #import "MobClick.h"
 #import "SYAppSetting.h"
+#import "SYServerAPI.h"
 #import "SYDeviceService.h"
 #import "AFNetworkReachabilityManager.h"
 #import "AFNetworkActivityIndicatorManager.h"
@@ -21,12 +22,9 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    if ([SYAppSetting defaultAppSetting].isUpdated) {
-        [self initializeApplication];
-    }
+    [self setupApplication];
     
 #ifdef TEST_MODE
     TestViewController *vc = [[TestViewController alloc] init];
@@ -41,41 +39,17 @@
     }
 #endif
     
-    [self setupApplication];
-    
     return YES;
-}
-
-/**
- *  Do some initialization works when app is first launch
- */
-- (void)initializeApplication
-{
-//  Create local database
-    FMDatabase *database = [FMDatabase databaseWithPath:DATABASE_FILE_PATH];
-    [database open];
-    [database setShouldCacheStatements:YES];
-    
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Bookworm" ofType:@"sql"];
-    NSString *sql = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    [database executeStatements:sql];
-    [database close];
 }
 
 - (void)setupApplication
 {
-    [self registerNotification];
+    [self updateApplication];
     [self setupAppearance];
     [self setupUMeng];
+    [self registerNotification];
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-}
-
-- (void)registerNotification
-{
-    UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:setting];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
 }
 
 - (void)setupAppearance
@@ -101,6 +75,26 @@
 #endif
     
     [MobClick setAppVersion:XcodeAppVersion];
+}
+
+- (void)updateApplication
+{
+    if ([SYAppSetting defaultAppSetting].isAppUpdated) {
+        [self alterDatabase];
+        [SYServerAPI fetchAndSave];
+    }
+}
+
+- (void)alterDatabase
+{
+    FMDatabase *database = [FMDatabase databaseWithPath:DATABASE_FILE_PATH];
+    [database open];
+    [database setShouldCacheStatements:YES];
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Bookworm" ofType:@"sql"];
+    NSString *sql = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    [database executeStatements:sql];
+    [database close];
 }
 
 /**
@@ -129,6 +123,13 @@
 }
 
 #pragma mark - Notification
+- (void)registerNotification
+{
+    UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:setting];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+}
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@"<>"];

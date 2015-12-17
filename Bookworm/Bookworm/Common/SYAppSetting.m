@@ -24,7 +24,7 @@
         
         sharedInstance.KVOController = [FBKVOController controllerWithObserver:sharedInstance];
         [sharedInstance.KVOController observe:sharedInstance
-                                     keyPaths:@[@"isUpdated", @"isShowOperationTip"]
+                                     keyPaths:@[@"isAppUpdated", @"isShowUserGuide"]
                                       options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew
                                        action:@selector(save)];
     });

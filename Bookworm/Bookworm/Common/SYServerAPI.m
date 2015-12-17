@@ -14,10 +14,20 @@
 
 @implementation SYServerAPI
 
++ (JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@ {
+        @"_links.devices.href": @"devicesURLString",
+        @"_links.signIn.href": @"signInURLString",
+        @"_links.users.href": @"usersURLString",
+        @"_links.IMServerURL.href": @"IMServerURLString"
+    }];
+}
+
+static SYServerAPI *sharedInstance = nil;
 + (instancetype)sharedServerAPI
 {
     static dispatch_once_t predicate;
-    static SYServerAPI *sharedInstance = nil;
     dispatch_once(&predicate, ^{
         sharedInstance = [self modelWithData:[NSData dataWithContentsOfFile:DocumentFilePath(JSON_SERVER_API)]];
     });
@@ -25,13 +35,16 @@
     return sharedInstance;
 }
 
-+ (void)writeAPIFile
++ (void)fetchAndSave
 {
     NSString *urlString = [[SYAppSetting defaultAppSetting].baseURL absoluteString];
     
-    [[SYSessionManager sharedSessionManager] POST:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[SYSessionManager sharedSessionManager] GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         id serverAPI = [self modelWithDictionary:responseObject];
         [[serverAPI toJSONData] writeToFile:DocumentFilePath(JSON_SERVER_API) atomically:YES];
+        
+//      If App is updated, need fetch API again and reset the sharedInstance with new API file.
+        sharedInstance = [self modelWithData:[NSData dataWithContentsOfFile:DocumentFilePath(JSON_SERVER_API)]];
     }];
 }
 

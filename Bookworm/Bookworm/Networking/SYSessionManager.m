@@ -7,7 +7,6 @@
 //
 
 #import "SYSessionManager.h"
-#import "SYAppSetting.h"
 #import "SYDeviceModel.h"
 
 #define REQUEST_TIMEOUT_INTERVAL    30
@@ -21,7 +20,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     static dispatch_once_t predicate;
     static SYSessionManager *sharedInstance = nil;
     dispatch_once(&predicate, ^{
-        sharedInstance = [[self alloc] initWithBaseURL:[SYAppSetting defaultAppSetting].baseURL];
+        sharedInstance = [[self alloc] initWithBaseURL:nil];
         sharedInstance.requestSerializer = [AFHTTPRequestSerializer serializer];
         sharedInstance.responseSerializer = [AFJSONResponseSerializer serializer];
     });

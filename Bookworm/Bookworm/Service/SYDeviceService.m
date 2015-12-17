@@ -12,7 +12,7 @@
 
 - (NSString *)urlString
 {
-    return [SYServerAPI sharedServerAPI].device;
+    return [SYServerAPI sharedServerAPI].devicesURLString;
 }
 
 - (void)createWithModel:(id)model result:(SYServiceBlockType)result

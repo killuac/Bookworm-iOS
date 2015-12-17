@@ -23,7 +23,7 @@
 @property (nonatomic, strong) SYServer *server;
 @property (nonatomic, copy, readonly) NSURL *baseURL;
 
-@property (nonatomic, assign) BOOL isUpdated;
-@property (nonatomic, assign) BOOL isShowOperationTip;
+@property (nonatomic, assign) BOOL isAppUpdated;
+@property (nonatomic, assign) BOOL isShowUserGuide;
 
 @end

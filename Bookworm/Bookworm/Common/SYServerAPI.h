@@ -11,10 +11,12 @@
 @interface SYServerAPI : JSONModel
 
 + (instancetype)sharedServerAPI;
-+ (void)writeAPIFile;
++ (void)fetchAndSave;
 
-@property (nonatomic, copy) NSString *imAddress;
-@property (nonatomic, copy) NSString *device;
-@property (nonatomic, copy) NSString *user;
+@property (nonatomic, copy) NSString *IMServerURLString;
+
+@property (nonatomic, copy) NSString *devicesURLString;
+@property (nonatomic, copy) NSString *signInURLString;
+@property (nonatomic, copy) NSString *usersURLString;
 
 @end

@@ -11,9 +11,9 @@
 		<key>port</key>
 		<real>8080</real>
 	</dict>
-	<key>isUpdated</key>
+	<key>isAppUpdated</key>
 	<true/>
-	<key>isShowOperationTip</key>
+	<key>isShowUserGuide</key>
 	<true/>
 </dict>
 </plist>
