@@ -8,22 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, BZButonStyle) {
-    BZButonStyleDefault,
-    BZButonStylePrimary,
-    BZButonStyleDestructive
+typedef NS_ENUM(NSUInteger, SYButonStyle) {
+    SYButonStyleDefault,
+    SYButonStylePrimary,
+    SYButonStyleDestructive
 };
 
-typedef NS_ENUM(NSUInteger, BZLayoutStyle) {
-    BZLayoutStyleHorizontalImageLeft,   // Default
-    BZLayoutStyleHorizontalImageRight,
-    BZLayoutStyleVerticalImageUp,
-    BZLayoutStyleVerticalImageDown
+typedef NS_ENUM(NSUInteger, SYLayoutStyle) {
+    SYLayoutStyleHorizontalImageLeft,   // Default
+    SYLayoutStyleHorizontalImageRight,
+    SYLayoutStyleVerticalImageUp,
+    SYLayoutStyleVerticalImageDown
 };
 
 @interface UIButton (Factory)
 
-@property (nonatomic, assign) BZButonStyle style;
+@property (nonatomic, assign) SYButonStyle style;
 
 + (instancetype)defaultButtonWithTitle:(NSString *)title;
 + (instancetype)defaultButtonWithTitle:(NSString *)title imageName:(NSString *)imageName;
@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, BZLayoutStyle) {
 
 + (instancetype)systemButtonWithTitle:(NSString *)title;
 
-- (void)setLayoutStyle:(BZLayoutStyle)layoutStyle;
+- (void)setLayoutStyle:(SYLayoutStyle)layoutStyle;
 - (void)addTarget:(id)target action:(SEL)action;
 
 @end

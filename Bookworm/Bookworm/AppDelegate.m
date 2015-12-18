@@ -75,6 +75,7 @@
 #endif
     
     [MobClick setAppVersion:XcodeAppVersion];
+    [MobClick setEncryptEnabled:YES];
 }
 
 - (void)updateApplication
@@ -159,7 +160,7 @@
     
     SYDeviceModel *deviceModel = [SYDeviceModel model];
     deviceModel.deviceToken = deviceToken;
-    deviceModel.allowPush = ![deviceToken isEmpty];
+    deviceModel.allowPush = (deviceToken.length > 0);
     [[SYDeviceService service] updateWithModel:deviceModel result:nil];
 }
 

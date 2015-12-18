@@ -17,7 +17,7 @@ typedef void (^SYNoParameterBlockType)(void);
 //#define TEST_MODE
 
 #define IS_IOS_VERSION_9                __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0
-#define APP_VERSION                     [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"]
+#define APP_VERSION                     [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"]
 #define APP_DISPLAY_NAME                [NSBundle mainBundle].localizedInfoDictionary[@"CFBundleDisplayName"]
 #define RESOLUTION_SIZE                 [UIScreen mainScreen].preferredMode.size
 #define RESOLUTION_WIDTH                RESOLUTION_SIZE.width

@@ -21,13 +21,12 @@
 
 - (NSString *)urlEncodingString;
 
-- (BOOL)isEmpty;
 - (BOOL)isValidMobile;
 - (BOOL)isValidEmail;
 - (BOOL)isValidPassword;
 - (BOOL)isValidSMSCode;
 - (BOOL)isValidHTTPURL;
-- (BOOL)isMyDomain;
+- (BOOL)isSelfDomain;
 
 - (BOOL)containsUnicodeCharacter;
 - (BOOL)isNumberCharacter;

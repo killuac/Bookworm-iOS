@@ -14,7 +14,7 @@
 NSString *FetchOrCreateFilePath(NSString *path)
 {
     NSString *lastPathComponent = @"";
-    if (path.pathExtension && ![path.pathExtension isEmpty]) {
+    if (path.pathExtension.length) {
         lastPathComponent = path.lastPathComponent;
         path = [path stringByDeletingLastPathComponent];
     }
@@ -26,7 +26,7 @@ NSString *FetchOrCreateFilePath(NSString *path)
                                                         error:nil];
     }
     
-    return [lastPathComponent isEmpty] ? path : [path stringByAppendingPathComponent:lastPathComponent];
+    return (lastPathComponent.length ? [path stringByAppendingPathComponent:lastPathComponent] : path);
 }
 
 NSString *DocumentFilePath(NSString *fileName)

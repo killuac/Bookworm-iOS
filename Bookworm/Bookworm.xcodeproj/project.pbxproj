@@ -41,6 +41,7 @@
 		E34581D71C216E860088BDA5 /* app-setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = E34581D51C216E860088BDA5 /* app-setting.plist */; };
 		E34581DB1C216FD40088BDA5 /* SYBaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = E34581DA1C216FD40088BDA5 /* SYBaseService.m */; };
 		E34581DE1C217F740088BDA5 /* SYDeviceService.m in Sources */ = {isa = PBXBuildFile; fileRef = E34581DD1C217F740088BDA5 /* SYDeviceService.m */; };
+		E3BEDFC71C23FC8F00E6DB58 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BEDFC61C23FC8F00E6DB58 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,7 @@
 		E34581DA1C216FD40088BDA5 /* SYBaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBaseService.m; sourceTree = "<group>"; };
 		E34581DC1C217F740088BDA5 /* SYDeviceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYDeviceService.h; sourceTree = "<group>"; };
 		E34581DD1C217F740088BDA5 /* SYDeviceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYDeviceService.m; sourceTree = "<group>"; };
+		E3BEDFC61C23FC8F00E6DB58 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		F672FBECD461C49622F94C5E /* Pods-Bookworm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookworm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bookworm/Pods-Bookworm.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3BEDFC71C23FC8F00E6DB58 /* libz.tbd in Frameworks */,
 				53561D22AE9261A77BF58852 /* Pods_Bookworm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,6 +168,7 @@
 		86C0D79D4AB04244D083F067 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E3BEDFC61C23FC8F00E6DB58 /* libz.tbd */,
 				52B834D3E5E4988F7BA69DB7 /* Pods_Bookworm.framework */,
 			);
 			name = Frameworks;

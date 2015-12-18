@@ -10,38 +10,38 @@
 
 @implementation UIButton (Factory)
 
-- (void)setStyle:(BZButonStyle)style
+- (void)setStyle:(SYButonStyle)style
 {
     objc_setAssociatedObject(self, @selector(style), @(style), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BZButonStyle)style
+- (SYButonStyle)style
 {
     return [objc_getAssociatedObject(self, @selector(style)) unsignedIntegerValue];
 }
 
-- (void)setLayoutStyle:(BZLayoutStyle)layoutStyle
+- (void)setLayoutStyle:(SYLayoutStyle)layoutStyle
 {
     CGFloat inset = 5.0f;
     
     switch (layoutStyle) {
-        case BZLayoutStyleHorizontalImageLeft:
+        case SYLayoutStyleHorizontalImageLeft:
             self.titleEdgeInsets = UIEdgeInsetsMake(0, inset, 0, -inset);
             self.imageEdgeInsets = UIEdgeInsetsMake(0, -inset, 0, inset);
             break;
             
-        case BZLayoutStyleHorizontalImageRight:
+        case SYLayoutStyleHorizontalImageRight:
             self.titleEdgeInsets = UIEdgeInsetsMake(0, -(self.imageView.width+inset), 0, self.imageView.width+inset);
             self.imageEdgeInsets = UIEdgeInsetsMake(0, self.titleLabel.width+inset, 0, -(self.titleLabel.width+inset));
             break;
             
-        case BZLayoutStyleVerticalImageUp:
+        case SYLayoutStyleVerticalImageUp:
             inset = self.imageView.height / 4 + inset;
             self.imageEdgeInsets = UIEdgeInsetsMake(-inset, self.titleLabel.width/2, inset, -self.titleLabel.width/2);
             self.titleEdgeInsets = UIEdgeInsetsMake(inset * 2, -self.imageView.width/2, -inset, self.imageView.width/2);
             break;
             
-        case BZLayoutStyleVerticalImageDown:
+        case SYLayoutStyleVerticalImageDown:
             inset = self.imageView.height / 4 + inset;
             self.titleEdgeInsets = UIEdgeInsetsMake(-inset, self.imageView.width/2, inset, -self.imageView.width/2);
             self.imageEdgeInsets = UIEdgeInsetsMake(inset * 2, -self.titleLabel.width/2, -inset, self.titleLabel.width/2);
@@ -55,7 +55,7 @@
 }
 
 #pragma mark - Default, primary, destructive buttons
-+ (instancetype)buttonWithStyle:(BZButonStyle)style title:(NSString *)title imageName:(NSString *)imageName
++ (instancetype)buttonWithStyle:(SYButonStyle)style title:(NSString *)title imageName:(NSString *)imageName
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.layer.cornerRadius = BUTTON_CORNER_RADIUS;
@@ -63,7 +63,9 @@
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColorForStyle:style forState:button.state];
     [button setBackgroundColorForStyle:style forState:button.state];
-    ![imageName isEmpty] ? [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal] : nil;
+    
+    if (imageName.length)
+        [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     
     button.KVOController = [FBKVOController controllerWithObserver:button];
     [button.KVOController observe:button keyPaths:@[@"highlighted", @"enabled"] options:0 block:^(id observer, id object, NSDictionary *change) {
@@ -74,10 +76,10 @@
     return button;
 }
 
-- (void)setTitleColorForStyle:(BZButonStyle)style forState:(UIControlState)state
+- (void)setTitleColorForStyle:(SYButonStyle)style forState:(UIControlState)state
 {
     switch (style) {
-        case BZButonStyleDefault:
+        case SYButonStyleDefault:
             [self setTitleColor:[UIColor defaultTitleColor] forState:state];
             break;
             
@@ -91,10 +93,10 @@
     }
 }
 
-- (void)setBackgroundColorForStyle:(BZButonStyle)style forState:(UIControlState)state
+- (void)setBackgroundColorForStyle:(SYButonStyle)style forState:(UIControlState)state
 {
     switch (style) {
-        case BZButonStyleDefault:
+        case SYButonStyleDefault:
             if (UIControlStateHighlighted == state) {
                 self.backgroundColor = [UIColor defaultButtonHighlightedColor];
             } else if (UIControlStateDisabled == state) {
@@ -104,7 +106,7 @@
             }
             break;
             
-        case BZButonStylePrimary:
+        case SYButonStylePrimary:
             if (UIControlStateHighlighted == state) {
                 self.backgroundColor = [UIColor primaryButtonHighlightedColor];
             } else if (UIControlStateDisabled == state) {
@@ -114,7 +116,7 @@
             }
             break;
             
-        case BZButonStyleDestructive:
+        case SYButonStyleDestructive:
             if (UIControlStateHighlighted == state) {
                 self.backgroundColor = [UIColor destructiveButtonHighlightedColor];
             } else if (UIControlStateDisabled == state) {
@@ -128,32 +130,32 @@
 
 + (instancetype)defaultButtonWithTitle:(NSString *)title
 {
-    return [self buttonWithStyle:BZButonStyleDefault title:title imageName:@""];
+    return [self buttonWithStyle:SYButonStyleDefault title:title imageName:@""];
 }
 
 + (instancetype)defaultButtonWithTitle:(NSString *)title imageName:(NSString *)imageName
 {
-    return [self buttonWithStyle:BZButonStyleDefault title:title imageName:imageName];
+    return [self buttonWithStyle:SYButonStyleDefault title:title imageName:imageName];
 }
 
 + (instancetype)primaryButtonWithTitle:(NSString *)title
 {
-    return [self buttonWithStyle:BZButonStylePrimary title:title imageName:@""];
+    return [self buttonWithStyle:SYButonStylePrimary title:title imageName:@""];
 }
 
 + (instancetype)primaryButtonWithTitle:(NSString *)title imageName:(NSString *)imageName
 {
-    return [self buttonWithStyle:BZButonStylePrimary title:title imageName:imageName];
+    return [self buttonWithStyle:SYButonStylePrimary title:title imageName:imageName];
 }
 
 + (instancetype)destructiveButtonWithTitle:(NSString *)title
 {
-    return [self buttonWithStyle:BZButonStyleDestructive title:title imageName:@""];
+    return [self buttonWithStyle:SYButonStyleDestructive title:title imageName:@""];
 }
 
 + (instancetype)destructiveButtonWithTitle:(NSString *)title imageName:(NSString *)imageName
 {
-    return [self buttonWithStyle:BZButonStyleDestructive title:title imageName:imageName];
+    return [self buttonWithStyle:SYButonStyleDestructive title:title imageName:imageName];
 }
 
 #pragma mark - Custom button with title and image
@@ -180,7 +182,7 @@
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:[UIColor defaultTitleColor] forState:UIControlStateNormal];
     [button sizeToFit];
-    [button setLayoutStyle:BZLayoutStyleHorizontalImageLeft];
+    [button setLayoutStyle:SYLayoutStyleHorizontalImageLeft];
     
     return button;
 }

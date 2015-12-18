@@ -99,11 +99,6 @@
 }
 
 #pragma mark - Validation
-- (BOOL)isEmpty
-{
-    return (self != nil && self.length == 0);
-}
-
 - (BOOL)isValidMobile
 {
     return [self isMatch:RX(@"^1[34578]\\d{9}$")];
@@ -149,9 +144,9 @@
     return [self isMatch:RX(@"^http")];
 }
 
-- (BOOL)isMyDomain
+- (BOOL)isSelfDomain
 {
-    return [self isMatch:RX(@"(tinghua-music.com|bz-inc.com)")];
+    return [self isMatch:RX(@"(bookworm.cc)")];
 }
 
 #pragma mark - Size
