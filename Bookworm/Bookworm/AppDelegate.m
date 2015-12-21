@@ -12,9 +12,8 @@
 #import "SYAppSetting.h"
 #import "SYServerAPI.h"
 #import "SYDeviceService.h"
-#import "AFNetworkReachabilityManager.h"
-#import "AFNetworkActivityIndicatorManager.h"
 #import "TestViewController.h"
+@import AFNetworking;
 
 @interface AppDelegate ()
 
@@ -106,7 +105,7 @@
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         if (AFNetworkReachabilityStatusNotReachable == status) {
-            [SVProgressHUD showErrorWithStatus:TIP_NO_CONNECTION];
+            [SVProgressHUD showErrorWithStatus:HUD_NO_CONNECTION];
         } else {
             if ([GVUserDefaults standardUserDefaults].isFirstLaunch) {
                 [self registerDevice];

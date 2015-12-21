@@ -7,7 +7,6 @@
 //
 
 #import "SYBaseService.h"
-#import "FMDatabaseQueue.h"
 
 @implementation SYBaseService
 
@@ -28,14 +27,32 @@
     return self;
 }
 
-- (NSInteger)statusCode
-{
-    return self.response.statusCode;
-}
-
 - (NSString *)userId
 {
     return [GVUserDefaults standardUserDefaults].userId;
+}
+
+- (NSString *)keyForURLString:(NSString *)URLString
+{
+    return (URLString.length) ? [URLString MD5String] : @"";
+}
+
+- (void)setValue:(NSString *)value forURLString:(NSString *)URLString
+{
+    if (value.length && URLString.length) {
+        [self.dbQueue inDatabase:^(FMDatabase *db) {
+            [db stringForQuery:@"INSERT OR REPLACE INTO KeyValue VALUES (?, ?)" , [self keyForURLString:URLString], value];
+        }];
+    }
+}
+
+- (id)valueForURLString:(NSString *)URLString
+{
+    __block NSString *value;
+    [self.dbQueue inDatabase:^(FMDatabase *db) {
+        value = [db stringForQuery:@"SELECT value FROM KeyValue WHERE key = ?" , [self keyForURLString:URLString]];
+    }];
+    return value;
 }
 
 - (void)cancelRequest

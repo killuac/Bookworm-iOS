@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		53561D22AE9261A77BF58852 /* Pods_Bookworm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B834D3E5E4988F7BA69DB7 /* Pods_Bookworm.framework */; };
+		E31DBAEB1C27CAE500FD5F36 /* SVProgressHUD+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E31DBAEA1C27CAE500FD5F36 /* SVProgressHUD+Utility.m */; };
+		E31DBAEF1C27DAD600FD5F36 /* Bookworm.sql in Resources */ = {isa = PBXBuildFile; fileRef = E31DBAEE1C27DAD600FD5F36 /* Bookworm.sql */; };
+		E31DBAF21C2801A000FD5F36 /* SYMessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = E31DBAF11C2801A000FD5F36 /* SYMessageService.m */; };
+		E31DBAF51C2801BA00FD5F36 /* SYUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = E31DBAF41C2801BA00FD5F36 /* SYUserService.m */; };
 		E345813B1C2115CF0088BDA5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E345813A1C2115CF0088BDA5 /* main.m */; };
 		E345813E1C2115CF0088BDA5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E345813D1C2115CF0088BDA5 /* AppDelegate.m */; };
 		E34581441C2115CF0088BDA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E34581421C2115CF0088BDA5 /* Main.storyboard */; };
@@ -64,6 +68,13 @@
 /* Begin PBXFileReference section */
 		52B834D3E5E4988F7BA69DB7 /* Pods_Bookworm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookworm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B470525A45A8C94EAAF7062C /* Pods-Bookworm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookworm.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bookworm/Pods-Bookworm.release.xcconfig"; sourceTree = "<group>"; };
+		E31DBAE91C27CAE500FD5F36 /* SVProgressHUD+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+Utility.h"; sourceTree = "<group>"; };
+		E31DBAEA1C27CAE500FD5F36 /* SVProgressHUD+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD+Utility.m"; sourceTree = "<group>"; };
+		E31DBAEE1C27DAD600FD5F36 /* Bookworm.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Bookworm.sql; sourceTree = "<group>"; };
+		E31DBAF01C2801A000FD5F36 /* SYMessageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYMessageService.h; sourceTree = "<group>"; };
+		E31DBAF11C2801A000FD5F36 /* SYMessageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYMessageService.m; sourceTree = "<group>"; };
+		E31DBAF31C2801BA00FD5F36 /* SYUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYUserService.h; sourceTree = "<group>"; };
+		E31DBAF41C2801BA00FD5F36 /* SYUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserService.m; sourceTree = "<group>"; };
 		E34581361C2115CF0088BDA5 /* Bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E345813A1C2115CF0088BDA5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E345813C1C2115CF0088BDA5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -269,6 +280,8 @@
 				E34581821C213A7D0088BDA5 /* NSDate+Utility.m */,
 				E34581831C213A7D0088BDA5 /* NSString+Utility.h */,
 				E34581841C213A7D0088BDA5 /* NSString+Utility.m */,
+				E31DBAE91C27CAE500FD5F36 /* SVProgressHUD+Utility.h */,
+				E31DBAEA1C27CAE500FD5F36 /* SVProgressHUD+Utility.m */,
 				E34581851C213A7D0088BDA5 /* UIBarButtonItem+Factory.h */,
 				E34581861C213A7D0088BDA5 /* UIBarButtonItem+Factory.m */,
 				E34581871C213A7D0088BDA5 /* UIButton+Factory.h */,
@@ -308,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				E34581D51C216E860088BDA5 /* app-setting.plist */,
+				E31DBAEE1C27DAD600FD5F36 /* Bookworm.sql */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -348,6 +362,10 @@
 				E34581DA1C216FD40088BDA5 /* SYBaseService.m */,
 				E34581DC1C217F740088BDA5 /* SYDeviceService.h */,
 				E34581DD1C217F740088BDA5 /* SYDeviceService.m */,
+				E31DBAF01C2801A000FD5F36 /* SYMessageService.h */,
+				E31DBAF11C2801A000FD5F36 /* SYMessageService.m */,
+				E31DBAF31C2801BA00FD5F36 /* SYUserService.h */,
+				E31DBAF41C2801BA00FD5F36 /* SYUserService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -491,6 +509,7 @@
 				E34581491C2115CF0088BDA5 /* LaunchScreen.storyboard in Resources */,
 				E34581C71C2169EA0088BDA5 /* InfoPlist.strings in Resources */,
 				E34581D71C216E860088BDA5 /* app-setting.plist in Resources */,
+				E31DBAEF1C27DAD600FD5F36 /* Bookworm.sql in Resources */,
 				E34581461C2115CF0088BDA5 /* Assets.xcassets in Resources */,
 				E34581441C2115CF0088BDA5 /* Main.storyboard in Resources */,
 			);
@@ -571,6 +590,7 @@
 				E34581931C213A7D0088BDA5 /* UIBarButtonItem+Factory.m in Sources */,
 				E345819B1C213D7C0088BDA5 /* GVUserDefaults+Properties.m in Sources */,
 				E345817C1C2136240088BDA5 /* SYMainViewController.m in Sources */,
+				E31DBAF51C2801BA00FD5F36 /* SYUserService.m in Sources */,
 				E34581A41C213FFB0088BDA5 /* JSONModel+Utility.m in Sources */,
 				E34581941C213A7D0088BDA5 /* UIButton+Factory.m in Sources */,
 				E345813E1C2115CF0088BDA5 /* AppDelegate.m in Sources */,
@@ -580,9 +600,11 @@
 				E34581D31C216C510088BDA5 /* SYServerAPI.m in Sources */,
 				E34581B81C2152F20088BDA5 /* SYAppSetting.m in Sources */,
 				E34581981C213A7D0088BDA5 /* UIView+Utility.m in Sources */,
+				E31DBAF21C2801A000FD5F36 /* SYMessageService.m in Sources */,
 				E34581B21C214E890088BDA5 /* UIImageView+Utility.m in Sources */,
 				E34581961C213A7D0088BDA5 /* UIFont+Factory.m in Sources */,
 				E34581921C213A7D0088BDA5 /* NSString+Utility.m in Sources */,
+				E31DBAEB1C27CAE500FD5F36 /* SVProgressHUD+Utility.m in Sources */,
 				E34581AC1C2143E20088BDA5 /* TestViewController.m in Sources */,
 				E34581DE1C217F740088BDA5 /* SYDeviceService.m in Sources */,
 				E34581AF1C21455C0088BDA5 /* UIViewController+Utility.m in Sources */,

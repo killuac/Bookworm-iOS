@@ -30,7 +30,6 @@
 #import "FBKVOController.h"
 #import "JSONModel+Utility.h"
 #import "GVUserDefaults+Properties.h"
-#import "SVProgressHUD.h"
-//#import "SVProgressHUD+Utility.h"
+#import "SVProgressHUD+Utility.h"
 
 #endif

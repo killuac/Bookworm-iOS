@@ -54,15 +54,15 @@
     NSString *className = _viewControllerClasses[indexPath.row];
     UIViewController *VC = [[NSClassFromString(className) alloc] init];
     
-    if ([className isEqualToString:@"SYSigningViewController"]) {
-        [self testSignViewController];
+    if ([className isEqualToString:@"SYSignInViewController"]) {
+        [self testSignInViewController];
     }
     
     [self.navigationController pushViewController:VC animated:YES];
 }
 
 #pragma mark - Test methods
-- (void)testSignViewController
+- (void)testSignInViewController
 {
     
 }

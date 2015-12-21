@@ -8,10 +8,17 @@
 
 #import "SYSessionManager.h"
 #import "SYDeviceModel.h"
+#import "SYBaseService.h"
 
 #define REQUEST_TIMEOUT_INTERVAL    30
 
 NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRequestFailedNotification";
+
+@interface SYSessionManager ()
+
+@property (nonatomic, strong) SYBaseService *service;
+
+@end
 
 @implementation SYSessionManager
 
@@ -23,6 +30,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
         sharedInstance = [[self alloc] initWithBaseURL:nil];
         sharedInstance.requestSerializer = [AFHTTPRequestSerializer serializer];
         sharedInstance.responseSerializer = [AFJSONResponseSerializer serializer];
+        sharedInstance.service = [SYBaseService service];
     });
     
     return sharedInstance;
@@ -55,8 +63,8 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
            parameters:parameters
               success:success
               failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self handleFailure:task error:error completion:nil];
-    }];
+                  [self handleFailure:task error:error completion:nil];
+              }];
 }
 
 - (NSURLSessionDataTask *)GET:(NSString *)URLString
@@ -65,15 +73,26 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
 {
     [self setHTTPHeaderFields];
     
+//  Pass eTag header for checking if cached response is valid
+    __block NSString *eTag = [self.service valueForURLString:URLString];
+    if (eTag.length) {
+        [self.requestSerializer setValue:eTag forHTTPHeaderField:@"If-None-Match"];
+    }
+    
     return [self GET:URLString
           parameters:parameters
             progress:nil
-             success:success
+             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                 if (success) success(task, responseObject);
+                 
+                 eTag = ((NSHTTPURLResponse *)task.response).allHeaderFields[@"Etag"];
+                 if (eTag.length) [self.service setValue:eTag forURLString:URLString];
+             }
              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self handleFailure:task error:error completion:^{
-            if (success) success(task, [self cachedResponseObject:task]);
-        }];
-    }];
+                 [self handleFailure:task error:error completion:^{
+                     if (success) success(task, [self cachedResponseObject:task]);
+                 }];
+             }];
 }
 
 - (NSURLSessionDataTask *)GET:(NSString *)URLString
@@ -87,8 +106,8 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
             progress:downloadProgress
              success:success
              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self handleFailure:task error:error completion:nil];
-    }];
+                 [self handleFailure:task error:error completion:nil];
+             }];
 }
 
 - (NSURLSessionDataTask *)PATCH:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success
@@ -99,8 +118,8 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
             parameters:parameters
                success:success
                failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self handleFailure:task error:error completion:nil];
-    }];
+                   [self handleFailure:task error:error completion:nil];
+               }];
 }
 
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
@@ -113,8 +132,8 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
            parameters:parameters
              progress:nil success:success
               failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self handleFailure:task error:error completion:nil];
-    }];
+                  [self handleFailure:task error:error completion:nil];
+              }];
 }
 
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
@@ -129,8 +148,8 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
              progress:nil
               success:success
               failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self handleFailure:task error:error completion:nil];
-    }];
+                  [self handleFailure:task error:error completion:nil];
+              }];
 }
 
 - (void)handleFailure:(NSURLSessionDataTask *)task error:(NSError *)error completion:(SYNoParameterBlockType)completion
@@ -139,34 +158,42 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     NSHTTPURLResponse *response = (id)task.response;
     
 #if DEBUG
-    NSLog(@"RESPONSE STATUS: %@", response);
     if (error) NSLog(@"HTTP ERROR: %@", error);
+    NSLog(@"RESPONSE STATUS: %@", response);
 #endif
-    
-    switch (response.statusCode) {
-        case 304:   // Not Modified (Load cache data from NSURLCache)
-            if (completion) completion();
-            break;
-            
-        case 401:   // Unauthorized (Access denied)
-            // TODO: Access token invalid, show alert message
-            break;
-            
-        default: {
-            NSString *tipMessage = response.allHeaderFields[@"X-Tip-Message"];
-            if (tipMessage.length) [SVProgressHUD showErrorWithStatus:tipMessage];
-            break;
-        }
-    }
     
     if (error) {
         switch (error.code) {
-            case -1003:
-                [SVProgressHUD showErrorWithStatus:TIP_NETWORK_UNSTABLE];
+            case NSURLErrorCannotFindHost:
+            case NSURLErrorDNSLookupFailed:
+                [SVProgressHUD showErrorWithStatus:HUD_NETWORK_UNSTABLE];
                 break;
                 
             default:
                 [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                break;
+        }
+        
+        if (completion) completion();
+    }
+    else {
+        switch (response.statusCode) {
+            case 304:   // Not Modified (Load cache data from NSURLCache)
+                if (completion) completion();
+                break;
+                
+            case 401:   // Unauthorized (Access denied)
+                // TODO: Access token invalid, show alert message
+                break;
+                
+            case 404:   // Not Found
+            case 406: { // Not Acceptable
+                NSString *tipMessage = response.allHeaderFields[@"X-HUD-Message"];
+                if (tipMessage.length) [SVProgressHUD showErrorWithStatus:tipMessage];
+                break;
+            }
+                
+            default:
                 break;
         }
     }
