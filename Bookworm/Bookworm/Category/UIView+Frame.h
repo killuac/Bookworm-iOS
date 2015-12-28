@@ -10,6 +10,8 @@
 
 @interface UIView (Frame)
 
+@property (nonatomic, assign, readonly) CGFloat statusBarHeight;
+
 @property (nonatomic) CGFloat left;
 @property (nonatomic) CGFloat right;
 @property (nonatomic) CGFloat top;

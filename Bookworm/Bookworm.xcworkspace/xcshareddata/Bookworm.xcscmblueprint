@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B0D362DCAAF3E1B0FFD23B4D6FCE145546929126",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A0E95D5A832A7715CDBA1381FDB8904921709AB1" : 0,
+    "B0D362DCAAF3E1B0FFD23B4D6FCE145546929126" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "65C08441-C3FF-4C1C-A63F-657F0F7E08FD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A0E95D5A832A7715CDBA1381FDB8904921709AB1" : "..\/Tinghua-iOS-v1",
+    "B0D362DCAAF3E1B0FFD23B4D6FCE145546929126" : "Bookworm-iOS\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Bookworm",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Bookworm\/Bookworm.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/killua:code3385&@codebase.tinghua-music.com\/ios\/Tinghua-iOS-v1.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A0E95D5A832A7715CDBA1381FDB8904921709AB1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/killuac\/Bookworm-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B0D362DCAAF3E1B0FFD23B4D6FCE145546929126"
+    }
+  ]
+}

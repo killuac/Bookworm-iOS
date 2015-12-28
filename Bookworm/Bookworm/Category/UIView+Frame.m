@@ -10,6 +10,11 @@
 
 @implementation UIView (Frame)
 
+- (CGFloat)statusBarHeight
+{
+    return [UIApplication sharedApplication].statusBarFrame.size.height;
+}
+
 #pragma mark - Left/Right/Top/Bottom
 - (CGFloat)left
 {

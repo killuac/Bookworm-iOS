@@ -32,7 +32,7 @@
 
 - (CGFloat)statusBarHeight
 {
-    return [UIApplication sharedApplication].statusBarFrame.size.height;
+    return self.view.statusBarHeight;
 }
 
 - (CGFloat)navigationBarHeight
