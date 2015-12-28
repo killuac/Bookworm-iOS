@@ -17,6 +17,6 @@ NSString *PlistFilePath(NSString *fileName);
 NSString *PlistFilePathInLanguageBundle(NSString *fileName);
 
 NSArray *ClassGetSubClasses(Class superClass);
-void SwizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector);
+void SwizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector, BOOL isClassMethod);
 
 @end

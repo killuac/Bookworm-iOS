@@ -80,14 +80,15 @@ NSArray* ClassGetSubClasses(Class superClass)
     return classArray;
 }
 
-void SwizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector)
+void SwizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector, BOOL isClassMethod)
 {
     // the method might not exist in the class, but in its superclass
-    Method originalMethod = class_getInstanceMethod(class, originalSelector);
-    Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+    Method originalMethod = isClassMethod ? class_getClassMethod(class, originalSelector) : class_getInstanceMethod(class, originalSelector);
+    Method swizzledMethod = isClassMethod ? class_getClassMethod(class, swizzledSelector) : class_getInstanceMethod(class, swizzledSelector);
     
     // class_addMethod will fail if original method already exists
-    BOOL isAddMethod = class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
+    Class cls = isClassMethod ? object_getClass(class) : class;
+    BOOL isAddMethod = class_addMethod(cls, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
     
     // the method doesn’t exist and we just added one
     if (isAddMethod) {
