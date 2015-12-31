@@ -10,6 +10,24 @@
 
 @implementation UIView (Utility)
 
+#pragma mark - Gesture
+- (void)addTapGesture
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+    tap.cancelsTouchesInView = NO;
+    [self addGestureRecognizer:tap];
+}
+
+- (void)removeTapGesture
+{
+    [self removeGestureRecognizer:self.gestureRecognizers.firstObject];
+}
+
+- (void)singleTap:(UITapGestureRecognizer *)recognizer
+{
+    [self findAndResignFirstResponder];
+}
+
 - (void)findAndResignFirstResponder
 {
     if (self.isFirstResponder) {
@@ -26,6 +44,7 @@
     }
 }
 
+#pragma mark - Super and sub view
 - (id)superTableView
 {
     if ([self.superview isKindOfClass:[UITableView class]]) {
@@ -86,6 +105,63 @@
         }
     }
     return resultView;
+}
+
+#pragma mark - Blur background view
+- (void)addBlurBackground
+{
+    [self removeBlurBackground];
+    
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, SCREEN_SCALE);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIImageView *blurBackground = [[UIImageView alloc] initWithImage:image];
+    blurBackground.tag = 100;
+    blurBackground.userInteractionEnabled = YES;
+    [blurBackground blurImage];
+    [self addSubview:blurBackground];
+}
+
+- (void)removeBlurBackground
+{
+    [[self viewWithTag:100] removeFromSuperview];
+}
+
+#pragma mark - Empty image view
+- (void)addEmptyImageViewWithTitle:(NSString *)title
+{
+    [self removeEmptyImageView];
+    
+    UIImageView *emptyImageView = [[UIImageView alloc] initWithImage:IMG_EMPTY];
+    emptyImageView.tag = 200;
+    emptyImageView.center = self.center;
+    emptyImageView.contentMode = UIViewContentModeScaleAspectFill;
+    
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.tag = 201;
+    titleLabel.text = title;
+    titleLabel.font = [UIFont subtitleFont];
+    titleLabel.textColor = [UIColor defaultSubtitleColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [titleLabel sizeToFit];
+    titleLabel.width = self.width - DEFAULT_MARGIN * 2;
+    titleLabel.top = emptyImageView.bottom + DEFAULT_MARGIN;
+    
+    if (self.subTableView) {
+        [self.subTableView addSubview:emptyImageView];
+        [self.subTableView addSubview:titleLabel];
+    } else {
+        [self addSubview:emptyImageView];
+        [self addSubview:titleLabel];
+    }
+}
+
+- (void)removeEmptyImageView
+{
+    [[self viewWithTag:200] removeFromSuperview];
+    [[self viewWithTag:201] removeFromSuperview];
 }
 
 @end

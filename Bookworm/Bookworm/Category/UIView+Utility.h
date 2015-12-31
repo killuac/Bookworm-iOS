@@ -10,14 +10,23 @@
 
 @interface UIView (Utility)
 
+@property (nonatomic, strong, readonly) id superTableView;
+@property (nonatomic, strong, readonly) id superCollectionView;
+@property (nonatomic, strong, readonly) id superTableViewCell;
+@property (nonatomic, strong, readonly) id superCollectionViewCell;
+
+@property (nonatomic, strong, readonly) id subTableView;
+@property (nonatomic, strong, readonly) id subCollectionView;
+
+- (void)addTapGesture;
+- (void)removeTapGesture;
+- (void)singleTap:(UITapGestureRecognizer *)recognizer;
 - (void)findAndResignFirstResponder;
 
-- (id)superTableView;
-- (id)superCollectionView;
-- (id)superTableViewCell;
-- (id)superCollectionViewCell;
+- (void)addBlurBackground;
+- (void)removeBlurBackground;
 
-- (id)subTableView;
-- (id)subCollectionView;
+- (void)addEmptyImageViewWithTitle:(NSString *)title;
+- (void)removeEmptyImageView;
 
 @end

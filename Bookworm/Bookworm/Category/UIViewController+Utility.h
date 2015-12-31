@@ -10,6 +10,8 @@
 
 @interface UIViewController (Utility) <UITextFieldDelegate>
 
+@property (nonatomic, assign) BOOL isLoadingData;
+
 @property (nonatomic, strong, readonly) UIViewController *rootViewController;
 @property (nonatomic, strong, readonly) UIViewController *visibleViewController;
 
@@ -17,19 +19,9 @@
 @property (nonatomic, assign, readonly) CGFloat navigationBarHeight;
 @property (nonatomic, assign, readonly) CGFloat tabBarHeight;
 
-- (void)addTapGesture;
-- (void)removeTapGesture;
-- (void)tapGesture:(UITapGestureRecognizer *)recognizer;
-
 - (void)showInitialViewController;
 - (void)showMainViewController;
 - (void)showMainViewControllerWithUserInfo:(NSDictionary *)userInfo;
-
-- (void)addBlurBackground;
-- (void)removeBlurBackground;
-
-- (void)addEmptyImageViewWithTitle:(NSString *)title;
-- (void)removeEmptyImageView;
 
 - (void)loadData;
 - (void)loadData:(SYNoParameterBlockType)completion;

@@ -7,6 +7,7 @@
 //
 
 #import "SYSessionManager.h"
+#import "HTTPStatusCodes.h"
 #import "SYDeviceModel.h"
 #import "SYBaseService.h"
 
@@ -169,6 +170,10 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
                 [SVProgressHUD showErrorWithStatus:HUD_NETWORK_UNSTABLE];
                 break;
                 
+            case NSURLErrorCannotConnectToHost:
+                [SVProgressHUD showErrorWithStatus:HUD_CANNOT_CONNECT_TO_HOST];
+                break;
+                
             default:
                 [SVProgressHUD showErrorWithStatus:error.localizedDescription];
                 break;
@@ -178,16 +183,16 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     }
     else {
         switch (response.statusCode) {
-            case 304:   // Not Modified (Load cache data from NSURLCache)
+            case kHTTPStatusCodeNotModified:    // Load cache data from NSURLCache
                 if (completion) completion();
                 break;
                 
-            case 401:   // Unauthorized (Access denied)
+            case kHTTPStatusCodeUnauthorized:   // Access token invalid
                 // TODO: Access token invalid, show alert message
                 break;
                 
-            case 404:   // Not Found
-            case 406: { // Not Acceptable
+            case kHTTPStatusCodeNotFound:
+            case kHTTPStatusCodeNotAcceptable: {
                 NSString *tipMessage = response.allHeaderFields[@"X-HUD-Message"];
                 if (tipMessage.length) [SVProgressHUD showErrorWithStatus:tipMessage];
                 break;
@@ -198,6 +203,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
         }
     }
     
+    [UIApplication sharedApplication].keyWindow.rootViewController.visibleViewController.isLoadingData = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:SYSessionManagerRequestFailedNotification object:self];
 }
 

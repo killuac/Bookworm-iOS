@@ -104,12 +104,8 @@
 {
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        if (AFNetworkReachabilityStatusNotReachable == status) {
-            [SVProgressHUD showErrorWithStatus:HUD_NO_CONNECTION];
-        } else {
-            if ([GVUserDefaults standardUserDefaults].isFirstLaunch) {
-                [self registerDevice];
-            }
+        if (AFNetworkReachabilityStatusNotReachable != status && [GVUserDefaults standardUserDefaults].isFirstLaunch) {
+            [self registerDevice];
         }
     }];
 }

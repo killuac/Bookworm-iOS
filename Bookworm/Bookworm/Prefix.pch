@@ -22,6 +22,8 @@
 #import "UIColor+Factory.h"
 #import "UIFont+Factory.h"
 #import "UIButton+Factory.h"
+#import "UISwitch+Factory.h"
+#import "UIImage+Utility.h"
 #import "UIImageView+Utility.h"
 #import "UIBarButtonItem+Factory.h"
 #import "UIViewController+Utility.h"
