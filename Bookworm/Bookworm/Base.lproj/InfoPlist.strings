@@ -7,3 +7,4 @@
 */
 
 "CFBundleDisplayName" = "Bookworm";
+"NSHumanReadableCopyright" = "Copyright © 2016 Syzygy. All rights reserved.";

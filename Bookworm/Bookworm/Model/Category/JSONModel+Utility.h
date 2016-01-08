@@ -11,6 +11,8 @@
 
 @interface JSONModel (Utility)
 
+@property (nonatomic, assign) BOOL isSelected;
+
 + (instancetype)model;
 + (instancetype)modelWithString:(NSString *)string;
 + (instancetype)modelWithDictionary:(NSDictionary *)dict;

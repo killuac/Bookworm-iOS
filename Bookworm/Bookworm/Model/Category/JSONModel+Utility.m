@@ -10,6 +10,16 @@
 
 @implementation JSONModel (Utility)
 
+- (void)setIsSelected:(BOOL)isSelected
+{
+    objc_setAssociatedObject(self, @selector(isSelected), @(isSelected), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)isSelected
+{
+    return objc_getAssociatedObject(self, @selector(isSelected));
+}
+
 + (instancetype)model
 {
     return [[self alloc] init];

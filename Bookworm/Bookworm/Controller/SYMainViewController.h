@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SYScrollViewController.h"
 
-@interface SYMainViewController : UIViewController
+@interface SYMainViewController : SYScrollViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, strong) UITableView *tableView;
 
 @end
-
