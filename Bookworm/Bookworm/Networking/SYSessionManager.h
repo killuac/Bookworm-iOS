@@ -39,6 +39,7 @@ FOUNDATION_EXPORT NSString *const SYSessionManagerRequestFailedNotification;
 - (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
                              parameters:(nullable id)parameters
               constructingBodyWithBlock:(nullable void (^)(id <AFMultipartFormData> formData))block
+                               progress:(nullable void (^)(NSProgress *uploadProgress))uploadProgress
                                 success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success;
 
 @end

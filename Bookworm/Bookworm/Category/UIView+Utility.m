@@ -10,24 +10,6 @@
 
 @implementation UIView (Utility)
 
-#pragma mark - Gesture
-- (void)addTapGesture
-{
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
-    tap.cancelsTouchesInView = NO;
-    [self addGestureRecognizer:tap];
-}
-
-- (void)removeTapGesture
-{
-    [self removeGestureRecognizer:self.gestureRecognizers.firstObject];
-}
-
-- (void)singleTap:(UITapGestureRecognizer *)recognizer
-{
-    [self findAndResignFirstResponder];
-}
-
 - (void)findAndResignFirstResponder
 {
     if (self.isFirstResponder) {
@@ -112,7 +94,7 @@
 {
     [self removeBlurBackground];
     
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, SCREEN_SCALE);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 1);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -140,21 +122,24 @@
     emptyImageView.contentMode = UIViewContentModeScaleAspectFill;
     
     UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.tag = 201;
-    titleLabel.text = title;
-    titleLabel.font = [UIFont subtitleFont];
-    titleLabel.textColor = [UIColor defaultSubtitleColor];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    [titleLabel sizeToFit];
-    titleLabel.width = self.width - DEFAULT_MARGIN * 2;
-    titleLabel.top = emptyImageView.bottom + DEFAULT_MARGIN;
+    if (title.length) {
+        titleLabel.tag = 201;
+        titleLabel.text = title;
+        titleLabel.font = [UIFont subtitleFont];
+        titleLabel.textColor = [UIColor defaultSubtitleColor];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        [titleLabel sizeToFit];
+        titleLabel.width = self.width - DEFAULT_MARGIN * 2;
+        titleLabel.center = self.center;
+        titleLabel.top = emptyImageView.bottom + DEFAULT_MARGIN;
+    }
     
     if (self.subTableView) {
         [self.subTableView addSubview:emptyImageView];
-        [self.subTableView addSubview:titleLabel];
+        if (title.length) [self.subTableView addSubview:titleLabel];
     } else {
         [self addSubview:emptyImageView];
-        [self addSubview:titleLabel];
+        if (title.length) [self addSubview:titleLabel];
     }
 }
 

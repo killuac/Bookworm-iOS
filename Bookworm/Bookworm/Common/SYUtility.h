@@ -10,8 +10,9 @@
 
 @interface SYUtility : NSObject
 
-NSString *CacheFilePath(NSString *fileName);
 NSString *DocumentFilePath(NSString *fileName);
+NSString *ApplicationSupportFilePath(NSString *fileName);
+NSString *CacheFilePath(NSString *fileName);
 NSString *TemporaryFilePath(NSString *fileName);
 NSString *PlistFilePath(NSString *fileName);
 NSString *PlistFilePathInLanguageBundle(NSString *fileName);

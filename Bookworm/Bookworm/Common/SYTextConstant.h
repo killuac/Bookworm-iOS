@@ -62,9 +62,9 @@
 
 #define HUD_CACHE_CLEAR_DONE            LocalizedString(@"CacheClearDone", @"缓存已清除")
 #define HUD_CLEARING_CACHE              LocalizedString(@"ClearingCache", @"正在清除缓存...")
-#define HUD_CONNECTION_TIMEOUT          LocalizedString(@"ConnectionTimeout", @"网络异常，请稍后再试")
 #define HUD_NETWORK_UNSTABLE            LocalizedString(@"NetworkUnstable", @"你当前的网络不稳定，请切换网络。")
-#define HUD_CANNOT_CONNECT_TO_HOST      LocalizedString(@"NoNetworkConnection", @"服务器正在维护中，请稍后再试。")
+#define HUD_CANNOT_CONNECT_TO_HOST      LocalizedString(@"CannotConnectToHost", @"服务器正在维护中，请稍后再试。")
+#define HUD_NOT_CONNECTED_TO_INTERNET   LocalizedString(@"NotConnectedToInternet", @"似乎已断开与互联网的连接")
 #define HUD_MOBILE_INVALID              LocalizedString(@"MobileInvalid", @"手机号码无效")
 #define HUD_MOBILE_TAKEN                LocalizedString(@"MobileTaken", @"手机号码已经被注册")
 #define HUD_MOBILE_NOT_FOUND            LocalizedString(@"MobileNotFound", @"手机号码尚未注册")

@@ -29,8 +29,15 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     static SYSessionManager *sharedInstance = nil;
     dispatch_once(&predicate, ^{
         sharedInstance = [[self alloc] initWithBaseURL:nil];
-        sharedInstance.requestSerializer = [AFHTTPRequestSerializer serializer];
+        
+        sharedInstance.requestSerializer = [AFJSONRequestSerializer serializer];
         sharedInstance.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        NSMutableIndexSet *responseCodes = [NSMutableIndexSet indexSet];
+        [responseCodes addIndexes:sharedInstance.responseSerializer.acceptableStatusCodes];
+        [responseCodes addIndex:kHTTPStatusCodeNotModified];
+        sharedInstance.responseSerializer.acceptableStatusCodes = responseCodes;
+        
         sharedInstance.service = [SYBaseService service];
     });
     
@@ -64,7 +71,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
            parameters:parameters
               success:success
               failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                  [self handleFailure:task error:error completion:nil];
+                  [self handleFailure:task error:error];
               }];
 }
 
@@ -84,31 +91,48 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
           parameters:parameters
             progress:nil
              success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                 if (success) success(task, responseObject);
-                 
-                 eTag = ((NSHTTPURLResponse *)task.response).allHeaderFields[@"Etag"];
-                 if (eTag.length) [self.service setValue:eTag forURLString:URLString];
+                 [self handleSuccess:task responseObject:responseObject completion:^{
+                     if (kHTTPStatusCodeNotModified == [(id)task.response statusCode]) {
+                         if (success) success(task, [self cachedResponseObject:task]);
+                     } else {
+                         eTag = ((NSHTTPURLResponse *)task.response).allHeaderFields[@"Etag"];
+                         if (eTag.length) [self.service setValue:eTag forURLString:URLString];
+                         if (success) success(task, responseObject);
+                     }
+                 }];
              }
              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                 [self handleFailure:task error:error completion:^{
-                     if (success) success(task, [self cachedResponseObject:task]);
-                 }];
+                 [self handleFailure:task error:error];
              }];
+}
+
+// Load cache data from NSURLCache
+- (id)cachedResponseObject:(NSURLSessionDataTask *)task
+{
+    NSCachedURLResponse* cachedResponse = [[NSURLCache sharedURLCache] cachedResponseForRequest:task.originalRequest];
+    AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+    return [responseSerializer responseObjectForResponse:cachedResponse.response data:cachedResponse.data error:nil];
 }
 
 - (NSURLSessionDataTask *)GET:(NSString *)URLString
                      progress:(void (^)(NSProgress *))downloadProgress
                       success:(void (^)(NSURLSessionDataTask *, id responseObject))success
 {
-    [self setHTTPHeaderFields];
+    self.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSURLSessionDataTask *dataTask = [self GET:URLString
+                                    parameters:nil
+                                      progress:downloadProgress
+                                       success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                           [self handleSuccess:task responseObject:responseObject completion:^{
+                                               if (success) success(task, responseObject);
+                                           }];
+                                       }
+                                       failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                           [self handleFailure:task error:error];
+                                       }];
+    self.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    return [self GET:URLString
-          parameters:nil
-            progress:downloadProgress
-             success:success
-             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                 [self handleFailure:task error:error completion:nil];
-             }];
+    return dataTask;
 }
 
 - (NSURLSessionDataTask *)PATCH:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success
@@ -117,9 +141,13 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     
     return [self PATCH:URLString
             parameters:parameters
-               success:success
+               success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                   [self handleSuccess:task responseObject:responseObject completion:^{
+                       if (success) success(task, responseObject);
+                   }];
+               }
                failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                   [self handleFailure:task error:error completion:nil];
+                   [self handleFailure:task error:error];
                }];
 }
 
@@ -131,87 +159,93 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     
     return [self POST:URLString
            parameters:parameters
-             progress:nil success:success
+             progress:nil
+              success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                  [self handleSuccess:task responseObject:responseObject completion:^{
+                      if (success) success(task, responseObject);
+                  }];
+              }
               failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                  [self handleFailure:task error:error completion:nil];
+                  [self handleFailure:task error:error];
               }];
 }
 
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
                     parameters:(id)parameters
      constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
+                      progress:(nullable void (^)(NSProgress * _Nonnull))uploadProgress
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
 {
     [self setHTTPHeaderFields];
     
     return [self POST:URLString
            parameters:parameters constructingBodyWithBlock:block
-             progress:nil
-              success:success
+             progress:uploadProgress
+              success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                  [self handleSuccess:task responseObject:responseObject completion:^{
+                      if (success) success(task, responseObject);
+                  }];
+              }
               failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                  [self handleFailure:task error:error completion:nil];
+                  [self handleFailure:task error:error];
               }];
 }
 
-- (void)handleFailure:(NSURLSessionDataTask *)task error:(NSError *)error completion:(SYNoParameterBlockType)completion
+- (void)handleSuccess:(NSURLSessionDataTask *)task responseObject:(id)responseObject completion:(SYNoParameterBlockType)completion
 {
     [SVProgressHUD dismiss];
-    NSHTTPURLResponse *response = (id)task.response;
+    if (completion) completion();
+}
+
+- (void)handleFailure:(NSURLSessionDataTask *)task error:(NSError *)error
+{
+    [SVProgressHUD dismiss];
     
 #if DEBUG
-    if (error) NSLog(@"HTTP ERROR: %@", error);
-    NSLog(@"RESPONSE STATUS: %@", response);
+    NSLog(@"HTTP ERROR: %@", error);
+    NSLog(@"RESPONSE STATUS: %@", task.response);
 #endif
     
-    if (error) {
-        switch (error.code) {
-            case NSURLErrorCannotFindHost:
-            case NSURLErrorDNSLookupFailed:
-                [SVProgressHUD showErrorWithStatus:HUD_NETWORK_UNSTABLE];
-                break;
-                
-            case NSURLErrorCannotConnectToHost:
-                [SVProgressHUD showErrorWithStatus:HUD_CANNOT_CONNECT_TO_HOST];
-                break;
-                
-            default:
-                [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-                break;
-        }
-        
-        if (completion) completion();
-    }
-    else {
-        switch (response.statusCode) {
-            case kHTTPStatusCodeNotModified:    // Load cache data from NSURLCache
-                if (completion) completion();
-                break;
-                
-            case kHTTPStatusCodeUnauthorized:   // Access token invalid
-                // TODO: Access token invalid, show alert message
-                break;
-                
-            case kHTTPStatusCodeNotFound:
-            case kHTTPStatusCodeNotAcceptable: {
-                NSString *tipMessage = response.allHeaderFields[@"X-HUD-Message"];
-                if (tipMessage.length) [SVProgressHUD showErrorWithStatus:tipMessage];
-                break;
-            }
-                
-            default:
-                break;
-        }
+    switch (error.code) {
+        case NSURLErrorTimedOut:
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            break;
+            
+        case NSURLErrorCannotFindHost:
+        case NSURLErrorDNSLookupFailed:
+            [SVProgressHUD showErrorWithStatus:HUD_NETWORK_UNSTABLE];
+            break;
+            
+        case NSURLErrorCannotConnectToHost:
+            [SVProgressHUD showErrorWithStatus:HUD_CANNOT_CONNECT_TO_HOST];
+            break;
+            
+        case NSURLErrorNotConnectedToInternet:
+            [SVProgressHUD showErrorWithStatus:HUD_CANNOT_CONNECT_TO_HOST];
+            break;
+            
+        default:
+            [self handleResponseResult:(id)task.response];
+            break;
     }
     
-    [UIApplication sharedApplication].keyWindow.rootViewController.visibleViewController.isLoadingData = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:SYSessionManagerRequestFailedNotification object:self];
 }
 
-- (id)cachedResponseObject:(NSURLSessionDataTask *)task
+- (void)handleResponseResult:(NSHTTPURLResponse *)response
 {
-    NSCachedURLResponse* cachedResponse = [[NSURLCache sharedURLCache] cachedResponseForRequest:task.originalRequest];
-    AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
-    return [responseSerializer responseObjectForResponse:cachedResponse.response data:cachedResponse.data error:nil];
+    switch (response.statusCode) {
+        case kHTTPStatusCodeUnauthorized:   // Access token invalid
+            // TODO: Access token invalid, show alert message
+            break;
+            
+        case kHTTPStatusCodeNotFound:
+        case kHTTPStatusCodeNotAcceptable: {
+            NSString *tipMessage = response.allHeaderFields[@"X-HUD-Message"];
+            if (tipMessage.length) [SVProgressHUD showErrorWithStatus:tipMessage];
+            break;
+        }
+    }
 }
 
 @end

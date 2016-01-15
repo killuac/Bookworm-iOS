@@ -18,9 +18,6 @@
 @property (nonatomic, strong, readonly) id subTableView;
 @property (nonatomic, strong, readonly) id subCollectionView;
 
-- (void)addTapGesture;
-- (void)removeTapGesture;
-- (void)singleTap:(UITapGestureRecognizer *)recognizer;
 - (void)findAndResignFirstResponder;
 
 - (void)addBlurBackground;

@@ -21,12 +21,17 @@
 {
     if (self = [super init]) {
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(httpRequestFailed:)
+                                                 selector:@selector(HTTPRequestFailed:)
                                                      name:SYSessionManagerRequestFailedNotification
                                                    object:nil];
     }
     
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad
@@ -42,22 +47,22 @@
 
 - (void)startLoadingData:(SYNoParameterBlockType)completion
 {
-    self.isLoadingData = YES;
-    
-    [self loadData:^{
-        self.isLoadingData = NO;
-        if (completion) completion();
-    }];
+    if (!self.isLoadingData) {
+        self.isLoadingData = YES;
+        
+        [self loadData:^{
+            self.isLoadingData = NO;
+            if (completion) completion();
+        }];
+    }
 }
 
 - (void)loadNewData
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (!self.isLoadingData) {
-            [self startLoadingData:^{
-                [self.refreshControl endRefreshing];
-            }];
-        }
+        [self startLoadingData:^{
+            [self.refreshControl endRefreshing];
+        }];
     });
 }
 
@@ -70,11 +75,9 @@
     self.activityIndicator.bottom = self.scrollView.contentSize.height + DEFAULT_MARGIN;
     [self.activityIndicator startAnimating];
     
-    if (!self.isLoadingData) {
-        [self startLoadingData:^{
-            [self.activityIndicator stopAnimating];
-        }];
-    }
+    [self startLoadingData:^{
+        [self.activityIndicator stopAnimating];
+    }];
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
@@ -89,6 +92,17 @@
     if (yVelocity < 0 && targetContentOffset->y >= yOffset && yOffset && !self.isLoadingData) {
         [self loadEarlierData];
     }
+}
+
+- (void)scrollToTop
+{
+    [self.scrollView setContentOffset:CGPointZero animated:YES];
+}
+
+- (void)HTTPRequestFailed:(NSNotification *)notification
+{
+    self.isLoadingData = NO;
+    [self.activityIndicator stopAnimating];
 }
 
 @end

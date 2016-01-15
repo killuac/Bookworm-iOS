@@ -55,6 +55,24 @@
     return self.tabBarController.tabBar.height;
 }
 
+#pragma mark - Gesture
+- (void)addTapGesture
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
+}
+
+- (void)removeTapGesture
+{
+    [self.view removeGestureRecognizer:self.view.gestureRecognizers.firstObject];
+}
+
+- (void)singleTap:(UITapGestureRecognizer *)recognizer
+{
+    [self.view findAndResignFirstResponder];
+}
+
 #pragma mark - Text field handling
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -140,7 +158,7 @@
 //  Implemented by subclass
 }
 
-- (void)httpRequestFailed:(NSNotification *)notification
+- (void)HTTPRequestFailed:(NSNotification *)notification
 {
 //  Implemented by subclass
 }

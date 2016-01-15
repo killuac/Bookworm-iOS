@@ -36,6 +36,13 @@ NSString *DocumentFilePath(NSString *fileName)
     return FetchOrCreateFilePath(path);
 }
 
+NSString *ApplicationSupportFilePath(NSString *fileName)
+{
+    NSString *docDir = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *path = [docDir stringByAppendingPathComponent:fileName];
+    return FetchOrCreateFilePath(path);
+}
+
 NSString *CacheFilePath(NSString *fileName)
 {
     NSString *docDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;

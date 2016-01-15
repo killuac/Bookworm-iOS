@@ -23,10 +23,14 @@
 - (void)showMainViewController;
 - (void)showMainViewControllerWithUserInfo:(NSDictionary *)userInfo;
 
+- (void)addTapGesture;
+- (void)removeTapGesture;
+- (void)singleTap:(UITapGestureRecognizer *)recognizer;
+
 - (void)loadData;
 - (void)loadData:(SYNoParameterBlockType)completion;
 - (void)reloadData;
 
-- (void)httpRequestFailed:(NSNotification *)notification;
+- (void)HTTPRequestFailed:(NSNotification *)notification;
 
 @end

@@ -23,8 +23,12 @@
     return self;
 }
 
+// If use Interface Builder to create views and initialize the view controller, must not override this method.
+// Should not call [super loadView];
 - (void)loadView
 {
+    [super loadView];
+    
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.allowsSelection = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

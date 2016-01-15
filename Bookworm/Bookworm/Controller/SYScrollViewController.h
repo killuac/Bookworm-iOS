@@ -16,4 +16,6 @@
 - (void)loadNewData;
 - (void)loadEarlierData;
 
+- (void)scrollToTop;
+
 @end

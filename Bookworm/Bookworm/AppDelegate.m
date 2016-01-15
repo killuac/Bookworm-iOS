@@ -97,27 +97,6 @@
     [database close];
 }
 
-/**
- *  Register device when app is first launch and network is avaiable
- */
-- (void)checkNetworkReachability
-{
-    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        if (AFNetworkReachabilityStatusNotReachable != status && [GVUserDefaults standardUserDefaults].isFirstLaunch) {
-            [self registerDevice];
-        }
-    }];
-}
-
-- (void)registerDevice
-{
-    SYDeviceModel *deviceModel = [SYDeviceModel model];
-    [[SYDeviceService service] createWithModel:deviceModel result:^(id service, id result) {
-        [GVUserDefaults standardUserDefaults].isFirstLaunch = NO;
-    }];
-}
-
 #pragma mark - Notification
 - (void)registerNotification
 {
@@ -165,20 +144,38 @@
     [self updateDeviceToken];
 }
 
-#pragma mark - Application activity
+#pragma mark - App Life Cycle
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    [self checkNetworkReachability];
-    
-    if ([GVUserDefaults standardUserDefaults].isSignedIn) {
-//      TODO: Connect IM server
-    }
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (AFNetworkReachabilityStatusNotReachable == status) {
+            [SVProgressHUD showErrorWithStatus:HUD_NOT_CONNECTED_TO_INTERNET];
+        } else {
+            if ([GVUserDefaults standardUserDefaults].isFirstLaunch) {
+                [self registerDevice];
+            }
+            
+            if ([GVUserDefaults standardUserDefaults].isSignedIn) {
+                //              TODO: Connect IM server
+            }
+        }
+    }];
     
     if ([UIApplication sharedApplication].isRegisteredForRemoteNotifications) {
         [self updateDeviceToken];
     } else {
         [self closeRemoteNotification];
     }
+}
+
+// Register device when app is first launch and network is avaiable
+- (void)registerDevice
+{
+    SYDeviceModel *deviceModel = [SYDeviceModel model];
+    [[SYDeviceService service] createWithModel:deviceModel result:^(id service, id result) {
+        [GVUserDefaults standardUserDefaults].isFirstLaunch = NO;
+    }];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
