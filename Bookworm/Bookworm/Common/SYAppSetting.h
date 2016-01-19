@@ -14,6 +14,8 @@
 @property (nonatomic, copy) NSString *host;
 @property (nonatomic, assign) NSUInteger port;
 
+@property (nonatomic, copy, readonly) NSString *URLString;
+
 @end
 
 @interface SYAppSetting : JSONModel

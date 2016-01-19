@@ -11,6 +11,12 @@
 #define APP_SETTING     @"app-setting"
 
 @implementation SYServer
+
+- (NSString *)URLString
+{
+    return [NSString stringWithFormat:@"%@://%@:%tu/api", self.protocol, self.host, self.port];
+}
+
 @end
 
 @implementation SYAppSetting
@@ -37,14 +43,9 @@
     [[self toDictionary] writeToFile:PlistFilePath(APP_SETTING) atomically:YES];
 }
 
-- (NSString *)baseURLString
-{
-    return [NSString stringWithFormat:@"%@://%@:%tu/api", self.server.protocol, self.server.host, self.server.port];
-}
-
 - (NSURL *)baseURL
 {
-    return [NSURL URLWithString:self.baseURLString];
+    return [NSURL URLWithString:self.server.URLString];
 }
 
 @end

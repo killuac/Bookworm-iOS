@@ -140,6 +140,8 @@
 //                         window.transform = CGAffineTransformIdentity;
 //                     }
 //                     completion:nil];
+    
+    [MobClick profileSignInWithPUID:[GVUserDefaults standardUserDefaults].userId];
 }
 
 #pragma mark - Abstract method

@@ -7,7 +7,8 @@
 //
 
 #import "SYSessionManager.h"
-#import "HTTPStatusCodes.h"
+#import "HTTPStatusCode.h"
+#import "HTTPHeaderField.h"
 #import "SYDeviceModel.h"
 #import "SYBaseService.h"
 
@@ -23,7 +24,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
 
 @implementation SYSessionManager
 
-+ (instancetype)sharedSessionManager
++ (instancetype)manager
 {
     static dispatch_once_t predicate;
     static SYSessionManager *sharedInstance = nil;
@@ -47,18 +48,18 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
 - (void)setHTTPHeaderFields
 {
     NSString *networkStatus = [[AFNetworkReachabilityManager sharedManager] localizedNetworkReachabilityStatusString];
-    NSString *userAgent = [NSString stringWithFormat:@"Bookworm/%@ (%@; %@) %@",
-                           APP_VERSION, [SYDeviceModel model].description, [GVUserDefaults standardUserDefaults].language, networkStatus];
-    [self.requestSerializer setValue:userAgent forHTTPHeaderField:@"User-Agent"];
+    NSString *userAgent = [NSString stringWithFormat:@"%@/%@ (%@; %@) %@", APP_BUNDLE_NAME, APP_VERSION,
+                           [SYDeviceModel model].description, [GVUserDefaults standardUserDefaults].language, networkStatus];
+    [self.requestSerializer setValue:userAgent forHTTPHeaderField:kHTTPHeaderFieldUserAgent];
     
     NSString *accessToken = [GVUserDefaults standardUserDefaults].accessToken;
     if ([GVUserDefaults standardUserDefaults].isSignedIn && accessToken.length) {
-        [self.requestSerializer setValue:accessToken forHTTPHeaderField:@"X-Access-Token"];
+        [self.requestSerializer setValue:accessToken forHTTPHeaderField:kHTTPHeaderFieldAccessToken];
     }
     
-    #if DEBUG
-        NSLog(@"%@", self.requestSerializer.HTTPRequestHeaders);
-    #endif
+#if DEBUG
+    NSLog(@"%@", self.requestSerializer.HTTPRequestHeaders);
+#endif
 }
 
 - (NSURLSessionDataTask *)HEAD:(NSString *)URLString
@@ -84,7 +85,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
 //  Pass eTag header for checking if cached response is valid
     __block NSString *eTag = [self.service valueForURLString:URLString];
     if (eTag.length) {
-        [self.requestSerializer setValue:eTag forHTTPHeaderField:@"If-None-Match"];
+        [self.requestSerializer setValue:eTag forHTTPHeaderField:kHTTPHeaderFieldIfNoneMatch];
     }
     
     return [self GET:URLString
@@ -95,7 +96,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
                      if (kHTTPStatusCodeNotModified == [(id)task.response statusCode]) {
                          if (success) success(task, [self cachedResponseObject:task]);
                      } else {
-                         eTag = ((NSHTTPURLResponse *)task.response).allHeaderFields[@"Etag"];
+                         eTag = ((NSHTTPURLResponse *)task.response).allHeaderFields[kHTTPHeaderFieldETag];
                          if (eTag.length) [self.service setValue:eTag forURLString:URLString];
                          if (success) success(task, responseObject);
                      }
@@ -221,7 +222,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
             break;
             
         case NSURLErrorNotConnectedToInternet:
-            [SVProgressHUD showErrorWithStatus:HUD_CANNOT_CONNECT_TO_HOST];
+            [SVProgressHUD showErrorWithStatus:HUD_NOT_CONNECTED_TO_INTERNET];
             break;
             
         default:
@@ -235,13 +236,18 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
 - (void)handleResponseResult:(NSHTTPURLResponse *)response
 {
     switch (response.statusCode) {
-        case kHTTPStatusCodeUnauthorized:   // Access token invalid
-            // TODO: Access token invalid, show alert message
+        case kHTTPStatusCodeUnauthorized: {   // Access token invalid
+            BOOL isKickedOut = response.allHeaderFields[kHTTPHeaderFieldIsKickedOut];
+            if (isKickedOut && [GVUserDefaults standardUserDefaults].isSignedIn) {
+                [[UIApplication sharedApplication].keyWindow.rootViewController showInitialViewController];
+                [[UIAlertController alertControllerWithTitle:BUTTON_TITLE_OKAY message:HUD_USER_KICK_OUT] show];
+            }
             break;
+        }
             
         case kHTTPStatusCodeNotFound:
         case kHTTPStatusCodeNotAcceptable: {
-            NSString *tipMessage = response.allHeaderFields[@"X-HUD-Message"];
+            NSString *tipMessage = response.allHeaderFields[kHTTPHeaderFieldHUDMessage];
             if (tipMessage.length) [SVProgressHUD showErrorWithStatus:tipMessage];
             break;
         }

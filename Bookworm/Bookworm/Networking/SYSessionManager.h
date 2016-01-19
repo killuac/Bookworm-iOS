@@ -14,8 +14,6 @@ FOUNDATION_EXPORT NSString *const SYSessionManagerRequestFailedNotification;
 
 @interface SYSessionManager : AFHTTPSessionManager
 
-+ (nullable instancetype)sharedSessionManager;
-
 - (nullable NSURLSessionDataTask *)HEAD:(NSString *)URLString
                              parameters:(nullable id)parameters
                                 success:(nullable void (^)(NSURLSessionDataTask *task))success;

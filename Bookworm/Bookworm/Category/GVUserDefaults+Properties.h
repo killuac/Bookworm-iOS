@@ -10,9 +10,9 @@
 
 @interface GVUserDefaults (Properties)
 
-@property (nonatomic, copy) NSString *userId;
-@property (nonatomic, assign) BOOL isSignedIn;
 @property (nonatomic, assign) BOOL isFirstLaunch;
+@property (nonatomic, assign) BOOL isSignedIn;
+@property (nonatomic, copy) NSString *userId;
 @property (nonatomic, copy, readonly) NSString *language;
 
 @property (nonatomic, copy) NSString *accessToken;

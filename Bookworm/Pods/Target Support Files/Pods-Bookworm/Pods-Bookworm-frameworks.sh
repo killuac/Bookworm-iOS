@@ -94,6 +94,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Bookworm/RegExCategories.framework"
   install_framework "Pods-Bookworm/SDWebImage.framework"
   install_framework "Pods-Bookworm/SVProgressHUD.framework"
+  install_framework "Pods-Bookworm/SocketRocket.framework"
   install_framework "Pods-Bookworm/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -107,5 +108,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Bookworm/RegExCategories.framework"
   install_framework "Pods-Bookworm/SDWebImage.framework"
   install_framework "Pods-Bookworm/SVProgressHUD.framework"
+  install_framework "Pods-Bookworm/SocketRocket.framework"
   install_framework "Pods-Bookworm/pop.framework"
 fi

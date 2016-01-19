@@ -7,11 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "AppDelegate+Logging.h"
 #import "FMDB.h"
-#import "MobClick.h"
 #import "SYAppSetting.h"
 #import "SYServerAPI.h"
 #import "SYDeviceService.h"
+#import "SYSocketManager.h"
 #import "TestViewController.h"
 @import AFNetworking;
 
@@ -45,10 +46,42 @@
 {
     [self updateApplication];
     [self setupAppearance];
-    [self setupUMeng];
+    [self setupAppLogging];
     [self registerNotification];
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    
+//  Observe user sign in or sign out
+    GVUserDefaults *userDefaults = [GVUserDefaults standardUserDefaults];
+    self.KVOController = [FBKVOController controllerWithObserver:self];
+    [self.KVOController observe:userDefaults keyPath:@"isSignedIn" options:NSKeyValueObservingOptionNew
+                          block:^(id observer, id object, NSDictionary *change) {
+                              if (userDefaults.isSignedIn) {
+                                  [[SYSocketManager manager] connect];
+                              } else {
+                                  [[SYSocketManager manager] disconnect];
+                              }
+                          }];
+}
+
+- (void)updateApplication
+{
+    if ([SYAppSetting defaultAppSetting].isAppUpdated) {
+        [self updateLocalDatabase];
+        [SYServerAPI fetchAndSave];
+    }
+}
+
+- (void)updateLocalDatabase
+{
+    FMDatabase *database = [FMDatabase databaseWithPath:DATABASE_FILE_PATH];
+    [database open];
+    [database setShouldCacheStatements:YES];
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Bookworm" ofType:@"sql"];
+    NSString *sql = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    [database executeStatements:sql];
+    [database close];
 }
 
 - (void)setupAppearance
@@ -62,39 +95,6 @@
     [UIPageControl appearance].pageIndicatorTintColor = [UIColor whiteColor];
     [UIPageControl appearance].currentPageIndicatorTintColor = [UIColor grayColor];
     [UIPageControl appearance].backgroundColor = [UIColor backgroundColor];
-}
-
-- (void)setupUMeng
-{
-    NSString *appKey = @"";
-#if DEBUG
-    [MobClick startWithAppkey:appKey reportPolicy:REALTIME channelId:@"Development"];
-#else
-    [MobClick startWithAppkey:appKey reportPolicy:BATCH channelId:@"App Store"];
-#endif
-    
-    [MobClick setAppVersion:XcodeAppVersion];
-    [MobClick setEncryptEnabled:YES];
-}
-
-- (void)updateApplication
-{
-    if ([SYAppSetting defaultAppSetting].isAppUpdated) {
-        [self alterDatabase];
-        [SYServerAPI fetchAndSave];
-    }
-}
-
-- (void)alterDatabase
-{
-    FMDatabase *database = [FMDatabase databaseWithPath:DATABASE_FILE_PATH];
-    [database open];
-    [database setShouldCacheStatements:YES];
-    
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Bookworm" ofType:@"sql"];
-    NSString *sql = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    [database executeStatements:sql];
-    [database close];
 }
 
 #pragma mark - Notification
@@ -154,10 +154,6 @@
         } else {
             if ([GVUserDefaults standardUserDefaults].isFirstLaunch) {
                 [self registerDevice];
-            }
-            
-            if ([GVUserDefaults standardUserDefaults].isSignedIn) {
-                //              TODO: Connect IM server
             }
         }
     }];

@@ -5,6 +5,7 @@ inhibit_all_warnings!
 target 'Bookworm' do
 
 pod 'AFNetworking'
+pod 'SocketRocket'
 pod 'SDWebImage'
 pod 'RegExCategories'
 pod 'pop'

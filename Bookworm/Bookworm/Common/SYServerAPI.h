@@ -7,16 +7,20 @@
 //
 
 #import <JSONModel/JSONModel.h>
+#import "SYAppSetting.h"
 
 @interface SYServerAPI : JSONModel
 
 + (instancetype)sharedServerAPI;
 + (void)fetchAndSave;
 
-@property (nonatomic, copy) NSString *IMServerURLString;
+- (void)fetchIMServerAddressCompletion:(SYNoParameterBlockType)completion;
 
-@property (nonatomic, copy) NSString *devicesURLString;
-@property (nonatomic, copy) NSString *signInURLString;
-@property (nonatomic, copy) NSString *usersURLString;
+@property (nonatomic, copy) NSString *IMServer;             // Fetch IM server address by HTTP API
+@property (nonatomic, copy) NSString *IMServerAddress;      // Available IM server address
+
+@property (nonatomic, copy) NSString *signIn;
+@property (nonatomic, copy) NSString *devices;
+@property (nonatomic, copy) NSString *users;
 
 @end

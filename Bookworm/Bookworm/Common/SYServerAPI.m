@@ -7,7 +7,6 @@
 //
 
 #import "SYServerAPI.h"
-#import "SYAppSetting.h"
 #import "SYSessionManager.h"
 
 #define JSON_SERVER_API     @"server-api.json"
@@ -39,16 +38,28 @@ static SYServerAPI *sharedInstance = nil;
 {
     NSString *urlString = [[SYAppSetting defaultAppSetting].baseURL absoluteString];
     
-    [[SYSessionManager sharedSessionManager] GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        id serverAPI = [self modelWithDictionary:responseObject];
-        
-//      Protecting Data Using On-Disk Encryption
-        [[serverAPI toJSONData] writeToFile:ApplicationSupportFilePath(JSON_SERVER_API)
-                                    options:NSDataWritingAtomic | NSDataWritingFileProtectionComplete
-                                      error:nil];
+    [[SYSessionManager manager] GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[self modelWithDictionary:responseObject] save];
         
 //      If App is updated, need fetch API again and reset the sharedInstance with new API file.
         sharedInstance = [self modelWithData:[NSData dataWithContentsOfFile:DocumentFilePath(JSON_SERVER_API)]];
+    }];
+}
+
+// Protecting Data Using On-Disk Encryption
+- (void)save
+{
+    [[self toJSONData] writeToFile:ApplicationSupportFilePath(JSON_SERVER_API)
+                           options:NSDataWritingAtomic | NSDataWritingFileProtectionComplete
+                             error:nil];
+}
+
+- (void)fetchIMServerAddressCompletion:(SYNoParameterBlockType)completion
+{
+    [[SYSessionManager manager] HEAD:self.IMServer parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
+        self.IMServerAddress = ((NSHTTPURLResponse *)task.response).allHeaderFields[@"X-IM-Server"];
+        [self save];
+        if (completion) completion();
     }];
 }
 

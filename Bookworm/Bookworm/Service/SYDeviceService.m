@@ -12,19 +12,19 @@
 
 - (NSString *)urlString
 {
-    return [SYServerAPI sharedServerAPI].devicesURLString;
+    return [SYServerAPI sharedServerAPI].devices;
 }
 
 - (void)createWithModel:(id)model result:(SYServiceBlockType)result
 {
-    [[SYSessionManager sharedSessionManager] POST:self.urlString parameters:[model toDictionary] success:^void(NSURLSessionDataTask *task, id responseObject) {
+    [[SYSessionManager manager] POST:self.urlString parameters:[model toDictionary] success:^void(NSURLSessionDataTask *task, id responseObject) {
         if (result) result(self, nil);
     }];
 }
 
 - (void)updateWithModel:(id)model result:(SYServiceBlockType)result
 {
-    [[SYSessionManager sharedSessionManager] PATCH:self.urlString parameters:[model toDictionary] success:^void(NSURLSessionDataTask *task, id responseObject) {
+    [[SYSessionManager manager] PATCH:self.urlString parameters:[model toDictionary] success:^void(NSURLSessionDataTask *task, id responseObject) {
         if (result) result(self, nil);
     }];
 }

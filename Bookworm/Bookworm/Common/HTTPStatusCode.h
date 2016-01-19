@@ -15,8 +15,8 @@
  */
 
 
-#ifndef HTTPStatusCodes_h
-#define HTTPStatusCodes_h
+#ifndef HTTPStatusCode_h
+#define HTTPStatusCode_h
 
 
 //----------------------------------------------------------------------
@@ -46,7 +46,7 @@ typedef enum
     /**
      * 101 Switching Protocols.
      */
-    kHTTPStatusCodeSwitchingProtocols = 101,
+    kHTTPStatusCodewitchingProtocols = 101,
 
 #if !defined(HTTP_STATUS_CODES_EXCLUDE_WEBDAV) && !defined(HTTP_STATUS_CODES_EXCLUDE_RFC_2518)
     /**
@@ -144,7 +144,7 @@ typedef enum
     /**
      * 303 See Other (since HTTP/1.1).
      */
-    kHTTPStatusCodeSeeOther = 303,
+    kHTTPStatusCodeeeOther = 303,
     
     /**
      * 304 Not Modified.
@@ -159,7 +159,7 @@ typedef enum
     /**
      * 306 Switch Proxy.
      */
-    kHTTPStatusCodeSwitchProxy = 306,
+    kHTTPStatusCodewitchProxy = 306,
 
     /**
      * 307 Temporary Redirect (since HTTP/1.1).
@@ -391,7 +391,7 @@ typedef enum
     /**
      * 454 Session Not Found (RTSP).
      */
-    kHTTPStatusCodeSessionNotFound = 454,
+    kHTTPStatusCodeessionNotFound = 454,
 #endif
 
 #if !defined(HTTP_STATUS_CODES_EXCLUDE_RTSP)
@@ -507,7 +507,7 @@ typedef enum
     /**
      * 503 Service Unavailable.
      */
-    kHTTPStatusCodeServiceUnavailable = 503,
+    kHTTPStatusCodeerviceUnavailable = 503,
     
     /**
      * 504 Gateway Timeout.
