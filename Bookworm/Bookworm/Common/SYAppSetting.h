@@ -28,4 +28,13 @@
 @property (nonatomic, assign) BOOL isAppUpdated;
 @property (nonatomic, assign) BOOL isShowUserGuide;
 
+@property (nonatomic, copy) NSString *socialAppKey;
+@property (nonatomic, copy) NSString *analyticsAppKey;
+
+@property (nonatomic, copy) NSString *refererPrefix;
+@property (nonatomic, copy, readonly) NSString *referer;
+
+@property (nonatomic, copy) NSString *appStoreURLString;
+@property (nonatomic, strong, readonly) NSURL *appStoreURL;
+
 @end

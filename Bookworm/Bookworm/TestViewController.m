@@ -21,10 +21,12 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"Test View Contollers";
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:IDENTIFIER_COMMON_CELL];
     
     _viewControllerClasses = [NSMutableArray array];
     for (Class class in ClassGetSubClasses([UIViewController class])) {
-        if ([NSStringFromClass(class) hasPrefix:@"SY"]) {
+        NSString *className = NSStringFromClass(class);
+        if ([className hasPrefix:@"SY"] && ![className isEqual:@"SYScrollViewController"]) {
             [_viewControllerClasses addObject:NSStringFromClass(class)];
         }
     }
@@ -54,11 +56,11 @@
     NSString *className = _viewControllerClasses[indexPath.row];
     UIViewController *VC = [[NSClassFromString(className) alloc] init];
     
-    if ([className isEqualToString:@"SYSignInViewController"]) {
+    if ([className isEqualToString:@"SYSignInUpViewController"]) {
         [self testSignInViewController];
     }
     
-    [self.navigationController pushViewController:VC animated:YES];
+    [self showViewController:VC sender:self];
 }
 
 #pragma mark - Test methods

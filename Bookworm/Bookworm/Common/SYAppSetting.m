@@ -7,6 +7,7 @@
 //
 
 #import "SYAppSetting.h"
+#import "SYDeviceModel.h"
 
 #define APP_SETTING     @"app-setting"
 
@@ -14,7 +15,7 @@
 
 - (NSString *)URLString
 {
-    return [NSString stringWithFormat:@"%@://%@:%tu/api", self.protocol, self.host, self.port];
+    return [NSString stringWithFormat:@"%@://%@:%tu", self.protocol, self.host, self.port];
 }
 
 @end
@@ -45,7 +46,17 @@
 
 - (NSURL *)baseURL
 {
-    return [NSURL URLWithString:self.server.URLString];
+    return [NSURL URLWithString:[self.server.URLString stringByAppendingString:@"/api"]];
+}
+
+- (NSString *)referer
+{
+    return [NSString stringWithFormat:self.refererPrefix, [GVUserDefaults standardUserDefaults].userId, [SYDeviceModel model].deviceID];
+}
+
+- (NSURL *)appStoreURL
+{
+    return [NSURL URLWithString:[NSString stringWithFormat:self.appStoreURLString, [GVUserDefaults standardUserDefaults].language]];
 }
 
 @end

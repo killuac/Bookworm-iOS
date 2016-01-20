@@ -7,6 +7,7 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
+#import "HTTPHeaderField.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -57,7 +57,7 @@ static SYServerAPI *sharedInstance = nil;
 - (void)fetchIMServerAddressCompletion:(SYNoParameterBlockType)completion
 {
     [[SYSessionManager manager] HEAD:self.IMServer parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
-        self.IMServerAddress = ((NSHTTPURLResponse *)task.response).allHeaderFields[@"X-IM-Server"];
+        self.IMServerAddress = ((NSHTTPURLResponse *)task.response).allHeaderFields[kHTTPHeaderFieldIMServer];
         [self save];
         if (completion) completion();
     }];

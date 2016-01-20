@@ -31,7 +31,6 @@
 #import "UIAlertController+Factory.h"
 #import "CLLocationManager+Factory.h"
 
-#import "MobClick.h"
 #import "FBKVOController.h"
 #import "JSONModel+Utility.h"
 #import "GVUserDefaults+Properties.h"

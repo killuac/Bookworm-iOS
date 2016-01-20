@@ -48,7 +48,7 @@
 		E34581DE1C217F740088BDA5 /* SYDeviceService.m in Sources */ = {isa = PBXBuildFile; fileRef = E34581DD1C217F740088BDA5 /* SYDeviceService.m */; };
 		E361DEC01C4E0B530042C75A /* SYSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E361DEBF1C4E0B530042C75A /* SYSocketManager.m */; };
 		E361DEC31C4E2AF50042C75A /* UIAlertController+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E361DEC21C4E2AF50042C75A /* UIAlertController+Factory.m */; };
-		E361DEC71C4E34FE0042C75A /* AppDelegate+Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = E361DEC61C4E34FE0042C75A /* AppDelegate+Logging.m */; };
+		E361DEC71C4E34FE0042C75A /* AppDelegate+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = E361DEC61C4E34FE0042C75A /* AppDelegate+Analytics.m */; };
 		E3BEDFC71C23FC8F00E6DB58 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BEDFC61C23FC8F00E6DB58 /* libz.tbd */; };
 		E3E810371C48D85E00C0ACAF /* NSTimer+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E810361C48D85E00C0ACAF /* NSTimer+Factory.m */; };
 		E3FF2EEE1C35007E00A6C7BF /* UISwitch+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FF2EED1C35007E00A6C7BF /* UISwitch+Factory.m */; };
@@ -159,8 +159,8 @@
 		E361DEC11C4E2AF50042C75A /* UIAlertController+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Factory.h"; sourceTree = "<group>"; };
 		E361DEC21C4E2AF50042C75A /* UIAlertController+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Factory.m"; sourceTree = "<group>"; };
 		E361DEC41C4E2EFF0042C75A /* HTTPHeaderField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPHeaderField.h; sourceTree = "<group>"; };
-		E361DEC51C4E34FE0042C75A /* AppDelegate+Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Logging.h"; sourceTree = "<group>"; };
-		E361DEC61C4E34FE0042C75A /* AppDelegate+Logging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Logging.m"; sourceTree = "<group>"; };
+		E361DEC51C4E34FE0042C75A /* AppDelegate+Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Analytics.h"; sourceTree = "<group>"; };
+		E361DEC61C4E34FE0042C75A /* AppDelegate+Analytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Analytics.m"; sourceTree = "<group>"; };
 		E3BEDFC61C23FC8F00E6DB58 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E3E810351C48D85E00C0ACAF /* NSTimer+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Factory.h"; sourceTree = "<group>"; };
 		E3E810361C48D85E00C0ACAF /* NSTimer+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Factory.m"; sourceTree = "<group>"; };
@@ -252,8 +252,8 @@
 				E34581791C2135F30088BDA5 /* View */,
 				E345813C1C2115CF0088BDA5 /* AppDelegate.h */,
 				E345813D1C2115CF0088BDA5 /* AppDelegate.m */,
-				E361DEC51C4E34FE0042C75A /* AppDelegate+Logging.h */,
-				E361DEC61C4E34FE0042C75A /* AppDelegate+Logging.m */,
+				E361DEC51C4E34FE0042C75A /* AppDelegate+Analytics.h */,
+				E361DEC61C4E34FE0042C75A /* AppDelegate+Analytics.m */,
 				E34581AA1C2143E20088BDA5 /* TestViewController.h */,
 				E34581AB1C2143E20088BDA5 /* TestViewController.m */,
 				E34581471C2115CF0088BDA5 /* LaunchScreen.storyboard */,
@@ -619,7 +619,7 @@
 				E361DEC31C4E2AF50042C75A /* UIAlertController+Factory.m in Sources */,
 				E34581BB1C2158E00088BDA5 /* SYDeviceModel.m in Sources */,
 				E34581951C213A7D0088BDA5 /* UIColor+Factory.m in Sources */,
-				E361DEC71C4E34FE0042C75A /* AppDelegate+Logging.m in Sources */,
+				E361DEC71C4E34FE0042C75A /* AppDelegate+Analytics.m in Sources */,
 				E34581931C213A7D0088BDA5 /* UIBarButtonItem+Factory.m in Sources */,
 				E345819B1C213D7C0088BDA5 /* GVUserDefaults+Properties.m in Sources */,
 				E345817C1C2136240088BDA5 /* SYMainViewController.m in Sources */,

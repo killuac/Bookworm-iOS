@@ -15,7 +15,17 @@
 #define kHTTPHeaderFieldETag        @"ETag"
 
 #define kHTTPHeaderFieldAccessToken @"X-Access-Token"
+#define kHTTPHeaderFieldIMServer    @"X-IM-Server"
 #define kHTTPHeaderFieldHUDMessage  @"X-HUD-Message"
-#define kHTTPHeaderFieldIsKickedOut @"X-Is-Kicked-Out"
+#define kHTTPHeaderFieldErrorCode   @"X-Error-Code"
+
+typedef NS_ENUM(NSUInteger, SYHTTPErrorCode) {
+    SYHTTPErrorCodeUnknow = 10000,
+    SYHTTPErrorCodeSignatureError = 10001,
+    SYHTTPErrorCodeMissingParameter = 10002,
+    SYHTTPErrorCodeAccessTokenInvalid = 10003,
+    SYHTTPErrorCodeAccountDisabled = 10004,
+    SYHTTPErrorCodeOldAppVersion = 10005
+};
 
 #endif /* HTTPHeaderField_h */

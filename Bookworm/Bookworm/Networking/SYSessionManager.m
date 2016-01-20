@@ -8,7 +8,6 @@
 
 #import "SYSessionManager.h"
 #import "HTTPStatusCode.h"
-#import "HTTPHeaderField.h"
 #import "SYDeviceModel.h"
 #import "SYBaseService.h"
 
@@ -212,11 +211,11 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
             break;
             
-        case NSURLErrorCannotFindHost:
         case NSURLErrorDNSLookupFailed:
             [SVProgressHUD showErrorWithStatus:HUD_NETWORK_UNSTABLE];
             break;
             
+        case NSURLErrorCannotFindHost:
         case NSURLErrorCannotConnectToHost:
             [SVProgressHUD showErrorWithStatus:HUD_CANNOT_CONNECT_TO_HOST];
             break;
@@ -236,17 +235,32 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
 - (void)handleResponseResult:(NSHTTPURLResponse *)response
 {
     switch (response.statusCode) {
-        case kHTTPStatusCodeUnauthorized: {   // Access token invalid
-            BOOL isKickedOut = response.allHeaderFields[kHTTPHeaderFieldIsKickedOut];
-            if (isKickedOut && [GVUserDefaults standardUserDefaults].isSignedIn) {
-                [[UIApplication sharedApplication].keyWindow.rootViewController showInitialViewController];
-                [[UIAlertController alertControllerWithTitle:BUTTON_TITLE_OKAY message:HUD_USER_KICK_OUT] show];
+        case kHTTPStatusCodeNotAcceptable: {
+            SYHTTPErrorCode errorCode = [response.allHeaderFields[kHTTPHeaderFieldErrorCode] unsignedIntegerValue];
+            switch (errorCode) {
+                case SYHTTPErrorCodeAccessTokenInvalid:
+                    if ([GVUserDefaults standardUserDefaults].isSignedIn) {
+                        [GVUserDefaults standardUserDefaults].isSignedIn = NO;
+                        [[UIAlertController alertControllerWithMessage:HUD_USER_KICK_OUT] show];
+                    }
+                    break;
+                    
+                case SYHTTPErrorCodeOldAppVersion: {
+                    UIAlertAction *okay = [UIAlertAction actionWithTitle:BUTTON_TITLE_OKAY style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                        [[UIApplication sharedApplication] openURL:[SYAppSetting defaultAppSetting].appStoreURL];
+                    }];
+                    [[UIAlertController alertControllerWithMessage:HUD_OLD_APP_VERSION actions:@[okay]] show];
+                    break;
+                }
+                    
+                default:
+                    break;
             }
             break;
         }
             
-        case kHTTPStatusCodeNotFound:
-        case kHTTPStatusCodeNotAcceptable: {
+        case kHTTPStatusCodeForbidden:
+        case kHTTPStatusCodeNotFound: {
             NSString *tipMessage = response.allHeaderFields[kHTTPHeaderFieldHUDMessage];
             if (tipMessage.length) [SVProgressHUD showErrorWithStatus:tipMessage];
             break;

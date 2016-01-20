@@ -17,6 +17,7 @@
     [self setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
     
     SwizzleMethod([self class], @selector(showWithStatus:), @selector(swizzle_showWithStatus:), YES);
+    SwizzleMethod([self class], @selector(dismissWithDelay:), @selector(swizzle_dismissWithDelay:), NO);
 }
 
 + (void)swizzle_showWithStatus:(NSString *)status
@@ -28,6 +29,11 @@
     }
     
     [self swizzle_showWithStatus:status];
+}
+
+- (void)swizzle_dismissWithDelay:(NSTimeInterval)delay
+{
+    [self swizzle_dismissWithDelay:delay];
     
     [self setDefaultStyle:SVProgressHUDStyleDark];
     [self setDefaultMaskType:SVProgressHUDMaskTypeNone];

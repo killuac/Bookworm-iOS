@@ -10,7 +10,6 @@
 #define Bookworm_SYTextConstant_h
 
 #define NAV_TITLE_PASSWORD_SIGNIN       LocalizedString(@"SignIn", @"登录")
-#define NAV_TITLE_SMS_SIGNIN            LocalizedString(@"SMSSignIn", @"验证码登录")
 #define NAV_TITLE_MOBILE_SIGNUP         LocalizedString(@"MobileSignUp", @"手机号注册")
 #define NAV_TITLE_EMAIL_SIGNUP          LocalizedString(@"EmailSignUp", @"邮箱注册")
 #define NAV_TITLE_SET_PASSWORD          LocalizedString(@"SetPassword", @"设置密码")
@@ -22,7 +21,7 @@
 #define TAB_TITLE_HOME                  LocalizedString(@"Home", @"书虫")
 #define TAB_TITLE_ACTIVITY              LocalizedString(@"Activity", @"动态")
 #define TAB_TITLE_MESSAGE               LocalizedString(@"Message", @"消息")
-#define TAB_TITLE_USER                  LocalizedString(@"Me", @"我的")
+#define TAB_TITLE_ME                    LocalizedString(@"Me", @"我的")
 
 #define BUTTON_TITLE_YES                LocalizedString(@"Yes", @"是")
 #define BUTTON_TITLE_NO                 LocalizedString(@"No", @"否")
@@ -40,7 +39,6 @@
 #define BUTTON_TITLE_SEND_SMS_CODE      LocalizedString(@"SendSMS", @"获取验证码")
 #define BUTTON_TITLE_RESEND             LocalizedString(@"Resend", @"重新获取")
 #define BUTTON_TITLE_REMAIMING_TIME     LocalizedString(@"RemainingTime", @"剩余%.f秒")
-#define BUTTON_TITLE_SMS_SIGNIN         LocalizedString(@"SMSSignIn", @"短信验证码登录")
 #define BUTTON_TITLE_EMAIL_SIGNUP       LocalizedString(@"EmailSignUp", @"邮箱注册")
 #define BUTTON_TITLE_NO_SMS_CODE        LocalizedString(@"NoSMSCode", @"没收到验证码?")
 #define BUTTON_TITLE_FORGOT_PWD         LocalizedString(@"ForgotPassword", @"忘记密码?")
@@ -50,7 +48,8 @@
 #define BUTTON_TITLE_WECHAT             LocalizedString(@"Wechat", @"朋友圈")
 #define BUTTON_TITLE_QZONE              LocalizedString(@"Qzone", @"QQ空间")
 #define BUTTON_TITLE_DELETE             LocalizedString(@"Delete", @"删除")
-#define BUTTON_TITLE_DELETE_PHOTO       LocalizedString(@"DeletePhoto", @"删除照片")
+#define BUTTON_TITLE_FOLLOW             LocalizedString(@"Follow", @"关注")
+#define BUTTON_TITLE_UNFOLLOW           LocalizedString(@"Unfollow", @"取消关注")
 #define BUTTON_TITLE_EXCHANGE           LocalizedString(@"Exchange", @"交换")
 #define BUTTON_TITLE_CHAT               LocalizedString(@"Chat", @"私聊")
 #define BUTTON_TITLE_RATING             LocalizedString(@"Rating", @"评分")
@@ -60,11 +59,12 @@
 #define BUTTON_TITLE_SET_CHAT_BG        LocalizedString(@"SetChatBackground", @"设置当前聊天背景")
 #define BUTTON_TITLE_RESTORE_DEFAULT_BG LocalizedString(@"RestoreDefaultBackground", @"恢复默认背景")
 
-#define HUD_CACHE_CLEAR_DONE            LocalizedString(@"CacheClearDone", @"缓存已清除")
 #define HUD_CLEARING_CACHE              LocalizedString(@"ClearingCache", @"正在清除缓存...")
+#define HUD_CACHE_CLEAR_DONE            LocalizedString(@"CacheClearDone", @"缓存已清除")
 #define HUD_NETWORK_UNSTABLE            LocalizedString(@"NetworkUnstable", @"你当前的网络不稳定，请切换网络。")
 #define HUD_CANNOT_CONNECT_TO_HOST      LocalizedString(@"CannotConnectToHost", @"服务器正在维护中，请稍后再试。")
 #define HUD_NOT_CONNECTED_TO_INTERNET   LocalizedString(@"NotConnectedToInternet", @"似乎已断开与互联网的连接")
+#define HUD_CONNECTING_IM_SERVER        LocalizedString(@"ConnectingIMServer", @"收取中...")
 #define HUD_MOBILE_INVALID              LocalizedString(@"MobileInvalid", @"手机号码无效")
 #define HUD_MOBILE_TAKEN                LocalizedString(@"MobileTaken", @"手机号码已经被注册")
 #define HUD_MOBILE_NOT_FOUND            LocalizedString(@"MobileNotFound", @"手机号码尚未注册")
@@ -87,10 +87,14 @@
 #define HUD_REPORT_SUCCESS              LocalizedString(@"ReportSuccess", @"举报成功")
 #define HUD_SINGLE_TAP_REFRESH          LocalizedString(@"SingleTapRefresh", @"点击屏幕重新加载")
 #define HUD_USER_KICK_OUT               LocalizedString(@"UserKickOut", @"账号已在其他设备登录，请重新登录。")
+#define HUD_OLD_APP_VERSION             LocalizedString(@"OldAppVersion", @"你的App版本过低，请到App Store更新。")
 
 #define TEXT_GENDER_MALE                LocalizedString(@"Male", @"男")
 #define TEXT_GENDER_FEMALE              LocalizedString(@"Female", @"女")
 #define TEXT_USER_AGREEMENT             LocalizedString(@"UserAgreement", @"用户协议")
 #define TEXT_AGREE_USER_AGREEMENT       LocalizedString(@"AgreeUserAgreement", @"点击\"注册\"表示已阅读并同意")
+#define TEXT_REPORT_OTHER_REASON        LocalizedString(@"ReportOtherReason", @"其他原因...")
+
+#define PLACEHOLDER_FEEDBACK            LocalizedString(@"Feedback", @"请写下关于“书虫”的意见合建议，我们将不断晚上，感谢您的支持！")
 
 #endif

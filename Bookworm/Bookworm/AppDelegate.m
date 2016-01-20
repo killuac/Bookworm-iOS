@@ -7,9 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "AppDelegate+Logging.h"
+#import "AppDelegate+Analytics.h"
 #import "FMDB.h"
-#import "SYAppSetting.h"
 #import "SYServerAPI.h"
 #import "SYDeviceService.h"
 #import "SYSocketManager.h"
@@ -46,7 +45,7 @@
 {
     [self updateApplication];
     [self setupAppearance];
-    [self setupAppLogging];
+    [self setupAppAnalytics];
     [self registerNotification];
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
@@ -58,8 +57,11 @@
                           block:^(id observer, id object, NSDictionary *change) {
                               if (userDefaults.isSignedIn) {
                                   [[SYSocketManager manager] connect];
+                                  [MobClick profileSignInWithPUID:[GVUserDefaults standardUserDefaults].userId];
                               } else {
+                                  [self.window.rootViewController showInitialViewController];
                                   [[SYSocketManager manager] disconnect];
+                                  [MobClick profileSignOff];
                               }
                           }];
 }

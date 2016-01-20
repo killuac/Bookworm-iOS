@@ -32,9 +32,7 @@ typedef void (^SYNoParameterBlockType)(void);
 
 #define DECLARE_WEAK_SELF               __weak typeof(self) weakSelf = self
 #define RADIANS(degree)                 degree * M_PI/180
-
-#define DATABASE_FILE_PATH              CacheFilePath(@"Bookworm.db")
-#define REFERER_PREFIX                  @"http://www.bookworm.com/api/%@/%@"
+#define DATABASE_FILE_PATH              DocumentFilePath(@"Bookworm.db")
 
 #define IDENTIFIER_COMMON_CELL          @"CommonCell"
 #define IDENTIFIER_EDITABLE_CELL        @"EditableCell"
