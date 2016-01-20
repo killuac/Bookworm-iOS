@@ -66,6 +66,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
                        success:(void (^)(NSURLSessionDataTask *))success
 {
     [self setHTTPHeaderFields];
+    if (!parameters) parameters = [JSONModel model];    // Pass "signature" at least
     
     return [self HEAD:URLString
            parameters:[parameters toDictionary]
@@ -86,6 +87,8 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     if (eTag.length) {
         [self.requestSerializer setValue:eTag forHTTPHeaderField:kHTTPHeaderFieldIfNoneMatch];
     }
+    
+    if (!parameters) parameters = [JSONModel model];
     
     return [self GET:URLString
           parameters:[parameters toDictionary]
@@ -156,6 +159,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
 {
     [self setHTTPHeaderFields];
+    if (!parameters) parameters = [JSONModel model];
     
     return [self POST:URLString
            parameters:[parameters toDictionary] constructingBodyWithBlock:block
