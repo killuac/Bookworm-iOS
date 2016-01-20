@@ -15,10 +15,10 @@
 	<true/>
 	<key>isShowUserGuide</key>
 	<true/>
-	<key>socialAppKey</key>
-	<string></string>
-	<key>analyticsAppKey</key>
-	<string></string>
+	<key>signatureSalt</key>
+	<string>LIxDGtF94LkvNlyXObAAPSmS5PvdCnPIcD8IQU5Z</string>
+	<key>umengAppKey</key>
+	<string>5335438f6c738f4e13000039</string>
 	<key>refererPrefix</key>
 	<string>http://www.bookworm.com/api/%@/%@</string>
 	<key>appStoreURLString</key>

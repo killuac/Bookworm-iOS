@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, SYHTTPErrorCode) {
     SYHTTPErrorCodeMissingParameter = 10002,
     SYHTTPErrorCodeAccessTokenInvalid = 10003,
     SYHTTPErrorCodeAccountDisabled = 10004,
-    SYHTTPErrorCodeOldAppVersion = 10005
+    SYHTTPErrorCodeAppVersionUnavailable= 10005
 };
 
 #endif /* HTTPHeaderField_h */

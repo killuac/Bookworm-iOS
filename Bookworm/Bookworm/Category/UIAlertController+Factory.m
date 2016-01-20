@@ -10,15 +10,15 @@
 
 @implementation UIAlertController (Factory)
 
-+ (instancetype)alertControllerWithMessage:(NSString *)message
++ (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message
 {
     UIAlertAction *okay = [UIAlertAction actionWithTitle:nil style:UIAlertActionStyleDefault handler:nil];
-    return [self alertControllerWithMessage:message actions:@[okay]];
+    return [self alertControllerWithTitle:title message:message actions:@[okay]];
 }
 
-+ (instancetype)alertControllerWithMessage:(NSString *)message actions:(NSArray<UIAlertAction *> *)actions
++ (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message actions:(NSArray<UIAlertAction *> *)actions
 {
-    UIAlertController *AC = [self alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *AC = [self alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     for (UIAlertAction *action in actions) {
         [AC addAction:action];
     }

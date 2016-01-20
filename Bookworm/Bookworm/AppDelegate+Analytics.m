@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate+Analytics.h"
-#import "SYAppSetting.h"
 #import "SYScrollViewController.h"
 
 NSString *const SYLogPageViewName = @"SYLogPageViewName";
@@ -36,7 +35,7 @@ typedef void (^SYAspectHandlerBlock)(id<AspectInfo> aspectInfo);
 
 - (void)setupUMeng
 {
-    NSString *appKey = [SYAppSetting defaultAppSetting].analyticsAppKey;
+    NSString *appKey = [SYAppSetting defaultAppSetting].umengAppKey;
 #if DEBUG
     [MobClick startWithAppkey:appKey reportPolicy:REALTIME channelId:@"Development"];
 #else

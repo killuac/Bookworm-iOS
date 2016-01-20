@@ -85,22 +85,25 @@
 "PasswordInvalid" = "Invalid password";
 "SMSCodeWrong" = "Wrong SMS code";
 "NicknameWrong" = "Wrong nickname";
-"AskForSignOut" = "Are you sure sign out?";
-"AccessPhotosSetting" = "Please allow \"Ting Hua\" access your photos in your phone \"Settings-Privacy-Photos\"";
-"AccessCameraSetting" = "Please allow \"Ting Hua\" access your camera in your phone \"Settings-Privacy-Camera\"";
-"AccessMicrophoneSetting" = "Please allow \"Ting Hua\" access your microphone in your phone \"Settings-Privacy-Microphone\"";
 "SigningIn" = "Loging in...";
 "CreatingUser" = "Creating user...";
 "ThanksFeedback" = "Thanks for your support";
-"ReportSuccess" = "Report successful";
-"UserKickOut" = "Your account already login from other device, please re-login.";
-"OldAppVersion" = "Your App version is old, please update from App Store.";
-"SingleTapRefresh" = "Single tap to refresh";
+
+"KickOut" = "Kick out";
+"VersionError" = "Version error";
+
+"AccessPhotosSetting" = "Please allow \"Ting Hua\" access your photos in your phone \"Settings-Privacy-Photos\"";
+"AccessCameraSetting" = "Please allow \"Ting Hua\" access your camera in your phone \"Settings-Privacy-Camera\"";
+"AccessMicrophoneSetting" = "Please allow \"Ting Hua\" access your microphone in your phone \"Settings-Privacy-Microphone\"";
+"AskForSignOut" = "Are you sure sign out?";
+"SignInAgain" = "Your account already login from other device, please re-login.";
+"AppVersionUnavailable" = "Your App version is old, please update from App Store.";
 
 "Male" = "Male";
 "Female" = "Female";
 "UserAgreement" = "User agreement";
 "AgreeUserAgreement" = "Click \"Sign up\" means have read and agree with ";
-"ReportOtherReason" = "Other reason...";
+"SingleTapRefresh" = "Single tap screen to refresh";
 
+"ReportOtherReason" = "Other reason...";
 "Feedback" = "Please fill your suggestion about \"Bookworm\", we will improve continuously, thanks for you support.";

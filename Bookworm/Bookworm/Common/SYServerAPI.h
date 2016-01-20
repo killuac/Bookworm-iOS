@@ -7,7 +7,6 @@
 //
 
 #import <JSONModel/JSONModel.h>
-#import "SYAppSetting.h"
 
 @interface SYServerAPI : JSONModel
 

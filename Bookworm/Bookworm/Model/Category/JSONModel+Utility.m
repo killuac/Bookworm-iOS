@@ -10,6 +10,29 @@
 
 @implementation JSONModel (Utility)
 
++ (void)load
+{
+    SwizzleMethod(self, @selector(toDictionary), @selector(swizzle_toDictionary), NO);
+}
+
+- (NSDictionary *)swizzle_toDictionary
+{
+    NSMutableDictionary *dictionary = [[self swizzle_toDictionary] mutableCopy];
+    NSArray *sortedKeys = [dictionary.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return [obj1 compare:obj2];
+    }];
+    
+    NSMutableArray *keyValuePairs = [NSMutableArray array];
+    for (NSString *key in sortedKeys) {
+        NSString *kvPair = [NSString stringWithFormat:@"%@=%@", key, dictionary[key]];
+        [keyValuePairs addObject:kvPair];
+    }
+    
+    NSString *paramString = [keyValuePairs componentsJoinedByString:@","];
+    dictionary[@"signature"] = [[NSString stringWithFormat:@"%@%@", paramString, [SYAppSetting defaultAppSetting].signatureSalt] SHA1String];
+    return dictionary;
+}
+
 - (void)setIsSelected:(BOOL)isSelected
 {
     objc_setAssociatedObject(self, @selector(isSelected), @(isSelected), OBJC_ASSOCIATION_RETAIN_NONATOMIC);

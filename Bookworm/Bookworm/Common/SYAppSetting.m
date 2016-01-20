@@ -39,9 +39,14 @@
     return sharedInstance;
 }
 
+// Protecting Data Using On-Disk Encryption
 - (void)save
 {
-    [[self toDictionary] writeToFile:PlistFilePath(APP_SETTING) atomically:YES];
+//    [[self toDictionary] writeToFile:PlistFilePath(APP_SETTING) atomically:YES];
+    
+    [[self toJSONData] writeToFile:ApplicationSupportFilePath(APP_SETTING)
+                           options:NSDataWritingAtomic | NSDataWritingFileProtectionComplete
+                             error:nil];
 }
 
 - (NSURL *)baseURL

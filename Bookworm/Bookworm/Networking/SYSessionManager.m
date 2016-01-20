@@ -70,7 +70,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     return [self HEAD:URLString
            parameters:parameters
               success:success
-              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              failure:^(NSURLSessionDataTask * task, NSError * error) {
                   [self handleFailure:task error:error];
               }];
 }
@@ -90,7 +90,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     return [self GET:URLString
           parameters:parameters
             progress:nil
-             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+             success:^(NSURLSessionDataTask * task, id responseObject) {
                  [self handleSuccess:task responseObject:responseObject completion:^{
                      if (kHTTPStatusCodeNotModified == [(id)task.response statusCode]) {
                          if (success) success(task, [self cachedResponseObject:task]);
@@ -101,7 +101,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
                      }
                  }];
              }
-             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             failure:^(NSURLSessionDataTask * task, NSError * error) {
                  [self handleFailure:task error:error];
              }];
 }
@@ -114,39 +114,18 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     return [responseSerializer responseObjectForResponse:cachedResponse.response data:cachedResponse.data error:nil];
 }
 
-- (NSURLSessionDataTask *)GET:(NSString *)URLString
-                     progress:(void (^)(NSProgress *))downloadProgress
-                      success:(void (^)(NSURLSessionDataTask *, id responseObject))success
-{
-    self.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSURLSessionDataTask *dataTask = [self GET:URLString
-                                    parameters:nil
-                                      progress:downloadProgress
-                                       success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                                           [self handleSuccess:task responseObject:responseObject completion:^{
-                                               if (success) success(task, responseObject);
-                                           }];
-                                       }
-                                       failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                                           [self handleFailure:task error:error];
-                                       }];
-    self.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    return dataTask;
-}
-
 - (NSURLSessionDataTask *)PATCH:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success
 {
     [self setHTTPHeaderFields];
     
     return [self PATCH:URLString
             parameters:parameters
-               success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+               success:^(NSURLSessionDataTask * task, id responseObject) {
                    [self handleSuccess:task responseObject:responseObject completion:^{
                        if (success) success(task, responseObject);
                    }];
                }
-               failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+               failure:^(NSURLSessionDataTask * task, NSError * error) {
                    [self handleFailure:task error:error];
                }];
 }
@@ -160,12 +139,12 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     return [self POST:URLString
            parameters:parameters
              progress:nil
-              success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              success:^(NSURLSessionDataTask * task, id responseObject) {
                   [self handleSuccess:task responseObject:responseObject completion:^{
                       if (success) success(task, responseObject);
                   }];
               }
-              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              failure:^(NSURLSessionDataTask * task, NSError * error) {
                   [self handleFailure:task error:error];
               }];
 }
@@ -173,7 +152,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
                     parameters:(id)parameters
      constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
-                      progress:(nullable void (^)(NSProgress * _Nonnull))uploadProgress
+                      progress:(void (^)(NSProgress *))uploadProgress
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
 {
     [self setHTTPHeaderFields];
@@ -181,14 +160,26 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     return [self POST:URLString
            parameters:parameters constructingBodyWithBlock:block
              progress:uploadProgress
-              success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+              success:^(NSURLSessionDataTask * task, id responseObject) {
                   [self handleSuccess:task responseObject:responseObject completion:^{
                       if (success) success(task, responseObject);
                   }];
               }
-              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              failure:^(NSURLSessionDataTask * task, NSError * error) {
                   [self handleFailure:task error:error];
               }];
+}
+
+- (NSURLSessionDownloadTask *)downloadTaskWithURLString:(NSString *)URLString
+                                               progress:(void (^)(NSProgress *downloadProgress)) downloadProgressBlock
+                                            destination:(NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
+                                      completionHandler:(void (^)(NSURLResponse *response, NSURL * filePath, NSError * error))completionHandler
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
+    return [self downloadTaskWithRequest:request
+                                progress:downloadProgressBlock
+                             destination:destination
+                       completionHandler:completionHandler];
 }
 
 - (void)handleSuccess:(NSURLSessionDataTask *)task responseObject:(id)responseObject completion:(SYNoParameterBlockType)completion
@@ -241,15 +232,15 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
                 case SYHTTPErrorCodeAccessTokenInvalid:
                     if ([GVUserDefaults standardUserDefaults].isSignedIn) {
                         [GVUserDefaults standardUserDefaults].isSignedIn = NO;
-                        [[UIAlertController alertControllerWithMessage:HUD_USER_KICK_OUT] show];
+                        [[UIAlertController alertControllerWithTitle:TITLE_KICK_OUT message:MSG_SIGNIN_AGAIN] show];
                     }
                     break;
                     
-                case SYHTTPErrorCodeOldAppVersion: {
+                case SYHTTPErrorCodeAppVersionUnavailable: {
                     UIAlertAction *okay = [UIAlertAction actionWithTitle:BUTTON_TITLE_OKAY style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                         [[UIApplication sharedApplication] openURL:[SYAppSetting defaultAppSetting].appStoreURL];
                     }];
-                    [[UIAlertController alertControllerWithMessage:HUD_OLD_APP_VERSION actions:@[okay]] show];
+                    [[UIAlertController alertControllerWithTitle:TITLE_VERSION_ERROR message:MSG_APP_VERSION_UNAVAILABLE actions:@[okay]] show];
                     break;
                 }
                     

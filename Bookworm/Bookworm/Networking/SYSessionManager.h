@@ -23,10 +23,6 @@ FOUNDATION_EXPORT NSString *const SYSessionManagerRequestFailedNotification;
                             parameters:(nullable id)parameters
                                success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success;
 
-- (nullable NSURLSessionDataTask *)GET:(NSString *)URLString
-                              progress:(nullable void (^)(NSProgress *downloadProgress)) downloadProgress
-                               success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success;
-
 - (nullable NSURLSessionDataTask *)PATCH:(NSString *)URLString
                               parameters:(nullable id)parameters
                                  success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success;
@@ -40,6 +36,11 @@ FOUNDATION_EXPORT NSString *const SYSessionManagerRequestFailedNotification;
               constructingBodyWithBlock:(nullable void (^)(id <AFMultipartFormData> formData))block
                                progress:(nullable void (^)(NSProgress *uploadProgress))uploadProgress
                                 success:(nullable void (^)(NSURLSessionDataTask *task, id responseObject))success;
+
+- (NSURLSessionDownloadTask *)downloadTaskWithURLString:(NSString *)URLString
+                                               progress:(nullable void (^)(NSProgress *downloadProgress)) downloadProgressBlock
+                                            destination:(nullable NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
+                                      completionHandler:(nullable void (^)(NSURLResponse *response, NSURL * _Nullable filePath, NSError * _Nullable error))completionHandler;
 
 @end
 

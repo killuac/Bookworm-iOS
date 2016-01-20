@@ -9,10 +9,11 @@
 #ifndef Bookworm_Prefix_pch
 #define Bookworm_Prefix_pch
 
-#import "SYConstant.h"
-
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
+
+#import "SYConstant.h"
+#import "SYAppSetting.h"
 
 #import "NSString+Utility.h"
 #import "NSDate+Utility.h"
