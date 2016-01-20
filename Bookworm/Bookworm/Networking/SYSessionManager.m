@@ -68,7 +68,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     [self setHTTPHeaderFields];
     
     return [self HEAD:URLString
-           parameters:parameters
+           parameters:[parameters toDictionary]
               success:success
               failure:^(NSURLSessionDataTask * task, NSError * error) {
                   [self handleFailure:task error:error];
@@ -88,7 +88,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     }
     
     return [self GET:URLString
-          parameters:parameters
+          parameters:[parameters toDictionary]
             progress:nil
              success:^(NSURLSessionDataTask * task, id responseObject) {
                  [self handleSuccess:task responseObject:responseObject completion:^{
@@ -119,7 +119,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     [self setHTTPHeaderFields];
     
     return [self PATCH:URLString
-            parameters:parameters
+            parameters:[parameters toDictionary]
                success:^(NSURLSessionDataTask * task, id responseObject) {
                    [self handleSuccess:task responseObject:responseObject completion:^{
                        if (success) success(task, responseObject);
@@ -137,7 +137,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     [self setHTTPHeaderFields];
     
     return [self POST:URLString
-           parameters:parameters
+           parameters:[parameters toDictionary]
              progress:nil
               success:^(NSURLSessionDataTask * task, id responseObject) {
                   [self handleSuccess:task responseObject:responseObject completion:^{
@@ -158,7 +158,7 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
     [self setHTTPHeaderFields];
     
     return [self POST:URLString
-           parameters:parameters constructingBodyWithBlock:block
+           parameters:[parameters toDictionary] constructingBodyWithBlock:block
              progress:uploadProgress
               success:^(NSURLSessionDataTask * task, id responseObject) {
                   [self handleSuccess:task responseObject:responseObject completion:^{
