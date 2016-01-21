@@ -59,7 +59,6 @@
                                   [[SYSocketManager manager] connect];
                                   [MobClick profileSignInWithPUID:[GVUserDefaults standardUserDefaults].userId];
                               } else {
-                                  [self.window.rootViewController showInitialViewController];
                                   [[SYSocketManager manager] disconnect];
                                   [MobClick profileSignOff];
                               }

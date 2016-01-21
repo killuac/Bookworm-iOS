@@ -15,8 +15,8 @@
 
 - (void)fetchIMServerAddressCompletion:(SYNoParameterBlockType)completion;
 
-@property (nonatomic, copy) NSString *IMServer;             // Fetch IM server address by HTTP API
-@property (nonatomic, copy) NSString *IMServerAddress;      // Available IM server address
+@property (nonatomic, copy) NSString *imServer;             // Fetch IM server address by HTTP API
+@property (nonatomic, copy) NSString *imServerAddress;      // Available IM server address
 
 @property (nonatomic, copy) NSString *signIn;
 @property (nonatomic, copy) NSString *devices;

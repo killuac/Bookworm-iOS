@@ -43,7 +43,7 @@
 "Setting" = "Setting";
 "SendSMS" = "Send SMS";
 "Resend" = "Resend";
-"RemainingTime" = "Remain %.f";
+"RemainingTime" = "%.f Second";
 "EmailSignUp" = "Email sign up";
 "NoSMSCode" = "Not receive SMS code";
 "ForgotPassword" = "ForgotPassword";
@@ -84,7 +84,7 @@
 "PasswordTooShort" = "Password length minimum 6";
 "PasswordInvalid" = "Invalid password";
 "SMSCodeWrong" = "Wrong SMS code";
-"NicknameWrong" = "Wrong nickname";
+"NicknameTooLong" = "Nickname length maximum 32";
 "SigningIn" = "Loging in...";
 "CreatingUser" = "Creating user...";
 "ThanksFeedback" = "Thanks for your support";
@@ -92,9 +92,9 @@
 "KickOut" = "Kick out";
 "VersionError" = "Version error";
 
-"AccessPhotosSetting" = "Please allow \"Ting Hua\" access your photos in your phone \"Settings-Privacy-Photos\"";
-"AccessCameraSetting" = "Please allow \"Ting Hua\" access your camera in your phone \"Settings-Privacy-Camera\"";
-"AccessMicrophoneSetting" = "Please allow \"Ting Hua\" access your microphone in your phone \"Settings-Privacy-Microphone\"";
+"AccessPhotosSetting" = "Please allow \"Bookworm\" access your photos in your phone \"Settings-Privacy-Photos\"";
+"AccessCameraSetting" = "Please allow \"Bookworm\" access your camera in your phone \"Settings-Privacy-Camera\"";
+"AccessMicrophoneSetting" = "Please allow \"Bookworm\" access your microphone in your phone \"Settings-Privacy-Microphone\"";
 "AskForSignOut" = "Are you sure sign out?";
 "SignInAgain" = "Your account already login from other device, please re-login.";
 "AppVersionUnavailable" = "Your App version is old, please update from App Store.";

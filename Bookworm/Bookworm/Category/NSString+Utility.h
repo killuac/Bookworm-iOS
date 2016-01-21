@@ -19,8 +19,6 @@
 - (NSString *)increment;
 - (NSString *)decrement;
 
-- (NSString *)urlEncodingString;
-
 - (BOOL)isValidMobile;
 - (BOOL)isValidEmail;
 - (BOOL)isValidPassword;

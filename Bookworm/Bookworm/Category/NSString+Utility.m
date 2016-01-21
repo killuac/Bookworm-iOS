@@ -90,14 +90,6 @@
     return [@(number).stringValue toBase62String];
 }
 
-#pragma mark - URL encoding
-- (NSString *)urlEncodingString
-{
-    NSMutableCharacterSet *characterSet = [NSMutableCharacterSet alphanumericCharacterSet];
-    [characterSet addCharactersInString:@"."];
-    return [self stringByAddingPercentEncodingWithAllowedCharacters:characterSet];
-}
-
 #pragma mark - Validation
 - (BOOL)isValidMobile
 {

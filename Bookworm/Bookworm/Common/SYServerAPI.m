@@ -19,7 +19,7 @@
         @"_links.devices.href": @"devicesURLString",
         @"_links.signIn.href": @"signInURLString",
         @"_links.users.href": @"usersURLString",
-        @"_links.IMServerURL.href": @"IMServerURLString"
+        @"_links.imServerURL.href": @"imServerURLString"
     }];
 }
 
@@ -56,8 +56,8 @@ static SYServerAPI *sharedInstance = nil;
 
 - (void)fetchIMServerAddressCompletion:(SYNoParameterBlockType)completion
 {
-    [[SYSessionManager manager] HEAD:self.IMServer parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
-        self.IMServerAddress = ((NSHTTPURLResponse *)task.response).allHeaderFields[kHTTPHeaderFieldIMServer];
+    [[SYSessionManager manager] HEAD:self.imServer parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
+        self.imServerAddress = ((NSHTTPURLResponse *)task.response).allHeaderFields[kHTTPHeaderFieldIMServer];
         [self save];
         if (completion) completion();
     }];

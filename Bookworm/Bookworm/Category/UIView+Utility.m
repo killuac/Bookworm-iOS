@@ -10,22 +10,6 @@
 
 @implementation UIView (Utility)
 
-- (void)findAndResignFirstResponder
-{
-    if (self.isFirstResponder) {
-        [self resignFirstResponder];
-        return;
-    }
-    
-    if (self.subviews.count != 0) {
-        for (UIView *subView in self.subviews) {
-            [subView findAndResignFirstResponder];
-        }
-    } else {
-        return;
-    }
-}
-
 #pragma mark - Super and sub view
 - (id)superTableView
 {
@@ -89,6 +73,40 @@
     return resultView;
 }
 
+#pragma mark - Gesture
+- (void)addTapGesture
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+    tap.cancelsTouchesInView = NO;
+    [self addGestureRecognizer:tap];
+}
+
+- (void)removeTapGesture
+{
+    [self removeGestureRecognizer:self.gestureRecognizers.firstObject];
+}
+
+- (void)singleTap:(UITapGestureRecognizer *)recognizer
+{
+    [self findAndResignFirstResponder];
+}
+
+- (void)findAndResignFirstResponder
+{
+    if (self.isFirstResponder) {
+        [self resignFirstResponder];
+        return;
+    }
+    
+    if (self.subviews.count != 0) {
+        for (UIView *subView in self.subviews) {
+            [subView findAndResignFirstResponder];
+        }
+    } else {
+        return;
+    }
+}
+
 #pragma mark - Blur background view
 - (void)addBlurBackground
 {
@@ -134,13 +152,8 @@
         titleLabel.top = emptyImageView.bottom + DEFAULT_MARGIN;
     }
     
-    if (self.subTableView) {
-        [self.subTableView addSubview:emptyImageView];
-        if (title.length) [self.subTableView addSubview:titleLabel];
-    } else {
-        [self addSubview:emptyImageView];
-        if (title.length) [self addSubview:titleLabel];
-    }
+    [self addSubview:emptyImageView];
+    if (title.length) [self addSubview:titleLabel];
 }
 
 - (void)removeEmptyImageView

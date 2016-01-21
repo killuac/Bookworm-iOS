@@ -74,18 +74,18 @@
 #define HUD_PASSWORD_TOO_SHORT          LocalizedString(@"PasswordTooShort", @"密码长度不能小于6位")
 #define HUD_PASSWORD_INVALID            LocalizedString(@"PasswordInvalid", @"密码含有非法字符")
 #define HUD_SMS_CODE_WRONG              LocalizedString(@"SMSCodeWrong", @"验证码错误")
-#define HUD_NICKNAME_WRONG              LocalizedString(@"NicknameWrong", @"请输入正确的昵称")
+#define HUD_NICKNAME_TOO_LONG           LocalizedString(@"NicknameTooLong", @"昵称长度不能大于32位")
 #define HUD_SIGNING_IN                  LocalizedString(@"SigningIn", @"登录中...")
 #define HUD_CREATING_USER               LocalizedString(@"CreatingUser", @"账号创建中...")
-#define HUD_THANKS_FEEDBACK             LocalizedString(@"ThanksFeedback", @"感谢你对“书虫”的支持")
+#define HUD_THANKS_FEEDBACK             LocalizedString(@"ThanksFeedback", @"感谢您对“书虫”的支持")
 
 #define TITLE_SETTING                   LocalizedString(@"Setting", @"设置")
 #define TITLE_KICK_OUT                  LocalizedString(@"KickOut", @"注销")
 #define TITLE_VERSION_ERROR             LocalizedString(@"VersionError", @"版本错误")
 
-#define MSG_ACCESS_PHOTOS_SETTING       LocalizedString(@"AccessPhotosSetting", @"请在手机的“设置-隐私-照片”选项中，允许听画访问你的手机相册。")
-#define MSG_ACCESS_CAMERA_SETTING       LocalizedString(@"AccessCameraSetting", @"请在手机的“设置-隐私-相机”选项中，允许听画访问你的手机相机。")
-#define MSG_ACCESS_MICROPHONE_SETTING   LocalizedString(@"AccessMicrophoneSetting", @"请在手机的“设置-隐私-麦克风”选项中，允许听画访问你的麦克风。")
+#define MSG_ACCESS_PHOTOS_SETTING       LocalizedString(@"AccessPhotosSetting", @"请在手机的“设置-隐私-照片”选项中，允许”书虫“访问你的手机相册。")
+#define MSG_ACCESS_CAMERA_SETTING       LocalizedString(@"AccessCameraSetting", @"请在手机的“设置-隐私-相机”选项中，允许”书虫“访问你的手机相机。")
+#define MSG_ACCESS_MICROPHONE_SETTING   LocalizedString(@"AccessMicrophoneSetting", @"请在手机的“设置-隐私-麦克风”选项中，允许”书虫“访问你的麦克风。")
 #define MSG_ASK_FOR_SIGN_OUT            LocalizedString(@"AskForSignOut", @"确定退出登录？")
 #define MSG_SIGNIN_AGAIN                LocalizedString(@"SignInAgain", @"账号已在其他设备登录，请重新登录。")
 #define MSG_APP_VERSION_UNAVAILABLE     LocalizedString(@"AppVersionUnavailable", @"你的App版本过低，请到App Store更新。")
@@ -97,6 +97,6 @@
 #define TEXT_SINGLE_TAP_REFRESH         LocalizedString(@"SingleTapRefresh", @"点击屏幕重新加载")
 
 #define PH_REPORT_OTHER_REASON          LocalizedString(@"ReportOtherReason", @"其他原因...")
-#define PH_FEEDBACK                     LocalizedString(@"Feedback", @"请写下关于“书虫”的意见合建议，我们将不断晚上，感谢您的支持！")
+#define PH_FEEDBACK                     LocalizedString(@"Feedback", @"请写下关于“书虫”的意见和建议，我们将不断完善，感谢您的支持！")
 
 #endif

@@ -63,7 +63,7 @@ NSString *const BZSocketReconnectingNotification = @"BZSocketReconnectingNotific
 - (void)instantiateWebSocket
 {
     _webSocket = nil;
-    NSURL *serverURL = [NSURL URLWithString:[SYServerAPI sharedServerAPI].IMServerAddress];
+    NSURL *serverURL = [NSURL URLWithString:[SYServerAPI sharedServerAPI].imServerAddress];
     _webSocket = [[SRWebSocket alloc] initWithURL:serverURL];
     self.webSocket.delegate = self;
 }

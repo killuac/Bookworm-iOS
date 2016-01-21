@@ -13,7 +13,7 @@
 
 @implementation SYServer
 
-- (NSString *)URLString
+- (NSString *)urlString
 {
     return [NSString stringWithFormat:@"%@://%@:%tu", self.protocol, self.host, self.port];
 }
@@ -51,7 +51,7 @@
 
 - (NSURL *)baseURL
 {
-    return [NSURL URLWithString:[self.server.URLString stringByAppendingString:@"/api"]];
+    return [NSURL URLWithString:[self.server.urlString stringByAppendingString:@"/api"]];
 }
 
 - (NSString *)referer
