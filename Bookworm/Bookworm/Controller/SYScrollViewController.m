@@ -41,7 +41,7 @@
     self.view = self.scrollView;
     
     _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.activityIndicator.center = self.tabBarController.tabBar.center;
+    self.activityIndicator.center = self.view.center;
     [self.scrollView addSubview:self.activityIndicator];
 }
 
@@ -72,7 +72,7 @@
         return;
     }
     
-    self.activityIndicator.bottom = self.scrollView.contentSize.height + DEFAULT_MARGIN;
+    self.activityIndicator.bottom = self.scrollView.contentSize.height + DEFAULT_MARGIN * 2;
     [self.activityIndicator startAnimating];
     
     [self startLoadingData:^{

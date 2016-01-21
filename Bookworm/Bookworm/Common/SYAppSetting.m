@@ -11,15 +11,6 @@
 
 #define APP_SETTING     @"app-setting"
 
-@implementation SYServer
-
-- (NSString *)urlString
-{
-    return [NSString stringWithFormat:@"%@://%@:%tu", self.protocol, self.host, self.port];
-}
-
-@end
-
 @implementation SYAppSetting
 
 + (instancetype)defaultAppSetting
@@ -49,14 +40,10 @@
                              error:nil];
 }
 
-- (NSURL *)baseURL
-{
-    return [NSURL URLWithString:[self.server.urlString stringByAppendingString:@"/api"]];
-}
-
 - (NSString *)referer
 {
-    return [NSString stringWithFormat:self.refererPrefix, [GVUserDefaults standardUserDefaults].userId, [SYDeviceModel model].deviceID];
+    NSString *prefix = [self.httpServer stringByAppendingPathComponent:[GVUserDefaults standardUserDefaults].userId];
+    return [prefix stringByAppendingPathComponent:[SYDeviceModel model].deviceID];
 }
 
 - (NSURL *)appStoreURL

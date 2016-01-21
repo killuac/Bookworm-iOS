@@ -10,11 +10,6 @@
 
 @implementation SYDeviceModel
 
-+ (BOOL)propertyIsOptional:(NSString *)propertyName
-{
-    return [propertyName isEqualToString:@"allowPush"];
-}
-
 - (NSString *)deviceID
 {
     return [UIDevice currentDevice].identifierForVendor.UUIDString;

@@ -17,7 +17,7 @@
 @property (nonatomic, copy, readonly) NSString *systemVersion;
 @property (nonatomic, copy, readonly) NSString *resolution;
 
-@property (nonatomic, copy) NSString<Optional> *deviceToken;
+@property (nonatomic, copy) NSString *deviceToken;
 @property (nonatomic, assign) BOOL allowPush;
 
 @end

@@ -2,15 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>server</key>
-	<dict>
-		<key>protocol</key>
-		<string>http</string>
-		<key>host</key>
-		<string>www.bookworm.cc</string>
-		<key>port</key>
-		<integer>80</integer>
-	</dict>
 	<key>isAppUpdated</key>
 	<true/>
 	<key>isShowUserGuide</key>
@@ -19,8 +10,8 @@
 	<string>LIxDGtF94LkvNlyXObAAPSmS5PvdCnPIcD8IQU5Z</string>
 	<key>umengAppKey</key>
 	<string>5335438f6c738f4e13000039</string>
-	<key>refererPrefix</key>
-	<string>http://www.bookworm.com/api/%@/%@</string>
+	<key>httpServer</key>
+	<string>http://www.bookworm.cc:80/api</string>
 	<key>appStoreURLString</key>
 	<string>https://itunes.apple.com/us/app/bookworm/id1060072331?l=%@&amp;ls=1&amp;mt=8</string>
 </dict>

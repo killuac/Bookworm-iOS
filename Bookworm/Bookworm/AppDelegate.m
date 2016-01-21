@@ -135,7 +135,7 @@
     
     SYDeviceModel *deviceModel = [SYDeviceModel model];
     deviceModel.deviceToken = deviceToken;
-    deviceModel.allowPush = (deviceToken.length > 0);
+    deviceModel.allowPush = [UIApplication sharedApplication].isRegisteredForRemoteNotifications;
     [[SYDeviceService service] updateWithModel:deviceModel result:nil];
 }
 

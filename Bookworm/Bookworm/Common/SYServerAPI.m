@@ -36,8 +36,7 @@ static SYServerAPI *sharedInstance = nil;
 
 + (void)fetchAndSave
 {
-    NSString *urlString = [[SYAppSetting defaultAppSetting].baseURL absoluteString];
-    
+    NSString *urlString = [SYAppSetting defaultAppSetting].httpServer;
     [[SYSessionManager manager] GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [[self modelWithDictionary:responseObject] save];
         

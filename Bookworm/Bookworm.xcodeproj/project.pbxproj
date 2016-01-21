@@ -30,7 +30,6 @@
 		E34581961C213A7D0088BDA5 /* UIFont+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E345818C1C213A7D0088BDA5 /* UIFont+Factory.m */; };
 		E34581971C213A7D0088BDA5 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = E345818E1C213A7D0088BDA5 /* UIView+Frame.m */; };
 		E34581981C213A7D0088BDA5 /* UIView+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E34581901C213A7D0088BDA5 /* UIView+Utility.m */; };
-		E345819B1C213D7C0088BDA5 /* GVUserDefaults+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = E345819A1C213D7C0088BDA5 /* GVUserDefaults+Properties.m */; };
 		E34581A41C213FFB0088BDA5 /* JSONModel+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E345819F1C213FFB0088BDA5 /* JSONModel+Utility.m */; };
 		E34581A51C213FFB0088BDA5 /* JSONValueTransformer+Mapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E34581A11C213FFB0088BDA5 /* JSONValueTransformer+Mapper.m */; };
 		E34581A91C2142960088BDA5 /* CLLocationManager+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E34581A81C2142960088BDA5 /* CLLocationManager+Factory.m */; };
@@ -49,6 +48,7 @@
 		E361DEC01C4E0B530042C75A /* SYSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E361DEBF1C4E0B530042C75A /* SYSocketManager.m */; };
 		E361DEC31C4E2AF50042C75A /* UIAlertController+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E361DEC21C4E2AF50042C75A /* UIAlertController+Factory.m */; };
 		E361DEC71C4E34FE0042C75A /* AppDelegate+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = E361DEC61C4E34FE0042C75A /* AppDelegate+Analytics.m */; };
+		E3957CE21C5137B30017E31F /* GVUserDefaults+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3957CE11C5137B30017E31F /* GVUserDefaults+Properties.m */; };
 		E3BEDFC71C23FC8F00E6DB58 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BEDFC61C23FC8F00E6DB58 /* libz.tbd */; };
 		E3E810371C48D85E00C0ACAF /* NSTimer+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E810361C48D85E00C0ACAF /* NSTimer+Factory.m */; };
 		E3FF2EEE1C35007E00A6C7BF /* UISwitch+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FF2EED1C35007E00A6C7BF /* UISwitch+Factory.m */; };
@@ -120,8 +120,6 @@
 		E345818E1C213A7D0088BDA5 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		E345818F1C213A7D0088BDA5 /* UIView+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Utility.h"; sourceTree = "<group>"; };
 		E34581901C213A7D0088BDA5 /* UIView+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utility.m"; sourceTree = "<group>"; };
-		E34581991C213D7C0088BDA5 /* GVUserDefaults+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+Properties.h"; sourceTree = "<group>"; };
-		E345819A1C213D7C0088BDA5 /* GVUserDefaults+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+Properties.m"; sourceTree = "<group>"; };
 		E345819E1C213FFB0088BDA5 /* JSONModel+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONModel+Utility.h"; sourceTree = "<group>"; };
 		E345819F1C213FFB0088BDA5 /* JSONModel+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONModel+Utility.m"; sourceTree = "<group>"; };
 		E34581A01C213FFB0088BDA5 /* JSONValueTransformer+Mapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+Mapper.h"; sourceTree = "<group>"; };
@@ -161,6 +159,8 @@
 		E361DEC41C4E2EFF0042C75A /* HTTPHeaderField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPHeaderField.h; sourceTree = "<group>"; };
 		E361DEC51C4E34FE0042C75A /* AppDelegate+Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Analytics.h"; sourceTree = "<group>"; };
 		E361DEC61C4E34FE0042C75A /* AppDelegate+Analytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Analytics.m"; sourceTree = "<group>"; };
+		E3957CE01C5137B30017E31F /* GVUserDefaults+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+Properties.h"; sourceTree = "<group>"; };
+		E3957CE11C5137B30017E31F /* GVUserDefaults+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+Properties.m"; sourceTree = "<group>"; };
 		E3BEDFC61C23FC8F00E6DB58 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E3E810351C48D85E00C0ACAF /* NSTimer+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Factory.h"; sourceTree = "<group>"; };
 		E3E810361C48D85E00C0ACAF /* NSTimer+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Factory.m"; sourceTree = "<group>"; };
@@ -299,8 +299,6 @@
 			children = (
 				E34581A71C2142960088BDA5 /* CLLocationManager+Factory.h */,
 				E34581A81C2142960088BDA5 /* CLLocationManager+Factory.m */,
-				E34581991C213D7C0088BDA5 /* GVUserDefaults+Properties.h */,
-				E345819A1C213D7C0088BDA5 /* GVUserDefaults+Properties.m */,
 				E34581811C213A7D0088BDA5 /* NSDate+Utility.h */,
 				E34581821C213A7D0088BDA5 /* NSDate+Utility.m */,
 				E34581831C213A7D0088BDA5 /* NSString+Utility.h */,
@@ -338,6 +336,8 @@
 		E34581731C2135F30088BDA5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E3957CE01C5137B30017E31F /* GVUserDefaults+Properties.h */,
+				E3957CE11C5137B30017E31F /* GVUserDefaults+Properties.m */,
 				E361DEC41C4E2EFF0042C75A /* HTTPHeaderField.h */,
 				E3FF2EEB1C34F0C600A6C7BF /* HTTPStatusCode.h */,
 				E34581B61C2152F20088BDA5 /* SYAppSetting.h */,
@@ -621,7 +621,6 @@
 				E34581951C213A7D0088BDA5 /* UIColor+Factory.m in Sources */,
 				E361DEC71C4E34FE0042C75A /* AppDelegate+Analytics.m in Sources */,
 				E34581931C213A7D0088BDA5 /* UIBarButtonItem+Factory.m in Sources */,
-				E345819B1C213D7C0088BDA5 /* GVUserDefaults+Properties.m in Sources */,
 				E345817C1C2136240088BDA5 /* SYMainViewController.m in Sources */,
 				E31DBAF51C2801BA00FD5F36 /* SYUserService.m in Sources */,
 				E34581A41C213FFB0088BDA5 /* JSONModel+Utility.m in Sources */,
@@ -647,6 +646,7 @@
 				E34581DE1C217F740088BDA5 /* SYDeviceService.m in Sources */,
 				E34581AF1C21455C0088BDA5 /* UIViewController+Utility.m in Sources */,
 				E34581A91C2142960088BDA5 /* CLLocationManager+Factory.m in Sources */,
+				E3957CE21C5137B30017E31F /* GVUserDefaults+Properties.m in Sources */,
 				E34581801C21395B0088BDA5 /* SYUtility.m in Sources */,
 				E34581971C213A7D0088BDA5 /* UIView+Frame.m in Sources */,
 				E34581A51C213FFB0088BDA5 /* JSONValueTransformer+Mapper.m in Sources */,
