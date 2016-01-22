@@ -11,6 +11,7 @@
 @interface UIViewController (Utility) <UITextFieldDelegate>
 
 @property (nonatomic, assign) BOOL isLoadingData;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @property (nonatomic, strong, readonly) UIViewController *rootViewController;
 @property (nonatomic, strong, readonly) UIViewController *visibleViewController;
@@ -31,6 +32,6 @@
 - (void)loadData:(SYNoParameterBlockType)completion;
 - (void)reloadData;
 
-- (void)HTTPRequestFailed:(NSNotification *)notification;
+- (void)HTTPRequestDidComplete:(NSNotification *)notification;
 
 @end

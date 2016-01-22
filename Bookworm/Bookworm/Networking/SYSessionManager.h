@@ -6,12 +6,11 @@
 //  Copyright (c) 2015 Syzygy. All rights reserved.
 //
 
-#import <AFNetworking/AFNetworking.h>
+@import AFNetworking;
+#import "HTTPStatusCode.h"
 #import "HTTPHeaderField.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-FOUNDATION_EXPORT NSString *const SYSessionManagerRequestFailedNotification;
 
 @interface SYSessionManager : AFHTTPSessionManager
 

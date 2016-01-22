@@ -23,8 +23,6 @@
 - (BOOL)isValidEmail;
 - (BOOL)isValidPassword;
 - (BOOL)isValidSMSCode;
-- (BOOL)isValidHTTPURL;
-- (BOOL)isSelfDomain;
 
 - (BOOL)containsUnicodeCharacter;
 - (BOOL)isNumberCharacter;

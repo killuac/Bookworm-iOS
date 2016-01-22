@@ -6,7 +6,7 @@
 //  Copyright © 2016 Syzygy. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <SocketRocket/SRWebSocket.h>
 
 FOUNDATION_EXPORT NSString *const SYSocketDidSendMessageNotification;
 FOUNDATION_EXPORT NSString *const SYSocketDidReceiveMessageNotification;
@@ -21,5 +21,7 @@ FOUNDATION_EXPORT NSString *const SYSocketReconnectingNotification;
 - (void)disconnect;
 
 - (void)sendMessage:(NSString *)content toReceiver:(NSString *)userID;
+- (void)readMessageFromReceiver:(NSString *)userID;
+- (void)deleteMessagesWithContact:(NSString *)userID;
 
 @end

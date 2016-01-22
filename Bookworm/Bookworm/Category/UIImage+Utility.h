@@ -2,7 +2,7 @@
 //  UIImage+Utility.h
 //  Bookworm
 //
-//  Created by Bing Liu on 12/31/15.
+//  Created by Killua Liu on 12/31/15.
 //  Copyright © 2015 Syzygy. All rights reserved.
 //
 

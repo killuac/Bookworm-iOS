@@ -17,9 +17,12 @@ typedef void (^SYNoParameterBlockType)(void);
 //#define TEST_MODE
 
 #define IS_IOS_VERSION_9                __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0
+#define UUID_STRING                     [UIDevice currentDevice].identifierForVendor.UUIDString
+
 #define APP_VERSION                     [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"]
 #define APP_BUNDLE_NAME                 [NSBundle mainBundle].infoDictionary[@"CFBundleName"]
 #define APP_DISPLAY_NAME                [NSBundle mainBundle].localizedInfoDictionary[@"CFBundleDisplayName"]
+
 #define RESOLUTION_SIZE                 [UIScreen mainScreen].preferredMode.size
 #define RESOLUTION_WIDTH                RESOLUTION_SIZE.width
 #define RESOLUTION_HEIGHT               RESOLUTION_SIZE.height
@@ -34,8 +37,19 @@ typedef void (^SYNoParameterBlockType)(void);
 #define RADIANS(degree)                 degree * M_PI/180
 #define DATABASE_FILE_PATH              DocumentFilePath(@"Bookworm.db")
 
+#define DEFAULT_MARGIN                  15.0
+#define DEFAULT_HEADER_HEIGHT           20.0
+#define DEFAULT_FOOTER_HEIGHT           20.0
+#define DEFAULT_ROW_HEIGHT              44.0
+#define DEFAULT_TOOLBAR_HEIGHT          44.0
+#define DEFAULT_BUTTON_HEIGHT           44.0
+#define DEFAULT_CORNER_RADIUS           5.0
+#define DEFAULT_ANIMATION_DURATION      0.25
+#define DEFAULT_DAMPING                 0.25
+#define DEFAULT_BORDER_WIDTH            2.0
+
 #define IDENTIFIER_COMMON_CELL          @"CommonCell"
-#define IDENTIFIER_EDITABLE_CELL        @"EditableCell"
+#define IDENTIFIER_TEXT_CELL            @"TextCell"
 #define IDENTIFIER_BUTTON_CELL          @"ButtonCell"
 
 #define IMG_EMPTY                       [UIImage imageNamed:@"image_empty.png"]
@@ -44,18 +58,6 @@ typedef void (^SYNoParameterBlockType)(void);
 #define IMG_OFFICIAL_AVATAR             [UIImage imageNamed:@"image_official_avatar.png"]
 #define IMG_GENDER_ICON(gender)         [UIImage imageNamed:(gender) ? @"icon_male.png" : @"icon_female.png"]
 #define IMG_AVATAR_PLACEHOLDER(gender)  [UIImage imageNamed:(gender) ? @"image_male_avatar.png" : @"image_female_avatar.png"]
-
-#define DEFAULT_MARGIN                  15.0
-#define DEFAULT_HEADER_HEIGHT           20.0
-#define DEFAULT_FOOTER_HEIGHT           20.0
-#define DEFAULT_ROW_HEIGHT              44.0
-#define DEFAULT_TOOLBAR_HEIGHT          44.0
-#define DEFAULT_BUTTON_HEIGHT           44.0
-#define BUTTON_CORNER_RADIUS            5.0
-#define CELL_CORNER_RADIUS              5.0
-#define DEFAULT_ANIMATION_DURATION      0.25
-#define DEFAULT_DAMPING                 0.25
-#define DEFAULT_BORDER_WIDTH            2.0
 
 #define LocalizedString(key, text)      [[NSBundle mainBundle] localizedStringForKey:(key) value:text table:nil]
 

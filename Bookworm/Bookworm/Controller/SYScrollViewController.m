@@ -7,7 +7,6 @@
 //
 
 #import "SYScrollViewController.h"
-#import "SYSessionManager.h"
 
 @interface SYScrollViewController ()
 
@@ -16,18 +15,6 @@
 @end
 
 @implementation SYScrollViewController
-
-- (instancetype)init
-{
-    if (self = [super init]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(HTTPRequestFailed:)
-                                                     name:SYSessionManagerRequestFailedNotification
-                                                   object:nil];
-    }
-    
-    return self;
-}
 
 - (void)dealloc
 {
@@ -48,8 +35,12 @@
 - (void)startLoadingData:(SYNoParameterBlockType)completion
 {
     if (!self.isLoadingData) {
-        self.isLoadingData = YES;
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(HTTPRequestDidComplete:)
+                                                     name:AFNetworkingTaskDidCompleteNotification
+                                                   object:nil];
         
+        self.isLoadingData = YES;
         [self loadData:^{
             self.isLoadingData = NO;
             if (completion) completion();
@@ -99,9 +90,9 @@
     [self.scrollView setContentOffset:CGPointZero animated:YES];
 }
 
-- (void)HTTPRequestFailed:(NSNotification *)notification
+- (void)HTTPRequestDidComplete:(NSNotification *)notification
 {
-    self.isLoadingData = NO;
+    [super HTTPRequestDidComplete:notification];
     [self.activityIndicator stopAnimating];
 }
 

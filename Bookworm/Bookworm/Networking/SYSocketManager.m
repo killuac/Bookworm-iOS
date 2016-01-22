@@ -7,9 +7,6 @@
 //
 
 #import "SYSocketManager.h"
-#import <SocketRocket/SRWebSocket.h>
-#import "SYServerAPI.h"
-@import AFNetworking;
 
 #define RECONNNECT_MAX_COUNT    5
 #define HEART_BEAT_INTERVAL     25.0
@@ -80,18 +77,10 @@ NSString *const BZSocketReconnectingNotification = @"BZSocketReconnectingNotific
     return (self.webSocket.readyState == SR_OPEN);
 }
 
-- (BOOL)isConnecting
-{
-    return (self.webSocket.readyState == SR_CONNECTING);
-}
-
 - (void)connect
 {
-    if (!self.isConnecting) return;
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self.webSocket open];
-    });
+    [self instantiateWebSocket];
+    [self.webSocket open];
 }
 
 - (void)reconnect
@@ -103,7 +92,6 @@ NSString *const BZSocketReconnectingNotification = @"BZSocketReconnectingNotific
     [[NSNotificationCenter defaultCenter] postNotificationName:BZSocketReconnectingNotification object:self];
     
     [[SYServerAPI sharedServerAPI] fetchIMServerAddressCompletion:^{
-        [self instantiateWebSocket];
         [self performSelector:@selector(connect) withObject:nil afterDelay:RECONNECT_DELAY];
     }];
 }
@@ -137,7 +125,7 @@ NSString *const BZSocketReconnectingNotification = @"BZSocketReconnectingNotific
 }
 
 #pragma mark - Message
-- (void)sendMessage:(NSString *)content withType:(NSString *)type toReceiver:(NSString *)userId;
+- (void)sendMessage:(NSString *)content withType:(NSString *)type toReceiver:(NSString *)userID;
 {
     if (self.isOpen) return;
     
@@ -153,6 +141,16 @@ NSString *const BZSocketReconnectingNotification = @"BZSocketReconnectingNotific
 - (void)sendMessage:(NSString *)content toReceiver:(NSString *)userID
 {
     
+}
+
+- (void)readMessageFromReceiver:(NSString *)userID
+{
+	
+}
+
+- (void)deleteMessagesWithContact:(NSString *)userID
+{
+	
 }
 
 - (void)synchronizeInbox

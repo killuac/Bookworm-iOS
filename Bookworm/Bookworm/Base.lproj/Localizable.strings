@@ -6,23 +6,12 @@
   Copyright (c) 2015 Syzygy. All rights reserved.
 */
 
-"SignIn" = "Log in";
-"SignUp" = "Sign up";
-"SignOut" = "Sign out";
 "MobileSignUp" = "Mobile sign up";
 "EmailSignUp" = "Email sign up";
 "SetPassword" = "Set password";
-"CompleteProfile" = "Complete profile";
-"Setting" = "Settings";
 "EditProfile" = "Edit profile";
 "ChangeNickname" = "Change nickname";
 "ChangePassword" = "Change password";
-"FavoriteList" = "Favorite list";
-"PostPhoto" = "Post photo";
-"TitleRecord" = "Record";
-"Audition" = "Audition";
-"MusicStyle" = "Music style";
-"Tag" = "Tag";
 
 "Home" = "Bookworm";
 "Activity" = "Activity";
@@ -34,38 +23,37 @@
 "Cancel" = "Cancel";
 "Done" = "Done";
 "Okay" = "Okay";
-"OkayExit" = "Exit";
+"Exit" = "Exit";
 "Save" = "Save";
 "Send" = "Send";
-"Post" = "Post";
+"SignIn" = "Log in";
+"SignUp" = "Sign up";
+"SignOut" = "Sign out";
 "Next" = "Next";
 "Skip" = "Skip";
-"Setting" = "Setting";
 "SendSMS" = "Send SMS";
 "Resend" = "Resend";
 "RemainingTime" = "%.f Second";
 "EmailSignUp" = "Email sign up";
 "NoSMSCode" = "Not receive SMS code";
 "ForgotPassword" = "ForgotPassword";
-"Refresh" = "Refresh";
-"Play" = "Play";
-"Share" = "Share";
-"Weibo" = "Weibo";
-"Wechat" = "Wechat";
-"Qzone" = "Qzone";
-"Copy" = "Copy";
-"Record" = "Record";
 "Delete" = "Delete";
+"Refresh" = "Refresh";
 "Follow" = "Follow";
 "Unfollow" = "Unfollow";
 "Exchange" = "Exchange";
 "Chat" = "Chat";
+"Play" = "Play";
 "Rating" = "Rating";
 "Report" = "Report";
-"SetChatBackground" = "Set chat background";
-"RestoreDefaultBackground" = "Restore default background";
+"Share" = "Share";
+"Weibo" = "Weibo";
+"Wechat" = "Wechat";
+"Qzone" = "Qzone";
 "TakePhoto" = "Take photo";
 "SelectFromAlbum" = "Select from album";
+"SetChatBackground" = "Set chat background";
+"RestoreDefaultBackground" = "Restore default background";
 
 "ClearingCache" = "Clearing cache...";
 "CacheClearDone" = "Cache clear done";
@@ -89,6 +77,7 @@
 "CreatingUser" = "Creating user...";
 "ThanksFeedback" = "Thanks for your support";
 
+"Setting" = "Settings";
 "KickOut" = "Kick out";
 "VersionError" = "Version error";
 

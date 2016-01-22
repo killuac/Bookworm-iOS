@@ -51,6 +51,13 @@
 		E3957CE21C5137B30017E31F /* GVUserDefaults+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3957CE11C5137B30017E31F /* GVUserDefaults+Properties.m */; };
 		E3BEDFC71C23FC8F00E6DB58 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BEDFC61C23FC8F00E6DB58 /* libz.tbd */; };
 		E3E810371C48D85E00C0ACAF /* NSTimer+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E810361C48D85E00C0ACAF /* NSTimer+Factory.m */; };
+		E3EB14941C51E6B300D10026 /* NSData+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EB14931C51E6B300D10026 /* NSData+Utility.m */; };
+		E3EB149D1C520EF000D10026 /* SYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EB149C1C520EF000D10026 /* SYTextView.m */; };
+		E3EB14AD1C52166F00D10026 /* SYButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EB14A61C52166F00D10026 /* SYButtonTableViewCell.m */; };
+		E3EB14AE1C52166F00D10026 /* SYMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EB14A81C52166F00D10026 /* SYMessageTableViewCell.m */; };
+		E3EB14AF1C52166F00D10026 /* SYTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EB14AA1C52166F00D10026 /* SYTextTableViewCell.m */; };
+		E3EB14B01C52166F00D10026 /* SYTipTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EB14AC1C52166F00D10026 /* SYTipTableViewCell.m */; };
+		E3EB14B61C52171400D10026 /* UITableViewCell+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EB14B51C52171400D10026 /* UITableViewCell+Common.m */; };
 		E3FF2EEE1C35007E00A6C7BF /* UISwitch+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FF2EED1C35007E00A6C7BF /* UISwitch+Factory.m */; };
 		E3FF2EF11C35016200A6C7BF /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FF2EF01C35016200A6C7BF /* UIImage+Utility.m */; };
 /* End PBXBuildFile section */
@@ -164,6 +171,20 @@
 		E3BEDFC61C23FC8F00E6DB58 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E3E810351C48D85E00C0ACAF /* NSTimer+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Factory.h"; sourceTree = "<group>"; };
 		E3E810361C48D85E00C0ACAF /* NSTimer+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Factory.m"; sourceTree = "<group>"; };
+		E3EB14921C51E6B300D10026 /* NSData+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Utility.h"; sourceTree = "<group>"; };
+		E3EB14931C51E6B300D10026 /* NSData+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Utility.m"; sourceTree = "<group>"; };
+		E3EB149B1C520EF000D10026 /* SYTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYTextView.h; sourceTree = "<group>"; };
+		E3EB149C1C520EF000D10026 /* SYTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYTextView.m; sourceTree = "<group>"; };
+		E3EB14A51C52166F00D10026 /* SYButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYButtonTableViewCell.h; sourceTree = "<group>"; };
+		E3EB14A61C52166F00D10026 /* SYButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYButtonTableViewCell.m; sourceTree = "<group>"; };
+		E3EB14A71C52166F00D10026 /* SYMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYMessageTableViewCell.h; sourceTree = "<group>"; };
+		E3EB14A81C52166F00D10026 /* SYMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYMessageTableViewCell.m; sourceTree = "<group>"; };
+		E3EB14A91C52166F00D10026 /* SYTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYTextTableViewCell.h; sourceTree = "<group>"; };
+		E3EB14AA1C52166F00D10026 /* SYTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYTextTableViewCell.m; sourceTree = "<group>"; };
+		E3EB14AB1C52166F00D10026 /* SYTipTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYTipTableViewCell.h; sourceTree = "<group>"; };
+		E3EB14AC1C52166F00D10026 /* SYTipTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYTipTableViewCell.m; sourceTree = "<group>"; };
+		E3EB14B41C52171400D10026 /* UITableViewCell+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Common.h"; sourceTree = "<group>"; };
+		E3EB14B51C52171400D10026 /* UITableViewCell+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Common.m"; sourceTree = "<group>"; };
 		E3FF2EEB1C34F0C600A6C7BF /* HTTPStatusCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPStatusCode.h; sourceTree = "<group>"; };
 		E3FF2EEC1C35007E00A6C7BF /* UISwitch+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISwitch+Factory.h"; sourceTree = "<group>"; };
 		E3FF2EED1C35007E00A6C7BF /* UISwitch+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISwitch+Factory.m"; sourceTree = "<group>"; };
@@ -297,8 +318,11 @@
 		E34581721C2135F30088BDA5 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				E3EB14B71C52173200D10026 /* UIKIT */,
 				E34581A71C2142960088BDA5 /* CLLocationManager+Factory.h */,
 				E34581A81C2142960088BDA5 /* CLLocationManager+Factory.m */,
+				E3EB14921C51E6B300D10026 /* NSData+Utility.h */,
+				E3EB14931C51E6B300D10026 /* NSData+Utility.m */,
 				E34581811C213A7D0088BDA5 /* NSDate+Utility.h */,
 				E34581821C213A7D0088BDA5 /* NSDate+Utility.m */,
 				E34581831C213A7D0088BDA5 /* NSString+Utility.h */,
@@ -307,28 +331,6 @@
 				E3E810361C48D85E00C0ACAF /* NSTimer+Factory.m */,
 				E31DBAE91C27CAE500FD5F36 /* SVProgressHUD+Utility.h */,
 				E31DBAEA1C27CAE500FD5F36 /* SVProgressHUD+Utility.m */,
-				E361DEC11C4E2AF50042C75A /* UIAlertController+Factory.h */,
-				E361DEC21C4E2AF50042C75A /* UIAlertController+Factory.m */,
-				E34581851C213A7D0088BDA5 /* UIBarButtonItem+Factory.h */,
-				E34581861C213A7D0088BDA5 /* UIBarButtonItem+Factory.m */,
-				E34581871C213A7D0088BDA5 /* UIButton+Factory.h */,
-				E34581881C213A7D0088BDA5 /* UIButton+Factory.m */,
-				E34581891C213A7D0088BDA5 /* UIColor+Factory.h */,
-				E345818A1C213A7D0088BDA5 /* UIColor+Factory.m */,
-				E345818B1C213A7D0088BDA5 /* UIFont+Factory.h */,
-				E345818C1C213A7D0088BDA5 /* UIFont+Factory.m */,
-				E3FF2EEF1C35016200A6C7BF /* UIImage+Utility.h */,
-				E3FF2EF01C35016200A6C7BF /* UIImage+Utility.m */,
-				E34581B01C214E890088BDA5 /* UIImageView+Utility.h */,
-				E34581B11C214E890088BDA5 /* UIImageView+Utility.m */,
-				E3FF2EEC1C35007E00A6C7BF /* UISwitch+Factory.h */,
-				E3FF2EED1C35007E00A6C7BF /* UISwitch+Factory.m */,
-				E345818D1C213A7D0088BDA5 /* UIView+Frame.h */,
-				E345818E1C213A7D0088BDA5 /* UIView+Frame.m */,
-				E345818F1C213A7D0088BDA5 /* UIView+Utility.h */,
-				E34581901C213A7D0088BDA5 /* UIView+Utility.m */,
-				E34581AD1C21455C0088BDA5 /* UIViewController+Utility.h */,
-				E34581AE1C21455C0088BDA5 /* UIViewController+Utility.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -411,6 +413,9 @@
 		E34581791C2135F30088BDA5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E3EB14A41C52166700D10026 /* Cell */,
+				E3EB149B1C520EF000D10026 /* SYTextView.h */,
+				E3EB149C1C520EF000D10026 /* SYTextView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -424,6 +429,52 @@
 				E34581A11C213FFB0088BDA5 /* JSONValueTransformer+Mapper.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		E3EB14A41C52166700D10026 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E3EB14A51C52166F00D10026 /* SYButtonTableViewCell.h */,
+				E3EB14A61C52166F00D10026 /* SYButtonTableViewCell.m */,
+				E3EB14A71C52166F00D10026 /* SYMessageTableViewCell.h */,
+				E3EB14A81C52166F00D10026 /* SYMessageTableViewCell.m */,
+				E3EB14A91C52166F00D10026 /* SYTextTableViewCell.h */,
+				E3EB14AA1C52166F00D10026 /* SYTextTableViewCell.m */,
+				E3EB14AB1C52166F00D10026 /* SYTipTableViewCell.h */,
+				E3EB14AC1C52166F00D10026 /* SYTipTableViewCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		E3EB14B71C52173200D10026 /* UIKIT */ = {
+			isa = PBXGroup;
+			children = (
+				E361DEC11C4E2AF50042C75A /* UIAlertController+Factory.h */,
+				E361DEC21C4E2AF50042C75A /* UIAlertController+Factory.m */,
+				E34581851C213A7D0088BDA5 /* UIBarButtonItem+Factory.h */,
+				E34581861C213A7D0088BDA5 /* UIBarButtonItem+Factory.m */,
+				E34581871C213A7D0088BDA5 /* UIButton+Factory.h */,
+				E34581881C213A7D0088BDA5 /* UIButton+Factory.m */,
+				E34581891C213A7D0088BDA5 /* UIColor+Factory.h */,
+				E345818A1C213A7D0088BDA5 /* UIColor+Factory.m */,
+				E345818B1C213A7D0088BDA5 /* UIFont+Factory.h */,
+				E345818C1C213A7D0088BDA5 /* UIFont+Factory.m */,
+				E3FF2EEF1C35016200A6C7BF /* UIImage+Utility.h */,
+				E3FF2EF01C35016200A6C7BF /* UIImage+Utility.m */,
+				E34581B01C214E890088BDA5 /* UIImageView+Utility.h */,
+				E34581B11C214E890088BDA5 /* UIImageView+Utility.m */,
+				E3FF2EEC1C35007E00A6C7BF /* UISwitch+Factory.h */,
+				E3FF2EED1C35007E00A6C7BF /* UISwitch+Factory.m */,
+				E3EB14B41C52171400D10026 /* UITableViewCell+Common.h */,
+				E3EB14B51C52171400D10026 /* UITableViewCell+Common.m */,
+				E345818D1C213A7D0088BDA5 /* UIView+Frame.h */,
+				E345818E1C213A7D0088BDA5 /* UIView+Frame.m */,
+				E345818F1C213A7D0088BDA5 /* UIView+Utility.h */,
+				E34581901C213A7D0088BDA5 /* UIView+Utility.m */,
+				E34581AD1C21455C0088BDA5 /* UIViewController+Utility.h */,
+				E34581AE1C21455C0088BDA5 /* UIViewController+Utility.m */,
+			);
+			name = UIKIT;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -628,6 +679,7 @@
 				E345813E1C2115CF0088BDA5 /* AppDelegate.m in Sources */,
 				E3FF2EEE1C35007E00A6C7BF /* UISwitch+Factory.m in Sources */,
 				E34581911C213A7D0088BDA5 /* NSDate+Utility.m in Sources */,
+				E3EB14941C51E6B300D10026 /* NSData+Utility.m in Sources */,
 				E34581DB1C216FD40088BDA5 /* SYBaseService.m in Sources */,
 				E361DEC01C4E0B530042C75A /* SYSocketManager.m in Sources */,
 				E31F8D8C1C3CC1AD0079D9BA /* SYScrollViewController.m in Sources */,
@@ -637,9 +689,12 @@
 				E3E810371C48D85E00C0ACAF /* NSTimer+Factory.m in Sources */,
 				E34581981C213A7D0088BDA5 /* UIView+Utility.m in Sources */,
 				E31DBAF21C2801A000FD5F36 /* SYMessageService.m in Sources */,
+				E3EB14AD1C52166F00D10026 /* SYButtonTableViewCell.m in Sources */,
+				E3EB149D1C520EF000D10026 /* SYTextView.m in Sources */,
 				E34581B21C214E890088BDA5 /* UIImageView+Utility.m in Sources */,
 				E34581961C213A7D0088BDA5 /* UIFont+Factory.m in Sources */,
 				E34581921C213A7D0088BDA5 /* NSString+Utility.m in Sources */,
+				E3EB14AE1C52166F00D10026 /* SYMessageTableViewCell.m in Sources */,
 				E31DBAEB1C27CAE500FD5F36 /* SVProgressHUD+Utility.m in Sources */,
 				E3FF2EF11C35016200A6C7BF /* UIImage+Utility.m in Sources */,
 				E34581AC1C2143E20088BDA5 /* TestViewController.m in Sources */,
@@ -647,8 +702,11 @@
 				E34581AF1C21455C0088BDA5 /* UIViewController+Utility.m in Sources */,
 				E34581A91C2142960088BDA5 /* CLLocationManager+Factory.m in Sources */,
 				E3957CE21C5137B30017E31F /* GVUserDefaults+Properties.m in Sources */,
+				E3EB14AF1C52166F00D10026 /* SYTextTableViewCell.m in Sources */,
+				E3EB14B01C52166F00D10026 /* SYTipTableViewCell.m in Sources */,
 				E34581801C21395B0088BDA5 /* SYUtility.m in Sources */,
 				E34581971C213A7D0088BDA5 /* UIView+Frame.m in Sources */,
+				E3EB14B61C52171400D10026 /* UITableViewCell+Common.m in Sources */,
 				E34581A51C213FFB0088BDA5 /* JSONValueTransformer+Mapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,7 +12,7 @@
 
 - (NSString *)deviceID
 {
-    return [UIDevice currentDevice].identifierForVendor.UUIDString;
+    return UUID_STRING;
 }
 
 - (NSString *)deviceBrand

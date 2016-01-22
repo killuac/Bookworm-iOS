@@ -9,21 +9,30 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, SYButonStyle) {
+    SYButonStyleNone,
     SYButonStyleDefault,
     SYButonStylePrimary,
     SYButonStyleDestructive
 };
 
-typedef NS_ENUM(NSUInteger, SYLayoutStyle) {
-    SYLayoutStyleHorizontalImageLeft,   // Default
-    SYLayoutStyleHorizontalImageRight,
-    SYLayoutStyleVerticalImageUp,
-    SYLayoutStyleVerticalImageDown
+typedef NS_ENUM(NSUInteger, SYButtonLayoutStyle) {
+    SYButtonLayoutStyleHorizontalImageLeft,     // Default
+    SYButtonLayoutStyleHorizontalImageRight,
+    SYButtonLayoutStyleVerticalImageUp,
+    SYButtonLayoutStyleVerticalImageDown
 };
 
 @interface UIButton (Factory)
 
 @property (nonatomic, assign) SYButonStyle style;
+
++ (instancetype)customButtonWithTitle:(NSString *)title;
++ (instancetype)customButtonWithTitle:(NSString *)title imageName:(NSString *)imageName;
++ (instancetype)customButtonWithTitle:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selImageName;
++ (instancetype)customButtonWithImageName:(NSString *)imageName;
++ (instancetype)customButtonWithImageName:(NSString *)imageName selectedImageName:(NSString *)selImageName;
+
++ (instancetype)systemButtonWithTitle:(NSString *)title;
 
 + (instancetype)defaultButtonWithTitle:(NSString *)title;
 + (instancetype)defaultButtonWithTitle:(NSString *)title imageName:(NSString *)imageName;
@@ -34,15 +43,7 @@ typedef NS_ENUM(NSUInteger, SYLayoutStyle) {
 + (instancetype)destructiveButtonWithTitle:(NSString *)title;
 + (instancetype)destructiveButtonWithTitle:(NSString *)title imageName:(NSString *)imageName;
 
-+ (instancetype)customButtonWithImageName:(NSString *)imageName;
-+ (instancetype)customButtonWithImageName:(NSString *)imageName selectedImageName:(NSString *)selImageName;
-+ (instancetype)customButtonWithTitle:(NSString *)title imageName:(NSString *)imageName;
-+ (instancetype)customButtonWithTitle:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selImageName;
-+ (instancetype)customButtonWithTitle:(NSString *)title;
-
-+ (instancetype)systemButtonWithTitle:(NSString *)title;
-
-- (void)setLayoutStyle:(SYLayoutStyle)layoutStyle;
+- (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle;
 - (void)addTarget:(id)target action:(SEL)action;
 
 @end

@@ -7,9 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SYServerAPI.h"
-#import "SYSessionManager.h"
-#import "FMDB.h"
 
 typedef void (^SYServiceBlockType)(id service, id result);
 
@@ -40,7 +37,7 @@ typedef void (^SYServiceBlockType)(id service, id result);
 @property (nonatomic, copy, readonly) NSString *urlString;
 
 @property (nonatomic, strong, readonly) FMDatabaseQueue *dbQueue;
-@property (nonatomic, copy, readonly) NSString *userId;
+@property (nonatomic, copy, readonly) NSString *userID;
 
 - (void)setValue:(NSString *)value forURLString:(NSString *)URLString;
 - (id)valueForURLString:(NSString *)URLString;

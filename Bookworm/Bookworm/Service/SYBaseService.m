@@ -27,9 +27,9 @@
     return self;
 }
 
-- (NSString *)userId
+- (NSString *)userID
 {
-    return [GVUserDefaults standardUserDefaults].userId;
+    return [GVUserDefaults standardUserDefaults].userID;
 }
 
 - (NSString *)keyForURLString:(NSString *)URLString

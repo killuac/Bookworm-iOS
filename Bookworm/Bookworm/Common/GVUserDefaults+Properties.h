@@ -12,7 +12,7 @@
 
 @property (nonatomic, assign) BOOL isFirstLaunch;
 @property (nonatomic, assign) BOOL isSignedIn;
-@property (nonatomic, copy) NSString *userId;
+@property (nonatomic, copy) NSString *userID;
 @property (nonatomic, copy, readonly) NSString *language;
 
 @property (nonatomic, copy) NSString *accessToken;

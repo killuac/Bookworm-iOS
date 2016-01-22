@@ -7,7 +7,6 @@
 //
 
 #import "SYServerAPI.h"
-#import "SYSessionManager.h"
 
 #define JSON_SERVER_API     @"server-api.json"
 

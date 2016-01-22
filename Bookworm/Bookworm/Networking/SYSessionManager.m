@@ -7,13 +7,10 @@
 //
 
 #import "SYSessionManager.h"
-#import "HTTPStatusCode.h"
 #import "SYDeviceModel.h"
 #import "SYBaseService.h"
 
 #define REQUEST_TIMEOUT_INTERVAL    30
-
-NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRequestFailedNotification";
 
 @interface SYSessionManager ()
 
@@ -223,8 +220,6 @@ NSString *const SYSessionManagerRequestFailedNotification = @"SYSessionManagerRe
             [self handleResponseResult:(id)task.response];
             break;
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:SYSessionManagerRequestFailedNotification object:self];
 }
 
 - (void)handleResponseResult:(NSHTTPURLResponse *)response

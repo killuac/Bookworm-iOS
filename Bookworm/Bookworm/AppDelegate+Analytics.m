@@ -44,7 +44,7 @@ typedef void (^SYAspectHandlerBlock)(id<AspectInfo> aspectInfo);
     [MobClick setAppVersion:XcodeAppVersion];
     
     if ([GVUserDefaults standardUserDefaults].isSignedIn) {
-        [MobClick profileSignInWithPUID:[GVUserDefaults standardUserDefaults].userId];
+        [MobClick profileSignInWithPUID:[GVUserDefaults standardUserDefaults].userID];
     }
 }
 

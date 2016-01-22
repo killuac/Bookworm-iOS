@@ -8,12 +8,8 @@
 
 #import "AppDelegate.h"
 #import "AppDelegate+Analytics.h"
-#import "FMDB.h"
-#import "SYServerAPI.h"
 #import "SYDeviceService.h"
-#import "SYSocketManager.h"
 #import "TestViewController.h"
-@import AFNetworking;
 
 @interface AppDelegate ()
 
@@ -57,7 +53,7 @@
                           block:^(id observer, id object, NSDictionary *change) {
                               if (userDefaults.isSignedIn) {
                                   [[SYSocketManager manager] connect];
-                                  [MobClick profileSignInWithPUID:[GVUserDefaults standardUserDefaults].userId];
+                                  [MobClick profileSignInWithPUID:[GVUserDefaults standardUserDefaults].userID];
                               } else {
                                   [[SYSocketManager manager] disconnect];
                                   [MobClick profileSignOff];
@@ -109,10 +105,10 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@"<>"];
-    NSString *deviceTokenString = [[deviceToken description] stringByTrimmingCharactersInSet:charSet];
+    NSString *newDeviceToken = [[deviceToken description] stringByTrimmingCharactersInSet:charSet];
     
-    if (![[GVUserDefaults standardUserDefaults].deviceToken isEqualToString:deviceTokenString]) {
-        [GVUserDefaults standardUserDefaults].deviceToken = deviceTokenString;
+    if (![[GVUserDefaults standardUserDefaults].deviceToken isEqualToString:newDeviceToken]) {
+        [GVUserDefaults standardUserDefaults].deviceToken = newDeviceToken;
         [self updateDeviceToken];
     }
 }

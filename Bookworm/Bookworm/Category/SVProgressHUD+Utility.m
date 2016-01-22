@@ -7,7 +7,6 @@
 //
 
 #import "SVProgressHUD+Utility.h"
-#import "SYUtility.h"
 
 @implementation SVProgressHUD (Utility)
 

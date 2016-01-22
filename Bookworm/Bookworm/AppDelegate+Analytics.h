@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "MobClick.h"
-@import Aspects;
 
 @interface AppDelegate (Analytics)
 

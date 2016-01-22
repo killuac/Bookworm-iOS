@@ -7,7 +7,6 @@
 //
 
 #import "SYAppSetting.h"
-#import "SYDeviceModel.h"
 
 #define APP_SETTING     @"app-setting"
 
@@ -42,8 +41,8 @@
 
 - (NSString *)referer
 {
-    NSString *prefix = [self.httpServer stringByAppendingPathComponent:[GVUserDefaults standardUserDefaults].userId];
-    return [prefix stringByAppendingPathComponent:[SYDeviceModel model].deviceID];
+    NSString *prefix = [self.httpServer stringByAppendingPathComponent:[GVUserDefaults standardUserDefaults].userID];
+    return [prefix stringByAppendingPathComponent:UUID_STRING];
 }
 
 - (NSURL *)appStoreURL

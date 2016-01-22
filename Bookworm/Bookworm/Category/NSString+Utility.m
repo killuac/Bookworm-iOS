@@ -18,30 +18,28 @@
 - (NSString *)MD5String
 {
     NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
-    unsigned char digest[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(data.bytes, (CC_LONG)data.length, digest);
-    
-    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH];
-    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
-        [output appendFormat:@"%02x", digest[i]];
-    }
-    
-    return output;
+    return [data MD5String];
 }
 
 - (NSString *)SHA1String
 {
-    const char *cstr = [self UTF8String];
-    unsigned char digest[CC_SHA1_DIGEST_LENGTH];
-    CC_SHA1(cstr, (CC_LONG)strlen(cstr), digest);
-    
-    NSMutableString *output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH];
-    for (int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++) {
-        [output appendFormat:@"%02x", digest[i]];
-    }
-    
-    return output;
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return [data SHA1String];
 }
+
+//- (NSString *)SHA1String
+//{
+//    const char *cstr = [self UTF8String];
+//    unsigned char digest[CC_SHA1_DIGEST_LENGTH];
+//    CC_SHA1(cstr, (CC_LONG)strlen(cstr), digest);
+//    
+//    NSMutableString *output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH];
+//    for (int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++) {
+//        [output appendFormat:@"%02x", digest[i]];
+//    }
+//    
+//    return output;
+//}
 
 #pragma mark - Base 62
 - (NSString *)encodeNumber:(NSInteger)number withAlphabet:(NSString *)alphabet
@@ -129,16 +127,6 @@
 - (BOOL)isNicknameCharacter
 {
     return ![self isMatch:RX(@"\\s")];
-}
-
-- (BOOL)isValidHTTPURL
-{
-    return [self isMatch:RX(@"^http")];
-}
-
-- (BOOL)isSelfDomain
-{
-    return [self isMatch:RX(@"(bookworm.cc)")];
 }
 
 #pragma mark - Size

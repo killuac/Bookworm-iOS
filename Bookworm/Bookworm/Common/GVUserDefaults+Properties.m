@@ -10,7 +10,7 @@
 
 @implementation GVUserDefaults (Properties)
 
-@dynamic userId;
+@dynamic userID;
 @dynamic isSignedIn;
 @dynamic isFirstLaunch;
 @dynamic accessToken;
