@@ -10,4 +10,11 @@
 
 @interface SYMessageTableViewCell : UITableViewCell
 
+@property (nonatomic, strong, readonly) UIImageView *avatarImageView;
+@property (nonatomic, strong, readonly) UIImageView *genderIconView;
+@property (nonatomic, strong, readonly) UILabel *titleLabel;
+@property (nonatomic, strong, readonly) UILabel *subtitleLabel;
+@property (nonatomic, strong, readonly) UILabel *timeLabel;
+@property (nonatomic, strong, readonly) UILabel *badgeLabel;
+
 @end

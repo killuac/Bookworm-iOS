@@ -17,16 +17,16 @@
 
 - (void)createWithModel:(id)model result:(SYServiceBlockType)result
 {
-    [[SYSessionManager manager] POST:self.urlString parameters:model success:^void(NSURLSessionDataTask *task, id responseObject) {
-        if (result) result(self, nil);
-    }];
+//    [[SYSessionManager manager] POST:self.urlString parameters:model success:^void(NSURLSessionDataTask *task, id responseObject) {
+//        if (result) result(self, nil);
+//    }];
 }
 
 - (void)updateWithModel:(id)model result:(SYServiceBlockType)result
 {
-    [[SYSessionManager manager] PATCH:self.urlString parameters:model success:^void(NSURLSessionDataTask *task, id responseObject) {
-        if (result) result(self, nil);
-    }];
+//    [[SYSessionManager manager] PATCH:self.urlString parameters:model success:^void(NSURLSessionDataTask *task, id responseObject) {
+//        if (result) result(self, nil);
+//    }];
 }
 
 @end

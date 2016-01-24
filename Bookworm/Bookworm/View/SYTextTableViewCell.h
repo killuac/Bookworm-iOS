@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SYTextView.h"
 
 @interface SYTextTableViewCell : UITableViewCell
+
+@property (nonatomic, strong, readonly) UITextField *textField;
+@property (nonatomic, strong, readonly) SYTextView *textView;
+
+// Below methods only support UITextField
+- (void)showSuccess;
+- (void)showErrorWithText:(NSString *)text;
+- (void)showWarningWithText:(NSString *)text;
+- (void)dismissTip;
 
 @end

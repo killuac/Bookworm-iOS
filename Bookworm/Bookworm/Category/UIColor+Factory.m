@@ -40,12 +40,12 @@
     return [UIColor colorWithRed:194/255.0 green:223/255.0 blue:232/255.0 alpha:1];
 }
 
-+ (instancetype)defaultTitleColor
++ (instancetype)titleColor
 {
     return [UIColor colorWithRed:88/255.0 green:88/255.0 blue:97/255.0 alpha:1.0];
 }
 
-+ (instancetype)defaultSubtitleColor
++ (instancetype)subtitleColor
 {
     return [UIColor colorWithRed:144/255.0 green:141/255.0 blue:155/255.0 alpha:1.0];
 }

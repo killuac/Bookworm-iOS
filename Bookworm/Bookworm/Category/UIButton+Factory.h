@@ -43,6 +43,7 @@ typedef NS_ENUM(NSUInteger, SYButtonLayoutStyle) {
 + (instancetype)destructiveButtonWithTitle:(NSString *)title;
 + (instancetype)destructiveButtonWithTitle:(NSString *)title imageName:(NSString *)imageName;
 
+- (void)setStyle:(SYButonStyle)style;
 - (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle;
 - (void)addTarget:(id)target action:(SEL)action;
 

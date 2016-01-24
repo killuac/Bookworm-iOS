@@ -43,6 +43,11 @@
     [self loadData];
 }
 
+- (void)loadData
+{
+    
+}
+
 - (void)loadData:(SYNoParameterBlockType)completion
 {
     

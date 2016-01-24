@@ -10,4 +10,11 @@
 
 @interface SYButtonTableViewCell : UITableViewCell
 
+@property (nonatomic, strong, readonly) UIButton *normalButton;
+
+@property (nonatomic, strong, readonly) UIButton *topLinkButton;
+@property (nonatomic, strong, readonly) UIButton *bottomLinkButton;
+@property (nonatomic, strong, readonly) UIButton *leftLinkButton;
+@property (nonatomic, strong, readonly) UIButton *rightLinkButton;
+
 @end

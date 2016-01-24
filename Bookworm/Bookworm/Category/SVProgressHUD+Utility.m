@@ -16,6 +16,7 @@
     [self setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
     
     SwizzleMethod([self class], @selector(showWithStatus:), @selector(swizzle_showWithStatus:), YES);
+    SwizzleMethod([self class], @selector(showImage:status:), @selector(swizzle_showImage:status:), YES);
     SwizzleMethod([self class], @selector(dismiss), @selector(swizzle_dismiss), NO);
 }
 
@@ -28,6 +29,13 @@
     }
     
     [self swizzle_showWithStatus:status];
+}
+
+- (void)swizzle_showImage:(UIImage *)image status:(NSString *)status
+{
+    [self setDefaultStyle:SVProgressHUDStyleDark];
+    [self setDefaultMaskType:SVProgressHUDMaskTypeNone];
+    [self swizzle_showImage:image status:status];
 }
 
 - (void)swizzle_dismiss

@@ -1,36 +1,34 @@
 PODS:
-  - AFNetworking (3.0.2):
-    - AFNetworking/NSURLSession (= 3.0.2)
-    - AFNetworking/Reachability (= 3.0.2)
-    - AFNetworking/Security (= 3.0.2)
-    - AFNetworking/Serialization (= 3.0.2)
-    - AFNetworking/UIKit (= 3.0.2)
-  - AFNetworking/NSURLSession (3.0.2):
+  - AFNetworking (3.0.4):
+    - AFNetworking/NSURLSession (= 3.0.4)
+    - AFNetworking/Reachability (= 3.0.4)
+    - AFNetworking/Security (= 3.0.4)
+    - AFNetworking/Serialization (= 3.0.4)
+    - AFNetworking/UIKit (= 3.0.4)
+  - AFNetworking/NSURLSession (3.0.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.0.2)
-  - AFNetworking/Security (3.0.2)
-  - AFNetworking/Serialization (3.0.2)
-  - AFNetworking/UIKit (3.0.2):
+  - AFNetworking/Reachability (3.0.4)
+  - AFNetworking/Security (3.0.4)
+  - AFNetworking/Serialization (3.0.4)
+  - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
   - Aspects (1.4.1)
-  - FMDB (2.5):
-    - FMDB/standard (= 2.5)
-  - FMDB/common (2.5)
-  - FMDB/standard (2.5):
-    - FMDB/common
-  - GVUserDefaults (1.0.1)
-  - JSONModel (1.1.2)
+  - FMDB (2.6):
+    - FMDB/standard (= 2.6)
+  - FMDB/standard (2.6)
+  - GVUserDefaults (1.0.2)
+  - JSONModel (1.2.0)
   - KVOController (1.0.3)
-  - Masonry (0.6.3)
+  - Masonry (0.6.4)
   - pop (1.0.8)
   - RegExCategories (1.0)
-  - SDWebImage (3.7.3):
-    - SDWebImage/Core (= 3.7.3)
-  - SDWebImage/Core (3.7.3)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SocketRocket (0.4.2)
-  - SVProgressHUD (HEAD based on 2.0-beta3)
+  - SVProgressHUD (HEAD based on 2.0-beta6)
   - UMengAnalytics-NO-IDFA (3.6.7)
 
 DEPENDENCIES:
@@ -49,18 +47,18 @@ DEPENDENCIES:
   - UMengAnalytics-NO-IDFA
 
 SPEC CHECKSUMS:
-  AFNetworking: 2f30b7db399a405b12b24e049c654f108fc8c54d
+  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
-  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
-  GVUserDefaults: acb40729f70984008d0650e49d7e422f1bbfa597
-  JSONModel: 216584d0311b053ff714f1d6cb700dbf890847bc
+  FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
+  GVUserDefaults: 52d48cf8ba578b40a1a76312b196dfc9134ba36a
+  JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
-  Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
+  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
-  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SocketRocket: ffe08119b00ef982f6c37052a4705a057c8494ad
-  SVProgressHUD: 7c27dc7cd60b62124155e7aca085c165a2c75e54
+  SVProgressHUD: d259ee0b07e9a3f19724c25e4a3625d69e4bc38e
   UMengAnalytics-NO-IDFA: 6d02561a00579b2e37718f204eb81347df5d7b8b
 
 COCOAPODS: 0.39.0

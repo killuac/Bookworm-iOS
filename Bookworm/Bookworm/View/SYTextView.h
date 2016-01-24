@@ -10,4 +10,8 @@
 
 @interface SYTextView : UITextView
 
+@property (nonatomic, copy) NSString *placeholder;
+@property (nonatomic, strong) UIColor *placeholderColor;
+@property (nonatomic, strong) NSAttributedString *attributedPlaceholder;
+
 @end

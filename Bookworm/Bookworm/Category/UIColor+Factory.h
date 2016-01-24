@@ -17,8 +17,8 @@
 + (instancetype)playerProgressTrackColor;
 + (instancetype)bubbleBackgroundColor;
 
-+ (instancetype)defaultTitleColor;
-+ (instancetype)defaultSubtitleColor;
++ (instancetype)titleColor;
++ (instancetype)subtitleColor;
 + (instancetype)separatorLineColor;
 + (instancetype)primaryTagColor;
 + (instancetype)defaultTagColor;

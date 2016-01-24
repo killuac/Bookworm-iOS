@@ -144,7 +144,7 @@
         titleLabel.tag = 201;
         titleLabel.text = title;
         titleLabel.font = [UIFont subtitleFont];
-        titleLabel.textColor = [UIColor defaultSubtitleColor];
+        titleLabel.textColor = [UIColor titleColor];
         titleLabel.textAlignment = NSTextAlignmentCenter;
         [titleLabel sizeToFit];
         titleLabel.width = self.width - DEFAULT_MARGIN * 2;

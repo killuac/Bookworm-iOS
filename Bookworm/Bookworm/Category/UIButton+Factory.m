@@ -13,6 +13,10 @@
 - (void)setStyle:(SYButonStyle)style
 {
     objc_setAssociatedObject(self, @selector(style), @(style), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    self.layer.cornerRadius = DEFAULT_CORNER_RADIUS;
+    [self setTitleColorForStyle:style forState:UIControlStateNormal];
+    [self setBackgroundColorForStyle:style forState:UIControlStateNormal];
 }
 
 - (SYButonStyle)style
@@ -59,7 +63,7 @@
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor defaultTitleColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor titleColor] forState:UIControlStateNormal];
     if (imageName.length) {
         [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
         [button setLayoutStyle:SYButtonLayoutStyleHorizontalImageLeft];
@@ -71,9 +75,6 @@
     
     if (SYButonStyleNone != style) {
         button.style = style;
-        button.layer.cornerRadius = DEFAULT_CORNER_RADIUS;
-        [button setTitleColorForStyle:style forState:button.state];
-        [button setBackgroundColorForStyle:style forState:button.state];
     }
     
     button.KVOController = [FBKVOController controllerWithObserver:button];
@@ -91,12 +92,12 @@
 {
     switch (style) {
         case SYButonStyleDefault:
-            [self setTitleColor:[UIColor defaultTitleColor] forState:state];
+            [self setTitleColor:[UIColor titleColor] forState:state];
             break;
             
         default:
             if (UIControlStateDisabled == state) {
-                [self setTitleColor:[UIColor defaultTitleColor] forState:state];
+                [self setTitleColor:[UIColor titleColor] forState:state];
             } else {
                 [self setTitleColor:[UIColor whiteColor] forState:state];
             }
