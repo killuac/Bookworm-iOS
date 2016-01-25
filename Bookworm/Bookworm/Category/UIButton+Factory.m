@@ -15,7 +15,6 @@
     objc_setAssociatedObject(self, @selector(style), @(style), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     self.layer.cornerRadius = DEFAULT_CORNER_RADIUS;
-    [self setTitleColorForStyle:style forState:UIControlStateNormal];
     [self setBackgroundColorForStyle:style forState:UIControlStateNormal];
 }
 
@@ -80,29 +79,11 @@
     button.KVOController = [FBKVOController controllerWithObserver:button];
     [button.KVOController observe:button keyPaths:@[@"highlighted", @"enabled"] options:0 block:^(id observer, id object, NSDictionary *change) {
         if (SYButonStyleNone != style) {
-            [button setTitleColorForStyle:style forState:button.state];
             [button setBackgroundColorForStyle:style forState:button.state];
         }
     }];
     
     return button;
-}
-
-- (void)setTitleColorForStyle:(SYButonStyle)style forState:(UIControlState)state
-{
-    switch (style) {
-        case SYButonStyleDefault:
-            [self setTitleColor:[UIColor titleColor] forState:state];
-            break;
-            
-        default:
-            if (UIControlStateDisabled == state) {
-                [self setTitleColor:[UIColor titleColor] forState:state];
-            } else {
-                [self setTitleColor:[UIColor whiteColor] forState:state];
-            }
-            break;
-    }
 }
 
 - (void)setBackgroundColorForStyle:(SYButonStyle)style forState:(UIControlState)state
@@ -197,7 +178,10 @@
 
 + (instancetype)primaryButtonWithTitle:(NSString *)title imageName:(NSString *)imageName
 {
-    return [self buttonWithStyle:SYButonStylePrimary title:title imageName:imageName selectedImageName:nil];
+    UIButton *button = [self buttonWithStyle:SYButonStylePrimary title:title imageName:imageName selectedImageName:nil];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor titleColor] forState:UIControlStateDisabled];
+    return button;
 }
 
 + (instancetype)destructiveButtonWithTitle:(NSString *)title
@@ -207,7 +191,10 @@
 
 + (instancetype)destructiveButtonWithTitle:(NSString *)title imageName:(NSString *)imageName
 {
-    return [self buttonWithStyle:SYButonStyleDestructive title:title imageName:imageName selectedImageName:nil];
+    UIButton *button = [self buttonWithStyle:SYButonStyleDestructive title:title imageName:imageName selectedImageName:nil];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor titleColor] forState:UIControlStateDisabled];
+    return button;
 }
 
 @end
