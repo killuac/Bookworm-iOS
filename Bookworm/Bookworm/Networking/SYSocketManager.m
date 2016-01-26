@@ -7,15 +7,23 @@
 //
 
 #import "SYSocketManager.h"
+#import "SYSocketModel.h"
 
-#define RECONNNECT_MAX_COUNT    5
 #define HEART_BEAT_INTERVAL     25.0
-#define RECONNECT_DELAY         10.0
+#define RECONNECT_DELAY         2.0
+#define RECONNNECT_MAX_COUNT    15
 
-NSString *const BZSocketDidSendMessageNotification = @"BZSocketDidSendMessageNotification";
-NSString *const BZSocketDidReceiveMessageNotification = @"BZSocketDidReceiveMessageNotification";
-NSString *const BZSocketDidReadMessageNotification = @"BZSocketDidReadMessageNotification";
-NSString *const BZSocketReconnectingNotification = @"BZSocketReconnectingNotification";
+NSString *const SYSocketDidSendMessageNotification = @"SYSocketDidSendMessageNotification";
+NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMessageNotification";
+NSString *const SYSocketDidReadMessageNotification = @"SYSocketDidReadMessageNotification";
+NSString *const SYSocketReconnectingNotification = @"SYSocketReconnectingNotification";
+
+NSString *const SYSocketMethodChat = @"CHAT";
+NSString *const SYSocketMethodSync = @"SYNC";
+NSString *const SYSocketMethodRead = @"READ";
+NSString *const SYSocketMethodDelete = @"DELETE";
+NSString *const SYSocketMethodClose = @"CLOSE";
+
 
 @interface SYSocketManager () <SRWebSocketDelegate>
 
@@ -59,10 +67,10 @@ NSString *const BZSocketReconnectingNotification = @"BZSocketReconnectingNotific
 
 - (void)instantiateWebSocket
 {
-    _webSocket = nil;
     NSURL *serverURL = [NSURL URLWithString:[SYServerAPI sharedServerAPI].imServerAddress];
     _webSocket = [[SRWebSocket alloc] initWithURL:serverURL];
     self.webSocket.delegate = self;
+    [self.webSocket setDelegateOperationQueue:[[NSOperationQueue alloc] init]];
 }
 
 - (void)dealloc
@@ -89,7 +97,7 @@ NSString *const BZSocketReconnectingNotification = @"BZSocketReconnectingNotific
     if (self.reconnectCount >= RECONNNECT_MAX_COUNT) return;
     
     self.reconnectCount++;
-    [[NSNotificationCenter defaultCenter] postNotificationName:BZSocketReconnectingNotification object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SYSocketReconnectingNotification object:self];
     
     [[SYServerAPI sharedServerAPI] fetchIMServerAddressCompletion:^{
         [self performSelector:@selector(connect) withObject:nil afterDelay:RECONNECT_DELAY];
@@ -99,21 +107,21 @@ NSString *const BZSocketReconnectingNotification = @"BZSocketReconnectingNotific
 - (void)disconnect
 {
     [self invalidateHeartBeat];
-    [self sendMessage:@"" withType:@"Offline"];
+    [self sendMessage:nil withMethod:SYSocketMethodClose];
     [self.webSocket close];
 }
 
 - (void)scheduleHeartBeat
 {
     [self invalidateHeartBeat];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:HEART_BEAT_INTERVAL
-                                                  target:self
-                                                selector:@selector(heartBeat)];
+    _timer = [NSTimer scheduledRepeatTimerWithTimeInterval:HEART_BEAT_INTERVAL target:self selector:@selector(heartBeat)];
 }
 
 - (void)heartBeat
 {
-    if (!self.isOpen) return;
+    if (!self.isOpen) {
+        [self invalidateHeartBeat]; return;
+    }
     
     NSString *random = [NSString stringWithFormat:@"%05tu", arc4random_uniform(100000)];
     [self.webSocket sendPing:[random dataUsingEncoding:NSUTF8StringEncoding]];
@@ -125,42 +133,59 @@ NSString *const BZSocketReconnectingNotification = @"BZSocketReconnectingNotific
 }
 
 #pragma mark - Message
-- (void)sendMessage:(NSString *)content withType:(NSString *)type toReceiver:(NSString *)userID;
+- (void)sendMessage:(id)content withMethod:(NSString *)socketMethod
 {
     if (self.isOpen) return;
     
-//  TODO: Send message by JSON format
-    [self.webSocket send:content];
+    SYSocketRequestModel *requestModel = [SYSocketRequestModel model];
+    requestModel.socketMethod = socketMethod;
+    requestModel.messageData = [content toJSONString];
+    [self.webSocket send:[requestModel toJSONString]];
+    
+//  Reschedule timer for save network resource (Heart beat is only sent at idle time)
+    [self scheduleHeartBeat];
 }
 
-- (void)sendMessage:(NSString *)content withType:(NSString *)type
+- (SYMessageModel *)createMessageModelWithContent:(NSString *)content receiver:(NSString *)userID
 {
-    [self sendMessage:content withType:type toReceiver:@""];
+    SYMessageModel *msgModel = [SYMessageModel model];
+    msgModel.sender = [GVUserDefaults standardUserDefaults].userID;
+    msgModel.receiver = userID;
+    msgModel.content = content;
+    msgModel.dateTime = [NSDate date];
+    
+    return msgModel;
 }
 
 - (void)sendMessage:(NSString *)content toReceiver:(NSString *)userID
 {
+    [self sendMessage:[self createMessageModelWithContent:content receiver:userID]
+           withMethod:SYSocketMethodChat];
+}
+
+- (void)readMessagesFromReceiver:(NSString *)userID
+{
+    [self sendMessage:[self createMessageModelWithContent:nil receiver:userID]
+           withMethod:SYSocketMethodRead];
     
+    [self postNotificationName:SYSocketDidReadMessageNotification object:nil];
 }
 
-- (void)readMessageFromReceiver:(NSString *)userID
+- (void)deleteMessagesFromReceiver:(NSString *)userID
 {
-	
+    [self sendMessage:[self createMessageModelWithContent:nil receiver:userID]
+           withMethod:SYSocketMethodChat];
 }
 
-- (void)deleteMessagesWithContact:(NSString *)userID
+- (void)deleteSingleMessage:(SYMessageModel *)messageModel
 {
-	
+    [self sendMessage:messageModel withMethod:SYSocketMethodDelete];
 }
 
-- (void)synchronizeInbox
+- (void)synchronizeMessages
 {
-    
-}
-
-- (void)synchronizeOutbox
-{
-    
+//  TODO: Synchronize inbox and outbox messages
+    [self sendMessage:nil withMethod:SYSocketMethodSync];
 }
 
 #pragma mark - WebSocket delegate
@@ -182,7 +207,33 @@ NSString *const BZSocketReconnectingNotification = @"BZSocketReconnectingNotific
     self.reconnectCount = 0;
     if (![message hasPrefix:@"{"]) return;  // Must be JSON format
     
-//  TODO: Handle different type messages
+    SYSocketResponseModel *responseModel = [SYSocketResponseModel modelWithString:message];
+    switch (responseModel.statusCode) {
+        case SYSocketStatusCodeConnected:
+            [self synchronizeMessages];
+            break;
+            
+        case SYSocketStatusCodeReceipt:
+            [self postNotificationName:SYSocketDidSendMessageNotification object:nil];
+            break;
+            
+        case SYSocketStatusCodeMessage: {
+            NSArray<SYMessageModel *> *messages = [JSONModel arrayOfModelsFromString:responseModel.messageData error:nil];
+//          TODO: Save messages to local database
+            [self postNotificationName:SYSocketDidReceiveMessageNotification object:messages];
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
+- (void)postNotificationName:(NSString *)name object:(nullable id)object
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:name object:object];
+    });
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error;

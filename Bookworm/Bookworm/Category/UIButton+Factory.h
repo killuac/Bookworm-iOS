@@ -25,6 +25,7 @@ typedef NS_ENUM(NSUInteger, SYButtonLayoutStyle) {
 @interface UIButton (Factory)
 
 @property (nonatomic, assign) SYButonStyle style;
+@property (nonatomic, assign) BOOL isAnimationEnabled;  // Default is NO
 
 + (instancetype)customButtonWithTitle:(NSString *)title;
 + (instancetype)customButtonWithTitle:(NSString *)title imageName:(NSString *)imageName;
@@ -43,8 +44,8 @@ typedef NS_ENUM(NSUInteger, SYButtonLayoutStyle) {
 + (instancetype)destructiveButtonWithTitle:(NSString *)title;
 + (instancetype)destructiveButtonWithTitle:(NSString *)title imageName:(NSString *)imageName;
 
-- (void)setStyle:(SYButonStyle)style;
 - (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle;
+- (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle inset:(CGFloat)inset;
 - (void)addTarget:(id)target action:(SEL)action;
 
 @end

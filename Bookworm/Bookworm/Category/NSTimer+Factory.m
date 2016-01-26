@@ -10,11 +10,18 @@
 
 @implementation NSTimer (Factory)
 
-+ (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)timeInterval target:(id)target selector:(SEL)selector
++ (NSTimer *)repeatTimerWithTimeInterval:(NSTimeInterval)timeInterval target:(id)target selector:(SEL)selector
 {
     NSTimer *timer = [NSTimer timerWithTimeInterval:timeInterval target:target selector:selector userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];   // Make timer contine while draggning or scrolling
-    [timer fire];
+    
+    return timer;
+}
+
++ (NSTimer *)scheduledRepeatTimerWithTimeInterval:(NSTimeInterval)timeInterval target:(id)target selector:(SEL)selector
+{
+    NSTimer *timer = [NSTimer repeatTimerWithTimeInterval:timeInterval target:target selector:selector];
+    timer.fireDate = [NSDate dateWithTimeIntervalSinceNow:timeInterval];
     
     return timer;
 }

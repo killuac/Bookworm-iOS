@@ -23,9 +23,24 @@
     return [objc_getAssociatedObject(self, @selector(style)) unsignedIntegerValue];
 }
 
+- (void)setIsAnimationEnabled:(BOOL)isAnimationEnabled
+{
+    objc_setAssociatedObject(self, @selector(isAnimationEnabled), @(isAnimationEnabled), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)isAnimationEnabled
+{
+    return [objc_getAssociatedObject(self, @selector(isAnimationEnabled)) boolValue];
+}
+
 - (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle
 {
-    CGFloat inset = 5.0f;
+    [self setLayoutStyle:layoutStyle inset:10.0f];
+}
+
+- (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle inset:(CGFloat)inset
+{
+    inset /= 2.0f;
     
     switch (layoutStyle) {
         case SYButtonLayoutStyleHorizontalImageLeft:
@@ -80,6 +95,20 @@
     [button.KVOController observe:button keyPaths:@[@"highlighted", @"enabled"] options:0 block:^(id observer, id object, NSDictionary *change) {
         if (SYButonStyleNone != style) {
             [button setBackgroundColorForStyle:style forState:button.state];
+        }
+        if (button.isAnimationEnabled) {
+            if (UIControlStateHighlighted == button.state) {
+                CGFloat scale = 1.5f;
+                [UIView animateWithDuration:DEFAULT_ANIMATION_DURATION animations:^{
+                    button.imageView.transform = CGAffineTransformMakeScale(scale, scale);
+                    button.titleLabel.transform = CGAffineTransformMakeScale(scale, scale);
+                }];
+            } else {
+                [UIView animateWithDuration:DEFAULT_ANIMATION_DURATION animations:^{
+                    button.imageView.transform = CGAffineTransformIdentity;
+                    button.titleLabel.transform = CGAffineTransformIdentity;
+                }];
+            }
         }
     }];
     

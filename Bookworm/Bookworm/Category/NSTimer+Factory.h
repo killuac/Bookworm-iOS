@@ -10,6 +10,7 @@
 
 @interface NSTimer (Factory)
 
-+ (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)timeInterval target:(id)target selector:(SEL)selector;
++ (NSTimer *)repeatTimerWithTimeInterval:(NSTimeInterval)timeInterval target:(id)target selector:(SEL)selector;
++ (NSTimer *)scheduledRepeatTimerWithTimeInterval:(NSTimeInterval)timeInterval target:(id)target selector:(SEL)selector;
 
 @end

@@ -40,7 +40,7 @@
 
 - (BOOL)isSelected
 {
-    return objc_getAssociatedObject(self, @selector(isSelected));
+    return [objc_getAssociatedObject(self, @selector(isSelected)) boolValue];
 }
 
 + (instancetype)model

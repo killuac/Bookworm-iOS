@@ -12,6 +12,9 @@
 
 - (void)blurImage;
 
+- (void)setImageWithURLString:(NSString *)urlString;
 - (void)setImageWithURLString:(NSString *)urlString completion:(SDWebImageCompletionBlock)completion;
+- (void)setImageProgressBarWithURLString:(NSString *)urlString completion:(SDWebImageCompletionBlock)completion;
+- (void)setImageProgressRingWithURLString:(NSString *)urlString completion:(SDWebImageCompletionBlock)completion;
 
 @end
