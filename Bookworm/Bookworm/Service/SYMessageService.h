@@ -7,7 +7,10 @@
 //
 
 #import "SYBaseService.h"
+#import "SYSocketModel.h"
 
 @interface SYMessageService : SYBaseService
+
+@property (nonatomic, strong, readonly) SYMessageModel *lastInboxMessage;
 
 @end

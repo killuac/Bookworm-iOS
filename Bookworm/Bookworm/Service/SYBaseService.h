@@ -27,6 +27,8 @@ typedef void (^SYServiceBlockType)(id service, id result);
 
 - (void)updateWithModel:(id)model result:(SYServiceBlockType)result;
 
+- (void)saveWithModels:(NSArray *)models result:(SYServiceBlockType)result;
+
 @end
 
 @interface SYBaseService : NSObject <SYServiceProtocol>

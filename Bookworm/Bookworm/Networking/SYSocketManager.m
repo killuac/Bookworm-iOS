@@ -7,7 +7,7 @@
 //
 
 #import "SYSocketManager.h"
-#import "SYSocketModel.h"
+#import "SYMessageService.h"
 
 #define HEART_BEAT_INTERVAL     25.0
 #define RECONNECT_DELAY         2.0
@@ -22,12 +22,13 @@ NSString *const SYSocketMethodChat = @"CHAT";
 NSString *const SYSocketMethodSync = @"SYNC";
 NSString *const SYSocketMethodRead = @"READ";
 NSString *const SYSocketMethodDelete = @"DELETE";
-NSString *const SYSocketMethodClose = @"CLOSE";
 
 
 @interface SYSocketManager () <SRWebSocketDelegate>
 
 @property (nonatomic, strong) SRWebSocket *webSocket;
+@property (nonatomic, strong) SYMessageService *messageService;
+
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSUInteger reconnectCount;
 
@@ -50,6 +51,7 @@ NSString *const SYSocketMethodClose = @"CLOSE";
 {
     if (self = [super init]) {
         [self instantiateWebSocket];
+        _messageService = [SYMessageService service];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(connect)
@@ -107,7 +109,6 @@ NSString *const SYSocketMethodClose = @"CLOSE";
 - (void)disconnect
 {
     [self invalidateHeartBeat];
-    [self sendMessage:nil withMethod:SYSocketMethodClose];
     [self.webSocket close];
 }
 
@@ -146,7 +147,7 @@ NSString *const SYSocketMethodClose = @"CLOSE";
     [self scheduleHeartBeat];
 }
 
-- (SYMessageModel *)createMessageModelWithContent:(NSString *)content receiver:(NSString *)userID
+- (SYMessageModel *)messageModelWithContent:(NSString *)content receiver:(NSString *)userID
 {
     SYMessageModel *msgModel = [SYMessageModel model];
     msgModel.sender = [GVUserDefaults standardUserDefaults].userID;
@@ -159,22 +160,18 @@ NSString *const SYSocketMethodClose = @"CLOSE";
 
 - (void)sendMessage:(NSString *)content toReceiver:(NSString *)userID
 {
-    [self sendMessage:[self createMessageModelWithContent:content receiver:userID]
-           withMethod:SYSocketMethodChat];
+    [self sendMessage:[self messageModelWithContent:content receiver:userID] withMethod:SYSocketMethodChat];
 }
 
 - (void)readMessagesFromReceiver:(NSString *)userID
 {
-    [self sendMessage:[self createMessageModelWithContent:nil receiver:userID]
-           withMethod:SYSocketMethodRead];
-    
+    [self sendMessage:[self messageModelWithContent:nil receiver:userID] withMethod:SYSocketMethodRead];
     [self postNotificationName:SYSocketDidReadMessageNotification object:nil];
 }
 
 - (void)deleteMessagesFromReceiver:(NSString *)userID
 {
-    [self sendMessage:[self createMessageModelWithContent:nil receiver:userID]
-           withMethod:SYSocketMethodChat];
+    [self sendMessage:[self messageModelWithContent:nil receiver:userID] withMethod:SYSocketMethodDelete];
 }
 
 - (void)deleteSingleMessage:(SYMessageModel *)messageModel
@@ -182,10 +179,17 @@ NSString *const SYSocketMethodClose = @"CLOSE";
     [self sendMessage:messageModel withMethod:SYSocketMethodDelete];
 }
 
+// Only need synchronize inbox messages
 - (void)synchronizeMessages
 {
-//  TODO: Synchronize inbox and outbox messages
-    [self sendMessage:nil withMethod:SYSocketMethodSync];
+    [self sendMessage:self.messageService.lastInboxMessage withMethod:SYSocketMethodSync];
+}
+
+- (void)postNotificationName:(NSString *)name object:(nullable id)object
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:name object:object];
+    });
 }
 
 #pragma mark - WebSocket delegate
@@ -219,7 +223,7 @@ NSString *const SYSocketMethodClose = @"CLOSE";
             
         case SYSocketStatusCodeMessage: {
             NSArray<SYMessageModel *> *messages = [JSONModel arrayOfModelsFromString:responseModel.messageData error:nil];
-//          TODO: Save messages to local database
+            [self.messageService saveWithModels:messages result:nil];
             [self postNotificationName:SYSocketDidReceiveMessageNotification object:messages];
             break;
         }
@@ -227,13 +231,6 @@ NSString *const SYSocketMethodClose = @"CLOSE";
         default:
             break;
     }
-}
-
-- (void)postNotificationName:(NSString *)name object:(nullable id)object
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:name object:object];
-    });
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error;

@@ -10,4 +10,19 @@
 
 @implementation SYMessageService
 
+- (SYMessageModel *)lastInboxMessage
+{
+    return nil;
+}
+
+- (SYMessageModel *)lastOutboxMessage
+{
+    return nil;
+}
+
+- (void)saveWithModels:(NSArray *)models result:(SYServiceBlockType)result
+{
+    
+}
+
 @end
