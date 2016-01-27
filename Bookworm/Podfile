@@ -13,6 +13,7 @@ pod 'FMDB'
 pod 'Masonry'
 pod 'Aspects'
 pod 'JSONModel'
+pod 'MagicalRecord'
 pod 'KVOController'
 pod 'GVUserDefaults'
 pod 'SVProgressHUD', :head

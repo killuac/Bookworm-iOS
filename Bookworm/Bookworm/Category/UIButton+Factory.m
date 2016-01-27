@@ -35,7 +35,7 @@
 
 - (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle
 {
-    [self setLayoutStyle:layoutStyle inset:10.0f];
+    [self setLayoutStyle:layoutStyle inset:DEFAULT_INSET * 2];
 }
 
 - (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle inset:(CGFloat)inset

@@ -25,4 +25,14 @@
     
 }
 
+- (void)updateIsReadStatusForReceiver:(NSString *)userID
+{
+    
+}
+
+- (void)updateIsSentStatusWithModel:(SYMessageModel *)messageModel
+{
+    
+}
+
 @end

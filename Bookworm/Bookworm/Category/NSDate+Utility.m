@@ -17,30 +17,22 @@
 
 - (NSString *)toDateString
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateStyle = NSDateFormatterMediumStyle;
-    return [formatter stringFromDate:self];
+    return [NSDateFormatter localizedStringFromDate:self dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
 }
 
 - (NSString *)toShortDateString
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateStyle = NSDateFormatterShortStyle;
-    return [formatter stringFromDate:self];
+    return [NSDateFormatter localizedStringFromDate:self dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
 }
 
 - (NSString *)toTimeString
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.timeStyle = NSDateFormatterMediumStyle;
-    return [formatter stringFromDate:self];
+    return [NSDateFormatter localizedStringFromDate:self dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterMediumStyle];
 }
 
 - (NSString *)toShortTimeString
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.timeStyle = NSDateFormatterShortStyle;
-    return [formatter stringFromDate:self];
+    return [NSDateFormatter localizedStringFromDate:self dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
 }
 
 - (BOOL)isToday

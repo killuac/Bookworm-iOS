@@ -8,10 +8,7 @@
 
 #import <SocketRocket/SRWebSocket.h>
 
-FOUNDATION_EXPORT NSString *const SYSocketDidSendMessageNotification;
 FOUNDATION_EXPORT NSString *const SYSocketDidReceiveMessageNotification;
-FOUNDATION_EXPORT NSString *const SYSocketDidReadMessageNotification;
-FOUNDATION_EXPORT NSString *const SYSocketReconnectingNotification;
 
 typedef NS_ENUM(NSUInteger, SYSocketStatusCode) {
     SYSocketStatusCodeConnected = 1000,         // Connected IM server
@@ -27,6 +24,9 @@ typedef NS_ENUM(NSUInteger, SYSocketStatusCode) {
 @interface SYSocketManager : NSObject
 
 + (instancetype)manager;
+
+@property (nonatomic, assign, readonly) SRReadyState readyState;
+@property (nonatomic, assign, readonly) BOOL isConnecting;
 
 - (void)connect;
 - (void)disconnect;

@@ -28,7 +28,7 @@
 
 - (void)addSublayers
 {
-    //  Add triangle arrow at top
+    // Add triangle arrow at top
     CGFloat lineWith = 5.0f;
     UIBezierPath *bezier = [UIBezierPath bezierPath];
     [bezier moveToPoint:CGPointMake(SCREEN_CENTER.x - lineWith, 0)];

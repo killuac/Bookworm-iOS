@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		53561D22AE9261A77BF58852 /* Pods_Bookworm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B834D3E5E4988F7BA69DB7 /* Pods_Bookworm.framework */; };
+		E316C7251C590E030073C886 /* NSArray+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = E316C7241C590E030073C886 /* NSArray+Model.m */; };
 		E31DBAEB1C27CAE500FD5F36 /* SVProgressHUD+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E31DBAEA1C27CAE500FD5F36 /* SVProgressHUD+Utility.m */; };
 		E31DBAEF1C27DAD600FD5F36 /* Bookworm.sql in Resources */ = {isa = PBXBuildFile; fileRef = E31DBAEE1C27DAD600FD5F36 /* Bookworm.sql */; };
 		E31DBAF21C2801A000FD5F36 /* SYMessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = E31DBAF11C2801A000FD5F36 /* SYMessageService.m */; };
@@ -50,6 +51,8 @@
 		E361DEC71C4E34FE0042C75A /* AppDelegate+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = E361DEC61C4E34FE0042C75A /* AppDelegate+Analytics.m */; };
 		E3957CE21C5137B30017E31F /* GVUserDefaults+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3957CE11C5137B30017E31F /* GVUserDefaults+Properties.m */; };
 		E39C12E41C574BDC00F0FF10 /* SYSocketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E39C12E31C574BDC00F0FF10 /* SYSocketModel.m */; };
+		E3BBDCA21C5916630012834A /* UILabel+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BBDCA11C5916630012834A /* UILabel+Factory.m */; };
+		E3BBDCE81C5938DE0012834A /* Bookworm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3BBDCE61C5938DE0012834A /* Bookworm.xcdatamodeld */; };
 		E3BEDFC71C23FC8F00E6DB58 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BEDFC61C23FC8F00E6DB58 /* libz.tbd */; };
 		E3E810371C48D85E00C0ACAF /* NSTimer+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E810361C48D85E00C0ACAF /* NSTimer+Factory.m */; };
 		E3EB14941C51E6B300D10026 /* NSData+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EB14931C51E6B300D10026 /* NSData+Utility.m */; };
@@ -83,6 +86,8 @@
 /* Begin PBXFileReference section */
 		52B834D3E5E4988F7BA69DB7 /* Pods_Bookworm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookworm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B470525A45A8C94EAAF7062C /* Pods-Bookworm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookworm.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bookworm/Pods-Bookworm.release.xcconfig"; sourceTree = "<group>"; };
+		E316C7231C590E030073C886 /* NSArray+Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Model.h"; sourceTree = "<group>"; };
+		E316C7241C590E030073C886 /* NSArray+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Model.m"; sourceTree = "<group>"; };
 		E31DBAE91C27CAE500FD5F36 /* SVProgressHUD+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+Utility.h"; sourceTree = "<group>"; };
 		E31DBAEA1C27CAE500FD5F36 /* SVProgressHUD+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD+Utility.m"; sourceTree = "<group>"; };
 		E31DBAEE1C27DAD600FD5F36 /* Bookworm.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Bookworm.sql; sourceTree = "<group>"; };
@@ -171,6 +176,9 @@
 		E3957CE11C5137B30017E31F /* GVUserDefaults+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+Properties.m"; sourceTree = "<group>"; };
 		E39C12E21C574BDC00F0FF10 /* SYSocketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSocketModel.h; sourceTree = "<group>"; };
 		E39C12E31C574BDC00F0FF10 /* SYSocketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSocketModel.m; sourceTree = "<group>"; };
+		E3BBDCA01C5916630012834A /* UILabel+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Factory.h"; sourceTree = "<group>"; };
+		E3BBDCA11C5916630012834A /* UILabel+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Factory.m"; sourceTree = "<group>"; };
+		E3BBDCE71C5938DE0012834A /* Bookworm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bookworm.xcdatamodel; sourceTree = "<group>"; };
 		E3BEDFC61C23FC8F00E6DB58 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E3E810351C48D85E00C0ACAF /* NSTimer+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Factory.h"; sourceTree = "<group>"; };
 		E3E810361C48D85E00C0ACAF /* NSTimer+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Factory.m"; sourceTree = "<group>"; };
@@ -280,6 +288,7 @@
 				E361DEC61C4E34FE0042C75A /* AppDelegate+Analytics.m */,
 				E34581AA1C2143E20088BDA5 /* TestViewController.h */,
 				E34581AB1C2143E20088BDA5 /* TestViewController.m */,
+				E3BBDCE61C5938DE0012834A /* Bookworm.xcdatamodeld */,
 				E34581471C2115CF0088BDA5 /* LaunchScreen.storyboard */,
 				E34581421C2115CF0088BDA5 /* Main.storyboard */,
 				E34581451C2115CF0088BDA5 /* Assets.xcassets */,
@@ -432,6 +441,8 @@
 				E345819F1C213FFB0088BDA5 /* JSONModel+Utility.m */,
 				E34581A01C213FFB0088BDA5 /* JSONValueTransformer+Mapper.h */,
 				E34581A11C213FFB0088BDA5 /* JSONValueTransformer+Mapper.m */,
+				E316C7231C590E030073C886 /* NSArray+Model.h */,
+				E316C7241C590E030073C886 /* NSArray+Model.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -468,6 +479,8 @@
 				E3FF2EF01C35016200A6C7BF /* UIImage+Utility.m */,
 				E34581B01C214E890088BDA5 /* UIImageView+Utility.h */,
 				E34581B11C214E890088BDA5 /* UIImageView+Utility.m */,
+				E3BBDCA01C5916630012834A /* UILabel+Factory.h */,
+				E3BBDCA11C5916630012834A /* UILabel+Factory.m */,
 				E3FF2EEC1C35007E00A6C7BF /* UISwitch+Factory.h */,
 				E3FF2EED1C35007E00A6C7BF /* UISwitch+Factory.m */,
 				E3EB14B41C52171400D10026 /* UITableViewCell+Common.h */,
@@ -677,6 +690,7 @@
 				E34581951C213A7D0088BDA5 /* UIColor+Factory.m in Sources */,
 				E361DEC71C4E34FE0042C75A /* AppDelegate+Analytics.m in Sources */,
 				E34581931C213A7D0088BDA5 /* UIBarButtonItem+Factory.m in Sources */,
+				E316C7251C590E030073C886 /* NSArray+Model.m in Sources */,
 				E345817C1C2136240088BDA5 /* SYMainViewController.m in Sources */,
 				E31DBAF51C2801BA00FD5F36 /* SYUserService.m in Sources */,
 				E34581A41C213FFB0088BDA5 /* JSONModel+Utility.m in Sources */,
@@ -687,11 +701,13 @@
 				E3EB14941C51E6B300D10026 /* NSData+Utility.m in Sources */,
 				E34581DB1C216FD40088BDA5 /* SYBaseService.m in Sources */,
 				E361DEC01C4E0B530042C75A /* SYSocketManager.m in Sources */,
+				E3BBDCE81C5938DE0012834A /* Bookworm.xcdatamodeld in Sources */,
 				E31F8D8C1C3CC1AD0079D9BA /* SYScrollViewController.m in Sources */,
 				E345813B1C2115CF0088BDA5 /* main.m in Sources */,
 				E34581D31C216C510088BDA5 /* SYServerAPI.m in Sources */,
 				E34581B81C2152F20088BDA5 /* SYAppSetting.m in Sources */,
 				E3E810371C48D85E00C0ACAF /* NSTimer+Factory.m in Sources */,
+				E3BBDCA21C5916630012834A /* UILabel+Factory.m in Sources */,
 				E34581981C213A7D0088BDA5 /* UIView+Utility.m in Sources */,
 				E39C12E41C574BDC00F0FF10 /* SYSocketModel.m in Sources */,
 				E31DBAF21C2801A000FD5F36 /* SYMessageService.m in Sources */,
@@ -986,6 +1002,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E3BBDCE61C5938DE0012834A /* Bookworm.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E3BBDCE71C5938DE0012834A /* Bookworm.xcdatamodel */,
+			);
+			currentVersion = E3BBDCE71C5938DE0012834A /* Bookworm.xcdatamodel */;
+			path = Bookworm.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E345812E1C2115CF0088BDA5 /* Project object */;
 }

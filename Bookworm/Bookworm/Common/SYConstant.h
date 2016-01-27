@@ -37,16 +37,19 @@ typedef void (^SYNoParameterBlockType)(void);
 #define RADIANS(degree)                 degree * M_PI/180
 #define DATABASE_FILE_PATH              DocumentFilePath(@"Bookworm.db")
 
+#define DEFAULT_INSET                   5.0f
+#define SMALL_MARGIN                    5.0f
+#define MEDIUM_MARGIN                   10.0
 #define DEFAULT_MARGIN                  15.0
 #define DEFAULT_HEADER_HEIGHT           20.0
 #define DEFAULT_FOOTER_HEIGHT           20.0
 #define DEFAULT_ROW_HEIGHT              44.0
 #define DEFAULT_TOOLBAR_HEIGHT          44.0
 #define DEFAULT_BUTTON_HEIGHT           44.0
-#define DEFAULT_CORNER_RADIUS           5.0
+#define DEFAULT_CORNER_RADIUS           5.0f
 #define DEFAULT_ANIMATION_DURATION      0.25
 #define DEFAULT_DAMPING                 0.25
-#define DEFAULT_BORDER_WIDTH            2.0
+#define DEFAULT_BORDER_WIDTH            2.0f
 
 #define IDENTIFIER_COMMON_CELL          @"CommonCell"
 #define IDENTIFIER_TEXT_CELL            @"TextCell"

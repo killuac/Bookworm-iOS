@@ -13,6 +13,7 @@
 @property (nonatomic, assign) BOOL isLoadingData;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
+@property (nonatomic, strong, readonly) UINavigationBar *navigationBar;
 @property (nonatomic, strong, readonly) UIViewController *rootViewController;
 @property (nonatomic, strong, readonly) UIViewController *visibleViewController;
 

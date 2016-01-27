@@ -7,6 +7,7 @@
 //
 
 #import <JSONModel/JSONModel.h>
+#import "NSArray+Model.h"
 #import "JSONValueTransformer+Mapper.h"
 
 @interface JSONModel (Utility)

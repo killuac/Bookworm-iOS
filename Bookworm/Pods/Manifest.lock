@@ -21,6 +21,9 @@ PODS:
   - GVUserDefaults (1.0.2)
   - JSONModel (1.2.0)
   - KVOController (1.0.3)
+  - MagicalRecord (2.3.2):
+    - MagicalRecord/Core (= 2.3.2)
+  - MagicalRecord/Core (2.3.2)
   - Masonry (0.6.4)
   - pop (1.0.8)
   - RegExCategories (1.0)
@@ -28,7 +31,7 @@ PODS:
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
   - SocketRocket (0.4.2)
-  - SVProgressHUD (HEAD based on 2.0-beta6)
+  - SVProgressHUD (HEAD based on 2.0-beta8)
   - UMengAnalytics-NO-IDFA (3.6.7)
 
 DEPENDENCIES:
@@ -38,6 +41,7 @@ DEPENDENCIES:
   - GVUserDefaults
   - JSONModel
   - KVOController
+  - MagicalRecord
   - Masonry
   - pop
   - RegExCategories
@@ -53,12 +57,13 @@ SPEC CHECKSUMS:
   GVUserDefaults: 52d48cf8ba578b40a1a76312b196dfc9134ba36a
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
+  MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SocketRocket: ffe08119b00ef982f6c37052a4705a057c8494ad
-  SVProgressHUD: d259ee0b07e9a3f19724c25e4a3625d69e4bc38e
+  SVProgressHUD: 6e48a1dda09ce3b58adc41d013baed3a8e8980ff
   UMengAnalytics-NO-IDFA: 6d02561a00579b2e37718f204eb81347df5d7b8b
 
 COCOAPODS: 0.39.0

@@ -41,11 +41,22 @@
 {
     [super viewDidLoad];
     [self loadData];
+    [self addTapGesture];
 }
 
 - (void)loadData
 {
     
+}
+
+- (void)singleTap:(UITapGestureRecognizer *)recognizer
+{
+    UIBarButtonItem *buttonItem = [UIBarButtonItem barButtonItemWithTitle:@"Test" target:nil action:nil];
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
+    toolbar.size = CGSizeMake(SCREEN_WIDTH, 80);
+    toolbar.items = @[buttonItem];
+    UIAlertController *ac = [UIAlertController actionSheetControllerWithToolbar:toolbar];
+    [ac show];
 }
 
 - (void)loadData:(SYNoParameterBlockType)completion

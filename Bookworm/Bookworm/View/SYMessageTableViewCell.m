@@ -63,7 +63,7 @@
 {
     [super layoutSubviews];
     
-    CGFloat width, margin = 10.0f;
+    CGFloat width, margin = MEDIUM_MARGIN;
     
     _avatarImageView.origin = CGPointMake(margin, margin);
     

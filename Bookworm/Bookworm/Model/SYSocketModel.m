@@ -21,7 +21,7 @@
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {
-    return [propertyName isEqualToString:@"isRead"];
+    return ([propertyName isEqualToString:@"isSent"] || [propertyName isEqualToString:@"isRead"]);
 }
 
 @end

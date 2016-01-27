@@ -29,6 +29,7 @@
 #import "UIView+Utility.h"
 #import "UIColor+Factory.h"
 #import "UIFont+Factory.h"
+#import "UILabel+Factory.h"
 #import "UIButton+Factory.h"
 #import "UISwitch+Factory.h"
 #import "UIImage+Utility.h"

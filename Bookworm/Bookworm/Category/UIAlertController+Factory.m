@@ -25,12 +25,34 @@
     return AC;
 }
 
-+ (instancetype)actionSheetControllerWithMessage:(NSString *)message actions:(NSArray<UIAlertAction *> *)actions
++ (instancetype)actionSheetControllerWithActions:(NSArray<UIAlertAction *> *)actions
 {
-    UIAlertController *AC = [self alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleActionSheet];
+    return [self actionSheetControllerWithTitle:nil actions:actions];
+}
+
++ (instancetype)actionSheetControllerWithTitle:(NSString *)title actions:(NSArray<UIAlertAction *> *)actions
+{
+    UIAlertController *AC = [self alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     for (UIAlertAction *action in actions) {
         [AC addAction:action];
     }
+    return AC;
+}
+
++ (instancetype)actionSheetControllerWithToolbar:(UIToolbar *)toolbar
+{
+    return [self actionSheetControllerWithTitle:nil toolbar:toolbar];
+}
+
++ (instancetype)actionSheetControllerWithTitle:(NSString *)title toolbar:(UIToolbar *)toolbar
+{
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertController *AC = [UIAlertController actionSheetControllerWithActions:@[cancel]];
+    [AC.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    toolbar.clipsToBounds = YES;
+    toolbar.left = -(toolbar.width / 2);
+    toolbar.bottom = MEDIUM_MARGIN;
+    [AC.view addSubview:toolbar];
     return AC;
 }
 

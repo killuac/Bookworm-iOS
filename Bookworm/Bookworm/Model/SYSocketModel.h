@@ -10,7 +10,7 @@
 
 @interface SYSocketRequestModel : JSONModel
 
-@property (nonatomic, copy) NSString *socketMethod;             // CHAT/READ/DELETE
+@property (nonatomic, copy) NSString *socketMethod;             // CHAT/SYNC/READ/DELETE
 @property (nonatomic, copy) NSString<Optional> *messageData;    // Is a JSON string
 
 @end
@@ -25,11 +25,12 @@
 
 @interface SYMessageModel : JSONModel
 
-@property (nonatomic, copy) NSString *messageID;
+@property (nonatomic, assign) NSUInteger messageID;
 @property (nonatomic, copy) NSString *sender;
 @property (nonatomic, copy) NSString *receiver;
 @property (nonatomic, copy) NSString *content;
+@property (nonatomic, assign) BOOL isSent;
 @property (nonatomic, assign) BOOL isRead;
-@property (nonatomic, strong) NSDate *dateTime;
+@property (nonatomic, assign) NSUInteger timestamp;
 
 @end

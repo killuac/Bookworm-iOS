@@ -13,6 +13,7 @@
 + (instancetype)defaultFont;
 + (instancetype)defaultBigFont;
 + (instancetype)titleFont;
++ (instancetype)boldTitleFont;
 + (instancetype)subtitleFont;
 + (instancetype)descriptionFont;
 

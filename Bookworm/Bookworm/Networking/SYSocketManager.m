@@ -13,15 +13,12 @@
 #define RECONNECT_DELAY         2.0
 #define RECONNNECT_MAX_COUNT    15
 
-NSString *const SYSocketDidSendMessageNotification = @"SYSocketDidSendMessageNotification";
-NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMessageNotification";
-NSString *const SYSocketDidReadMessageNotification = @"SYSocketDidReadMessageNotification";
-NSString *const SYSocketReconnectingNotification = @"SYSocketReconnectingNotification";
-
 NSString *const SYSocketMethodChat = @"CHAT";
 NSString *const SYSocketMethodSync = @"SYNC";
 NSString *const SYSocketMethodRead = @"READ";
 NSString *const SYSocketMethodDelete = @"DELETE";
+
+NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMessageNotification";
 
 
 @interface SYSocketManager () <SRWebSocketDelegate>
@@ -75,6 +72,20 @@ NSString *const SYSocketMethodDelete = @"DELETE";
     [self.webSocket setDelegateOperationQueue:[[NSOperationQueue alloc] init]];
 }
 
++ (BOOL)automaticallyNotifiesObserversOfReadyState
+{
+    return NO;
+}
+
+- (void)setReadyState:(SRReadyState)readyState
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self willChangeValueForKey:@"readyState"];
+        _readyState = readyState;
+        [self didChangeValueForKey:@"readyState"];
+    });
+}
+
 - (void)dealloc
 {
     [self invalidateHeartBeat];
@@ -82,7 +93,12 @@ NSString *const SYSocketMethodDelete = @"DELETE";
 }
 
 #pragma mark - Connection
-- (BOOL)isOpen
+- (BOOL)isConnecting
+{
+    return (self.webSocket.readyState == SR_CONNECTING);
+}
+
+- (BOOL)isConnected
 {
     return (self.webSocket.readyState == SR_OPEN);
 }
@@ -90,16 +106,14 @@ NSString *const SYSocketMethodDelete = @"DELETE";
 - (void)connect
 {
     [self instantiateWebSocket];
+    self.readyState = self.webSocket.readyState;
     [self.webSocket open];
 }
 
 - (void)reconnect
 {
-    [self invalidateHeartBeat];
-    if (self.reconnectCount >= RECONNNECT_MAX_COUNT) return;
-    
     self.reconnectCount++;
-    [[NSNotificationCenter defaultCenter] postNotificationName:SYSocketReconnectingNotification object:self];
+    [self invalidateHeartBeat];
     
     [[SYServerAPI sharedServerAPI] fetchIMServerAddressCompletion:^{
         [self performSelector:@selector(connect) withObject:nil afterDelay:RECONNECT_DELAY];
@@ -120,7 +134,7 @@ NSString *const SYSocketMethodDelete = @"DELETE";
 
 - (void)heartBeat
 {
-    if (!self.isOpen) {
+    if (!self.isConnected) {
         [self invalidateHeartBeat]; return;
     }
     
@@ -136,7 +150,7 @@ NSString *const SYSocketMethodDelete = @"DELETE";
 #pragma mark - Message
 - (void)sendMessage:(id)content withMethod:(NSString *)socketMethod
 {
-    if (self.isOpen) return;
+    if (self.isConnected) return;
     
     SYSocketRequestModel *requestModel = [SYSocketRequestModel model];
     requestModel.socketMethod = socketMethod;
@@ -149,13 +163,14 @@ NSString *const SYSocketMethodDelete = @"DELETE";
 
 - (SYMessageModel *)messageModelWithContent:(NSString *)content receiver:(NSString *)userID
 {
-    SYMessageModel *msgModel = [SYMessageModel model];
-    msgModel.sender = [GVUserDefaults standardUserDefaults].userID;
-    msgModel.receiver = userID;
-    msgModel.content = content;
-    msgModel.dateTime = [NSDate date];
+    SYMessageModel *messageModel = [SYMessageModel model];
+    messageModel.messageID = ++[GVUserDefaults standardUserDefaults].maxOutboxMessageID;
+    messageModel.sender = [GVUserDefaults standardUserDefaults].userID;
+    messageModel.receiver = userID;
+    messageModel.content = content;
+    messageModel.timestamp = [[NSDate date] timeIntervalSince1970];
     
-    return msgModel;
+    return messageModel;
 }
 
 - (void)sendMessage:(NSString *)content toReceiver:(NSString *)userID
@@ -165,8 +180,8 @@ NSString *const SYSocketMethodDelete = @"DELETE";
 
 - (void)readMessagesFromReceiver:(NSString *)userID
 {
+    [self.messageService updateIsReadStatusForReceiver:userID];
     [self sendMessage:[self messageModelWithContent:nil receiver:userID] withMethod:SYSocketMethodRead];
-    [self postNotificationName:SYSocketDidReadMessageNotification object:nil];
 }
 
 - (void)deleteMessagesFromReceiver:(NSString *)userID
@@ -179,10 +194,10 @@ NSString *const SYSocketMethodDelete = @"DELETE";
     [self sendMessage:messageModel withMethod:SYSocketMethodDelete];
 }
 
-// Only need synchronize inbox messages
 - (void)synchronizeMessages
 {
-    [self sendMessage:self.messageService.lastInboxMessage withMethod:SYSocketMethodSync];
+    NSArray *messageModels = @[self.messageService.lastInboxMessage, self.messageService.lastOutboxMessage];
+    [self sendMessage:messageModels withMethod:SYSocketMethodSync];
 }
 
 - (void)postNotificationName:(NSString *)name object:(nullable id)object
@@ -200,6 +215,7 @@ NSString *const SYSocketMethodDelete = @"DELETE";
 #endif
 
     [self scheduleHeartBeat];
+    self.readyState = self.webSocket.readyState;
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message;
@@ -218,7 +234,7 @@ NSString *const SYSocketMethodDelete = @"DELETE";
             break;
             
         case SYSocketStatusCodeReceipt:
-            [self postNotificationName:SYSocketDidSendMessageNotification object:nil];
+            [self.messageService updateIsSentStatusWithModel:[SYMessageModel modelWithString:responseModel.messageData]];
             break;
             
         case SYSocketStatusCodeMessage: {
@@ -239,7 +255,9 @@ NSString *const SYSocketMethodDelete = @"DELETE";
     NSLog(@"Websocket failed with error: %@" , error);
 #endif
     
-    [self reconnect];
+    if (self.reconnectCount < RECONNNECT_MAX_COUNT) {
+        [self reconnect];
+    }
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean;
@@ -249,6 +267,7 @@ NSString *const SYSocketMethodDelete = @"DELETE";
 #endif
     
     [self invalidateHeartBeat];
+    self.readyState = self.webSocket.readyState;
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceivePong:(NSData *)pongPayload;

@@ -31,6 +31,11 @@
     return objc_getAssociatedObject(self, @selector(selectedIndexPath));
 }
 
+- (UINavigationBar *)navigationBar
+{
+    return self.navigationController.navigationBar;
+}
+
 - (UIViewController *)rootViewController
 {
     return [[UIApplication sharedApplication].delegate window].rootViewController;

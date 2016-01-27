@@ -87,7 +87,7 @@
     [UICollectionView appearance].backgroundColor = [UIColor backgroundColor];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor titleColor]} forState:UIControlStateSelected];
     [UINavigationBar appearance].tintColor = [UIColor titleColor];
-    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor titleColor]};
+    [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName:[UIFont boldTitleFont], NSForegroundColorAttributeName:[UIColor titleColor]};
     
     [UIPageControl appearance].pageIndicatorTintColor = [UIColor whiteColor];
     [UIPageControl appearance].currentPageIndicatorTintColor = [UIColor grayColor];

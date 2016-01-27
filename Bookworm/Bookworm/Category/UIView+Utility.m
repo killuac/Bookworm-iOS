@@ -138,22 +138,16 @@
     emptyImageView.tag = 200;
     emptyImageView.center = self.center;
     emptyImageView.contentMode = UIViewContentModeScaleAspectFill;
+    [self addSubview:emptyImageView];
     
-    UILabel *titleLabel = [[UILabel alloc] init];
     if (title.length) {
+        UILabel *titleLabel = [UILabel labelWithText:title];
         titleLabel.tag = 201;
-        titleLabel.text = title;
-        titleLabel.font = [UIFont subtitleFont];
-        titleLabel.textColor = [UIColor titleColor];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        [titleLabel sizeToFit];
         titleLabel.width = self.width - DEFAULT_MARGIN * 2;
         titleLabel.center = self.center;
         titleLabel.top = emptyImageView.bottom + DEFAULT_MARGIN;
+        [self addSubview:titleLabel];
     }
-    
-    [self addSubview:emptyImageView];
-    if (title.length) [self addSubview:titleLabel];
 }
 
 - (void)removeEmptyImageView

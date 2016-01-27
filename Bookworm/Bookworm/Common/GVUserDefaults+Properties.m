@@ -13,6 +13,7 @@
 @dynamic userID;
 @dynamic isSignedIn;
 @dynamic isFirstLaunch;
+@dynamic maxOutboxMessageID;
 @dynamic accessToken;
 @dynamic deviceToken;
 
