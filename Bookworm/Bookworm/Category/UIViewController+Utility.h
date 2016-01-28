@@ -32,6 +32,7 @@
 - (void)loadData;
 - (void)loadData:(SYNoParameterBlockType)completion;
 - (void)reloadData;
+- (void)refreshUI;
 
 - (void)HTTPRequestDidComplete:(NSNotification *)notification;
 

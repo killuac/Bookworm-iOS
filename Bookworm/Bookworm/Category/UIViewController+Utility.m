@@ -203,6 +203,11 @@
 //  Implemented by subclass
 }
 
+- (void)refreshUI
+{
+//  Implemented by subclass
+}
+
 - (void)HTTPRequestDidComplete:(NSNotification *)notification
 {
     self.isLoadingData = NO;

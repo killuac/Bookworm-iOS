@@ -10,7 +10,7 @@
 
 @interface NSData (Utility)
 
-- (NSString *)MD5String;
-- (NSString *)SHA1String;
+- (NSString *)toMD5String;
+- (NSString *)toSHA1String;
 
 @end

@@ -41,8 +41,8 @@ typedef void (^SYServiceBlockType)(id service, id result);
 @property (nonatomic, strong, readonly) FMDatabaseQueue *dbQueue;
 @property (nonatomic, copy, readonly) NSString *userID;
 
+- (NSString *)valueForURLString:(NSString *)URLString;
 - (void)setValue:(NSString *)value forURLString:(NSString *)URLString;
-- (id)valueForURLString:(NSString *)URLString;
 
 - (void)cancelRequest;
 

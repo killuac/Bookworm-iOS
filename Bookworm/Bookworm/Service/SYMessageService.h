@@ -14,7 +14,7 @@
 @property (nonatomic, strong, readonly) SYMessageModel *lastInboxMessage;
 @property (nonatomic, strong, readonly) SYMessageModel *lastOutboxMessage;
 
-- (void)updateIsReadStatusForReceiver:(NSString *)userID;
+- (void)updateIsReadStatusFromReceiver:(NSString *)userID;
 - (void)updateIsSentStatusWithModel:(SYMessageModel *)messageModel;
 
 @end

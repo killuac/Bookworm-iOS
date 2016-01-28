@@ -7,6 +7,7 @@
 //
 
 #import "SYDeviceModel.h"
+#import <sys/utsname.h>
 
 @implementation SYDeviceModel
 
@@ -22,7 +23,10 @@
 
 - (NSString *)deviceModel
 {
-    return [UIDevice currentDevice].model;
+//    return [UIDevice currentDevice].localizedModel;
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
 }
 
 - (NSString *)systemName
@@ -42,7 +46,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@: %@ %@ %@ %@", self.deviceBrand, self.deviceModel, self.systemName, self.systemVersion, self.resolution];
+    return [NSString stringWithFormat:@"%@: %@ %@ %@", self.deviceBrand, self.deviceModel, self.systemName, self.systemVersion];
 }
 
 @end

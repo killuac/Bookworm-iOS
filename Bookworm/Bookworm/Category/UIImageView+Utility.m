@@ -15,9 +15,9 @@
 //    TODO: Blur image
 }
 
-- (void)setImageWithURLString:(NSString *)urlString progress:(SDWebImageDownloaderProgressBlock)progress completion:(SDWebImageCompletionBlock)completion
+- (void)setImageWithURL:(NSURL *)url progress:(SDWebImageDownloaderProgressBlock)progress completion:(SDWebImageCompletionBlock)completion
 {
-    [self sd_setImageWithURL:[NSURL URLWithString:urlString]
+    [self sd_setImageWithURL:url
             placeholderImage:IMG_DEFAULT_PLACEHOLDER
                      options:SDWebImageRetryFailed
                     progress:progress
@@ -27,43 +27,43 @@
                    }];
 }
 
-- (void)setImageWithURLString:(NSString *)urlString
+- (void)setImageWithURL:(NSURL *)url
 {
-    [self setImageWithURLString:urlString progress:nil completion:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self setImageWithURL:url progress:nil completion:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
     }];
 }
 
-- (void)setImageWithURLString:(NSString *)urlString completion:(SDWebImageCompletionBlock)completion
+- (void)setImageWithURL:(NSURL *)url completion:(SDWebImageCompletionBlock)completion
 {
-    [self setImageWithURLString:urlString progress:nil completion:completion];
+    [self setImageWithURL:url progress:nil completion:completion];
 }
 
-- (void)setImageProgressBarWithURLString:(NSString *)urlString completion:(SDWebImageCompletionBlock)completion
+- (void)setImageProgressBarWithURL:(NSURL *)url completion:(SDWebImageCompletionBlock)completion
 {
     UIProgressView *progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     progressView.width = self.width;
     [self addSubview:progressView];
     
-    [self setImageWithURLString:urlString
-                       progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                           progressView.progress = (receivedSize * 1.0 / expectedSize);
-                       }
-                     completion:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                         [progressView removeFromSuperview];
-                         if (completion) completion(image, error, cacheType, imageURL);
-                     }];
+    [self setImageWithURL:url
+                 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                     progressView.progress = (receivedSize * 1.0 / expectedSize);
+                 }
+               completion:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                   [progressView removeFromSuperview];
+                   if (completion) completion(image, error, cacheType, imageURL);
+               }];
 }
 
-- (void)setImageProgressRingWithURLString:(NSString *)urlString completion:(SDWebImageCompletionBlock)completion
+- (void)setImageProgressRingWithURL:(NSURL *)url completion:(SDWebImageCompletionBlock)completion
 {
-    [self setImageWithURLString:urlString
-                       progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                           [SVProgressHUD showProgress:(receivedSize * 1.0 / expectedSize)];
-                       }
-                     completion:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                         [SVProgressHUD dismiss];
-                         if (completion) completion(image, error, cacheType, imageURL);
-                     }];
+    [self setImageWithURL:url
+                 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                     [SVProgressHUD showProgress:(receivedSize * 1.0 / expectedSize)];
+                 }
+               completion:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                   [SVProgressHUD dismiss];
+                   if (completion) completion(image, error, cacheType, imageURL);
+               }];
 }
 
 @end

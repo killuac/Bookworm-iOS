@@ -51,11 +51,6 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
         _messageService = [SYMessageService service];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(connect)
-                                                     name:AFNetworkingReachabilityDidChangeNotification
-                                                   object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(disconnect)
                                                      name:UIApplicationDidEnterBackgroundNotification
                                                    object:nil];
@@ -180,7 +175,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 
 - (void)readMessagesFromReceiver:(NSString *)userID
 {
-    [self.messageService updateIsReadStatusForReceiver:userID];
+    [self.messageService updateIsReadStatusFromReceiver:userID];
     [self sendMessage:[self messageModelWithContent:nil receiver:userID] withMethod:SYSocketMethodRead];
 }
 
@@ -257,6 +252,8 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
     
     if (self.reconnectCount < RECONNNECT_MAX_COUNT) {
         [self reconnect];
+    } else {
+        self.readyState = self.webSocket.readyState;
     }
 }
 

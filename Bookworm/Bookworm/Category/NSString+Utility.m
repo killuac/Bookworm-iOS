@@ -15,16 +15,16 @@
 @implementation NSString (Utility)
 
 #pragma mark - Digest
-- (NSString *)MD5String
+- (NSString *)toMD5String
 {
     NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
-    return [data MD5String];
+    return [data toMD5String];
 }
 
-- (NSString *)SHA1String
+- (NSString *)toSHA1String
 {
     NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
-    return [data SHA1String];
+    return [data toSHA1String];
 }
 
 //- (NSString *)SHA1String

@@ -34,6 +34,9 @@
     }
 #endif
     
+    
+    NSLog(@"%@", [[NSUUID UUID].UUIDString toSHA1String]);
+    
     return YES;
 }
 
@@ -151,6 +154,9 @@
         } else {
             if ([GVUserDefaults standardUserDefaults].isFirstLaunch) {
                 [self registerDevice];
+            }
+            if ([GVUserDefaults standardUserDefaults].isSignedIn) {
+                [[SYSocketManager manager] connect];
             }
         }
     }];

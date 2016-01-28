@@ -32,27 +32,22 @@
     return [GVUserDefaults standardUserDefaults].userID;
 }
 
-- (NSString *)keyForURLString:(NSString *)URLString
+- (NSString *)valueForURLString:(NSString *)URLString
 {
-    return (URLString.length) ? [URLString MD5String] : @"";
+    __block NSString *value;
+    [self.dbQueue inDatabase:^(FMDatabase *db) {
+        value = [db stringForQuery:@"SELECT value FROM KeyValue WHERE key = ?" , [URLString toSHA1String]];
+    }];
+    return value;
 }
 
 - (void)setValue:(NSString *)value forURLString:(NSString *)URLString
 {
-    if (value.length && URLString.length) {
-        [self.dbQueue inDatabase:^(FMDatabase *db) {
-            [db stringForQuery:@"INSERT OR REPLACE INTO KeyValue VALUES (?, ?)" , [self keyForURLString:URLString], value];
-        }];
-    }
-}
-
-- (id)valueForURLString:(NSString *)URLString
-{
-    __block NSString *value;
+    if (value.length == 0 || URLString.length == 0) return;
+    
     [self.dbQueue inDatabase:^(FMDatabase *db) {
-        value = [db stringForQuery:@"SELECT value FROM KeyValue WHERE key = ?" , [self keyForURLString:URLString]];
+        [db executeUpdate:@"INSERT OR REPLACE INTO KeyValue VALUES (?, ?)" , [URLString toSHA1String], value];
     }];
-    return value;
 }
 
 - (void)cancelRequest

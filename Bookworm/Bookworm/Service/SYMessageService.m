@@ -20,12 +20,12 @@
     return nil;
 }
 
-- (void)saveWithModels:(NSArray *)models result:(SYServiceBlockType)result
+- (void)saveWithModels:(NSArray<SYMessageModel *> *)models result:(SYServiceBlockType)result
 {
     
 }
 
-- (void)updateIsReadStatusForReceiver:(NSString *)userID
+- (void)updateIsReadStatusFromReceiver:(NSString *)userID
 {
     
 }

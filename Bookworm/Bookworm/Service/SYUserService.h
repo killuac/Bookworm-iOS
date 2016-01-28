@@ -7,7 +7,10 @@
 //
 
 #import "SYBaseService.h"
+#import "SYUserModel.h"
 
 @interface SYUserService : SYBaseService
+
+@property (nonatomic, strong, readonly) SYUserModel *userModel;
 
 @end

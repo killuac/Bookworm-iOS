@@ -57,14 +57,21 @@
             inset = self.imageView.height / 4 + inset;
             self.imageEdgeInsets = UIEdgeInsetsMake(-inset, self.titleLabel.width/2, inset, -self.titleLabel.width/2);
             self.titleEdgeInsets = UIEdgeInsetsMake(inset * 2, -self.imageView.width/2, -inset, self.imageView.width/2);
+            self.size = [self fittedSize];
             break;
             
         case SYButtonLayoutStyleVerticalImageDown:
             inset = self.imageView.height / 4 + inset;
             self.titleEdgeInsets = UIEdgeInsetsMake(-inset, self.imageView.width/2, inset, -self.imageView.width/2);
             self.imageEdgeInsets = UIEdgeInsetsMake(inset * 2, -self.titleLabel.width/2, -inset, self.titleLabel.width/2);
+            self.size = [self fittedSize];
             break;
     }
+}
+
+- (CGSize)fittedSize
+{
+    return CGSizeMake(MAX(self.imageView.width, self.titleLabel.width), self.imageView.height+self.titleLabel.height+DEFAULT_INSET*2);
 }
 
 - (void)addTarget:(nullable id)target action:(SEL)action

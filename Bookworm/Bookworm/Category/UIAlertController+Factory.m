@@ -52,8 +52,14 @@
     toolbar.clipsToBounds = YES;
     toolbar.left = -(toolbar.width / 2);
     toolbar.bottom = MEDIUM_MARGIN;
+    [AC.view setNeedsLayout];
     [AC.view addSubview:toolbar];
     return AC;
+}
+
+- (void)viewDidLayoutSubviews
+{
+    
 }
 
 - (void)show

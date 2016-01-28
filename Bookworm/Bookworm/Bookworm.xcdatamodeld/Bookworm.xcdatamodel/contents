@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1605" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1509" minimumToolsVersion="Xcode 7.0">
     <entity name="Contact" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="bgImageFile" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="contactID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="dateTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="bgImageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="contactID" attributeType="String" syncable="YES"/>
+        <attribute name="dateTime" attributeType="Date" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isBlock" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="relationship" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="relationship" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" syncable="YES"/>
+        <attribute name="userID" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
     <entity name="Inbox" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isRead" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="messageID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="receiver" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sender" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timestamp" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="messageID" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="receiver" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="sender" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="timestamp" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+    </entity>
+    <entity name="KeyValue" syncable="YES">
+        <attribute name="key" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="value" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Outbox" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isSent" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="messageID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="receiver" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sender" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timestamp" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="messageID" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="receiver" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="sender" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="timestamp" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Contact" positionX="-36" positionY="9" width="128" height="178"/>
         <element name="Inbox" positionX="-63" positionY="-18" width="128" height="133"/>
         <element name="Outbox" positionX="-54" positionY="-9" width="128" height="133"/>
-        <element name="Contact" positionX="-36" positionY="9" width="128" height="178"/>
+        <element name="KeyValue" positionX="-45" positionY="72" width="128" height="73"/>
     </elements>
 </model>
