@@ -6,7 +6,7 @@
 //  Copyright © 2016 Syzygy. All rights reserved.
 //
 
-#import <SocketRocket/SRWebSocket.h>
+@import SocketRocket;
 
 FOUNDATION_EXPORT NSString *const SYSocketDidReceiveMessageNotification;
 

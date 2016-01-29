@@ -11,8 +11,13 @@
 
 @import Foundation;
 @import ObjectiveC;
+
+@import FMDB;
+@import Aspects;
+@import Masonry;
 @import SDWebImage;
 @import NYXImagesKit;
+@import KVOController;
 
 #import "SYConstant.h"
 #import "SYAppSetting.h"
@@ -41,11 +46,7 @@
 #import "UIAlertController+Factory.h"
 #import "CLLocationManager+Factory.h"
 
-#import "FMDB.h"
-#import "Aspects.h"
-#import "Masonry.h"
 #import "MobClick.h"
-#import "FBKVOController.h"
 #import "JSONModel+Utility.h"
 #import "GVUserDefaults+Properties.h"
 #import "SVProgressHUD+Utility.h"
