@@ -34,9 +34,6 @@
     }
 #endif
     
-    
-    NSLog(@"%@", [[NSUUID UUID].UUIDString toSHA1String]);
-    
     return YES;
 }
 
@@ -88,8 +85,11 @@
 {
     [UITableView appearance].backgroundColor = [UIColor backgroundColor];
     [UICollectionView appearance].backgroundColor = [UIColor backgroundColor];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor titleColor]} forState:UIControlStateSelected];
-    [UINavigationBar appearance].tintColor = [UIColor titleColor];
+    
+    [UITabBar appearance].tintColor = [UIColor primaryColor];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor primaryColor]} forState:UIControlStateSelected];
+    [UINavigationBar appearance].tintColor = [UIColor primaryColor];
+    [UINavigationBar appearance].backgroundColor = [UIColor primaryColor];
     [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName:[UIFont boldTitleFont], NSForegroundColorAttributeName:[UIColor titleColor]};
     
     [UIPageControl appearance].pageIndicatorTintColor = [UIColor whiteColor];
@@ -172,7 +172,7 @@
 - (void)registerDevice
 {
     SYDeviceModel *deviceModel = [SYDeviceModel model];
-    [[SYDeviceService service] createWithModel:deviceModel result:^(id service, id result) {
+    [[SYDeviceService service] createWithModel:deviceModel result:^(id result) {
         [GVUserDefaults standardUserDefaults].isFirstLaunch = NO;
     }];
 }

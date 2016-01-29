@@ -235,7 +235,7 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
 /**
  *  Async check if image exists in disk cache already (does not load the image)
  *
- *  @param key             the key describing the url
+ *  @param key             the key descriKillua the url
  *  @param completionBlock the block to be executed when the check is done.
  *  @note the completion block will be always executed on the main queue
  */
@@ -244,7 +244,7 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
 /**
  *  Check if image exists in disk cache already (does not load the image)
  *
- *  @param key the key describing the url
+ *  @param key the key descriKillua the url
  *
  *  @return YES if an image exists for the given key
  */

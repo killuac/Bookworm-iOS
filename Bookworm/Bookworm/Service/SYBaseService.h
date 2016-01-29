@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^SYServiceBlockType)(id service, id result);
+typedef void (^SYServiceBlockType)(id result);
 
 @class FMDatabaseQueue;
 
@@ -19,15 +19,19 @@ typedef void (^SYServiceBlockType)(id service, id result);
 
 - (void)findAll:(SYServiceBlockType)result;
 
-- (void)findByKey:(id)key result:(SYServiceBlockType)result;
+- (void)findByKey:(NSString *)key result:(SYServiceBlockType)result;
 
-- (void)findByParameters:(id)parameters result:(SYServiceBlockType)result;
+- (void)findByParameters:(NSArray *)parameters result:(SYServiceBlockType)result;
 
 - (void)createWithModel:(id)model result:(SYServiceBlockType)result;
 
 - (void)updateWithModel:(id)model result:(SYServiceBlockType)result;
 
 - (void)saveWithModels:(NSArray *)models result:(SYServiceBlockType)result;
+
+- (void)deleteWithModel:(id)model;
+
+- (void)deleteByKey:(NSString *)key;
 
 @end
 

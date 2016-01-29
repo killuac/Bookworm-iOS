@@ -25,6 +25,7 @@ PODS:
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
   - Masonry (0.6.4)
+  - NYXImagesKit (2.3)
   - pop (1.0.8)
   - RegExCategories (1.0)
   - SDWebImage (3.7.5):
@@ -43,6 +44,7 @@ DEPENDENCIES:
   - KVOController
   - MagicalRecord
   - Masonry
+  - NYXImagesKit
   - pop
   - RegExCategories
   - SDWebImage
@@ -59,6 +61,7 @@ SPEC CHECKSUMS:
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  NYXImagesKit: 8163e3335a40eaa173ca5bbbf81fafb57d3947eb
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461

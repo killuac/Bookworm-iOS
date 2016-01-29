@@ -17,9 +17,9 @@
 #define NAV_TITLE_CHANGE_PASSWORD       LocalizedString(@"ChangePassword", @"更改密码")
 
 #define TAB_TITLE_HOME                  LocalizedString(@"Home", @"书虫")
-#define TAB_TITLE_ACTIVITY              LocalizedString(@"Activity", @"动态")
+#define TAB_TITLE_WISH                  LocalizedString(@"Wish", @"想看")
 #define TAB_TITLE_MESSAGE               LocalizedString(@"Message", @"消息")
-#define TAB_TITLE_ME                    LocalizedString(@"Me", @"我的")
+#define TAB_TITLE_ME                    LocalizedString(@"Me", @"我")
 
 #define BUTTON_TITLE_YES                LocalizedString(@"Yes", @"是")
 #define BUTTON_TITLE_NO                 LocalizedString(@"No", @"否")
@@ -43,6 +43,8 @@
 #define BUTTON_TITLE_FORGOT_PASSWORD    LocalizedString(@"ForgotPassword", @"忘记密码?")
 #define BUTTON_TITLE_DELETE             LocalizedString(@"Delete", @"删除")
 #define BUTTON_TITLE_REFRESH            LocalizedString(@"Refresh", @"刷新")
+#define BUTTON_TITLE_MARK_READ          LocalizedString(@"MarkRead", @"标记已读")
+#define BUTTON_TITLE_MARK_UNREAD        LocalizedString(@"MarkUnread", @"标记未读")
 #define BUTTON_TITLE_FOLLOW             LocalizedString(@"Follow", @"关注")
 #define BUTTON_TITLE_UNFOLLOW           LocalizedString(@"Unfollow", @"取消关注")
 #define BUTTON_TITLE_EXCHANGE           LocalizedString(@"Exchange", @"交换")

@@ -51,16 +51,17 @@ typedef void (^SYAspectHandlerBlock)(id<AspectInfo> aspectInfo);
 - (void)loadConfiguration
 {
     self.configs = @{
-            @"SYMainViewController": @{
+            @"SYHomeViewController": @{
                     SYLogTrackedEvents: @[
-                            @{ SYLogEventName: @"button one clicked", SYLogEventSelectorName: @"buttonOneClicked:",
-                               SYLogEventHandlerBlock: ^(id<AspectInfo> aspectInfo) {
-                                   NSLog(@"button one clicked");
-                               },
-                               },
-                            @{ SYLogEventName: @"button two clicked", SYLogEventSelectorName: @"buttonTwoClicked:" } ]
+                            @{ SYLogEventName: @"HomeVC_Search", SYLogEventSelectorName: @"search:",
+                               SYLogEventHandlerBlock: ^(id<AspectInfo> aspectInfo) { NSLog(@"Clicked"); } },
+                            @{ SYLogEventName: @"HomeVC_Exchange", SYLogEventSelectorName: @"exchange:" } ]
                     },
-            @"SYDetailViewController": @{ SYLogPageViewName: @"Detail page view" }
+            @"SYMessageViewController": @{
+                    SYLogTrackedEvents: @[
+                            @{ SYLogEventName: @"MessageVC_FollowOrUnfollow", SYLogEventSelectorName: @"followOrUnfollowInMessageViewControllerAtIndexPath:" },
+                            @{ SYLogEventName: @"MessageVC_DeleteContactMessages", SYLogEventSelectorName: @"deleteContactMessagesAtIndexPath:" } ]
+                    }
             };
 }
 

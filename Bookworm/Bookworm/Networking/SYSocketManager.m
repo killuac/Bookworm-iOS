@@ -181,11 +181,13 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 
 - (void)deleteMessagesFromReceiver:(NSString *)userID
 {
+    [self.messageService deleteByKey:userID];
     [self sendMessage:[self messageModelWithContent:nil receiver:userID] withMethod:SYSocketMethodDelete];
 }
 
 - (void)deleteSingleMessage:(SYMessageModel *)messageModel
 {
+    [self.messageService deleteWithModel:messageModel];
     [self sendMessage:messageModel withMethod:SYSocketMethodDelete];
 }
 

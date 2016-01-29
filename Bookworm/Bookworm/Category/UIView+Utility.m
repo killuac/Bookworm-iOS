@@ -117,10 +117,9 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    UIImageView *blurBackground = [[UIImageView alloc] initWithImage:image];
+    UIImageView *blurBackground = [[UIImageView alloc] initWithImage:[image gaussianBlurWithBias:20]];
     blurBackground.tag = 100;
     blurBackground.userInteractionEnabled = YES;
-    [blurBackground blurImage];
     [self addSubview:blurBackground];
 }
 

@@ -10,11 +10,6 @@
 
 @implementation UIImageView (Utility)
 
-- (void)blurImage
-{
-//    TODO: Blur image
-}
-
 - (void)setImageWithURL:(NSURL *)url progress:(SDWebImageDownloaderProgressBlock)progress completion:(SDWebImageCompletionBlock)completion
 {
     [self sd_setImageWithURL:url
@@ -27,18 +22,18 @@
                    }];
 }
 
-- (void)setImageWithURL:(NSURL *)url
+- (void)sy_setImageWithURL:(NSURL *)url
 {
     [self setImageWithURL:url progress:nil completion:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
     }];
 }
 
-- (void)setImageWithURL:(NSURL *)url completion:(SDWebImageCompletionBlock)completion
+- (void)sy_setImageWithURL:(NSURL *)url completion:(SDWebImageCompletionBlock)completion
 {
     [self setImageWithURL:url progress:nil completion:completion];
 }
 
-- (void)setImageProgressBarWithURL:(NSURL *)url completion:(SDWebImageCompletionBlock)completion
+- (void)sy_setImageProgressBarWithURL:(NSURL *)url completion:(SDWebImageCompletionBlock)completion
 {
     UIProgressView *progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     progressView.width = self.width;
@@ -54,7 +49,7 @@
                }];
 }
 
-- (void)setImageProgressRingWithURL:(NSURL *)url completion:(SDWebImageCompletionBlock)completion
+- (void)sy_setImageProgressRingWithURL:(NSURL *)url completion:(SDWebImageCompletionBlock)completion
 {
     [self setImageWithURL:url
                  progress:^(NSInteger receivedSize, NSInteger expectedSize) {

@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong, readonly) SYMessageModel *lastInboxMessage;
 @property (nonatomic, strong, readonly) SYMessageModel *lastOutboxMessage;
+@property (nonatomic, assign, readonly) NSUInteger totalUnreadMessageCount;
 
 - (void)updateIsReadStatusFromReceiver:(NSString *)userID;
 - (void)updateIsSentStatusWithModel:(SYMessageModel *)messageModel;

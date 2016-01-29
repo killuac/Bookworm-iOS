@@ -16,6 +16,7 @@ pod 'JSONModel'
 pod 'MagicalRecord'
 pod 'KVOController'
 pod 'GVUserDefaults'
+pod 'NYXImagesKit'
 pod 'SVProgressHUD', :head
 pod 'UMengAnalytics-NO-IDFA'
 #pod 'JSQSystemSoundPlayer', '~>2.0'

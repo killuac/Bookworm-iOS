@@ -14,7 +14,7 @@
 "ChangePassword" = "Change password";
 
 "Home" = "Bookworm";
-"Activity" = "Activity";
+"Wish" = "Wish";
 "Message" = "Message";
 "Me" = "Me";
 
@@ -39,6 +39,8 @@
 "ForgotPassword" = "ForgotPassword";
 "Delete" = "Delete";
 "Refresh" = "Refresh";
+"MarkRead" = "Read";
+"MarkUnread" = "Unread";
 "Follow" = "Follow";
 "Unfollow" = "Unfollow";
 "Exchange" = "Exchange";

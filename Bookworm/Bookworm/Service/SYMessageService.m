@@ -35,4 +35,9 @@
     
 }
 
+- (void)deleteByKey:(NSString *)key
+{
+    
+}
+
 @end

@@ -10,11 +10,9 @@
 
 @interface UIImageView (Utility)
 
-- (void)blurImage;
-
-- (void)setImageWithURL:(NSURL *)url;
-- (void)setImageWithURL:(NSURL *)url completion:(SDWebImageCompletionBlock)completion;
-- (void)setImageProgressBarWithURL:(NSURL *)url completion:(SDWebImageCompletionBlock)completion;
-- (void)setImageProgressRingWithURL:(NSString *)url completion:(SDWebImageCompletionBlock)completion;
+- (void)sy_setImageWithURL:(NSURL *)url;
+- (void)sy_setImageWithURL:(NSURL *)url completion:(SDWebImageCompletionBlock)completion;
+- (void)sy_setImageProgressBarWithURL:(NSURL *)url completion:(SDWebImageCompletionBlock)completion;
+- (void)sy_setImageProgressRingWithURL:(NSString *)url completion:(SDWebImageCompletionBlock)completion;
 
 @end

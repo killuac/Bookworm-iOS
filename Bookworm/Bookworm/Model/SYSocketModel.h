@@ -23,6 +23,9 @@
 @end
 
 
+@protocol SYMessageModel <NSObject>
+@end
+
 @interface SYMessageModel : JSONModel
 
 @property (nonatomic, assign) NSUInteger messageID;
@@ -32,5 +35,7 @@
 @property (nonatomic, assign) BOOL isSent;
 @property (nonatomic, assign) BOOL isRead;
 @property (nonatomic, assign) NSUInteger timestamp;
+
+@property (nonatomic, strong, readonly) NSDate<Ignore> *dateTime;
 
 @end

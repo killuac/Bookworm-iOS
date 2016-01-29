@@ -12,6 +12,7 @@
 @import Foundation;
 @import ObjectiveC;
 @import SDWebImage;
+@import NYXImagesKit;
 
 #import "SYConstant.h"
 #import "SYAppSetting.h"

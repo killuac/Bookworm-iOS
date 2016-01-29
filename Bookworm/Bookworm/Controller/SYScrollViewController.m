@@ -16,11 +16,7 @@
 
 @implementation SYScrollViewController
 
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
+#pragma mark - Life cycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -48,6 +44,18 @@
     }
 }
 
+- (void)HTTPRequestDidComplete:(NSNotification *)notification
+{
+    [super HTTPRequestDidComplete:notification];
+    [self.activityIndicator stopAnimating];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Load data
 - (void)loadNewData
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -88,12 +96,6 @@
 - (void)scrollToTop
 {
     [self.scrollView setContentOffset:CGPointZero animated:YES];
-}
-
-- (void)HTTPRequestDidComplete:(NSNotification *)notification
-{
-    [super HTTPRequestDidComplete:notification];
-    [self.activityIndicator stopAnimating];
 }
 
 @end

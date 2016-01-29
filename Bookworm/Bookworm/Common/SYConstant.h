@@ -22,6 +22,7 @@ typedef void (^SYNoParameterBlockType)(void);
 #define APP_VERSION                     [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"]
 #define APP_BUNDLE_NAME                 [NSBundle mainBundle].infoDictionary[@"CFBundleName"]
 #define APP_DISPLAY_NAME                [NSBundle mainBundle].localizedInfoDictionary[@"CFBundleDisplayName"]
+#define APP_COPYRIGHT                   [NSBundle mainBundle].localizedInfoDictionary[@"NSHumanReadableCopyright"]
 
 #define RESOLUTION_SIZE                 [UIScreen mainScreen].preferredMode.size
 #define RESOLUTION_WIDTH                RESOLUTION_SIZE.width

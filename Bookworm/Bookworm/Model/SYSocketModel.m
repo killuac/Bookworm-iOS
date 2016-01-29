@@ -24,4 +24,9 @@
     return ([propertyName isEqualToString:@"isSent"] || [propertyName isEqualToString:@"isRead"]);
 }
 
+- (NSDate<Ignore> *)dateTime
+{
+    return [NSDate dateWithTimeIntervalSince1970:self.timestamp];
+}
+
 @end
