@@ -26,35 +26,35 @@
     return self;
 }
 
-- (void)loadView
-{
-    [super loadView];
-    
-//    CGFloat lineSpaing = SMALL_MARGIN;
-//    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-//    CGFloat WH = (self.view.width - lineSpaing * 2) / 3;
-//    flowLayout.itemSize = CGSizeMake(WH, WH);
-//    flowLayout.minimumLineSpacing = lineSpaing;
-//    flowLayout.minimumInteritemSpacing = lineSpaing;
-//    
-//    self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
-//    self.collectionView.dataSource = self;
-//    self.collectionView.delegate = self;
-//    self.scrollView = self.collectionView;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self addSubviews];
     [self loadData];
     [self addTapGesture];
+}
+
+- (void)addSubviews
+{
+    CGFloat lineSpaing = SMALL_MARGIN;
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    CGFloat WH = (self.view.width - lineSpaing * 2) / 3;
+    flowLayout.itemSize = CGSizeMake(WH, WH);
+    flowLayout.minimumLineSpacing = lineSpaing;
+    flowLayout.minimumInteritemSpacing = lineSpaing;
+    
+    self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
+    self.view = self.collectionView;
 }
 
 - (void)singleTap:(UITapGestureRecognizer *)recognizer
 {
     UIBarButtonItem *buttonItem = [UIBarButtonItem barButtonItemWithTitle:@"Test" target:nil action:nil];
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
-    toolbar.size = CGSizeMake(SCREEN_WIDTH, 80);
+    toolbar.size = CGSizeMake(SCREEN_WIDTH, 70);
     toolbar.items = @[buttonItem];
     UIAlertController *ac = [UIAlertController actionSheetControllerWithToolbar:toolbar];
     [ac show];

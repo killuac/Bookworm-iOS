@@ -10,22 +10,25 @@
 
 @interface SYScrollViewController ()
 
+@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicator;
 
 @end
 
 @implementation SYScrollViewController
 
 #pragma mark - Life cycle
-- (void)viewDidLoad
+- (void)setView:(UIView *)view
 {
-    [super viewDidLoad];
+    [super setView:view];
     
-    self.view = self.scrollView;
-    
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.activityIndicator.center = self.view.center;
-    [self.scrollView addSubview:self.activityIndicator];
+    if ([view isKindOfClass:[UIScrollView class]]) {
+        _scrollView = (id)view;
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        self.activityIndicator.center = self.view.center;
+        [self.scrollView addSubview:self.activityIndicator];
+    }
 }
 
 - (void)startLoadingData:(SYNoParameterBlockType)completion

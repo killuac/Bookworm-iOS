@@ -26,6 +26,5 @@ typedef NS_ENUM(NSUInteger, SYContactRelationship) {
 
 @property (nonatomic, assign) NSUInteger unreadMessageCount;
 @property (nonatomic, strong) SYMessageModel<Ignore> *lastMessage;
-@property (nonatomic, strong) NSArray<SYMessageModel, Ignore> *messages;
 
 @end

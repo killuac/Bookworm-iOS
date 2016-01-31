@@ -17,6 +17,7 @@
 @import Masonry;
 @import SDWebImage;
 @import NYXImagesKit;
+@import MagicalRecord;
 @import KVOController;
 
 #import "SYConstant.h"
@@ -44,7 +45,6 @@
 #import "UITableViewCell+Common.h"
 #import "UIViewController+Utility.h"
 #import "UIAlertController+Factory.h"
-#import "CLLocationManager+Factory.h"
 
 #import "MobClick.h"
 #import "JSONModel+Utility.h"

@@ -8,7 +8,10 @@
 
 @import SocketRocket;
 
+FOUNDATION_EXPORT NSString *const SYSocketDidSendMessageNotification;
+FOUNDATION_EXPORT NSString *const SYSocketDidReceiveReceiptNotification;
 FOUNDATION_EXPORT NSString *const SYSocketDidReceiveMessageNotification;
+
 
 typedef NS_ENUM(NSUInteger, SYSocketStatusCode) {
     SYSocketStatusCodeConnected = 1000,         // Connected IM server

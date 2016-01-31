@@ -19,7 +19,7 @@
 #define TAB_TITLE_HOME                  LocalizedString(@"Home", @"书虫")
 #define TAB_TITLE_WISH                  LocalizedString(@"Wish", @"想看")
 #define TAB_TITLE_MESSAGE               LocalizedString(@"Message", @"消息")
-#define TAB_TITLE_ME                    LocalizedString(@"Me", @"我")
+#define TAB_TITLE_ME                    LocalizedString(@"Me", @"我的")
 
 #define BUTTON_TITLE_YES                LocalizedString(@"Yes", @"是")
 #define BUTTON_TITLE_NO                 LocalizedString(@"No", @"否")

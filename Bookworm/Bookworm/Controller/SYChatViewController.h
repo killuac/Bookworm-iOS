@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SYContactModel.h"
 
-@interface SYChatViewController : UIViewController
+FOUNDATION_EXPORT NSString *const SYChatViewControllerDidDeleteLastMessage;
+
+@interface SYChatViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) SYContactModel *contact;
 
 @end

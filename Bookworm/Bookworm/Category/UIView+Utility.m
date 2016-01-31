@@ -77,7 +77,6 @@
 - (void)addTapGesture
 {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
-    tap.cancelsTouchesInView = NO;
     [self addGestureRecognizer:tap];
 }
 

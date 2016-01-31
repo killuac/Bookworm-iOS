@@ -10,9 +10,6 @@
 
 @interface SYScrollViewController : UIViewController <UIScrollViewDelegate>
 
-@property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicator;
-
 - (void)loadNewData;
 - (void)loadEarlierData;
 

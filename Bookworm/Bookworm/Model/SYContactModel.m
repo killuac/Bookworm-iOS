@@ -20,4 +20,9 @@
     return (SYContactRelationshipFollowing == self.relationship || SYContactRelationshipFriend == self.relationship);
 }
 
+- (BOOL)isEqual:(id)object
+{
+    return [self.contactID isEqual:[object contactID]];
+}
+
 @end

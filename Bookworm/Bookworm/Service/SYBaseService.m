@@ -20,7 +20,7 @@
     if (self = [super init]) {
         _dbQueue = [FMDatabaseQueue databaseQueueWithPath:DATABASE_FILE_PATH];
         #if DEBUG
-            NSLog(@"%@", DATABASE_FILE_PATH);
+//            NSLog(@"%@", DATABASE_FILE_PATH);
         #endif
     }
     

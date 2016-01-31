@@ -8,11 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIViewController (Utility) <UITextFieldDelegate>
+@protocol SYViewControllerProtocol <SYViewProtocol>
+
+@optional
+- (void)loadData;
+- (void)loadData:(SYNoParameterBlockType)completion;
+- (void)reloadData;
+- (void)refreshUI;
+
+@end
+
+
+@interface UIViewController (Utility) <SYViewControllerProtocol, UITextFieldDelegate>
 
 @property (nonatomic, assign) BOOL isLoadingData;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
+@property (nonatomic, strong, readonly) UITabBar *tabBar;
 @property (nonatomic, strong, readonly) UINavigationBar *navigationBar;
 @property (nonatomic, strong, readonly) UIViewController *rootViewController;
 @property (nonatomic, strong, readonly) UIViewController *visibleViewController;
@@ -24,15 +36,6 @@
 - (void)showInitialViewController;
 - (void)showMainViewController;
 - (void)showMainViewControllerWithUserInfo:(NSDictionary *)userInfo;
-
-- (void)addTapGesture;
-- (void)removeTapGesture;
-- (void)singleTap:(UITapGestureRecognizer *)recognizer;
-
-- (void)loadData;
-- (void)loadData:(SYNoParameterBlockType)completion;
-- (void)reloadData;
-- (void)refreshUI;
 
 - (void)HTTPRequestDidComplete:(NSNotification *)notification;
 

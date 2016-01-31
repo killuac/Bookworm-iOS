@@ -31,6 +31,11 @@
     return objc_getAssociatedObject(self, @selector(selectedIndexPath));
 }
 
+- (UITabBar *)tabBar
+{
+    return self.tabBarController.tabBar;
+}
+
 - (UINavigationBar *)navigationBar
 {
     return self.navigationController.navigationBar;
@@ -93,7 +98,6 @@
 - (void)addTapGesture
 {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
-    tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
 }
 
@@ -191,21 +195,6 @@
 - (void)showLoading
 {
     [SVProgressHUD show];
-}
-
-- (void)loadData:(SYNoParameterBlockType)completion
-{
-//  Implemented by subclass
-}
-
-- (void)reloadData
-{
-//  Implemented by subclass
-}
-
-- (void)refreshUI
-{
-//  Implemented by subclass
 }
 
 - (void)HTTPRequestDidComplete:(NSNotification *)notification

@@ -18,6 +18,8 @@ NSString *const SYSocketMethodSync = @"SYNC";
 NSString *const SYSocketMethodRead = @"READ";
 NSString *const SYSocketMethodDelete = @"DELETE";
 
+NSString *const SYSocketDidSendMessageNotification = @"SYSocketDidSendMessageNotification";
+NSString *const SYSocketDidReceiveReceiptNotification = @"SYSocketDidReceiveReceiptNotification";
 NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMessageNotification";
 
 
@@ -170,7 +172,9 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 
 - (void)sendMessage:(NSString *)content toReceiver:(NSString *)userID
 {
-    [self sendMessage:[self messageModelWithContent:content receiver:userID] withMethod:SYSocketMethodChat];
+    SYMessageModel *messageModel = [self messageModelWithContent:content receiver:userID];
+    [self sendMessage:messageModel withMethod:SYSocketMethodChat];
+    [self postNotificationName:SYSocketDidSendMessageNotification object:messageModel];
 }
 
 - (void)readMessagesFromReceiver:(NSString *)userID
@@ -230,14 +234,18 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
             [self synchronizeMessages];
             break;
             
-        case SYSocketStatusCodeReceipt:
-            [self.messageService updateIsSentStatusWithModel:[SYMessageModel modelWithString:responseModel.messageData]];
+        case SYSocketStatusCodeReceipt: {
+            SYMessageModel *messageModel = [SYMessageModel modelWithString:responseModel.messageData];
+            [self.messageService updateIsSentStatusWithModel:messageModel];
+            [self postNotificationName:SYSocketDidReceiveReceiptNotification object:messageModel];
             break;
+        }
             
         case SYSocketStatusCodeMessage: {
-            NSArray<SYMessageModel *> *messages = [JSONModel arrayOfModelsFromString:responseModel.messageData error:nil];
-            [self.messageService saveWithModels:messages result:nil];
-            [self postNotificationName:SYSocketDidReceiveMessageNotification object:messages];
+            NSArray<SYMessageModel*> *messages = [JSONModel arrayOfModelsFromString:responseModel.messageData error:nil];
+            [self.messageService saveWithModels:messages result:^(id result) {
+                [self postNotificationName:SYSocketDidReceiveMessageNotification object:messages];
+            }];
             break;
         }
             

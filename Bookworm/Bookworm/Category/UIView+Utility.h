@@ -8,7 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (Utility)
+@protocol SYViewProtocol <NSObject>
+
+@optional
+- (void)addSubviews;
+- (void)createSubviews;
+
+- (void)addTapGesture;
+- (void)removeTapGesture;
+- (void)singleTap:(UITapGestureRecognizer *)recognizer;
+
+@end
+
+
+@interface UIView (Utility) <SYViewProtocol>
 
 @property (nonatomic, strong, readonly) id superTableView;
 @property (nonatomic, strong, readonly) id superCollectionView;
@@ -18,9 +31,6 @@
 @property (nonatomic, strong, readonly) id subTableView;
 @property (nonatomic, strong, readonly) id subCollectionView;
 
-- (void)addTapGesture;
-- (void)removeTapGesture;
-- (void)singleTap:(UITapGestureRecognizer *)recognizer;
 - (void)findAndResignFirstResponder;
 
 - (void)addBlurBackground;

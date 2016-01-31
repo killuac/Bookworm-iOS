@@ -69,6 +69,7 @@
 		E3BBDCA21C5916630012834A /* UILabel+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BBDCA11C5916630012834A /* UILabel+Factory.m */; };
 		E3BBDCE81C5938DE0012834A /* Bookworm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3BBDCE61C5938DE0012834A /* Bookworm.xcdatamodeld */; };
 		E3BEDFC71C23FC8F00E6DB58 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BEDFC61C23FC8F00E6DB58 /* libz.tbd */; };
+		E3D5C65D1C5D3C4900ADDCA4 /* SYSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D5C65C1C5D3C4900ADDCA4 /* SYSoundPlayer.m */; };
 		E3E810371C48D85E00C0ACAF /* NSTimer+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E810361C48D85E00C0ACAF /* NSTimer+Factory.m */; };
 		E3EB14941C51E6B300D10026 /* NSData+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EB14931C51E6B300D10026 /* NSData+Utility.m */; };
 		E3EB149D1C520EF000D10026 /* SYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EB149C1C520EF000D10026 /* SYTextView.m */; };
@@ -225,6 +226,8 @@
 		E3BBDCA11C5916630012834A /* UILabel+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Factory.m"; sourceTree = "<group>"; };
 		E3BBDCE71C5938DE0012834A /* Bookworm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bookworm.xcdatamodel; sourceTree = "<group>"; };
 		E3BEDFC61C23FC8F00E6DB58 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		E3D5C65B1C5D3C4900ADDCA4 /* SYSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSoundPlayer.h; sourceTree = "<group>"; };
+		E3D5C65C1C5D3C4900ADDCA4 /* SYSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSoundPlayer.m; sourceTree = "<group>"; };
 		E3E810351C48D85E00C0ACAF /* NSTimer+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Factory.h"; sourceTree = "<group>"; };
 		E3E810361C48D85E00C0ACAF /* NSTimer+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Factory.m"; sourceTree = "<group>"; };
 		E3EB14921C51E6B300D10026 /* NSData+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Utility.h"; sourceTree = "<group>"; };
@@ -404,6 +407,8 @@
 				E345817D1C2136E80088BDA5 /* SYConstant.h */,
 				E34581D11C216C510088BDA5 /* SYServerAPI.h */,
 				E34581D21C216C510088BDA5 /* SYServerAPI.m */,
+				E3D5C65B1C5D3C4900ADDCA4 /* SYSoundPlayer.h */,
+				E3D5C65C1C5D3C4900ADDCA4 /* SYSoundPlayer.m */,
 				E34581BC1C21634A0088BDA5 /* SYTextConstant.h */,
 				E345817E1C21395B0088BDA5 /* SYUtility.h */,
 				E345817F1C21395B0088BDA5 /* SYUtility.m */,
@@ -811,6 +816,7 @@
 				E34581DE1C217F740088BDA5 /* SYDeviceService.m in Sources */,
 				E34581AF1C21455C0088BDA5 /* UIViewController+Utility.m in Sources */,
 				E34581A91C2142960088BDA5 /* CLLocationManager+Factory.m in Sources */,
+				E3D5C65D1C5D3C4900ADDCA4 /* SYSoundPlayer.m in Sources */,
 				E3957CE21C5137B30017E31F /* GVUserDefaults+Properties.m in Sources */,
 				E3EB14AF1C52166F00D10026 /* SYTextTableViewCell.m in Sources */,
 				E3EB14B01C52166F00D10026 /* SYTipTableViewCell.m in Sources */,

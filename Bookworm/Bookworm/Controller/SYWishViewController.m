@@ -25,23 +25,21 @@
     return self;
 }
 
-// If use Interface Builder to create views and initialize the view controller, must not override this method.
-- (void)loadView
-{
-    [super loadView];
-    
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    self.tableView.allowsSelection = NO;
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    self.scrollView = self.tableView;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    [self addSubviews];
     [self loadData];
+}
+
+- (void)addSubviews
+{
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.tableView.allowsSelection = NO;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.view = self.tableView;
 }
 
 - (void)loadData
@@ -57,7 +55,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IDENTIFIER_COMMON_CELL];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IDENTIFIER_COMMON_CELL];
+    return cell;
 }
 
 @end

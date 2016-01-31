@@ -10,4 +10,9 @@
 
 @implementation SYContactService
 
+- (void)findByKey:(NSString *)key result:(SYServiceBlockType)result
+{
+    
+}
+
 @end

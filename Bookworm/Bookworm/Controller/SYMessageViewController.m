@@ -13,10 +13,11 @@
 
 @interface SYMessageViewController ()
 
-@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) SYContactService *contactService;
 @property (nonatomic, strong) SYMessageService *messageService;
-@property (nonatomic, strong) NSMutableArray *contacts;
+@property (nonatomic, strong) NSMutableArray<SYContactModel*> *contacts;
+
+@property (nonatomic, strong) UITableView *tableView;
 
 @end
 
@@ -31,9 +32,31 @@
         self.contacts = [NSMutableArray array];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didSendMessage:)
+                                                     name:SYSocketDidSendMessageNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didReceiveReceipt:)
+                                                     name:SYSocketDidReceiveReceiptNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didReceiveMessage:)
                                                      name:SYSocketDidReceiveMessageNotification
                                                    object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didDeleteLastMessage:)
+                                                     name:SYChatViewControllerDidDeleteLastMessage
+                                                   object:nil];
+        
+        self.KVOController = [FBKVOController controllerWithObserver:self];
+        [self.KVOController observe:self.messageService keyPath:@"totalUnreadMessageCount" options:0 block:^(id observer, id object, NSDictionary *change) {
+            NSUInteger badge = self.messageService.totalUnreadMessageCount;
+            self.tabBarItem.badgeValue = (badge > 0 ? @(badge).stringValue : nil);
+            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badge];
+        }];
     }
     return self;
 }
@@ -47,17 +70,21 @@
 {
     [super viewDidLoad];
     
+    [self addSubviews];
+//    [self updateNavigationBar];
+    [self loadData];
+}
+
+- (void)addSubviews
+{
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[SYMessageTableViewCell class] forCellReuseIdentifier:IDENTIFIER_COMMON_CELL];
-    [self.view addSubview:self.tableView];
-    
-    [self updateNavigationTitle];
-    [self loadData];
+    self.view = self.tableView;
 }
 
-- (void)updateNavigationTitle
+- (void)updateNavigationBar
 {
     self.KVOController = [FBKVOController controllerWithObserver:self];
     [self.KVOController observe:[SYSocketManager manager] keyPath:@"readyState" options:0 block:^(id observer, id object, NSDictionary *change) {
@@ -85,56 +112,77 @@
 
 - (void)loadData
 {
-    [self.contactService findByKey:[GVUserDefaults standardUserDefaults].userID result:^(NSArray<SYContactModel *>* result) {
+    [self.contactService findByKey:[GVUserDefaults standardUserDefaults].userID result:^(NSArray<SYContactModel*> *result) {
         [self.contacts addObjectsFromArray:result];
     }];
 }
 
 #pragma mark - Message handling
+- (void)didSendMessage:(NSNotification *)notification
+{
+    SYMessageModel *messageModel = notification.object;
+    NSUInteger index = [self.contacts indexOfObjectPassingTest:^BOOL(SYContactModel *contact, NSUInteger idx, BOOL * stop) {
+        return [contact.contactID isEqualToString:messageModel.receiver];
+    }];
+    
+    if (index != NSNotFound) {
+        [self.contacts[index] setLastMessage:messageModel];
+        id cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        [self performSelector:@selector(showSendingMarkInCell:) withObject:cell afterDelay:1.0];
+        [self refreshUI];
+    }
+}
+
+// Show sending mark if the message hasn't been sent after 1 second
+- (void)showSendingMarkInCell:(SYMessageTableViewCell *)cell
+{
+    cell.sendingMark.hidden = NO;
+    [cell setNeedsLayout];
+}
+
+- (void)didReceiveReceipt:(NSNotification *)notification
+{
+    [self.class cancelPreviousPerformRequestsWithTarget:self];
+}
+
 - (void)didReceiveMessage:(NSNotification *)notification
 {
     NSArray *messageModels = notification.object;
-    SYMessageModel *lastMsgModel = messageModels.lastObject;
-    NSCountedSet *countedContactSet = [NSCountedSet setWithArray:self.contacts];
     
     for (SYContactModel *contact in self.contacts) {
-        if ([contact.contactID isEqualToString:lastMsgModel.sender]) {
-            contact.lastMessage = lastMsgModel;
-            
-            // If visible view controller is chat VC, unread message count is 0.
-            if ([self.visibleViewController isKindOfClass:[SYChatViewController class]]) {
-                contact.unreadMessageCount = 0;
-            } else {
-                contact.unreadMessageCount += [countedContactSet countForObject:contact.contactID];
-            }
+        NSIndexSet *indexSet = [messageModels indexesOfObjectsPassingTest:^BOOL(SYMessageModel *messageModel, NSUInteger idx, BOOL *stop) {
+            return [messageModel.sender isEqualToString:contact.contactID];
+        }];
+        contact.lastMessage = [messageModels objectsAtIndexes:indexSet].lastObject;
+        
+        // If visible view controller is chat VC, unread message count is 0.
+        if ([self.visibleViewController isKindOfClass:[SYChatViewController class]]) {
+            contact.unreadMessageCount = 0;
+        } else {
+            contact.unreadMessageCount += indexSet.count;
         }
     }
     
     if (self.messageService.totalUnreadMessageCount) {
-//        [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
-        [self showTabBarBadgeValue];
+        // TODO: Play alert sound
     }
     
     [self refreshUI];
+}
+
+- (void)didDeleteLastMessage:(NSNotification *)notification
+{
+    SYContactModel *contactModel = notification.object;
+    SYMessageModel *messageModel = [self.messageService findLastMessageWithContact:contactModel.contactID];
+    
+    NSUInteger index = [self.contacts indexOfObject:contactModel];
+    [self.contacts[index] setLastMessage:messageModel];
 }
 
 - (void)refreshUI
 {
     [self.contacts sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"lastMsgTime" ascending:NO]]];
     [self.tableView reloadData];
-}
-
-- (void)showTabBarBadgeValue
-{
-    NSUInteger badge = self.messageService.totalUnreadMessageCount;
-    self.tabBarItem.badgeValue = @(badge).stringValue;
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badge];
-}
-
-- (void)hideTabBarBadgeValue
-{
-    self.tabBarItem.badgeValue = nil;
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 #pragma mark - Table view data source
@@ -210,12 +258,19 @@
     cell.badgeLabel.hidden = YES;
     
     [self showChatViewControllerFromContactList];
-    [self hideTabBarBadgeValue];
+    
+    SYContactModel *contact = self.contacts[indexPath.row];
+    if (contact.unreadMessageCount) {
+        [[SYSocketManager manager] readMessagesFromReceiver:contact.contactID];
+    }
 }
 
 - (void)showChatViewControllerFromContactList
 {
-    
+    SYChatViewController *chatVC = [[SYChatViewController alloc] init];
+    chatVC.contact = self.contacts[self.selectedIndexPath.row];
+    self.hidesBottomBarWhenPushed = YES;
+    [self showViewController:chatVC sender:self];
 }
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath

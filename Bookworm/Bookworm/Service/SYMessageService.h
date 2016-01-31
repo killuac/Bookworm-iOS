@@ -18,4 +18,6 @@
 - (void)updateIsReadStatusFromReceiver:(NSString *)userID;
 - (void)updateIsSentStatusWithModel:(SYMessageModel *)messageModel;
 
+- (SYMessageModel *)findLastMessageWithContact:(NSString *)contactID;
+
 @end

@@ -39,7 +39,7 @@
 
 - (void)setupApplication
 {
-    [self updateApplication];
+//    [self updateApplication];
     [self setupAppearance];
     [self setupAppAnalytics];
     [self registerNotification];
@@ -87,7 +87,7 @@
     [UICollectionView appearance].backgroundColor = [UIColor backgroundColor];
     
     [UITabBar appearance].tintColor = [UIColor primaryColor];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor primaryColor]} forState:UIControlStateSelected];
+//    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor primaryColor]} forState:UIControlStateSelected];
     [UINavigationBar appearance].tintColor = [UIColor primaryColor];
     [UINavigationBar appearance].backgroundColor = [UIColor primaryColor];
     [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName:[UIFont boldTitleFont], NSForegroundColorAttributeName:[UIColor titleColor]};

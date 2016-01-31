@@ -16,7 +16,7 @@
     return [self alertControllerWithTitle:title message:message actions:@[okay]];
 }
 
-+ (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message actions:(NSArray<UIAlertAction *> *)actions
++ (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message actions:(NSArray<UIAlertAction*> *)actions
 {
     UIAlertController *AC = [self alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     for (UIAlertAction *action in actions) {
@@ -25,12 +25,12 @@
     return AC;
 }
 
-+ (instancetype)actionSheetControllerWithActions:(NSArray<UIAlertAction *> *)actions
++ (instancetype)actionSheetControllerWithActions:(NSArray<UIAlertAction*> *)actions
 {
     return [self actionSheetControllerWithTitle:nil actions:actions];
 }
 
-+ (instancetype)actionSheetControllerWithTitle:(NSString *)title actions:(NSArray<UIAlertAction *> *)actions
++ (instancetype)actionSheetControllerWithTitle:(NSString *)title actions:(NSArray<UIAlertAction*> *)actions
 {
     UIAlertController *AC = [self alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     for (UIAlertAction *action in actions) {
@@ -48,23 +48,16 @@
 {
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"" style:UIAlertActionStyleCancel handler:nil];
     UIAlertController *AC = [UIAlertController actionSheetControllerWithActions:@[cancel]];
-    [AC.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    toolbar.clipsToBounds = YES;
-    toolbar.left = -(toolbar.width / 2);
-    toolbar.bottom = MEDIUM_MARGIN;
-    [AC.view setNeedsLayout];
+    [AC.view.subviews.firstObject setHidden:YES];
+    [toolbar setShadowImage:[UIImage new] forToolbarPosition:UIBarPositionAny];
+    toolbar.left = -MEDIUM_MARGIN;
     [AC.view addSubview:toolbar];
     return AC;
 }
 
-- (void)viewDidLayoutSubviews
-{
-    
-}
-
 - (void)show
 {
-    [self.visibleViewController showViewController:self sender:self.visibleViewController];
+    [self.visibleViewController presentViewController:self animated:YES completion:nil];
 }
 
 @end

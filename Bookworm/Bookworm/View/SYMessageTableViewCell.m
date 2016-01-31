@@ -32,13 +32,17 @@
     _titleLabel.textColor = [UIColor titleColor];
     [self.contentView addSubview:_titleLabel];
     
+    _genderIconView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    [self.contentView addSubview:_genderIconView];
+    
+    _sendingMark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_sending_mark"]];
+    _sendingMark.hidden = YES;
+    [self.contentView addSubview:_sendingMark];
+    
     _subtitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _subtitleLabel.font = [UIFont subtitleFont];
     _subtitleLabel.textColor = [UIColor subtitleColor];
     [self.contentView addSubview:_subtitleLabel];
-    
-    _genderIconView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    [self.contentView addSubview:_genderIconView];
     
     _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _timeLabel.textColor = [UIColor subtitleColor];
@@ -76,14 +80,17 @@
     _titleLabel.width = MIN(_timeLabel.width, width);
     _titleLabel.origin = CGPointMake(_avatarImageView.right + margin, _avatarImageView.top);
     
-    [_subtitleLabel sizeToFit];
-    _subtitleLabel.width = self.width - _avatarImageView.right - margin * 2;
-    _subtitleLabel.left = _titleLabel.left;
-    _subtitleLabel.bottom = self.height - margin;
-    
     _genderIconView.size = _genderIconView.image.size;
     _genderIconView.center = _titleLabel.center;
     _genderIconView.left =  _titleLabel.right + margin / 2;
+    
+    [_subtitleLabel sizeToFit];
+    _subtitleLabel.width = self.width - _avatarImageView.right - margin * 2;
+    _subtitleLabel.left = (_sendingMark.hidden) ? _titleLabel.left : _titleLabel.left + _sendingMark.width + margin / 2;
+    _subtitleLabel.bottom = self.height - margin;
+    
+    _sendingMark.center = _subtitleLabel.center;
+    _sendingMark.left = _titleLabel.left;
     
     width = _badgeLabel.width / 2;
     _badgeLabel.origin = CGPointMake(_avatarImageView.right - width, margin / 2);
