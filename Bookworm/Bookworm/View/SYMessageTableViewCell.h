@@ -18,4 +18,7 @@
 @property (nonatomic, strong, readonly) UILabel *timeLabel;
 @property (nonatomic, strong, readonly) UILabel *badgeLabel;
 
+- (void)showSendingMark;
+- (void)hideSendingMark;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SYTabBarController.h"
 
 @protocol SYViewControllerProtocol <SYViewProtocol>
 
@@ -23,6 +24,11 @@
 
 @property (nonatomic, assign) BOOL isLoadingData;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
+
+@property (nonatomic, strong ,readonly) NSString *userID;
+@property (nonatomic, strong, readonly) SYUserService *userService;
+@property (nonatomic, strong, readonly) SYMessageService *messageService;
+@property (nonatomic, strong, readonly) SYContactService *contactService;
 
 @property (nonatomic, strong, readonly) UITabBar *tabBar;
 @property (nonatomic, strong, readonly) UINavigationBar *navigationBar;

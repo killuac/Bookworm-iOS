@@ -19,6 +19,7 @@ NSString *const SYSocketMethodRead = @"READ";
 NSString *const SYSocketMethodDelete = @"DELETE";
 
 NSString *const SYSocketDidSendMessageNotification = @"SYSocketDidSendMessageNotification";
+NSString *const SYSocketDidReadMessageNotification = @"SYSocketDidReadMessageNotification";
 NSString *const SYSocketDidReceiveReceiptNotification = @"SYSocketDidReceiveReceiptNotification";
 NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMessageNotification";
 
@@ -26,7 +27,6 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 @interface SYSocketManager () <SRWebSocketDelegate>
 
 @property (nonatomic, strong) SRWebSocket *webSocket;
-@property (nonatomic, strong) SYMessageService *messageService;
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSUInteger reconnectCount;
@@ -145,54 +145,47 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 }
 
 #pragma mark - Message
-- (void)sendMessage:(id)content withMethod:(NSString *)socketMethod
+- (void)sendMessage:(id)model withMethod:(NSString *)socketMethod
 {
     if (self.isConnected) return;
     
     SYSocketRequestModel *requestModel = [SYSocketRequestModel model];
     requestModel.socketMethod = socketMethod;
-    requestModel.messageData = [content toJSONString];
+    requestModel.messageData = [model toJSONString];
     [self.webSocket send:[requestModel toJSONString]];
     
 //  Reschedule timer for save network resource (Heart beat is only sent at idle time)
     [self scheduleHeartBeat];
 }
 
-- (SYMessageModel *)messageModelWithContent:(NSString *)content receiver:(NSString *)userID
+- (void)sendMessageWithModel:(id)model
 {
-    SYMessageModel *messageModel = [SYMessageModel model];
-    messageModel.messageID = ++[GVUserDefaults standardUserDefaults].maxOutboxMessageID;
-    messageModel.sender = [GVUserDefaults standardUserDefaults].userID;
-    messageModel.receiver = userID;
-    messageModel.content = content;
-    messageModel.timestamp = [[NSDate date] timeIntervalSince1970];
-    
-    return messageModel;
+    [self sendMessage:@[model] withMethod:SYSocketMethodChat];
+    [self postNotificationName:SYSocketDidSendMessageNotification object:model];
 }
 
-- (void)sendMessage:(NSString *)content toReceiver:(NSString *)userID
+// Don't need post notification again while sending pending messages
+- (void)sendPendingMessages
 {
-    SYMessageModel *messageModel = [self messageModelWithContent:content receiver:userID];
-    [self sendMessage:messageModel withMethod:SYSocketMethodChat];
-    [self postNotificationName:SYSocketDidSendMessageNotification object:messageModel];
+    [self.messageService findAllPendingMessages:^(NSArray *result) {
+        [self sendMessage:result withMethod:SYSocketMethodChat];
+    }];
 }
 
-- (void)readMessagesFromReceiver:(NSString *)userID
+- (void)readMessagesFromSenderWithModel:(id)model
 {
-    [self.messageService updateIsReadStatusFromReceiver:userID];
-    [self sendMessage:[self messageModelWithContent:nil receiver:userID] withMethod:SYSocketMethodRead];
+    [self sendMessage:model withMethod:SYSocketMethodRead];
+    [self postNotificationName:SYSocketDidReadMessageNotification object:model];
 }
 
-- (void)deleteMessagesFromReceiver:(NSString *)userID
+- (void)deleteSingleMessageWithModel:(id)model
 {
-    [self.messageService deleteByKey:userID];
-    [self sendMessage:[self messageModelWithContent:nil receiver:userID] withMethod:SYSocketMethodDelete];
+    [self sendMessage:model withMethod:SYSocketMethodDelete];
 }
 
-- (void)deleteSingleMessage:(SYMessageModel *)messageModel
+- (void)deleteMessagesFromContactWithModel:(id)model
 {
-    [self.messageService deleteWithModel:messageModel];
-    [self sendMessage:messageModel withMethod:SYSocketMethodDelete];
+    [self sendMessage:model withMethod:SYSocketMethodDelete];
 }
 
 - (void)synchronizeMessages
@@ -232,19 +225,21 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
     switch (responseModel.statusCode) {
         case SYSocketStatusCodeConnected:
             [self synchronizeMessages];
+            [self sendPendingMessages];
             break;
             
         case SYSocketStatusCodeReceipt: {
             SYMessageModel *messageModel = [SYMessageModel modelWithString:responseModel.messageData];
-            [self.messageService updateIsSentStatusWithModel:messageModel];
+            [self.messageService updateIsSendingStatusWithModel:messageModel];
             [self postNotificationName:SYSocketDidReceiveReceiptNotification object:messageModel];
             break;
         }
             
         case SYSocketStatusCodeMessage: {
-            NSArray<SYMessageModel*> *messages = [JSONModel arrayOfModelsFromString:responseModel.messageData error:nil];
-            [self.messageService saveWithModels:messages result:^(id result) {
-                [self postNotificationName:SYSocketDidReceiveMessageNotification object:messages];
+            NSMutableArray<SYMessageModel*> *messageModels = [JSONModel arrayOfModelsFromString:responseModel.messageData error:nil];
+            [messageModels sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES]]];
+            [self.messageService saveWithModels:messageModels result:^(id result) {
+                [self postNotificationName:SYSocketDidReceiveMessageNotification object:messageModels];
             }];
             break;
         }

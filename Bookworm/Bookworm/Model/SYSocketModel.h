@@ -28,14 +28,17 @@
 
 @interface SYMessageModel : JSONModel
 
++ (instancetype)modelWithContent:(NSString *)content contactID:(NSString *)userID;
+
 @property (nonatomic, assign) NSUInteger messageID;
 @property (nonatomic, copy) NSString *sender;
 @property (nonatomic, copy) NSString *receiver;
 @property (nonatomic, copy) NSString *content;
-@property (nonatomic, assign) BOOL isSent;
+@property (nonatomic, assign) BOOL isSending;
 @property (nonatomic, assign) BOOL isRead;
 @property (nonatomic, assign) NSUInteger timestamp;
 
 @property (nonatomic, strong, readonly) NSDate<Ignore> *dateTime;
+@property (nonatomic, assign, readonly) BOOL isInboxMessage;
 
 @end

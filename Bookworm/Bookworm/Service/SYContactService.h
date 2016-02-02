@@ -11,6 +11,4 @@
 
 @interface SYContactService : SYBaseService
 
-@property (nonatomic, strong, readonly) NSArray<SYContactModel*> *contacts;
-
 @end

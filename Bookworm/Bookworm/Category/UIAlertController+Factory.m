@@ -19,9 +19,9 @@
 + (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message actions:(NSArray<UIAlertAction*> *)actions
 {
     UIAlertController *AC = [self alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    for (UIAlertAction *action in actions) {
+    [actions enumerateObjectsUsingBlock:^(UIAlertAction * _Nonnull action, NSUInteger idx, BOOL * _Nonnull stop) {
         [AC addAction:action];
-    }
+    }];
     return AC;
 }
 
@@ -33,9 +33,9 @@
 + (instancetype)actionSheetControllerWithTitle:(NSString *)title actions:(NSArray<UIAlertAction*> *)actions
 {
     UIAlertController *AC = [self alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    for (UIAlertAction *action in actions) {
+    [actions enumerateObjectsUsingBlock:^(UIAlertAction * _Nonnull action, NSUInteger idx, BOOL * _Nonnull stop) {
         [AC addAction:action];
-    }
+    }];
     return AC;
 }
 

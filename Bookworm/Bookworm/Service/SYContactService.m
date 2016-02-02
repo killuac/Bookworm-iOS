@@ -10,6 +10,16 @@
 
 @implementation SYContactService
 
+- (void)updateWithModel:(id)model result:(SYServiceBlockType)result
+{
+    
+}
+
+- (void)deleteByKey:(NSString *)key result:(SYServiceBlockType)result
+{
+    
+}
+
 - (void)findByKey:(NSString *)key result:(SYServiceBlockType)result
 {
     

@@ -10,4 +10,19 @@
 
 @implementation SYSoundPlayer
 
++ (void)playMessageSentSound
+{
+	
+}
+
++ (void)playMessageReceivedSound
+{
+	
+}
+
++ (void)playMessageReceivedVibrate
+{
+	
+}
+
 @end

@@ -6,14 +6,14 @@
         <attribute name="contactID" attributeType="String" syncable="YES"/>
         <attribute name="dateTime" attributeType="Date" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isBlocked" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isBlocked" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="relationship" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" syncable="YES"/>
         <attribute name="userID" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
     <entity name="Inbox" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isRead" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isRead" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="messageID" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="receiver" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="sender" attributeType="String" indexed="YES" syncable="YES"/>
@@ -25,7 +25,7 @@
     </entity>
     <entity name="Outbox" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isSent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isSending" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="messageID" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="receiver" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="sender" attributeType="String" indexed="YES" syncable="YES"/>
@@ -33,8 +33,8 @@
     </entity>
     <elements>
         <element name="Contact" positionX="-36" positionY="9" width="128" height="180"/>
-        <element name="Inbox" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Inbox" positionX="-63" positionY="-18" width="128" height="135"/>
         <element name="KeyValue" positionX="-45" positionY="72" width="128" height="73"/>
-        <element name="Outbox" positionX="-54" positionY="-9" width="128" height="133"/>
+        <element name="Outbox" positionX="-54" positionY="-9" width="128" height="135"/>
     </elements>
 </model>

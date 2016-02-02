@@ -7,13 +7,12 @@
 //
 
 #import "SYChatViewController.h"
-#import "SYMessageService.h"
+#import "SYBubbleTableViewCell.h"
 
 NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControllerDidDeleteLastMessage";
 
 @interface SYChatViewController ()
 
-@property (nonatomic, strong) SYMessageService *messageService;
 @property (nonatomic, strong) NSMutableArray<SYMessageModel*> *messages;
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -26,8 +25,7 @@ NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControlle
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.messageService = [SYMessageService service];
-        self.messages = [NSMutableArray array];
+        _messages = [NSMutableArray array];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didSendMessage:)
@@ -58,6 +56,7 @@ NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControlle
     
     [self addSubviews];
     [self loadData];
+    [self readAllMessages];
 }
 
 - (void)addSubviews
@@ -71,9 +70,14 @@ NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControlle
 
 - (void)loadData
 {
-    [self.messageService findByKey:self.contact.contactID result:^(id result) {
-        
+    [self.messageService findByParameters:@[self.contact.contactID, [NSDate date]] result:^(NSArray *result) {
+        [self.messages addObjectsFromArray:result];
     }];
+}
+
+- (void)refreshUI
+{
+    
 }
 
 - (void)loadEarlierData
@@ -85,20 +89,28 @@ NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControlle
 - (void)didSendMessage:(NSNotification *)notification
 {
     NSUInteger index = [self.messages indexOfObject:notification.object];
-    id cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-    [self performSelector:@selector(showSendingMarkInCell:) withObject:cell afterDelay:1.0];
+    [self showSendingMarkAtRow:index];
 }
 
 // Show sending mark if the message hasn't been sent after 1 second
-- (void)showSendingMarkInCell:(UITableViewCell *)cell
+- (void)showSendingMarkAtRow:(NSInteger)row
 {
-//    cell.sendingMark.hidden = NO;
-    [cell setNeedsLayout];
+    id cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
+    [cell performSelector:@selector(showSendingActivityIndicator) withObject:nil afterDelay:1.0];
 }
 
 - (void)didReceiveReceipt:(NSNotification *)notification
 {
-    [self.class cancelPreviousPerformRequestsWithTarget:self];
+    SYMessageModel *receiptModel = notification.object;
+    NSUInteger index = [self.messages indexOfObjectPassingTest:^BOOL(SYMessageModel *msgModel, NSUInteger idx, BOOL *stop) {
+        return ([msgModel.sender isEqualToString:receiptModel.sender] && msgModel.messageID == receiptModel.messageID);
+    }];
+    
+    if (index != NSNotFound) {
+        id cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        [[cell class] cancelPreviousPerformRequestsWithTarget:cell];
+        [cell dismissSendingActivityIndicator];
+    }
 }
 
 - (void)didReceiveMessage:(NSNotification *)notification
@@ -109,15 +121,16 @@ NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControlle
     }];
     [self.messages addObjectsFromArray:[messageModels objectsAtIndexes:indexSet]];
     
-    self.contact.unreadMessageCount = 0;
-    [[SYSocketManager manager] readMessagesFromReceiver:self.contact.contactID];
-    
+    [self readAllMessages];
     [self refreshUI];
 }
 
-- (void)refreshUI
+- (void)readAllMessages
 {
-    
+    if (self.contact.unreadMessageCount) {
+        self.contact.unreadMessageCount = 0;
+        [self.messageService updateIsReadStatusWithSenderID:self.contact.contactID];
+    }
 }
 
 #pragma mark - Table view data source

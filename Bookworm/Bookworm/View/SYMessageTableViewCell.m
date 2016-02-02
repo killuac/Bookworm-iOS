@@ -96,4 +96,16 @@
     _badgeLabel.origin = CGPointMake(_avatarImageView.right - width, margin / 2);
 }
 
+- (void)showSendingMark
+{
+    self.sendingMark.hidden = NO;
+    [self setNeedsLayout];
+}
+
+- (void)hideSendingMark
+{
+    self.sendingMark.hidden = YES;
+    [self setNeedsLayout];
+}
+
 @end

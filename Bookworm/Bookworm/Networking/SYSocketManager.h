@@ -9,9 +9,9 @@
 @import SocketRocket;
 
 FOUNDATION_EXPORT NSString *const SYSocketDidSendMessageNotification;
+FOUNDATION_EXPORT NSString *const SYSocketDidReadMessageNotification;
 FOUNDATION_EXPORT NSString *const SYSocketDidReceiveReceiptNotification;
 FOUNDATION_EXPORT NSString *const SYSocketDidReceiveMessageNotification;
-
 
 typedef NS_ENUM(NSUInteger, SYSocketStatusCode) {
     SYSocketStatusCodeConnected = 1000,         // Connected IM server
@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, SYSocketStatusCode) {
     SYSocketStatusCodeClosed = 2000             // Close connection
 };
 
-@class SYMessageModel;
+@class SYMessageService;
 
 @interface SYSocketManager : NSObject
 
@@ -30,13 +30,14 @@ typedef NS_ENUM(NSUInteger, SYSocketStatusCode) {
 
 @property (nonatomic, assign, readonly) SRReadyState readyState;
 @property (nonatomic, assign, readonly) BOOL isConnecting;
+@property (nonatomic, strong, readonly) SYMessageService *messageService;
 
 - (void)connect;
 - (void)disconnect;
 
-- (void)sendMessage:(NSString *)content toReceiver:(NSString *)userID;
-- (void)readMessagesFromReceiver:(NSString *)userID;
-- (void)deleteMessagesFromReceiver:(NSString *)userID;
-- (void)deleteSingleMessage:(SYMessageModel *)messageModel;
+- (void)sendMessageWithModel:(id)model;
+- (void)readMessagesFromSenderWithModel:(id)model;
+- (void)deleteSingleMessageWithModel:(id)model;
+- (void)deleteMessagesFromContactWithModel:(id)model;
 
 @end

@@ -15,8 +15,6 @@ typedef void (^SYServiceBlockType)(id result);
 @protocol SYServiceProtocol <NSObject>
 
 @optional
-- (void)findOne:(SYServiceBlockType) result;
-
 - (void)findAll:(SYServiceBlockType)result;
 
 - (void)findByKey:(NSString *)key result:(SYServiceBlockType)result;
@@ -29,9 +27,9 @@ typedef void (^SYServiceBlockType)(id result);
 
 - (void)saveWithModels:(NSArray *)models result:(SYServiceBlockType)result;
 
-- (void)deleteWithModel:(id)model;
+- (void)deleteWithModel:(id)model result:(SYServiceBlockType)result;
 
-- (void)deleteByKey:(NSString *)key;
+- (void)deleteByKey:(NSString *)key result:(SYServiceBlockType)result;
 
 @end
 

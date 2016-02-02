@@ -24,12 +24,12 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:IDENTIFIER_COMMON_CELL];
     
     _viewControllerClasses = [NSMutableArray array];
-    for (Class class in ClassGetSubClasses([UIViewController class])) {
+    [ClassGetSubClasses([UIViewController class]) enumerateObjectsUsingBlock:^(Class class, NSUInteger idx, BOOL *stop) {
         NSString *className = NSStringFromClass(class);
         if ([className hasPrefix:@"SY"] && ![className isEqual:@"SYScrollViewController"]) {
             [_viewControllerClasses addObject:NSStringFromClass(class)];
         }
-    }
+    }];
     
     [self.viewControllerClasses sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         return [obj1 compare:obj2];

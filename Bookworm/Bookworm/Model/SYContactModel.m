@@ -22,7 +22,15 @@
 
 - (BOOL)isEqual:(id)object
 {
-    return [self.contactID isEqual:[object contactID]];
+    NSMutableArray *selfKeys = [[self toDictionary].allKeys mutableCopy];
+    [selfKeys removeObject:@"bgImageData"];
+    NSData *selfData = [self toJSONDataWithKeys:selfKeys];
+    
+    NSMutableArray *objectKeys = [[object toDictionary].allKeys mutableCopy];
+    [objectKeys removeObject:@"bgImageData"];
+    NSData *otherData = [self toJSONDataWithKeys:selfKeys];
+    
+    return [[selfData toMD5String] isEqualToString:[otherData toMD5String]];
 }
 
 @end

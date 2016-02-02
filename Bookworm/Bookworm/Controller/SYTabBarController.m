@@ -30,7 +30,19 @@
 {
     [super viewDidLoad];
     
+    [self instantiateServices];
     [self addViewControllers];
+}
+
+- (void)instantiateServices
+{
+    _userService = [SYUserService service];
+    _contactService = [SYContactService service];
+}
+
+- (SYMessageService *)messageService
+{
+    return [SYSocketManager manager].messageService;
 }
 
 - (void)addViewControllers

@@ -24,6 +24,7 @@
 #import "SYAppSetting.h"
 #import "SYServerAPI.h"
 #import "SYUtility.h"
+#import "SYSoundPlayer.h"
 #import "SYSessionManager.h"
 #import "SYSocketManager.h"
 

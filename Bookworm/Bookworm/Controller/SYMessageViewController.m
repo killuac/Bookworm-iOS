@@ -8,13 +8,10 @@
 
 #import "SYMessageViewController.h"
 #import "SYMessageTableViewCell.h"
-#import "SYContactService.h"
 #import "SYChatViewController.h"
 
 @interface SYMessageViewController ()
 
-@property (nonatomic, strong) SYContactService *contactService;
-@property (nonatomic, strong) SYMessageService *messageService;
 @property (nonatomic, strong) NSMutableArray<SYContactModel*> *contacts;
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -27,8 +24,6 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.contactService = [SYContactService service];
-        self.messageService = [SYMessageService service];
         self.contacts = [NSMutableArray array];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -44,6 +39,11 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didReceiveMessage:)
                                                      name:SYSocketDidReceiveMessageNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didReadMessage:)
+                                                     name:SYSocketDidReadMessageNotification
                                                    object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -112,77 +112,124 @@
 
 - (void)loadData
 {
-    [self.contactService findByKey:[GVUserDefaults standardUserDefaults].userID result:^(NSArray<SYContactModel*> *result) {
+    [self loadData:nil];
+}
+
+- (void)loadData:(SYNoParameterBlockType)completion
+{
+    [self.contactService findByKey:self.userID result:^(NSArray<SYContactModel*> *result) {
         [self.contacts addObjectsFromArray:result];
-    }];
-}
-
-#pragma mark - Message handling
-- (void)didSendMessage:(NSNotification *)notification
-{
-    SYMessageModel *messageModel = notification.object;
-    NSUInteger index = [self.contacts indexOfObjectPassingTest:^BOOL(SYContactModel *contact, NSUInteger idx, BOOL * stop) {
-        return [contact.contactID isEqualToString:messageModel.receiver];
-    }];
-    
-    if (index != NSNotFound) {
-        [self.contacts[index] setLastMessage:messageModel];
-        id cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-        [self performSelector:@selector(showSendingMarkInCell:) withObject:cell afterDelay:1.0];
         [self refreshUI];
-    }
-}
-
-// Show sending mark if the message hasn't been sent after 1 second
-- (void)showSendingMarkInCell:(SYMessageTableViewCell *)cell
-{
-    cell.sendingMark.hidden = NO;
-    [cell setNeedsLayout];
-}
-
-- (void)didReceiveReceipt:(NSNotification *)notification
-{
-    [self.class cancelPreviousPerformRequestsWithTarget:self];
-}
-
-- (void)didReceiveMessage:(NSNotification *)notification
-{
-    NSArray *messageModels = notification.object;
-    
-    for (SYContactModel *contact in self.contacts) {
-        NSIndexSet *indexSet = [messageModels indexesOfObjectsPassingTest:^BOOL(SYMessageModel *messageModel, NSUInteger idx, BOOL *stop) {
-            return [messageModel.sender isEqualToString:contact.contactID];
-        }];
-        contact.lastMessage = [messageModels objectsAtIndexes:indexSet].lastObject;
-        
-        // If visible view controller is chat VC, unread message count is 0.
-        if ([self.visibleViewController isKindOfClass:[SYChatViewController class]]) {
-            contact.unreadMessageCount = 0;
-        } else {
-            contact.unreadMessageCount += indexSet.count;
-        }
-    }
-    
-    if (self.messageService.totalUnreadMessageCount) {
-        // TODO: Play alert sound
-    }
-    
-    [self refreshUI];
-}
-
-- (void)didDeleteLastMessage:(NSNotification *)notification
-{
-    SYContactModel *contactModel = notification.object;
-    SYMessageModel *messageModel = [self.messageService findLastMessageWithContact:contactModel.contactID];
-    
-    NSUInteger index = [self.contacts indexOfObject:contactModel];
-    [self.contacts[index] setLastMessage:messageModel];
+        if (completion) completion();
+    }];
 }
 
 - (void)refreshUI
 {
-    [self.contacts sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"lastMsgTime" ascending:NO]]];
+    [self.contacts sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]]];
     [self.tableView reloadData];
+}
+
+#pragma mark - Message handling
+- (SYContactModel *)contactWithUserId:(NSString *)userId
+{
+    NSUInteger index = [self.contacts indexOfObjectPassingTest:^BOOL(SYContactModel *contactModel, NSUInteger idx, BOOL *stop) {
+        return [contactModel.contactID isEqualToString:userId];
+    }];
+    return (index != NSNotFound) ? self.contacts[index] : nil;
+}
+
+- (void)didSendMessage:(NSNotification *)notification
+{
+    SYMessageModel *messageModel = notification.object;
+    SYContactModel *receiver = [self contactWithUserId:messageModel.receiver];
+    NSUInteger index = 0;
+    
+    if (receiver) {
+        receiver.lastMessage = messageModel;
+        index = [self.contacts indexOfObject:receiver];
+        [self showSendingMarkAtRow:index];
+        [self refreshUI];
+    } else {
+        [self loadData:^{
+            [self showSendingMarkAtRow:index];
+        }];
+    }
+}
+
+// Show sending mark if the message hasn't been sent after 1 second
+- (void)showSendingMarkAtRow:(NSUInteger)row
+{
+    id cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
+    [cell performSelector:@selector(showSendingMark) withObject:nil afterDelay:1.0];
+}
+
+- (void)didReceiveReceipt:(NSNotification *)notification
+{
+    SYMessageModel *messageModel = notification.object;
+    SYContactModel *receiver = [self contactWithUserId:messageModel.receiver];
+    if (receiver) {
+        NSUInteger index = [self.contacts indexOfObject:receiver];
+        id cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        [[cell class] cancelPreviousPerformRequestsWithTarget:cell];
+        [cell hideSendingMark];
+    }
+}
+
+/**
+ *  Play received sound and assign message to each contact
+ */
+- (void)didReceiveMessage:(NSNotification *)notification
+{
+    // If have anyone unread inbox message, play received sound.
+    NSArray *messageModels = notification.object;
+    NSIndexSet *indexSet = [messageModels indexesOfObjectsPassingTest:^BOOL(SYMessageModel *msgModel, NSUInteger idx, BOOL *stop) {
+        return (msgModel.isInboxMessage && !msgModel.isRead);
+    }];
+    if (indexSet.count) [SYSoundPlayer playMessageReceivedSound];
+    
+    // Assign the last message(inbox/outbox) to each contact
+    // Assign unread inbox message count to each contact
+    [self.contacts enumerateObjectsUsingBlock:^(SYContactModel *contact, NSUInteger idx, BOOL *stop) {
+        NSIndexSet *indexSet = [messageModels indexesOfObjectsPassingTest:^BOOL(SYMessageModel *msgModel, NSUInteger idx, BOOL *stop) {
+            return ([msgModel.sender isEqualToString:contact.contactID] || [msgModel.receiver isEqualToString:contact.contactID]);
+        }];
+        NSArray *subMsgModels = [messageModels objectsAtIndexes:indexSet];
+        contact.lastMessage = subMsgModels.lastObject;
+        
+        indexSet = [subMsgModels indexesOfObjectsPassingTest:^BOOL(SYMessageModel *msgModel, NSUInteger idx, BOOL *stop) {
+            return (msgModel.isInboxMessage && !msgModel.isRead);
+        }];
+        contact.unreadMessageCount += indexSet.count;
+    }];
+    
+    [self refreshUI];
+}
+
+- (void)didReadMessage:(NSNotification *)notification
+{
+    SYMessageModel *msgModel = notification.object;
+    SYContactModel *sender = [self contactWithUserId:msgModel.sender];
+    if (sender && sender.unreadMessageCount) {
+        sender.unreadMessageCount = 0;
+        [self refreshUI];
+    }
+}
+
+- (void)didDeleteLastMessage:(NSNotification *)notification
+{
+    SYMessageModel *msgModel = notification.object;
+    NSString *contactID = msgModel.isInboxMessage ? msgModel.sender : msgModel.receiver;
+    SYContactModel *contactModel = [self contactWithUserId:contactID];
+    
+    [self.messageService findLastOneWithContactID:contactID result:^(SYMessageModel *lastMsgModel) {
+        if (lastMsgModel) {
+            contactModel.lastMessage = lastMsgModel;
+        } else {
+            [self.contacts removeObject:contactModel];
+        }
+        [self refreshUI];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -211,6 +258,10 @@
         cell.badgeLabel.text = @(contact.unreadMessageCount).stringValue;
     } else {
         cell.badgeLabel.hidden = YES;
+    }
+    
+    if (contact.lastMessage.isSending) {
+        [cell showSendingMark];
     }
     
     return cell;
@@ -261,7 +312,7 @@
     
     SYContactModel *contact = self.contacts[indexPath.row];
     if (contact.unreadMessageCount) {
-        [[SYSocketManager manager] readMessagesFromReceiver:contact.contactID];
+        [self.messageService updateIsReadStatusWithSenderID:contact.contactID];
     }
 }
 
@@ -296,10 +347,8 @@
 - (void)deleteContactMessagesAtIndexPath:(NSIndexPath *)indexPath
 {
     SYContactModel *contact = self.contacts[indexPath.row];
-    
     [self.contacts removeObjectAtIndex:indexPath.row];
-    [self.contactService deleteWithModel:contact];
-    [[SYSocketManager manager] deleteMessagesFromReceiver:contact.contactID];
+    [self.contactService deleteByKey:contact.contactID result:nil];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
@@ -307,7 +356,6 @@
 {
     SYContactModel *contact = self.contacts[indexPath.row];
     contact.isFollowed ? contact.relationship-- : contact.relationship++;
-    
     [self.contactService updateWithModel:contact result:^(id result) {
         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }];
@@ -318,7 +366,6 @@
     SYContactModel *contact = self.contacts[indexPath.row];
     contact.lastMessage.isRead = !contact.lastMessage.isRead;
     contact.unreadMessageCount = (contact.lastMessage.isRead) ? 0 : 1;
-    
     [self.messageService updateWithModel:contact.lastMessage result:^(id result) {
         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }];

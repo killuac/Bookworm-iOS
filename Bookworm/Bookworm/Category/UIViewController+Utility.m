@@ -31,6 +31,37 @@
     return objc_getAssociatedObject(self, @selector(selectedIndexPath));
 }
 
+#pragma mark - Service properties
+- (id)tabBarController
+{
+    id tabBarVC = self.tabBarController ? self.tabBarController : self.presentingViewController.tabBarController;
+#ifdef DEBUG
+    NSLog(@"SERVICE IS NIL ERROR");
+#endif
+    return tabBarVC;
+}
+
+- (NSString *)userID
+{
+    return self.userService.userID;
+}
+
+- (SYUserService *)userService
+{
+    return [[self tabBarController] userService];
+}
+
+- (SYMessageService *)messageService
+{
+    return [[self tabBarController] messageService];
+}
+
+- (SYContactService *)contactService
+{
+    return [[self tabBarController] contactService];
+}
+
+#pragma mark - Readonly properties
 - (UITabBar *)tabBar
 {
     return self.tabBarController.tabBar;
@@ -136,13 +167,13 @@
 
 - (void)addTextFieldInView:(UIView *)view ToArray:(NSMutableArray *)array
 {
-    for (id subView in view.subviews) {
+    [view.subviews enumerateObjectsUsingBlock:^(__kindof UIView *subView, NSUInteger idx, BOOL *stop) {
         if (![subView isKindOfClass:[UITextField class]]) {
             [self addTextFieldInView:subView ToArray:array];
         } else {
             [array insertObject:subView atIndex:0];
         }
-    }
+    }];
 }
 
 #pragma mark - Show view controller

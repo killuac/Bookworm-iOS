@@ -106,11 +106,11 @@ typedef void (^SYAspectHandlerBlock)(id<AspectInfo> aspectInfo);
     } error:NULL];
     
 //  Hook events
-    for (NSString *className in self.configs.allKeys) {
+    [self.configs.allKeys enumerateObjectsUsingBlock:^(NSString *className, NSUInteger idx, BOOL *stop) {
         Class clazz = NSClassFromString(className);
         NSDictionary *config = self.configs[className];
         
-        for (NSDictionary *event in config[SYLogTrackedEvents]) {
+        [config[SYLogTrackedEvents] enumerateObjectsUsingBlock:^(NSDictionary *event, NSUInteger idx, BOOL *stop) {
             SEL selector = NSSelectorFromString(event[SYLogEventSelectorName]);
             SYAspectHandlerBlock block = event[SYLogEventHandlerBlock];
             
@@ -123,8 +123,8 @@ typedef void (^SYAspectHandlerBlock)(id<AspectInfo> aspectInfo);
                     }
                 });
             } error:NULL];
-        }
-    }
+        }];
+    }];
 }
 
 - (BOOL)isNeedLoggingForAspectInfo:(id<AspectInfo>)aspectInfo

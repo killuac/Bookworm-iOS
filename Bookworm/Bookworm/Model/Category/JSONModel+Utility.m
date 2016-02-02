@@ -23,10 +23,10 @@
     }];
     
     NSMutableArray *keyValuePairs = [NSMutableArray array];
-    for (NSString *key in sortedKeys) {
+    [sortedKeys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
         NSString *kvPair = [NSString stringWithFormat:@"%@=%@", key, dictionary[key]];
         [keyValuePairs addObject:kvPair];
-    }
+    }];
     
     NSString *paramString = [keyValuePairs componentsJoinedByString:@","];
     dictionary[@"signature"] = [[NSString stringWithFormat:@"%@%@", paramString, [SYAppSetting defaultAppSetting].signatureSalt] toSHA1String];

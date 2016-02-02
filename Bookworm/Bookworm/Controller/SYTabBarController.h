@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SYUserService.h"
+#import "SYMessageService.h"
+#import "SYContactService.h"
 
 @interface SYTabBarController : UITabBarController <UITabBarControllerDelegate>
+
+@property (nonatomic, strong, readonly) SYUserService *userService;
+@property (nonatomic, strong, readonly) SYMessageService *messageService;
+@property (nonatomic, strong, readonly) SYContactService *contactService;
 
 @end

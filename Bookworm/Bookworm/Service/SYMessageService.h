@@ -15,9 +15,11 @@
 @property (nonatomic, strong, readonly) SYMessageModel *lastOutboxMessage;
 @property (nonatomic, assign, readonly) NSUInteger totalUnreadMessageCount;
 
-- (void)updateIsReadStatusFromReceiver:(NSString *)userID;
-- (void)updateIsSentStatusWithModel:(SYMessageModel *)messageModel;
+- (void)sendMessageWithContent:(NSString *)content toReceiverID:(NSString *)userID;
+- (void)updateIsReadStatusWithSenderID:(NSString *)userID;
+- (void)updateIsSendingStatusWithModel:(SYMessageModel *)messageModel;
 
-- (SYMessageModel *)findLastMessageWithContact:(NSString *)contactID;
+- (void)findAllPendingMessages:(SYServiceBlockType)result;
+- (void)findLastOneWithContactID:(NSString *)userID result:(SYServiceBlockType)result;
 
 @end

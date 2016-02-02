@@ -10,9 +10,9 @@
 
 @interface SYAccountModel : JSONModel
 
-@property (nonatomic, copy) NSString *email;
-@property (nonatomic, copy) NSString *mobile;
-@property (nonatomic, copy) NSString *smsCode;
+@property (nonatomic, copy) NSString<Optional> *email;
+@property (nonatomic, copy) NSString<Optional> *mobile;
+@property (nonatomic, copy) NSString<Optional> *smsCode;
 @property (nonatomic, copy) NSString *password;
 
 @end

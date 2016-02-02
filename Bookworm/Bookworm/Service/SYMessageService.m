@@ -13,12 +13,12 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.totalUnreadMessageCount = [self getUnreadMessageCount];
+        self.totalUnreadMessageCount = [self countForUnreadMessage];
     }
     return self;
 }
 
-- (NSUInteger)getUnreadMessageCount
+- (NSUInteger)countForUnreadMessage
 {
     return 0;
 }
@@ -45,34 +45,61 @@
     return nil;
 }
 
+#pragma mark - Update and save
+- (void)sendMessageWithContent:(NSString *)content toReceiverID:(NSString *)userID
+{
+    
+    [[SYSocketManager manager] readMessagesFromSenderWithModel:[SYMessageModel modelWithContent:content contactID:userID]];
+}
+
 - (void)saveWithModels:(NSArray<SYMessageModel*> *)models result:(SYServiceBlockType)result
 {
     // TODO: Save data to database
     
-    NSIndexSet *indexSet = [models indexesOfObjectsPassingTest:^BOOL(SYMessageModel *messageModel, NSUInteger idx, BOOL *stop) {
-        return ([messageModel.receiver isEqualToString:self.userID] && !messageModel.isRead);
-    }];
-    self.totalUnreadMessageCount += indexSet.count;
+    self.totalUnreadMessageCount = [self countForUnreadMessage];
 }
 
-- (void)updateIsReadStatusFromReceiver:(NSString *)userID
+// READ: the message content is sender's userID
+- (void)updateIsReadStatusWithSenderID:(NSString *)userID
 {
     
+    self.totalUnreadMessageCount = [self countForUnreadMessage];
+    [[SYSocketManager manager] readMessagesFromSenderWithModel:[SYMessageModel modelWithContent:userID contactID:nil]];
 }
 
-- (void)updateIsSentStatusWithModel:(SYMessageModel *)messageModel
+- (void)updateIsSendingStatusWithModel:(SYMessageModel *)messageModel
+{
+//  TODO: Update isSending status and timestamp with new date
+}
+
+- (void)deleteWithModel:(SYMessageModel *)model result:(SYServiceBlockType)result
 {
     
+    [[SYSocketManager manager] deleteMessagesFromContactWithModel:model];
 }
 
-- (void)deleteByKey:(NSString *)key
+// DELETE: the message content is contact's userID
+- (void)deleteByKey:(NSString *)userID result:(SYServiceBlockType)result
 {
     
+    [[SYSocketManager manager] deleteMessagesFromContactWithModel:[SYMessageModel modelWithContent:userID contactID:nil]];
 }
 
-- (SYMessageModel *)findLastMessageWithContact:(NSString *)contactID
+#pragma mark - Find
+- (void)findAllPendingMessages:(SYServiceBlockType)result
 {
-    return nil;
+//  TODO:
+}
+
+- (void)findByParameters:(NSArray *)parameters result:(SYServiceBlockType)result
+{
+//    NSString *userID = parameters.firstObject;
+//    NSDate *date = parameters.lastObject;
+}
+
+- (void)findLastOneWithContactID:(NSString *)userID result:(SYServiceBlockType)result
+{
+    
 }
 
 @end
