@@ -32,7 +32,7 @@
 }
 
 #pragma mark - Service properties
-- (id)tabBarController
+- (id)tabBarVC
 {
     id tabBarVC = self.tabBarController ? self.tabBarController : self.presentingViewController.tabBarController;
 #ifdef DEBUG
@@ -48,17 +48,17 @@
 
 - (SYUserService *)userService
 {
-    return [[self tabBarController] userService];
+    return [[self tabBarVC] userService];
 }
 
 - (SYMessageService *)messageService
 {
-    return [[self tabBarController] messageService];
+    return [[self tabBarVC] messageService];
 }
 
 - (SYContactService *)contactService
 {
-    return [[self tabBarController] contactService];
+    return [[self tabBarVC] contactService];
 }
 
 #pragma mark - Readonly properties

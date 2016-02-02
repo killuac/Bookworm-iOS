@@ -13,6 +13,8 @@
 
 @interface AppDelegate ()
 
+@property (nonatomic, strong) SYDeviceService *deviceService;
+
 @end
 
 @implementation AppDelegate
@@ -67,6 +69,7 @@
         [self updateLocalDatabase];
         [SYServerAPI fetchAndSave];
     }
+    _deviceService = [SYDeviceService service];
 }
 
 - (void)updateLocalDatabase
@@ -135,7 +138,7 @@
     SYDeviceModel *deviceModel = [SYDeviceModel model];
     deviceModel.deviceToken = deviceToken;
     deviceModel.allowPush = [UIApplication sharedApplication].isRegisteredForRemoteNotifications;
-    [[SYDeviceService service] updateWithModel:deviceModel result:nil];
+    [self.deviceService updateWithModel:deviceModel result:nil];
 }
 
 - (void)closeRemoteNotification
@@ -172,7 +175,7 @@
 - (void)registerDevice
 {
     SYDeviceModel *deviceModel = [SYDeviceModel model];
-    [[SYDeviceService service] createWithModel:deviceModel result:^(id result) {
+    [self.deviceService createWithModel:deviceModel result:^(id result) {
         [GVUserDefaults standardUserDefaults].isFirstLaunch = NO;
     }];
 }

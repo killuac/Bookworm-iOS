@@ -7,22 +7,23 @@
 //
 
 #import "SYSoundPlayer.h"
+@import AudioToolbox;
 
 @implementation SYSoundPlayer
 
 + (void)playMessageSentSound
 {
-	
+    AudioServicesPlaySystemSound(1004);
 }
 
 + (void)playMessageReceivedSound
 {
-	
+    AudioServicesPlaySystemSound(1003);
 }
 
 + (void)playMessageReceivedVibrate
 {
-	
+	AudioServicesPlaySystemSound(1011);
 }
 
 @end
