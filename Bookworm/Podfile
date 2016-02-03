@@ -19,7 +19,5 @@ pod 'GVUserDefaults'
 pod 'NYXImagesKit'
 pod 'SVProgressHUD', :head
 pod 'UMengAnalytics-NO-IDFA'
-#pod 'JSQSystemSoundPlayer', '~>2.0'
-#pod 'JSQMessagesViewController', '~>7.2'
 
 end

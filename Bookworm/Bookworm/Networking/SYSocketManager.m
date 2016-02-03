@@ -64,9 +64,11 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 - (void)instantiateWebSocket
 {
     NSURL *serverURL = [NSURL URLWithString:[SYServerAPI sharedServerAPI].imServerAddress];
-    _webSocket = [[SRWebSocket alloc] initWithURL:serverURL];
-    self.webSocket.delegate = self;
-    [self.webSocket setDelegateOperationQueue:[[NSOperationQueue alloc] init]];
+    if (serverURL) {
+        _webSocket = [[SRWebSocket alloc] initWithURL:serverURL];
+        self.webSocket.delegate = self;
+        [self.webSocket setDelegateOperationQueue:[[NSOperationQueue alloc] init]];
+    }
 }
 
 + (BOOL)automaticallyNotifiesObserversOfReadyState

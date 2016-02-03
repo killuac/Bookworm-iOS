@@ -11,7 +11,7 @@
 #import "SYMessageService.h"
 #import "SYContactService.h"
 
-@interface SYTabBarController : UITabBarController <UITabBarControllerDelegate>
+@interface SYTabBarController : UITabBarController <UITabBarControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong, readonly) SYUserService *userService;
 @property (nonatomic, strong, readonly) SYMessageService *messageService;

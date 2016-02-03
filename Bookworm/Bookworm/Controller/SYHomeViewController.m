@@ -65,6 +65,11 @@
     
 }
 
+- (void)reloadData
+{
+    
+}
+
 #pragma mark - Collection view data source
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -74,6 +79,17 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return [[UICollectionViewCell alloc] initWithFrame:CGRectZero];
+}
+
+#pragma mark - Event handling
+- (void)exchange:(UIButton *)button
+{
+    
+}
+
+- (void)search:(UIBarButtonItem *)button
+{
+    
 }
 
 @end

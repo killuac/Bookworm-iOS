@@ -89,11 +89,13 @@
     [UITableView appearance].backgroundColor = [UIColor backgroundColor];
     [UICollectionView appearance].backgroundColor = [UIColor backgroundColor];
     
+    [UITabBar appearance].translucent = NO;
     [UITabBar appearance].tintColor = [UIColor primaryColor];
-//    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor primaryColor]} forState:UIControlStateSelected];
+    
+    [UINavigationBar appearance].translucent = NO;
     [UINavigationBar appearance].tintColor = [UIColor primaryColor];
-    [UINavigationBar appearance].backgroundColor = [UIColor primaryColor];
-    [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName:[UIFont boldTitleFont], NSForegroundColorAttributeName:[UIColor titleColor]};
+    [UINavigationBar appearance].barTintColor = [UIColor primaryColor];
+    [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName:[UIFont boldTitleFont], NSForegroundColorAttributeName:[UIColor whiteColor]};
     
     [UIPageControl appearance].pageIndicatorTintColor = [UIColor whiteColor];
     [UIPageControl appearance].currentPageIndicatorTintColor = [UIColor grayColor];

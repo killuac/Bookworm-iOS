@@ -61,6 +61,11 @@
     return self;
 }
 
+- (SYMessageService *)messageService
+{
+    return [SYSocketManager manager].messageService;
+}
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -186,7 +191,13 @@
     NSIndexSet *indexSet = [messageModels indexesOfObjectsPassingTest:^BOOL(SYMessageModel *msgModel, NSUInteger idx, BOOL *stop) {
         return (msgModel.isInboxMessage && !msgModel.isRead);
     }];
-    if (indexSet.count) [SYSoundPlayer playMessageReceivedSound];
+    if (indexSet.count) {
+        if ([self.visibleViewController isKindOfClass:[SYChatViewController class]]) {
+            [SYSoundPlayer playMessageReceivedSound];
+        } else {
+            [SYSoundPlayer playMessageReceivedAlert];
+        }
+    }
     
     // Assign the last message(inbox/outbox) to each contact
     // Assign unread inbox message count to each contact

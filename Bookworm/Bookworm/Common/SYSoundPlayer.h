@@ -11,7 +11,10 @@
 @interface SYSoundPlayer : NSObject
 
 + (void)playMessageSentSound;
++ (void)playMessageSentAlert;
 + (void)playMessageReceivedSound;
++ (void)playMessageReceivedAlert;
+
 + (void)playMessageReceivedVibrate;
 
 @end

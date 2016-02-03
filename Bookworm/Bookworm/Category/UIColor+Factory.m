@@ -12,12 +12,24 @@
 
 + (instancetype)primaryColor
 {
-    return [UIColor colorWithRed:238/255.0 green:189/255.0 blue:68/255.0 alpha:1.0];
+//    return [UIColor colorWithRed:162/255.0 green:175/255.0 blue:195/255.0 alpha:1.0];     // 蓝灰
+//    return [UIColor colorWithRed:115/255.0 green:138/255.0 blue:153/255.0 alpha:1.0];       // 墨灰
+//    return [UIColor colorWithRed:195/255.0 green:214/255.0 blue:29/255.0 alpha:1.0];        // 柳黄
+//    return [UIColor colorWithRed:63/255.0 green:74/255.0 blue:80/255.0 alpha:1.0];       // 苍色
+//    return [UIColor colorWithRed:142/255.0 green:150/255.0 blue:95/255.0 alpha:1.0];      // 柳煤竹茶
+//    return [UIColor colorWithRed:110/255.0 green:101/255.0 blue:121/255.0 alpha:1.0];     // 鸠羽紫
+//    return [UIColor colorWithRed:200/255.0 green:176/255.0 blue:143/255.0 alpha:1.0];     // 远州鼠
+//    return [UIColor colorWithRed:158/255.0 green:184/255.0 blue:161/255.0 alpha:1.0];       // 锖青磁
+    return [UIColor colorWithRed:238/255.0 green:222/255.0 blue:176/255.0 alpha:1.0];
 }
 
 + (instancetype)backgroundColor
 {
-    return [UIColor colorWithRed:236/255.0 green:238/255.0 blue:242/255.0 alpha:1.0];
+//    return [UIColor colorWithRed:255/255.0 green:251/255.0 blue:240/255.0 alpha:1.0];       // 象牙白
+//    return [UIColor colorWithRed:240/255.0 green:252/255.0 blue:255/255.0 alpha:1.0];       // 雪白
+//    return [UIColor colorWithRed:214/255.0 green:236/255.0 blue:240/255.0 alpha:1.0];       // 月白
+//    return [UIColor colorWithRed:243/255.0 green:249/255.0 blue:241/255.0 alpha:1.0];       // 荼白
+    return [UIColor colorWithRed:240/255.0 green:240/255.0 blue:244/255.0 alpha:1.0];       // 铅白
 }
 
 + (instancetype)lightBackgroundColor
@@ -37,12 +49,12 @@
 
 + (instancetype)bubbleBackgroundColor
 {
-    return [UIColor colorWithRed:194/255.0 green:223/255.0 blue:232/255.0 alpha:1];
+    return [UIColor colorWithRed:194/255.0 green:223/255.0 blue:232/255.0 alpha:1.0];
 }
 
 + (instancetype)titleColor
 {
-    return [UIColor colorWithRed:88/255.0 green:88/255.0 blue:97/255.0 alpha:1.0];
+    return [UIColor colorWithRed:67/255.0 green:52/255.0 blue:27/255.0 alpha:1.0];
 }
 
 + (instancetype)subtitleColor

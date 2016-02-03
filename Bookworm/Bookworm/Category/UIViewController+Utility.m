@@ -36,7 +36,7 @@
 {
     id tabBarVC = self.tabBarController ? self.tabBarController : self.presentingViewController.tabBarController;
 #ifdef DEBUG
-    NSLog(@"SERVICE IS NIL ERROR");
+    if (!tabBarVC) NSLog(@"SERVICE IS NIL ERROR");
 #endif
     return tabBarVC;
 }
