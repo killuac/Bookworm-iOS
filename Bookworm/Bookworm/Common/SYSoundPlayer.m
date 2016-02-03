@@ -13,27 +13,27 @@
 
 + (void)playMessageSentSound
 {
-    AudioServicesPlaySystemSoundWithCompletion(1004, nil);
+    AudioServicesPlaySystemSoundWithCompletion(1004, NULL);
 }
 
 + (void)playMessageSentAlert
 {
-    AudioServicesPlayAlertSoundWithCompletion(1004, nil);
+    AudioServicesPlayAlertSoundWithCompletion(1004, NULL);
 }
 
 + (void)playMessageReceivedSound
 {
-    AudioServicesPlaySystemSoundWithCompletion(1003, nil);
+    AudioServicesPlaySystemSoundWithCompletion(1003, NULL);
 }
 
 + (void)playMessageReceivedAlert
 {
-    AudioServicesPlayAlertSoundWithCompletion(1003, nil);
+    AudioServicesPlayAlertSoundWithCompletion(1003, NULL);
 }
 
 + (void)playMessageReceivedVibrate
 {
-	AudioServicesPlaySystemSoundWithCompletion(kSystemSoundID_Vibrate, nil);
+	AudioServicesPlaySystemSoundWithCompletion(kSystemSoundID_Vibrate, NULL);
 }
 
 @end

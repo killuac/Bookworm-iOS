@@ -13,6 +13,8 @@
 @property (nonatomic, assign, readonly) CGFloat width;
 @property (nonatomic, assign, readonly) CGFloat height;
 
+- (UIImage *)originalImage;
+
 - (UIImage *)roundedImageWithCornerRadius:(CGFloat)radius;
 - (UIImage *)roundedimageWithCornerRadius:(CGFloat)radius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor;
 

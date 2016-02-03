@@ -14,6 +14,8 @@
 {
     [self setDefaultStyle:SVProgressHUDStyleDark];
     [self setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
+    [self setErrorImage:[UIImage imageNamed:@"icon_hud_error"]];
+    [self setSuccessImage:[UIImage imageNamed:@"icon_hud_success"]];
     
     SwizzleMethod([self class], @selector(showWithStatus:), @selector(swizzle_showWithStatus:), YES);
     SwizzleMethod([self class], @selector(showImage:status:), @selector(swizzle_showImage:status:), YES);

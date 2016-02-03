@@ -20,6 +20,11 @@
     return self.size.height;
 }
 
+- (UIImage *)originalImage
+{
+    return [self imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
+
 - (UIImage *)roundedImageWithCornerRadius:(CGFloat)radius
 {
     return [self roundedimageWithCornerRadius:radius borderWidth:0 borderColor:nil];
