@@ -90,12 +90,12 @@
     [UICollectionView appearance].backgroundColor = [UIColor backgroundColor];
     
     [UITabBar appearance].translucent = NO;
-    [UITabBar appearance].tintColor = [UIColor primaryColor];
+    [UITabBar appearance].tintColor = [UIColor tintColor];
     
     [UINavigationBar appearance].translucent = NO;
-    [UINavigationBar appearance].tintColor = [UIColor primaryColor];
+    [UINavigationBar appearance].tintColor = [UIColor tintColor];
     [UINavigationBar appearance].barTintColor = [UIColor primaryColor];
-    [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName:[UIFont boldTitleFont], NSForegroundColorAttributeName:[UIColor whiteColor]};
+    [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName:[UIFont boldTitleFont], NSForegroundColorAttributeName:[UIColor titleColor]};
     
     [UIPageControl appearance].pageIndicatorTintColor = [UIColor whiteColor];
     [UIPageControl appearance].currentPageIndicatorTintColor = [UIColor grayColor];

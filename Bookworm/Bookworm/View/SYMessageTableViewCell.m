@@ -92,8 +92,8 @@
     _sendingMark.center = _subtitleLabel.center;
     _sendingMark.left = _titleLabel.left;
     
-    width = _badgeLabel.width / 2;
-    _badgeLabel.origin = CGPointMake(_avatarImageView.right - width, margin / 2);
+    _badgeLabel.center = _subtitleLabel.center;
+    _badgeLabel.right = _timeLabel.right;
 }
 
 - (void)showSendingMark

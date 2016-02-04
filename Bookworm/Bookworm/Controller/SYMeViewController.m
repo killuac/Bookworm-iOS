@@ -29,8 +29,15 @@
 {
     [super viewDidLoad];
     
+    [self updateNavigationBar];
     [self addSubviews];
     [self loadData];
+}
+
+- (void)updateNavigationBar
+{
+    self.navigationItem.rightBarButtonItem =
+    [UIBarButtonItem barButtonItemWithImageName:@"button_setting" target:self action:@selector(settings:)];
 }
 
 - (void)addSubviews
@@ -55,7 +62,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IDENTIFIER_COMMON_CELL];
+    UITableViewCell *cell =  [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:IDENTIFIER_COMMON_CELL];
+    cell.textLabel.textColor = [UIColor titleColor];
+    cell.textLabel.text = @"昵称";
+    cell.detailTextLabel.textColor = [UIColor subtitleColor];
+    cell.detailTextLabel.text = @"云中行走";
+    return cell;
+}
+
+#pragma mark - Event handling
+- (void)settings:(UIBarButtonItem *)barButtonItem
+{
+    
 }
 
 @end

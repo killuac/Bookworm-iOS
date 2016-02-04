@@ -30,9 +30,30 @@
 {
     [super viewDidLoad];
     
+    [self updateNavigationBar];
     [self addSubviews];
     [self loadData];
-    [self addTapGesture];
+//    [self addTapGesture];
+    
+    UIButton *button = [UIButton destructiveButtonWithTitle:@"登录"];
+    button.left = 15;
+    button.centerY = self.view.centerY;
+    button.width = self.view.width - 30;
+    [self.view addSubview:button];
+    
+//    CALayer *layer = [CALayer layer];
+//    layer.frame = CGRectMake(10, 100, 200, 0.5);
+//    layer.backgroundColor = [UIColor separatorLineColor].CGColor;
+//    [self.view.layer addSublayer:layer];
+}
+
+- (void)updateNavigationBar
+{
+    self.navigationItem.leftBarButtonItem =
+    [UIBarButtonItem barButtonItemWithImageName:@"button_category_list" target:self action:@selector(showBookCategoryList:)];
+    
+    self.navigationItem.rightBarButtonItem =
+    [UIBarButtonItem barButtonItemWithImageName:@"button_search" target:self action:@selector(searchInHomeViewController:)];
 }
 
 - (void)addSubviews
@@ -82,12 +103,17 @@
 }
 
 #pragma mark - Event handling
-- (void)exchange:(UIButton *)button
+- (void)showBookCategoryList:(UIBarButtonItem *)barButtonItem
 {
     
 }
 
-- (void)search:(UIBarButtonItem *)button
+- (void)searchInHomeViewController:(UIBarButtonItem *)barButtonItem
+{
+    
+}
+
+- (void)exchangeBook:(UIButton *)button
 {
     
 }

@@ -10,30 +10,24 @@
 
 @interface UIColor (Factory)
 
++ (instancetype)tintColor;
 + (instancetype)primaryColor;
+
 + (instancetype)backgroundColor;
-+ (instancetype)lightBackgroundColor;
-+ (instancetype)playerBackgroundColor;
-+ (instancetype)playerProgressTrackColor;
++ (instancetype)bookWhileBackgroundColor;
++ (instancetype)bookYellowBackgroundColor;
++ (instancetype)bookGrayBackgroundColor;
++ (instancetype)bookBlackBackgroundColor;
 + (instancetype)bubbleBackgroundColor;
 
 + (instancetype)titleColor;
 + (instancetype)subtitleColor;
 + (instancetype)separatorLineColor;
-+ (instancetype)primaryTagColor;
-+ (instancetype)defaultTagColor;
 
-+ (instancetype)primaryButtonNormalColor;
-+ (instancetype)primaryButtonHighlightedColor;
-+ (instancetype)buttonDisabledColor;
-+ (instancetype)defaultButtonNormalColor;
-+ (instancetype)defaultButtonHighlightedColor;
-+ (instancetype)destructiveButtonNormalColor;
-+ (instancetype)destructiveButtonHighlightedColor;
++ (instancetype)defaultButtonColor;
++ (instancetype)primaryButtonColor;
++ (instancetype)destructiveButtonColor;
++ (instancetype)disabledButtonColor;
 + (instancetype)linkButtonColor;
-
-+ (instancetype)defaultCountFontColor;
-+ (instancetype)messageFontColor;
-+ (instancetype)recordingWaveColor;
 
 @end

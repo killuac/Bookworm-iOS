@@ -124,34 +124,36 @@
 
 - (void)setBackgroundColorForStyle:(SYButonStyle)style forState:(UIControlState)state
 {
+    CGFloat alpha = 0.8f;
+    
     switch (style) {
         case SYButonStyleDefault:
             if (UIControlStateHighlighted == state) {
-                self.backgroundColor = [UIColor defaultButtonHighlightedColor];
+                self.backgroundColor = [[UIColor defaultButtonColor] colorWithAlphaComponent:alpha];
             } else if (UIControlStateDisabled == state) {
-                self.backgroundColor = [UIColor buttonDisabledColor];
+                self.backgroundColor = [UIColor disabledButtonColor];
             } else {
-                self.backgroundColor = [UIColor defaultButtonNormalColor];
+                self.backgroundColor = [UIColor defaultButtonColor];
             }
             break;
             
         case SYButonStylePrimary:
             if (UIControlStateHighlighted == state) {
-                self.backgroundColor = [UIColor primaryButtonHighlightedColor];
+                self.backgroundColor = [[UIColor primaryButtonColor] colorWithAlphaComponent:alpha];
             } else if (UIControlStateDisabled == state) {
-                self.backgroundColor = [UIColor buttonDisabledColor];
+                self.backgroundColor = [UIColor disabledButtonColor];
             } else {
-                self.backgroundColor = [UIColor primaryButtonNormalColor];
+                self.backgroundColor = [UIColor primaryButtonColor];
             }
             break;
             
         case SYButonStyleDestructive:
             if (UIControlStateHighlighted == state) {
-                self.backgroundColor = [UIColor destructiveButtonHighlightedColor];
+                self.backgroundColor = [[UIColor destructiveButtonColor] colorWithAlphaComponent:alpha];
             } else if (UIControlStateDisabled == state) {
-                self.backgroundColor = [UIColor buttonDisabledColor];
+                self.backgroundColor = [UIColor disabledButtonColor];
             } else {
-                self.backgroundColor = [UIColor destructiveButtonNormalColor];
+                self.backgroundColor = [UIColor destructiveButtonColor];
             }
             break;
             

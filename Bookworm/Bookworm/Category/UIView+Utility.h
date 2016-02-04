@@ -12,7 +12,6 @@
 
 @optional
 - (void)addSubviews;
-- (void)createSubviews;
 
 - (void)addTapGesture;
 - (void)removeTapGesture;

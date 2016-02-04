@@ -10,41 +10,44 @@
 
 @implementation UIColor (Factory)
 
+#pragma mark - Tint color
++ (instancetype)tintColor
+{
+    return [UIColor colorWithRed:64/255.0 green:91/255.0 blue:85/255.0 alpha:1.0];      // 青铁御纳户
+}
+
 + (instancetype)primaryColor
 {
-//    return [UIColor colorWithRed:162/255.0 green:175/255.0 blue:195/255.0 alpha:1.0];     // 蓝灰
-//    return [UIColor colorWithRed:115/255.0 green:138/255.0 blue:153/255.0 alpha:1.0];       // 墨灰
-//    return [UIColor colorWithRed:195/255.0 green:214/255.0 blue:29/255.0 alpha:1.0];        // 柳黄
-//    return [UIColor colorWithRed:63/255.0 green:74/255.0 blue:80/255.0 alpha:1.0];       // 苍色
-//    return [UIColor colorWithRed:142/255.0 green:150/255.0 blue:95/255.0 alpha:1.0];      // 柳煤竹茶
-//    return [UIColor colorWithRed:110/255.0 green:101/255.0 blue:121/255.0 alpha:1.0];     // 鸠羽紫
-//    return [UIColor colorWithRed:200/255.0 green:176/255.0 blue:143/255.0 alpha:1.0];     // 远州鼠
-    return [UIColor colorWithRed:158/255.0 green:184/255.0 blue:161/255.0 alpha:1.0];       // 锖青磁
-//    return [UIColor colorWithRed:238/255.0 green:222/255.0 blue:176/255.0 alpha:1.0];
+//    return [UIColor colorWithRed:87/255.0 green:124/255.0 blue:138/255.0 alpha:1.0];    // 舛花
+//    return [UIColor colorWithRed:102/255.0 green:153/255.0 blue:161/255.0 alpha:1.0];   // 青浅葱
+//    return [UIColor colorWithRed:218/255.0 green:201/255.0 blue:166/255.0 alpha:1.0];   // TORINOKO
+    return [UIColor colorWithRed:218/255.0 green:201/255.0 blue:166/255.0 alpha:1.0];
 }
 
+#pragma mark - Background color
 + (instancetype)backgroundColor
 {
-//    return [UIColor colorWithRed:255/255.0 green:251/255.0 blue:240/255.0 alpha:1.0];       // 象牙白
-//    return [UIColor colorWithRed:240/255.0 green:252/255.0 blue:255/255.0 alpha:1.0];       // 雪白
-//    return [UIColor colorWithRed:214/255.0 green:236/255.0 blue:240/255.0 alpha:1.0];       // 月白
-//    return [UIColor colorWithRed:243/255.0 green:249/255.0 blue:241/255.0 alpha:1.0];       // 荼白
-    return [UIColor colorWithRed:240/255.0 green:240/255.0 blue:244/255.0 alpha:1.0];       // 铅白
+    return [UIColor colorWithRed:240/255.0 green:240/255.0 blue:244/255.0 alpha:1.0];   // 冷白
 }
 
-+ (instancetype)lightBackgroundColor
++ (instancetype)bookWhileBackgroundColor
 {
-    return [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1.0];
+    return [UIColor colorWithRed:251/255.0 green:251/255.0 blue:251/255.0 alpha:1.0];
 }
 
-+ (instancetype)playerBackgroundColor
++ (instancetype)bookYellowBackgroundColor
 {
-    return [UIColor colorWithRed:155/255.0 green:204/255.0 blue:220/255.0 alpha:1.0];
+    return [UIColor colorWithRed:248/255.0 green:241/255.0 blue:227/255.0 alpha:1.0];
 }
 
-+ (instancetype)playerProgressTrackColor
++ (instancetype)bookGrayBackgroundColor
 {
-    return [UIColor colorWithRed:100.0f/255.0f green:140.0f/255.0f blue:162.0f/255.0f alpha:1];
+    return [UIColor colorWithRed:222/255.0 green:226/255.0 blue:228/255.0 alpha:1.0];
+}
+
++ (instancetype)bookBlackBackgroundColor
+{
+    return [UIColor colorWithRed:90/255.0 green:90/255.0 blue:92/255.0 alpha:1.0];
 }
 
 + (instancetype)bubbleBackgroundColor
@@ -52,84 +55,46 @@
     return [UIColor colorWithRed:194/255.0 green:223/255.0 blue:232/255.0 alpha:1.0];
 }
 
+#pragma mark - Text color
 + (instancetype)titleColor
 {
-    return [UIColor colorWithRed:67/255.0 green:52/255.0 blue:27/255.0 alpha:1.0];
+    return [UIColor colorWithRed:55/255.0 green:60/255.0 blue:56/255.0 alpha:1.0];
 }
 
 + (instancetype)subtitleColor
 {
-    return [UIColor colorWithRed:144/255.0 green:141/255.0 blue:155/255.0 alpha:1.0];
+    return [UIColor colorWithRed:145/255.0 green:152/255.0 blue:159/255.0 alpha:1.0];   // 银鼠
 }
 
 + (instancetype)separatorLineColor
 {
-    return [UIColor colorWithRed:216/255.0 green:216/255.0 blue:216/255.0 alpha:1.0];
+    return [UIColor lightGrayColor];
 }
 
-+ (instancetype)primaryTagColor
-{
-    return [UIColor primaryColor];
-}
-
-+ (instancetype)defaultTagColor
-{
-    return [UIColor colorWithRed:144/255.0 green:141/255.0 blue:155/255.0 alpha:1.0];
-}
-
-+ (instancetype)primaryButtonNormalColor
-{
-    return [UIColor primaryColor];
-}
-
-+ (instancetype)primaryButtonHighlightedColor
-{
-    return [UIColor colorWithRed:218/255.0 green:169/255.0 blue:48/255.0 alpha:1.0];
-}
-
-+ (instancetype)buttonDisabledColor
-{
-    return [UIColor colorWithRed:222/255.0 green:224/255.0 blue:228/255.0 alpha:1.0];
-}
-
-+ (instancetype)defaultButtonNormalColor
+#pragma mark - Button color
++ (instancetype)defaultButtonColor
 {
     return [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
 }
 
-+ (instancetype)defaultButtonHighlightedColor
++ (instancetype)primaryButtonColor
 {
-    return [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
+    return [UIColor primaryColor];
 }
 
-+ (instancetype)destructiveButtonNormalColor
++ (instancetype)destructiveButtonColor
 {
-    return [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:1.0];
+    return [UIColor colorWithRed:203/255.0 green:27/255.0 blue:69/255.0 alpha:1.0];
 }
 
-+ (instancetype)destructiveButtonHighlightedColor
++ (instancetype)disabledButtonColor
 {
-    return [UIColor colorWithRed:235/255.0 green:0.0 blue:0.0 alpha:1.0];
+    return [UIColor colorWithRed:219/255.0 green:219/255.0 blue:219/255.0 alpha:1.0];
 }
 
 + (instancetype)linkButtonColor
 {
     return [UIColor colorWithRed:155/255.0 green:204/255.0 blue:220/255.0 alpha:1.0];
-}
-
-+ (instancetype)defaultCountFontColor
-{
-    return [UIColor colorWithRed:155/255.0 green:204/255.0 blue:220/255.0 alpha:1.0];
-}
-
-+ (instancetype)messageFontColor
-{
-    return [UIColor colorWithRed:88/255.0 green:88/255.0 blue:97/255.0 alpha:1.0];
-}
-
-+ (instancetype)recordingWaveColor
-{
-    return [UIColor colorWithRed:151/255.0 green:151/255.0 blue:151/255.0 alpha:1.0];
 }
 
 @end

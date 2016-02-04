@@ -12,6 +12,8 @@
 @protocol SYViewControllerProtocol <SYViewProtocol>
 
 @optional
+- (void)updateNavigationBar;
+
 - (void)loadData;
 - (void)loadData:(SYNoParameterBlockType)completion;
 - (void)reloadData;

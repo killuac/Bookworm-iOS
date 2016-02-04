@@ -75,8 +75,8 @@
 {
     [super viewDidLoad];
     
+    [self updateNavigationBar];
     [self addSubviews];
-//    [self updateNavigationBar];
     [self loadData];
 }
 
@@ -91,28 +91,31 @@
 
 - (void)updateNavigationBar
 {
-    self.KVOController = [FBKVOController controllerWithObserver:self];
-    [self.KVOController observe:[SYSocketManager manager] keyPath:@"readyState" options:0 block:^(id observer, id object, NSDictionary *change) {
-        if ([SYSocketManager manager].isConnecting) {
-            UIView *titleView = [[UIView alloc] initWithFrame:CGRectZero];
-            UILabel *titleLabel = [UILabel labelWithText:HUD_CONNECTING_IM_SERVER attributes:self.navigationBar.titleTextAttributes];
-            [titleView addSubview:titleLabel];
-            
-            UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-            activityIndicator.color = titleLabel.textColor;
-            [activityIndicator startAnimating];
-            [titleView addSubview:activityIndicator];
-            
-            titleLabel.center = titleView.center;
-            titleLabel.centerX += (activityIndicator.width + SMALL_MARGIN) / 2;
-            activityIndicator.center = titleLabel.center;
-            activityIndicator.right = titleLabel.left - SMALL_MARGIN;
-            self.navigationItem.titleView = titleView;
-        } else {
-            self.navigationItem.titleView = nil;
-            self.navigationItem.title = TAB_TITLE_MESSAGE;
-        }
-    }];
+    self.navigationItem.rightBarButtonItem =
+    [UIBarButtonItem barButtonItemWithImageName:@"button_contact_list" target:self action:@selector(showContactViewControllerFromMessageViewController:)];
+    
+//    self.KVOController = [FBKVOController controllerWithObserver:self];
+//    [self.KVOController observe:[SYSocketManager manager] keyPath:@"readyState" options:0 block:^(id observer, id object, NSDictionary *change) {
+//        if ([SYSocketManager manager].isConnecting) {
+//            UIView *titleView = [[UIView alloc] initWithFrame:CGRectZero];
+//            UILabel *titleLabel = [UILabel labelWithText:HUD_CONNECTING_IM_SERVER attributes:self.navigationBar.titleTextAttributes];
+//            [titleView addSubview:titleLabel];
+//            
+//            UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//            activityIndicator.color = titleLabel.textColor;
+//            [activityIndicator startAnimating];
+//            [titleView addSubview:activityIndicator];
+//            
+//            titleLabel.center = titleView.center;
+//            titleLabel.centerX += (activityIndicator.width + SMALL_MARGIN) / 2;
+//            activityIndicator.center = titleLabel.center;
+//            activityIndicator.right = titleLabel.left - SMALL_MARGIN;
+//            self.navigationItem.titleView = titleView;
+//        } else {
+//            self.navigationItem.titleView = nil;
+//            self.navigationItem.title = TAB_TITLE_MESSAGE;
+//        }
+//    }];
 }
 
 - (void)loadData
@@ -319,7 +322,7 @@
     SYMessageTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     cell.badgeLabel.hidden = YES;
     
-    [self showChatViewControllerFromContactList];
+    [self showChatViewControllerFromMessageViewController];
     
     SYContactModel *contact = self.contacts[indexPath.row];
     if (contact.unreadMessageCount) {
@@ -327,7 +330,7 @@
     }
 }
 
-- (void)showChatViewControllerFromContactList
+- (void)showChatViewControllerFromMessageViewController
 {
     SYChatViewController *chatVC = [[SYChatViewController alloc] init];
     chatVC.contact = self.contacts[self.selectedIndexPath.row];
@@ -380,6 +383,12 @@
     [self.messageService updateWithModel:contact.lastMessage result:^(id result) {
         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }];
+}
+
+#pragma mark - Event handling
+- (void)showContactViewControllerFromMessageViewController:(UIBarButtonItem *)barButtonItem
+{
+    
 }
 
 @end

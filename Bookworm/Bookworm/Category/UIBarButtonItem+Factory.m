@@ -20,7 +20,7 @@
 
 + (instancetype)barButtonItemWithImageName:(NSString *)imageName target:(id)target action:(SEL)action
 {
-    return [[self alloc] initWithImage:[[UIImage imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+    return [[self alloc] initWithImage:[UIImage imageNamed:imageName]
                                  style:UIBarButtonItemStylePlain
                                 target:target
                                 action:action];

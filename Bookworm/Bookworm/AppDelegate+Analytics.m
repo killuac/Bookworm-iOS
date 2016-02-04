@@ -53,9 +53,9 @@ typedef void (^SYAspectHandlerBlock)(id<AspectInfo> aspectInfo);
     self.configs = @{
             @"SYHomeViewController": @{
                     SYLogTrackedEvents: @[
-                            @{ SYLogEventName: @"HomeVC_Search", SYLogEventSelectorName: @"search:",
-                               SYLogEventHandlerBlock: ^(id<AspectInfo> aspectInfo) { NSLog(@"Clicked"); } },
-                            @{ SYLogEventName: @"HomeVC_Exchange", SYLogEventSelectorName: @"exchange:" } ]
+                            @{ SYLogEventName: @"HomeVC_Search", SYLogEventSelectorName: @"searchInHomeViewController:",
+                               SYLogEventHandlerBlock: ^(id<AspectInfo> aspectInfo) { NSLog(@"Seach"); } },
+                            @{ SYLogEventName: @"HomeVC_Exchange", SYLogEventSelectorName: @"exchangeBook:" } ]
                     },
             @"SYMessageViewController": @{
                     SYLogTrackedEvents: @[
