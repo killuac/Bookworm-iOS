@@ -33,16 +33,16 @@
     _normalButton = [UIButton primaryButtonWithTitle:nil];
     [self.contentView addSubview:_normalButton];
     
-    _topLinkButton = [UIButton systemButtonWithTitle:nil];
+    _topLinkButton = [UIButton linkButtonWithTitle:nil];
     [self.contentView addSubview:_topLinkButton];
     
-    _bottomLinkButton = [UIButton systemButtonWithTitle:nil];
+    _bottomLinkButton = [UIButton linkButtonWithTitle:nil];
     [self.contentView addSubview:_bottomLinkButton];
     
-    _leftLinkButton = [UIButton systemButtonWithTitle:nil];
+    _leftLinkButton = [UIButton linkButtonWithTitle:nil];
     [self.contentView addSubview:_leftLinkButton];
     
-    _rightLinkButton = [UIButton systemButtonWithTitle:nil];
+    _rightLinkButton = [UIButton linkButtonWithTitle:nil];
     [self.contentView addSubview:_rightLinkButton];
 }
 

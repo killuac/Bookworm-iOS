@@ -125,6 +125,15 @@
 
 - (void)loadData:(SYNoParameterBlockType)completion
 {
+    SYContactModel *model = [SYContactModel model];
+    model.lastMessage = [SYMessageModel model];
+    model.lastMessage.content = @"最后一条消息";
+    model.lastMessage.isSending = YES;
+    model.nickname = @"云中行走";
+    model.lastMessage.timestamp = [[NSDate date] timeIntervalSince1970];
+    model.unreadMessageCount = 10;
+    [self.contacts addObject:model];
+    
     [self.contactService findByKey:self.userID result:^(NSArray<SYContactModel*> *result) {
         [self.contacts addObjectsFromArray:result];
         [self refreshUI];

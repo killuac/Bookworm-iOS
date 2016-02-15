@@ -35,16 +35,11 @@
     [self loadData];
 //    [self addTapGesture];
     
-    UIButton *button = [UIButton destructiveButtonWithTitle:@"登录"];
+    UIButton *button = [UIButton primaryButtonWithTitle:@"登录"];
     button.left = 15;
     button.centerY = self.view.centerY;
     button.width = self.view.width - 30;
     [self.view addSubview:button];
-    
-//    CALayer *layer = [CALayer layer];
-//    layer.frame = CGRectMake(10, 100, 200, 0.5);
-//    layer.backgroundColor = [UIColor separatorLineColor].CGColor;
-//    [self.view.layer addSublayer:layer];
 }
 
 - (void)updateNavigationBar

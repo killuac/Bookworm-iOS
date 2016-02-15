@@ -18,10 +18,8 @@
 
 + (instancetype)primaryColor
 {
-//    return [UIColor colorWithRed:87/255.0 green:124/255.0 blue:138/255.0 alpha:1.0];    // 舛花
 //    return [UIColor colorWithRed:102/255.0 green:153/255.0 blue:161/255.0 alpha:1.0];   // 青浅葱
-//    return [UIColor colorWithRed:218/255.0 green:201/255.0 blue:166/255.0 alpha:1.0];   // TORINOKO
-    return [UIColor colorWithRed:218/255.0 green:201/255.0 blue:166/255.0 alpha:1.0];
+    return [UIColor colorWithRed:218/255.0 green:201/255.0 blue:166/255.0 alpha:1.0];   // TORINOKO
 }
 
 #pragma mark - Background color
@@ -74,7 +72,7 @@
 #pragma mark - Button color
 + (instancetype)defaultButtonColor
 {
-    return [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+    return [UIColor whiteColor];
 }
 
 + (instancetype)primaryButtonColor
@@ -84,7 +82,7 @@
 
 + (instancetype)destructiveButtonColor
 {
-    return [UIColor colorWithRed:203/255.0 green:27/255.0 blue:69/255.0 alpha:1.0];
+    return [UIColor redColor];
 }
 
 + (instancetype)disabledButtonColor
@@ -94,7 +92,7 @@
 
 + (instancetype)linkButtonColor
 {
-    return [UIColor colorWithRed:155/255.0 green:204/255.0 blue:220/255.0 alpha:1.0];
+    return [UIColor colorWithRed:0/255.0 green:145/255.0 blue:255/255.0 alpha:1.0];
 }
 
 @end

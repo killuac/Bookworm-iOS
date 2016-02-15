@@ -55,10 +55,8 @@
     _badgeLabel.font = [UIFont defaultFont];
     _badgeLabel.textColor = [UIColor whiteColor];
     _badgeLabel.textAlignment = NSTextAlignmentCenter;
-    _badgeLabel.layer.borderWidth = DEFAULT_BORDER_WIDTH;
-    _badgeLabel.layer.borderColor = [UIColor whiteColor].CGColor;
     _badgeLabel.layer.backgroundColor = [UIColor redColor].CGColor;
-    _badgeLabel.size = CGSizeMake(24, 24);
+    _badgeLabel.size = CGSizeMake(20, 20);
     _badgeLabel.layer.cornerRadius = _badgeLabel.width / 2;
     [self.contentView addSubview:_badgeLabel];
 }
@@ -76,8 +74,8 @@
     _timeLabel.right = self.width - _avatarImageView.left;
     
     [_titleLabel sizeToFit];
-    width = _timeLabel.left - _avatarImageView.right - (_badgeLabel.width + margin/2) - margin * 2;
-    _titleLabel.width = MIN(_timeLabel.width, width);
+    width = _timeLabel.left - _avatarImageView.right - margin * 2;
+    _titleLabel.width = MIN(_titleLabel.width, width);
     _titleLabel.origin = CGPointMake(_avatarImageView.right + margin, _avatarImageView.top);
     
     _genderIconView.size = _genderIconView.image.size;

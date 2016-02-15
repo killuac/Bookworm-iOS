@@ -24,25 +24,20 @@ typedef NS_ENUM(NSUInteger, SYButtonLayoutStyle) {
 
 @interface UIButton (Factory)
 
-@property (nonatomic, assign) SYButonStyle style;
 @property (nonatomic, assign) BOOL isAnimationEnabled;  // Default is NO
 
-+ (instancetype)customButtonWithTitle:(NSString *)title;
-+ (instancetype)customButtonWithTitle:(NSString *)title imageName:(NSString *)imageName;
-+ (instancetype)customButtonWithTitle:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selImageName;
-+ (instancetype)customButtonWithImageName:(NSString *)imageName;
-+ (instancetype)customButtonWithImageName:(NSString *)imageName selectedImageName:(NSString *)selImageName;
++ (instancetype)buttonWithTitle:(NSString *)title;
++ (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName;
++ (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName disabledImageName:(NSString *)disabledImageName;
++ (instancetype)buttonWithImageName:(NSString *)imageName;
++ (instancetype)buttonWithImageName:(NSString *)imageName selectedImageName:(NSString *)selImageName;
++ (instancetype)buttonWithImageName:(NSString *)imageName disabledImageName:(NSString *)disabledImageName;
 
-+ (instancetype)systemButtonWithTitle:(NSString *)title;
++ (instancetype)linkButtonWithTitle:(NSString *)title;
 
 + (instancetype)defaultButtonWithTitle:(NSString *)title;
-+ (instancetype)defaultButtonWithTitle:(NSString *)title imageName:(NSString *)imageName;
-
 + (instancetype)primaryButtonWithTitle:(NSString *)title;
-+ (instancetype)primaryButtonWithTitle:(NSString *)title imageName:(NSString *)imageName;
-
 + (instancetype)destructiveButtonWithTitle:(NSString *)title;
-+ (instancetype)destructiveButtonWithTitle:(NSString *)title imageName:(NSString *)imageName;
 
 - (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle;
 - (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle inset:(CGFloat)inset;

@@ -94,7 +94,7 @@
     
     [UINavigationBar appearance].translucent = NO;
     [UINavigationBar appearance].tintColor = [UIColor tintColor];
-    [UINavigationBar appearance].barTintColor = [UIColor primaryColor];
+//    [UINavigationBar appearance].barTintColor = [UIColor primaryColor];
     [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName:[UIFont boldTitleFont], NSForegroundColorAttributeName:[UIColor titleColor]};
     
     [UIPageControl appearance].pageIndicatorTintColor = [UIColor whiteColor];
