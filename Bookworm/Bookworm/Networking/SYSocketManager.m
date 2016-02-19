@@ -49,7 +49,6 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 - (instancetype)init
 {
     if (self = [super init]) {
-        [self instantiateWebSocket];
         _messageService = [SYMessageService service];
         
         [[NSNotificationCenter defaultCenter] addObserver:self

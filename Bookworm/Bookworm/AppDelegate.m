@@ -19,6 +19,7 @@
 
 @implementation AppDelegate
 
+#pragma mark - Setup
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self setupApplication];
@@ -44,7 +45,6 @@
 //    [self updateApplication];
     [self setupAppearance];
     [self setupAppAnalytics];
-    [self registerNotification];
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
@@ -65,11 +65,12 @@
 
 - (void)updateApplication
 {
+    _deviceService = [SYDeviceService service];
+    
     if ([SYAppSetting defaultAppSetting].isAppUpdated) {
         [self updateLocalDatabase];
         [SYServerAPI fetchAndSave];
     }
-    _deviceService = [SYDeviceService service];
 }
 
 - (void)updateLocalDatabase
@@ -135,18 +136,18 @@
 
 - (void)updateDeviceToken
 {
-    NSString *deviceToken = [GVUserDefaults standardUserDefaults].deviceToken;
-    
     SYDeviceModel *deviceModel = [SYDeviceModel model];
-    deviceModel.deviceToken = deviceToken;
+    deviceModel.deviceToken = [GVUserDefaults standardUserDefaults].deviceToken;
     deviceModel.allowPush = [UIApplication sharedApplication].isRegisteredForRemoteNotifications;
     [self.deviceService updateWithModel:deviceModel result:nil];
 }
 
 - (void)closeRemoteNotification
 {
-    [GVUserDefaults standardUserDefaults].deviceToken = @"";
-    [self updateDeviceToken];
+    if ([GVUserDefaults standardUserDefaults].deviceToken.length > 0) {
+        [GVUserDefaults standardUserDefaults].deviceToken = @"";
+        [self updateDeviceToken];
+    }
 }
 
 #pragma mark - App Life Cycle
@@ -157,20 +158,17 @@
         if (AFNetworkReachabilityStatusNotReachable == status) {
             [SVProgressHUD showErrorWithStatus:HUD_NOT_CONNECTED_TO_INTERNET];
         } else {
+            [self registerNotification];
+            
             if ([GVUserDefaults standardUserDefaults].isFirstLaunch) {
                 [self registerDevice];
             }
+            
             if ([GVUserDefaults standardUserDefaults].isSignedIn) {
                 [[SYSocketManager manager] connect];
             }
         }
     }];
-    
-    if ([UIApplication sharedApplication].isRegisteredForRemoteNotifications) {
-        [self updateDeviceToken];
-    } else {
-        [self closeRemoteNotification];
-    }
 }
 
 // Register device when app is first launch and network is avaiable
