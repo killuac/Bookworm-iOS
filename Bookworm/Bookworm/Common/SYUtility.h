@@ -10,14 +10,13 @@
 
 @interface SYUtility : NSObject
 
-NSString *DocumentFilePath(NSString *fileName);
-NSString *ApplicationSupportFilePath(NSString *fileName);
-NSString *CacheFilePath(NSString *fileName);
-NSString *TemporaryFilePath(NSString *fileName);
-NSString *PlistFilePath(NSString *fileName);
-NSString *PlistFilePathInLanguageBundle(NSString *fileName);
+NSString *SYDocumentFilePath(NSString *fileName);
+NSString *SYApplicationSupportFilePath(NSString *fileName);
+NSString *SYCacheFilePath(NSString *fileName);
+NSString *SYTemporaryFilePath(NSString *fileName);
+NSString *SYPlistFilePath(NSString *fileName);
 
-NSArray *ClassGetSubClasses(Class superClass);
-void SwizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector, BOOL isClassMethod);
+NSArray *SYClassGetSubClasses(Class superClass);
+void SYSwizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector, BOOL isClassMethod);
 
 @end

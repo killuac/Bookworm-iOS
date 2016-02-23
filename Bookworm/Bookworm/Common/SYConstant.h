@@ -36,7 +36,7 @@ typedef void (^SYNoParameterBlockType)(void);
 
 #define DECLARE_WEAK_SELF               __weak typeof(self) weakSelf = self
 #define RADIANS(degree)                 degree * M_PI/180
-#define DATABASE_FILE_PATH              DocumentFilePath(@"Bookworm.db")
+#define DATABASE_FILE_PATH              SYDocumentFilePath(@"Bookworm.db")
 
 #define DEFAULT_INSET                   5.0f
 #define SMALL_MARGIN                    5.0f

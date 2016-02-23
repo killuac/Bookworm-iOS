@@ -34,6 +34,4 @@
 - (CGSize)sizeWithFont:(UIFont *)font;
 - (CGSize)sizeWithFont:(UIFont *)font maxWidth:(CGFloat)width;
 
-- (NSDate *)toDate;
-
 @end

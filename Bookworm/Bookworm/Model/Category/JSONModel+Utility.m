@@ -12,7 +12,7 @@
 
 + (void)load
 {
-    SwizzleMethod(self, @selector(toDictionary), @selector(swizzle_toDictionary), NO);
+    SYSwizzleMethod(self, @selector(toDictionary), @selector(swizzle_toDictionary), NO);
 }
 
 - (NSDictionary *)swizzle_toDictionary

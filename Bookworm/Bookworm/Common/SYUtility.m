@@ -29,41 +29,41 @@ NSString *FetchOrCreateFilePath(NSString *path)
     return (lastPathComponent.length ? [path stringByAppendingPathComponent:lastPathComponent] : path);
 }
 
-NSString *DocumentFilePath(NSString *fileName)
+NSString *SYDocumentFilePath(NSString *fileName)
 {
     NSString *docDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     NSString *path = [docDir stringByAppendingPathComponent:fileName];
     return FetchOrCreateFilePath(path);
 }
 
-NSString *ApplicationSupportFilePath(NSString *fileName)
+NSString *SYApplicationSupportFilePath(NSString *fileName)
 {
     NSString *docDir = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES).firstObject;
     NSString *path = [docDir stringByAppendingPathComponent:fileName];
     return FetchOrCreateFilePath(path);
 }
 
-NSString *CacheFilePath(NSString *fileName)
+NSString *SYCacheFilePath(NSString *fileName)
 {
     NSString *docDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
     NSString *path = [docDir stringByAppendingPathComponent:fileName];
     return FetchOrCreateFilePath(path);
 }
 
-NSString *TemporaryFilePath(NSString *fileName)
+NSString *SYTemporaryFilePath(NSString *fileName)
 {
     NSString *tmpDir = NSTemporaryDirectory();
     NSString *path = [tmpDir stringByAppendingPathComponent:fileName];
     return FetchOrCreateFilePath(path);
 }
 
-NSString *PlistFilePath(NSString *fileName)
+NSString *SYPlistFilePath(NSString *fileName)
 {
     return [[NSBundle mainBundle] pathForResource:fileName ofType:@"plist"];
 }
 
 #pragma mark - Runtime helper method
-NSArray* ClassGetSubClasses(Class superClass)
+NSArray* SYClassGetSubClasses(Class superClass)
 {
     NSMutableArray *classArray = [NSMutableArray array];
     
@@ -87,7 +87,7 @@ NSArray* ClassGetSubClasses(Class superClass)
     return classArray;
 }
 
-void SwizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector, BOOL isClassMethod)
+void SYSwizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector, BOOL isClassMethod)
 {
     // the method might not exist in the class, but in its superclass
     Method originalMethod = isClassMethod ? class_getClassMethod(class, originalSelector) : class_getInstanceMethod(class, originalSelector);

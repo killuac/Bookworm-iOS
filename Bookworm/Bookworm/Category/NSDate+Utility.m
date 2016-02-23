@@ -10,6 +10,31 @@
 
 @implementation NSDate (Utility)
 
+// Creating a date formatter is not a cheap operation.
+// If use a formatter frequently, it is typically more efficient to cache a single instance.
+static NSDateFormatter *sharedDateFormatter = nil;
+
++ (void)load
+{
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        sharedDateFormatter = [[NSDateFormatter alloc] init];
+        
+        [[NSNotificationCenter defaultCenter] addObserverForName:NSCurrentLocaleDidChangeNotification
+                                                          object:nil
+                                                           queue:[NSOperationQueue currentQueue]
+                                                      usingBlock:^(NSNotification * _Nonnull note) {
+                                                          [sharedDateFormatter setLocale:[NSLocale autoupdatingCurrentLocale]];
+                                                      }];
+    });
+}
+
++ (instancetype)dateWithString:(NSString *)string
+{
+    [sharedDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    return [sharedDateFormatter dateFromString:string];
+}
+
 - (NSString *)toString
 {
     return [[self toDateString] stringByAppendingFormat:@" %@", [self toTimeString]];
@@ -17,22 +42,30 @@
 
 - (NSString *)toDateString
 {
-    return [NSDateFormatter localizedStringFromDate:self dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
+    [sharedDateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [sharedDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    return [sharedDateFormatter stringFromDate:self];
 }
 
 - (NSString *)toShortDateString
 {
-    return [NSDateFormatter localizedStringFromDate:self dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+    [sharedDateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [sharedDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    return [sharedDateFormatter stringFromDate:self];
 }
 
 - (NSString *)toTimeString
 {
-    return [NSDateFormatter localizedStringFromDate:self dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterMediumStyle];
+    [sharedDateFormatter setDateStyle:NSDateFormatterNoStyle];
+    [sharedDateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    return [sharedDateFormatter stringFromDate:self];
 }
 
 - (NSString *)toShortTimeString
 {
-    return [NSDateFormatter localizedStringFromDate:self dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+    [sharedDateFormatter setDateStyle:NSDateFormatterNoStyle];
+    [sharedDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    return [sharedDateFormatter stringFromDate:self];
 }
 
 - (BOOL)isToday
@@ -44,7 +77,6 @@
 - (BOOL)isYesterday
 {
     NSDate *now = [NSDate date];
-    
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSCalendarUnit unit = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
     NSDateComponents *comps = [calendar components:unit fromDate:self toDate:now options:0];

@@ -17,7 +17,7 @@
     static dispatch_once_t predicate;
     static SYAppSetting *sharedInstance = nil;
     dispatch_once(&predicate, ^{
-        sharedInstance = [self modelWithDictionary:[NSDictionary dictionaryWithContentsOfFile:PlistFilePath(APP_SETTING)]];
+        sharedInstance = [self modelWithDictionary:[NSDictionary dictionaryWithContentsOfFile:SYPlistFilePath(APP_SETTING)]];
         
         sharedInstance.KVOController = [FBKVOController controllerWithObserver:sharedInstance];
         [sharedInstance.KVOController observe:sharedInstance
@@ -32,9 +32,9 @@
 // Protecting Data Using On-Disk Encryption
 - (void)save
 {
-//    [[self toDictionary] writeToFile:PlistFilePath(APP_SETTING) atomically:YES];
+//    [[self toDictionary] writeToFile:SYPlistFilePath(APP_SETTING) atomically:YES];
     
-    [[self toJSONData] writeToFile:ApplicationSupportFilePath(APP_SETTING)
+    [[self toJSONData] writeToFile:SYApplicationSupportFilePath(APP_SETTING)
                            options:NSDataWritingAtomic | NSDataWritingFileProtectionComplete
                              error:nil];
 }

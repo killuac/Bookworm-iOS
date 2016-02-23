@@ -24,7 +24,7 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:IDENTIFIER_COMMON_CELL];
     
     _viewControllerClasses = [NSMutableArray array];
-    [ClassGetSubClasses([UIViewController class]) enumerateObjectsUsingBlock:^(Class class, NSUInteger idx, BOOL *stop) {
+    [SYClassGetSubClasses([UIViewController class]) enumerateObjectsUsingBlock:^(Class class, NSUInteger idx, BOOL *stop) {
         NSString *className = NSStringFromClass(class);
         if ([className hasPrefix:@"SY"] && ![className isEqual:@"SYScrollViewController"]) {
             [_viewControllerClasses addObject:NSStringFromClass(class)];

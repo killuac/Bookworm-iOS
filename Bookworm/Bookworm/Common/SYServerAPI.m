@@ -27,7 +27,7 @@ static SYServerAPI *sharedInstance = nil;
 {
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
-        sharedInstance = [self modelWithData:[NSData dataWithContentsOfFile:ApplicationSupportFilePath(JSON_SERVER_API)]];
+        sharedInstance = [self modelWithData:[NSData dataWithContentsOfFile:SYApplicationSupportFilePath(JSON_SERVER_API)]];
     });
     
     return sharedInstance;
@@ -40,14 +40,14 @@ static SYServerAPI *sharedInstance = nil;
         [[self modelWithDictionary:responseObject] save];
         
 //      If App is updated, need fetch API again and reset the sharedInstance with new API file.
-        sharedInstance = [self modelWithData:[NSData dataWithContentsOfFile:DocumentFilePath(JSON_SERVER_API)]];
+        sharedInstance = [self modelWithData:[NSData dataWithContentsOfFile:SYDocumentFilePath(JSON_SERVER_API)]];
     }];
 }
 
 // Protecting Data Using On-Disk Encryption
 - (void)save
 {
-    [[self toJSONData] writeToFile:ApplicationSupportFilePath(JSON_SERVER_API)
+    [[self toJSONData] writeToFile:SYApplicationSupportFilePath(JSON_SERVER_API)
                            options:NSDataWritingAtomic | NSDataWritingFileProtectionComplete
                              error:nil];
 }

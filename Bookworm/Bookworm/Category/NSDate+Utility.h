@@ -10,6 +10,8 @@
 
 @interface NSDate (Utility)
 
++ (instancetype)dateWithString:(NSString *)string;
+
 - (NSString *)toString;
 - (NSString *)toDateString;
 - (NSString *)toTimeString;

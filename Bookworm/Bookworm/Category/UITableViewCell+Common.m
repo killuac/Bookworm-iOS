@@ -12,7 +12,7 @@
 
 + (void)load
 {
-    SwizzleMethod([self class], @selector(layoutSubviews), @selector(swizzle_layoutSubviews), NO);
+    SYSwizzleMethod([self class], @selector(layoutSubviews), @selector(swizzle_layoutSubviews), NO);
 }
 
 - (void)swizzle_layoutSubviews

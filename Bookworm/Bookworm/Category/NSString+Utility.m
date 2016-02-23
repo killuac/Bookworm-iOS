@@ -156,12 +156,4 @@
     return [self sizeWithFont:font].height;
 }
 
-#pragma mark - Date
-- (NSDate *)toDate
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    return [formatter dateFromString:self];
-}
-
 @end
