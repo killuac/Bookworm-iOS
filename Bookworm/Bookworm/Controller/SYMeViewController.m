@@ -46,7 +46,7 @@
     self.tableView.allowsSelection = NO;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.view = self.tableView;
+    self.scrollView = self.tableView;
 }
 
 - (void)loadData

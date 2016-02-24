@@ -63,7 +63,7 @@
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    self.view = self.collectionView;
+    self.scrollView = self.collectionView;
 }
 
 - (void)singleTap:(UITapGestureRecognizer *)recognizer

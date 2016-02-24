@@ -217,13 +217,15 @@
         NSIndexSet *indexSet = [messageModels indexesOfObjectsPassingTest:^BOOL(SYMessageModel *msgModel, NSUInteger idx, BOOL *stop) {
             return ([msgModel.sender isEqualToString:contact.contactID] || [msgModel.receiver isEqualToString:contact.contactID]);
         }];
-        NSArray *subMsgModels = [messageModels objectsAtIndexes:indexSet];
-        contact.lastMessage = subMsgModels.lastObject;
-        
-        indexSet = [subMsgModels indexesOfObjectsPassingTest:^BOOL(SYMessageModel *msgModel, NSUInteger idx, BOOL *stop) {
-            return (msgModel.isInboxMessage && !msgModel.isRead);
-        }];
-        contact.unreadMessageCount += indexSet.count;
+        if (indexSet.count > 0) {
+            NSArray *subMsgModels = [messageModels objectsAtIndexes:indexSet];
+            contact.lastMessage = subMsgModels.lastObject;
+            
+            indexSet = [subMsgModels indexesOfObjectsPassingTest:^BOOL(SYMessageModel *msgModel, NSUInteger idx, BOOL *stop) {
+                return (msgModel.isInboxMessage && !msgModel.isRead);
+            }];
+            contact.unreadMessageCount += indexSet.count;
+        }
     }];
     
     [self refreshUI];
@@ -332,11 +334,6 @@
     cell.badgeLabel.hidden = YES;
     
     [self showChatViewControllerFromMessageViewController];
-    
-    SYContactModel *contact = self.contacts[indexPath.row];
-    if (contact.unreadMessageCount) {
-        [self.messageService updateIsReadStatusWithSenderID:contact.contactID];
-    }
 }
 
 - (void)showChatViewControllerFromMessageViewController
