@@ -47,7 +47,7 @@
 
 - (NSURL *)appStoreURL
 {
-    return [NSURL URLWithString:[NSString stringWithFormat:self.appStoreURLString, [GVUserDefaults standardUserDefaults].language]];
+    return [NSURL URLWithString:[NSString stringWithFormat:self.appAddress, [GVUserDefaults standardUserDefaults].language]];
 }
 
 @end

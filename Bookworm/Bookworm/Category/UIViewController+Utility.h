@@ -43,7 +43,6 @@
 
 - (void)showInitialViewController;
 - (void)showMainViewController;
-- (void)showMainViewControllerWithUserInfo:(NSDictionary *)userInfo;
 
 - (void)HTTPRequestDidComplete:(NSNotification *)notification;
 

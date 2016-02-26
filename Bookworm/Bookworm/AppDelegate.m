@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "AppDelegate+Analytics.h"
 #import "SYDeviceService.h"
+#import "SYNotificationModel.h"
 #import "TestViewController.h"
 
 @interface AppDelegate ()
@@ -30,8 +31,7 @@
     [self.window makeKeyAndVisible];
 #else
     if ([GVUserDefaults standardUserDefaults].isSignedIn) {
-        NSDictionary *userInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-        [self.window.rootViewController showMainViewControllerWithUserInfo:userInfo];
+        [self.window.rootViewController showMainViewController];
     } else {
         [self.window.rootViewController showInitialViewController];
     }
@@ -127,11 +127,29 @@
     [self closeRemoteNotification];
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler
 {
-    if (application.applicationState != UIApplicationStateActive && [GVUserDefaults standardUserDefaults].isSignedIn) {
-        [self.window.rootViewController showMainViewControllerWithUserInfo:userInfo];
+    if (application.applicationState == UIApplicationStateActive) return;
+    
+    if ([GVUserDefaults standardUserDefaults].isSignedIn) {
+        SYNotificationModel *payload = [SYNotificationModel modelWithDictionary:userInfo];
+        switch (payload.type) {
+            case SYNotificationTypeChat:
+                // TODO: Show chat view controller
+                break;
+                
+            case SYNotificationTypeExchange:
+                // TODO: Show exchange book request view controller
+                break;
+                
+            default:
+                break;
+        }
+    } else {
+        [self.window.rootViewController showMainViewController];
     }
+    
+    completionHandler(UIBackgroundFetchResultNoData);
 }
 
 - (void)updateDeviceToken

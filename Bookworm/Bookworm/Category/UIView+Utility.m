@@ -135,6 +135,9 @@
     UIImageView *emptyImageView = [[UIImageView alloc] initWithImage:IMG_EMPTY];
     emptyImageView.tag = 200;
     emptyImageView.center = self.center;
+    if ([self respondsToSelector:@selector(contentOffset)]) {
+        emptyImageView.centerY += [(id)self contentOffset].y;
+    }
     emptyImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:emptyImageView];
     

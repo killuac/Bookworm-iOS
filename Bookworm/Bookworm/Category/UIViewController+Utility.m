@@ -187,13 +187,7 @@
 
 - (void)showMainViewController
 {
-    [self showMainViewControllerWithUserInfo:nil];
-}
-
-- (void)showMainViewControllerWithUserInfo:(NSDictionary *)userInfo
-{
 //    UITabBarController *VC = [[SYTabBarController alloc] init];
-//    if (userInfo) VC.selectedViewController = VC.viewControllers[3];
 //    
 //    UIWindow *window = [[UIApplication sharedApplication].delegate window];
 //    window.rootViewController = VC;
@@ -214,8 +208,7 @@
 #pragma mark - Utility methods
 - (void)loadData
 {
-    self.isLoadingData = YES;
-    [self performSelector:@selector(showLoading) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(showLoadingActivity) withObject:nil afterDelay:1.0];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(HTTPRequestDidComplete:)
@@ -223,7 +216,7 @@
                                                object:nil];
 }
 
-- (void)showLoading
+- (void)showLoadingActivity
 {
     [SVProgressHUD show];
 }
@@ -231,7 +224,7 @@
 - (void)HTTPRequestDidComplete:(NSNotification *)notification
 {
     self.isLoadingData = NO;
-    [self.class cancelPreviousPerformRequestsWithTarget:self selector:@selector(showLoading) object:nil];
+    [self.class cancelPreviousPerformRequestsWithTarget:self selector:@selector(showLoadingActivity) object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 

@@ -54,7 +54,7 @@
 
 - (void)saveWithModels:(NSArray<SYMessageModel*> *)models result:(SYServiceBlockType)result
 {
-    // TODO: Save data to database
+//  TODO: Save data to database
     
     self.totalUnreadMessageCount = [self countForUnreadMessage];
 }
@@ -62,14 +62,14 @@
 // READ: the message content is sender's userID
 - (void)updateIsReadStatusWithSenderID:(NSString *)userID
 {
-    
+//  TODO: Update isRead status
     self.totalUnreadMessageCount = [self countForUnreadMessage];
     [[SYSocketManager manager] readMessagesFromSenderWithModel:[SYMessageModel modelWithContent:userID contactID:nil]];
 }
 
 - (void)updateIsSendingStatusWithModel:(SYMessageModel *)messageModel
 {
-//  TODO: Update isSending status and timestamp with new date
+//  TODO: Update isSending status
 }
 
 - (void)deleteWithModel:(SYMessageModel *)model result:(SYServiceBlockType)result

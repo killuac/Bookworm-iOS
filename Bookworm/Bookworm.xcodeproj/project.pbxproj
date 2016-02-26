@@ -58,6 +58,7 @@
 		E361DEC01C4E0B530042C75A /* SYSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E361DEBF1C4E0B530042C75A /* SYSocketManager.m */; };
 		E361DEC31C4E2AF50042C75A /* UIAlertController+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E361DEC21C4E2AF50042C75A /* UIAlertController+Factory.m */; };
 		E361DEC71C4E34FE0042C75A /* AppDelegate+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = E361DEC61C4E34FE0042C75A /* AppDelegate+Analytics.m */; };
+		E37E76B51C80078800AE7D47 /* SYNotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E37E76B41C80078800AE7D47 /* SYNotificationModel.m */; };
 		E3957CE21C5137B30017E31F /* GVUserDefaults+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3957CE11C5137B30017E31F /* GVUserDefaults+Properties.m */; };
 		E39B458B1C5B789F00FEAFC8 /* SYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B458A1C5B789F00FEAFC8 /* SYSettingViewController.m */; };
 		E39B458E1C5B78CB00FEAFC8 /* SYGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B458D1C5B78CB00FEAFC8 /* SYGuideViewController.m */; };
@@ -208,6 +209,8 @@
 		E361DEC41C4E2EFF0042C75A /* HTTPHeaderField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPHeaderField.h; sourceTree = "<group>"; };
 		E361DEC51C4E34FE0042C75A /* AppDelegate+Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Analytics.h"; sourceTree = "<group>"; };
 		E361DEC61C4E34FE0042C75A /* AppDelegate+Analytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Analytics.m"; sourceTree = "<group>"; };
+		E37E76B31C80078800AE7D47 /* SYNotificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYNotificationModel.h; sourceTree = "<group>"; };
+		E37E76B41C80078800AE7D47 /* SYNotificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYNotificationModel.m; sourceTree = "<group>"; };
 		E3957CE01C5137B30017E31F /* GVUserDefaults+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+Properties.h"; sourceTree = "<group>"; };
 		E3957CE11C5137B30017E31F /* GVUserDefaults+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+Properties.m"; sourceTree = "<group>"; };
 		E39B45891C5B789F00FEAFC8 /* SYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SYSettingViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -476,6 +479,8 @@
 				E30A49F71C5B19D7009BD684 /* SYContactModel.m */,
 				E34581B91C2158E00088BDA5 /* SYDeviceModel.h */,
 				E34581BA1C2158E00088BDA5 /* SYDeviceModel.m */,
+				E37E76B31C80078800AE7D47 /* SYNotificationModel.h */,
+				E37E76B41C80078800AE7D47 /* SYNotificationModel.m */,
 				E39C12E21C574BDC00F0FF10 /* SYSocketModel.h */,
 				E39C12E31C574BDC00F0FF10 /* SYSocketModel.m */,
 				E332FBC61C59FFE500063AEA /* SYUserModel.h */,
@@ -657,6 +662,14 @@
 					E34581351C2115CF0088BDA5 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 4AGG3RNQPH;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					E345814E1C2115CF0088BDA5 = {
 						CreatedOnToolsVersion = 7.2;
@@ -826,6 +839,7 @@
 				E34581AC1C2143E20088BDA5 /* TestViewController.m in Sources */,
 				E39B458E1C5B78CB00FEAFC8 /* SYGuideViewController.m in Sources */,
 				E34581DE1C217F740088BDA5 /* SYDeviceService.m in Sources */,
+				E37E76B51C80078800AE7D47 /* SYNotificationModel.m in Sources */,
 				E34581AF1C21455C0088BDA5 /* UIViewController+Utility.m in Sources */,
 				E34581A91C2142960088BDA5 /* CLLocationManager+Factory.m in Sources */,
 				E3D5C65D1C5D3C4900ADDCA4 /* SYSoundPlayer.m in Sources */,
@@ -1000,11 +1014,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = Bookworm/Prefix.pch;
 				INFOPLIST_FILE = Bookworm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Syzygy.Bookworm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1014,11 +1030,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = Bookworm/Prefix.pch;
 				INFOPLIST_FILE = Bookworm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Syzygy.Bookworm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

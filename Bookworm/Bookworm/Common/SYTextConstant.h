@@ -85,7 +85,7 @@
 
 #define TITLE_SETTING                   LocalizedString(@"Setting", @"设置")
 #define TITLE_KICK_OUT                  LocalizedString(@"KickOut", @"注销")
-#define TITLE_VERSION_ERROR             LocalizedString(@"VersionError", @"版本错误")
+#define TITLE_VERSION_INVALID           LocalizedString(@"VersionInvalid", @"版本过低")
 
 #define MSG_ACCESS_PHOTOS_SETTING       LocalizedString(@"AccessPhotosSetting", @"请在手机的“设置-隐私-照片”选项中，允许”书虫“访问你的手机相册。")
 #define MSG_ACCESS_CAMERA_SETTING       LocalizedString(@"AccessCameraSetting", @"请在手机的“设置-隐私-相机”选项中，允许”书虫“访问你的手机相机。")

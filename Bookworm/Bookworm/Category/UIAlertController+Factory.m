@@ -41,12 +41,12 @@
 
 + (instancetype)actionSheetControllerWithToolbar:(UIToolbar *)toolbar
 {
-    return [self actionSheetControllerWithTitle:nil toolbar:toolbar];
+    return [self actionSheetControllerWithTitle:@"" toolbar:toolbar];
 }
 
 + (instancetype)actionSheetControllerWithTitle:(NSString *)title toolbar:(UIToolbar *)toolbar
 {
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:nil];
     UIAlertController *AC = [UIAlertController actionSheetControllerWithActions:@[cancel]];
     [AC.view.subviews.firstObject setHidden:YES];
     [toolbar setShadowImage:[UIImage new] forToolbarPosition:UIBarPositionAny];

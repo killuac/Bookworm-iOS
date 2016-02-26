@@ -62,6 +62,7 @@
                     parameters:(id)parameters
                        success:(void (^)(NSURLSessionDataTask *))success
 {
+    NSParameterAssert(URLString.length > 0);
     [self setHTTPHeaderFields];
     if (!parameters) parameters = [JSONModel model];    // Pass "signature" at least
     
@@ -77,6 +78,7 @@
                    parameters:(id)parameters
                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
 {
+    NSParameterAssert(URLString.length > 0);
     [self setHTTPHeaderFields];
     
 //  Pass eTag header for checking if cached response is valid
@@ -116,6 +118,7 @@
 
 - (NSURLSessionDataTask *)PATCH:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success
 {
+    NSParameterAssert(URLString.length > 0);
     [self setHTTPHeaderFields];
     
     return [self PATCH:URLString
@@ -134,6 +137,7 @@
                     parameters:(id)parameters
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
 {
+    NSParameterAssert(URLString.length > 0);
     [self setHTTPHeaderFields];
     
     return [self POST:URLString
@@ -155,6 +159,7 @@
                       progress:(void (^)(NSProgress *))uploadProgress
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
 {
+    NSParameterAssert(URLString.length > 0);
     [self setHTTPHeaderFields];
     if (!parameters) parameters = [JSONModel model];
     
@@ -176,6 +181,7 @@
                                             destination:(NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
                                       completionHandler:(void (^)(NSURLResponse *response, NSURL * filePath, NSError * error))completionHandler
 {
+    NSParameterAssert(URLString.length > 0);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
     return [self downloadTaskWithRequest:request
                                 progress:downloadProgressBlock
@@ -239,7 +245,7 @@
                     UIAlertAction *okay = [UIAlertAction actionWithTitle:BUTTON_TITLE_OKAY style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                         [[UIApplication sharedApplication] openURL:[SYAppSetting defaultAppSetting].appStoreURL];
                     }];
-                    [[UIAlertController alertControllerWithTitle:TITLE_VERSION_ERROR message:MSG_APP_VERSION_UNAVAILABLE actions:@[okay]] show];
+                    [[UIAlertController alertControllerWithTitle:TITLE_VERSION_INVALID message:MSG_APP_VERSION_UNAVAILABLE actions:@[okay]] show];
                     break;
                 }
                     
