@@ -69,7 +69,7 @@
 
 - (void)updateIsSendingStatusWithModel:(SYMessageModel *)messageModel
 {
-//  TODO: Update isSending status
+//  TODO: Update isSending status and timestamp
 }
 
 - (void)deleteWithModel:(SYMessageModel *)model result:(SYServiceBlockType)result

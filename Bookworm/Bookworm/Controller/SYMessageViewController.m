@@ -85,7 +85,7 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerClass:[SYMessageTableViewCell class] forCellReuseIdentifier:IDENTIFIER_COMMON_CELL];
+    [self.tableView registerClass:[SYMessageTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COMMON];
     self.view = self.tableView;
 }
 
@@ -130,7 +130,7 @@
     model.lastMessage.content = @"最后一条消息";
     model.lastMessage.isSending = YES;
     model.nickname = @"云中行走";
-    model.lastMessage.timestamp = [[NSDate date] timeIntervalSince1970];
+    model.lastMessage.dateTime = [NSDate date];
     model.unreadMessageCount = 10;
     [self.contacts addObject:model];
     
@@ -266,7 +266,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SYContactModel *contact = self.contacts[indexPath.row];
-    SYMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:IDENTIFIER_COMMON_CELL forIndexPath:indexPath];
+    SYMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_COMMON forIndexPath:indexPath];
     cell.titleLabel.text = contact.nickname;
     cell.subtitleLabel.text = contact.lastMessage.content;
     cell.genderIconView.image = IMG_GENDER_ICON(contact.gender);

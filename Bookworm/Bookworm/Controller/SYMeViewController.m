@@ -62,7 +62,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell =  [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:IDENTIFIER_COMMON_CELL];
+    UITableViewCell *cell =  [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CELL_IDENTIFIER_COMMON];
     cell.textLabel.textColor = [UIColor titleColor];
     cell.textLabel.text = @"昵称";
     cell.detailTextLabel.textColor = [UIColor subtitleColor];

@@ -49,4 +49,9 @@
     return [NSString stringWithFormat:@"%@: %@ %@ %@", self.deviceBrand, self.deviceModel, self.systemName, self.systemVersion];
 }
 
+- (NSString *)language
+{
+    return [GVUserDefaults standardUserDefaults].language;
+}
+
 @end

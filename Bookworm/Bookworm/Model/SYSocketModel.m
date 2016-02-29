@@ -30,7 +30,7 @@
         self.sender = [GVUserDefaults standardUserDefaults].userID;
         self.receiver = userID;
         self.content = content;
-        self.timestamp = [[NSDate date] timeIntervalSince1970];
+        self.dateTime = [NSDate date];
     }
     return self;
 }
@@ -40,9 +40,10 @@
     return ([propertyName isEqualToString:@"isSending"] || [propertyName isEqualToString:@"isRead"]);
 }
 
-- (NSDate<Ignore> *)dateTime
+- (void)setTimestamp:(NSUInteger)timestamp
 {
-    return [NSDate dateWithTimeIntervalSince1970:self.timestamp];
+    _timestamp = timestamp;
+    self.dateTime = [NSDate dateWithTimeIntervalSince1970:timestamp];
 }
 
 - (BOOL)isInboxMessage

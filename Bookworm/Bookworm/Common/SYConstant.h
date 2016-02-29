@@ -52,9 +52,15 @@ typedef void (^SYNoParameterBlockType)(void);
 #define DEFAULT_DAMPING                 0.25
 #define DEFAULT_BORDER_WIDTH            2.0f
 
-#define IDENTIFIER_COMMON_CELL          @"CommonCell"
-#define IDENTIFIER_TEXT_CELL            @"TextCell"
-#define IDENTIFIER_BUTTON_CELL          @"ButtonCell"
+#define CELL_IDENTIFIER_COMMON          @"CommonCell"
+#define CELL_IDENTIFIER_TEXT            @"TextCell"
+#define CELL_IDENTIFIER_BUTTON          @"ButtonCell"
+
+#define NOTIFICATION_ACTION_REPLY       @"REPLY_IDENTIFIER"
+#define NOTIFICATION_ACTION_ACCEPT      @"ACCEPT_IDENTIFIER"
+#define NOTIFICATION_ACTION_DECLINE     @"DECLINE_IDENTIFIER"
+#define NOTIFICATION_CATEGORY_CHAT      @"CHAT_CATEGORY"
+#define NOTIFICATION_CATEGORY_EXCHANGE  @"EXCHANGE_CATEGORY"
 
 #define IMG_EMPTY                       [UIImage imageNamed:@"image_empty.png"]
 #define IMG_DEFAULT_PLACEHOLDER         [UIImage imageNamed:@"image_default.png"]

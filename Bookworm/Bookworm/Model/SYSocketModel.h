@@ -37,8 +37,8 @@
 @property (nonatomic, assign) BOOL isSending;
 @property (nonatomic, assign) BOOL isRead;
 @property (nonatomic, assign) NSUInteger timestamp;
+@property (nonatomic, strong) NSDate<Optional> *dateTime;
 
-@property (nonatomic, strong, readonly) NSDate<Ignore> *dateTime;
 @property (nonatomic, assign, readonly) BOOL isInboxMessage;
 
 @end

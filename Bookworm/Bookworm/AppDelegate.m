@@ -106,7 +106,20 @@
 #pragma mark - Notification
 - (void)registerNotification
 {
-    UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:nil];
+    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    
+    UIMutableUserNotificationAction *replyAction = [[UIMutableUserNotificationAction alloc] init];
+    replyAction.identifier = NOTIFICATION_ACTION_REPLY;
+    replyAction.title = BUTTON_TITLE_REPLY;
+    replyAction.activationMode = UIUserNotificationActivationModeBackground;
+    replyAction.authenticationRequired = NO;
+    
+    UIMutableUserNotificationCategory *replyCategory = [[UIMutableUserNotificationCategory alloc] init];
+    replyCategory.identifier = NOTIFICATION_CATEGORY_CHAT;
+    [replyCategory setActions:@[replyAction] forContext:UIUserNotificationActionContextDefault];
+    [replyCategory setActions:@[replyAction] forContext:UIUserNotificationActionContextMinimal];
+    
+    UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:types categories:[NSSet setWithObject:replyCategory]];
     [[UIApplication sharedApplication] registerUserNotificationSettings:setting];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
 }
@@ -124,7 +137,18 @@
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-    [self closeRemoteNotification];
+    if ([GVUserDefaults standardUserDefaults].deviceToken.length > 0) {
+        [GVUserDefaults standardUserDefaults].deviceToken = @"";
+        [self updateDeviceToken];
+    }
+}
+
+- (void)updateDeviceToken
+{
+    SYDeviceModel *deviceModel = [SYDeviceModel model];
+    deviceModel.deviceToken = [GVUserDefaults standardUserDefaults].deviceToken;
+    deviceModel.allowPush = [UIApplication sharedApplication].isRegisteredForRemoteNotifications;
+    [self.deviceService updateWithModel:deviceModel result:nil];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler
@@ -152,20 +176,17 @@
     completionHandler(UIBackgroundFetchResultNoData);
 }
 
-- (void)updateDeviceToken
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler
 {
-    SYDeviceModel *deviceModel = [SYDeviceModel model];
-    deviceModel.deviceToken = [GVUserDefaults standardUserDefaults].deviceToken;
-    deviceModel.allowPush = [UIApplication sharedApplication].isRegisteredForRemoteNotifications;
-    [self.deviceService updateWithModel:deviceModel result:nil];
-}
-
-- (void)closeRemoteNotification
-{
-    if ([GVUserDefaults standardUserDefaults].deviceToken.length > 0) {
-        [GVUserDefaults standardUserDefaults].deviceToken = @"";
-        [self updateDeviceToken];
+    if ([identifier isEqualToString:NOTIFICATION_ACTION_REPLY]) {
+//      TODO: Replay message
+    } else if ([identifier isEqualToString:NOTIFICATION_ACTION_ACCEPT]) {
+        
+    } else if ([identifier isEqualToString:NOTIFICATION_ACTION_DECLINE]) {
+        
     }
+    
+    completionHandler();
 }
 
 #pragma mark - App Life Cycle
