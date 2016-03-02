@@ -21,12 +21,16 @@
 @property (nonatomic, copy) NSString *httpServer;
 @property (nonatomic, copy, readonly) NSString *referer;
 
-@property (nonatomic, copy) NSString *appAddress;
-@property (nonatomic, strong, readonly) NSURL *appStoreURL;
-
 @property (nonatomic, strong) NSURL *featureURL;
 @property (nonatomic, strong) NSURL *faqURL;
 @property (nonatomic, strong) NSURL *termsURL;
 @property (nonatomic, strong) NSURL *privacyURL;
+
+@property (nonatomic, strong) NSURL *cameraSettingURL;
+@property (nonatomic, strong) NSURL *photosSettingURL;
+@property (nonatomic, strong) NSURL *microphoneSettingURL;
+
+@property (nonatomic, copy) NSString *appAddress;
+@property (nonatomic, strong, readonly) NSURL *appStoreURL;
 
 @end

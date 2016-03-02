@@ -129,7 +129,7 @@ NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControlle
 {
     if (self.contact.unreadMessageCount) {
         self.contact.unreadMessageCount = 0;
-        [self.messageService updateIsReadStatusWithSenderID:self.contact.contactID];
+        [self.messageService updateInboxWithSenderID:self.contact.contactID];
     }
 }
 

@@ -128,7 +128,7 @@
     SYContactModel *model = [SYContactModel model];
     model.lastMessage = [SYMessageModel model];
     model.lastMessage.content = @"最后一条消息";
-    model.lastMessage.isSending = YES;
+    model.lastMessage.isPending = YES;
     model.nickname = @"云中行走";
     model.lastMessage.dateTime = [NSDate date];
     model.unreadMessageCount = 10;
@@ -285,7 +285,7 @@
         cell.badgeLabel.hidden = YES;
     }
     
-    if (contact.lastMessage.isSending) {
+    if (contact.lastMessage.isPending) {
         [cell showSendingMark];
     }
     

@@ -24,8 +24,8 @@ typedef NS_ENUM(NSUInteger, SYNotificationType) {
 @interface SYAPSModel : JSONModel
 
 @property (nonatomic, copy) SYAlertModel *alert;
+@property (nonatomic, copy) NSString<Optional> *sound;
 @property (nonatomic, copy) NSString<Optional> *category;
-@property (nonatomic, copy) NSString *sound;
 @property (nonatomic, assign) NSUInteger badge;
 
 @end
@@ -34,6 +34,6 @@ typedef NS_ENUM(NSUInteger, SYNotificationType) {
 
 @property (nonatomic, strong) SYAPSModel *aps;
 @property (nonatomic, assign) SYNotificationType type;
-@property (nonatomic, copy) NSString<Optional> *userID;
+@property (nonatomic, copy) NSString<Optional> *sender;
 
 @end

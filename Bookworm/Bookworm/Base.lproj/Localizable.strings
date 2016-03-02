@@ -47,6 +47,8 @@
 "Chat" = "Chat";
 "Play" = "Play";
 "Reply" = "Reply";
+"Accept" = "Accept";
+"Reject" = "Reject";
 "Rating" = "Rating";
 "Report" = "Report";
 "Share" = "Share";

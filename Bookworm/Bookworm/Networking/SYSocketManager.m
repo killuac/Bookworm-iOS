@@ -148,7 +148,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 #pragma mark - Message
 - (void)sendMessage:(id)model withMethod:(NSString *)socketMethod
 {
-    if (self.isConnected) return;
+    if (!self.isConnected) return;
     
     SYSocketRequestModel *requestModel = [SYSocketRequestModel model];
     requestModel.socketMethod = socketMethod;
@@ -231,7 +231,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
             
         case SYSocketStatusCodeReceipt: {
             SYMessageModel *messageModel = [SYMessageModel modelWithString:responseModel.messageData];
-            [self.messageService updateIsSendingStatusWithModel:messageModel];
+            [self.messageService updateOutboxWithModel:messageModel];
             [self postNotificationName:SYSocketDidReceiveReceiptNotification object:messageModel];
             break;
         }

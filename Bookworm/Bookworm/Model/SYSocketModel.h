@@ -34,7 +34,7 @@
 @property (nonatomic, copy) NSString *sender;
 @property (nonatomic, copy) NSString *receiver;
 @property (nonatomic, copy) NSString *content;
-@property (nonatomic, assign) BOOL isSending;
+@property (nonatomic, assign) BOOL isPending;
 @property (nonatomic, assign) BOOL isRead;
 @property (nonatomic, assign) NSUInteger timestamp;
 @property (nonatomic, strong) NSDate<Optional> *dateTime;

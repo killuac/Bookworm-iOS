@@ -151,39 +151,38 @@
     [self.deviceService updateWithModel:deviceModel result:nil];
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler
-{
-    if (application.applicationState == UIApplicationStateActive) return;
-    
-    if ([GVUserDefaults standardUserDefaults].isSignedIn) {
-        SYNotificationModel *payload = [SYNotificationModel modelWithDictionary:userInfo];
-        switch (payload.type) {
-            case SYNotificationTypeChat:
-                // TODO: Show chat view controller
-                break;
-                
-            case SYNotificationTypeExchange:
-                // TODO: Show exchange book request view controller
-                break;
-                
-            default:
-                break;
-        }
-    } else {
-        [self.window.rootViewController showMainViewController];
-    }
-    
-    completionHandler(UIBackgroundFetchResultNoData);
-}
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler
+//{
+//    if (application.applicationState == UIApplicationStateActive) return;
+//    completionHandler(UIBackgroundFetchResultNoData);
+//}
 
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler
 {
-    if ([identifier isEqualToString:NOTIFICATION_ACTION_REPLY]) {
-//      TODO: Replay message
-    } else if ([identifier isEqualToString:NOTIFICATION_ACTION_ACCEPT]) {
-        
-    } else if ([identifier isEqualToString:NOTIFICATION_ACTION_DECLINE]) {
-        
+    if ([GVUserDefaults standardUserDefaults].isSignedIn) {
+        if ([identifier isEqualToString:NOTIFICATION_ACTION_REPLY]) {
+            // TODO: Replay message
+        } else if ([identifier isEqualToString:NOTIFICATION_ACTION_ACCEPT]) {
+            
+        } else if ([identifier isEqualToString:NOTIFICATION_ACTION_REJECT]) {
+            
+        } else {
+            SYNotificationModel *payload = [SYNotificationModel modelWithDictionary:userInfo];
+            switch (payload.type) {
+                case SYNotificationTypeChat:
+                    // TODO: Show chat view controller
+                    break;
+                    
+                case SYNotificationTypeExchange:
+                    // TODO: Show exchange book request view controller
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+    } else {
+        [self.window.rootViewController showMainViewController];
     }
     
     completionHandler();

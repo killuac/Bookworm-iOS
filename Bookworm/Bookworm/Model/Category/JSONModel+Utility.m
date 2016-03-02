@@ -29,7 +29,7 @@
     }];
     
     NSString *paramString = [keyValuePairs componentsJoinedByString:@","];
-    dictionary[@"signature"] = [[NSString stringWithFormat:@"%@%@", paramString, [SYAppSetting defaultAppSetting].signatureSalt] toSHA1String];
+    dictionary[@"signature"] = [[NSString stringWithFormat:@"%@+%@", paramString, [SYAppSetting defaultAppSetting].signatureSalt] toSHA1String];
     return dictionary;
 }
 

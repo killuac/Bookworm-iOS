@@ -16,7 +16,7 @@
 @property (nonatomic, copy, readonly) NSString *language;
 @property (nonatomic, assign) NSUInteger maxOutboxMessageID;
 
-@property (nonatomic, copy) NSString *accessToken;
+@property (nonatomic, copy) NSString *accessToken;  // UserID + Password + Timestamp + Salt
 @property (nonatomic, copy) NSString *deviceToken;
 
 @end

@@ -27,9 +27,11 @@
 - (instancetype)initWithContent:(NSString *)content contactID:(NSString *)userID
 {
     if (self = [super init]) {
+        self.messageID = ++[GVUserDefaults standardUserDefaults].maxOutboxMessageID;
         self.sender = [GVUserDefaults standardUserDefaults].userID;
         self.receiver = userID;
         self.content = content;
+        self.isPending = YES;
         self.dateTime = [NSDate date];
     }
     return self;
@@ -37,7 +39,7 @@
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {
-    return ([propertyName isEqualToString:@"isSending"] || [propertyName isEqualToString:@"isRead"]);
+    return ([propertyName isEqualToString:@"isPending"] || [propertyName isEqualToString:@"isRead"]);
 }
 
 - (void)setTimestamp:(NSUInteger)timestamp
