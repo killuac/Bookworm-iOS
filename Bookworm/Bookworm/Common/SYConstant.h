@@ -46,7 +46,7 @@ typedef void (^SYNoParameterBlockType)(void);
 #define DEFAULT_FOOTER_HEIGHT           20.0
 #define DEFAULT_ROW_HEIGHT              44.0
 #define DEFAULT_TOOLBAR_HEIGHT          44.0
-#define DEFAULT_BUTTON_HEIGHT           44.0
+#define DEFAULT_BUTTON_HEIGHT           40.0
 #define DEFAULT_CORNER_RADIUS           5.0f
 #define DEFAULT_ANIMATION_DURATION      0.25
 #define DEFAULT_DAMPING                 0.25

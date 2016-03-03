@@ -70,7 +70,7 @@
     _avatarImageView.origin = CGPointMake(margin, margin);
     
     [_timeLabel sizeToFit];
-    _timeLabel.top = margin;
+    _timeLabel.top = _avatarImageView.top;
     _timeLabel.right = self.width - _avatarImageView.left;
     
     [_titleLabel sizeToFit];

@@ -10,12 +10,6 @@
 	<string>6d7fc1d86e4f0cdf5f3321f393702f89dbecb691</string>
 	<key>umengAppKey</key>
 	<string>5335438f6c738f4e13000039</string>
-	<key>cameraSettingURL</key>
-	<string>prefs:root=Privacy&amp;path=CAMERA</string>
-	<key>photosSettingURL</key>
-	<string>prefs:root=Privacy&amp;path=PHOTOS</string>
-	<key>microphoneSettingURL</key>
-	<string>prefs:root=Privacy&amp;path=MICROPHONE</string>
 	<key>httpServer</key>
 	<string>http://www.bookworm.cc:80/api</string>
 	<key>featureURL</key>

@@ -52,23 +52,26 @@
                                                    object:nil];
         
         self.KVOController = [FBKVOController controllerWithObserver:self];
-        [self.KVOController observe:self.messageService keyPath:@"totalUnreadMessageCount" options:0 block:^(id observer, id object, NSDictionary *change) {
-            NSUInteger badge = self.messageService.totalUnreadMessageCount;
-            self.tabBarItem.badgeValue = (badge > 0 ? @(badge).stringValue : nil);
-            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badge];
-        }];
+        [self.KVOController observe:self.messageService keyPath:@"totalUnreadMessageCount" options:0 action:@selector(updateAppIconBadgeNumber)];
     }
     return self;
 }
 
-- (SYMessageService *)messageService
+- (void)updateAppIconBadgeNumber
 {
-    return [SYSocketManager manager].messageService;
+    NSUInteger badge = self.messageService.totalUnreadMessageCount;
+    self.tabBarItem.badgeValue = (badge > 0 ? @(badge).stringValue : nil);
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badge];
 }
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (SYMessageService *)messageService
+{
+    return [SYSocketManager manager].messageService;
 }
 
 - (void)viewDidLoad
@@ -94,28 +97,31 @@
     self.navigationItem.rightBarButtonItem =
     [UIBarButtonItem barButtonItemWithImageName:@"button_contact_list" target:self action:@selector(showContactViewControllerFromMessageViewController:)];
     
-//    self.KVOController = [FBKVOController controllerWithObserver:self];
-//    [self.KVOController observe:[SYSocketManager manager] keyPath:@"readyState" options:0 block:^(id observer, id object, NSDictionary *change) {
-//        if ([SYSocketManager manager].isConnecting) {
-//            UIView *titleView = [[UIView alloc] initWithFrame:CGRectZero];
-//            UILabel *titleLabel = [UILabel labelWithText:HUD_CONNECTING_IM_SERVER attributes:self.navigationBar.titleTextAttributes];
-//            [titleView addSubview:titleLabel];
-//            
-//            UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//            activityIndicator.color = titleLabel.textColor;
-//            [activityIndicator startAnimating];
-//            [titleView addSubview:activityIndicator];
-//            
-//            titleLabel.center = titleView.center;
-//            titleLabel.centerX += (activityIndicator.width + SMALL_MARGIN) / 2;
-//            activityIndicator.center = titleLabel.center;
-//            activityIndicator.right = titleLabel.left - SMALL_MARGIN;
-//            self.navigationItem.titleView = titleView;
-//        } else {
-//            self.navigationItem.titleView = nil;
-//            self.navigationItem.title = TAB_TITLE_MESSAGE;
-//        }
-//    }];
+    self.KVOController = [FBKVOController controllerWithObserver:self];
+    [self.KVOController observe:[SYSocketManager manager] keyPath:@"readyState" options:0 action:@selector(updateNavigationTitle)];
+}
+
+- (void)updateNavigationTitle
+{
+//    if ([SYSocketManager manager].isConnecting) {
+//        UIView *titleView = [[UIView alloc] initWithFrame:CGRectZero];
+//        UILabel *titleLabel = [UILabel labelWithText:HUD_CONNECTING_IM_SERVER attributes:self.navigationBar.titleTextAttributes];
+//        [titleView addSubview:titleLabel];
+//        
+//        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//        activityIndicator.color = titleLabel.textColor;
+//        [activityIndicator startAnimating];
+//        [titleView addSubview:activityIndicator];
+//        
+//        titleLabel.center = titleView.center;
+//        titleLabel.centerX += (activityIndicator.width + SMALL_MARGIN) / 2;
+//        activityIndicator.center = titleLabel.center;
+//        activityIndicator.right = titleLabel.left - SMALL_MARGIN;
+//        self.navigationItem.titleView = titleView;
+//    } else {
+//        self.navigationItem.titleView = nil;
+//        self.navigationItem.title = TAB_TITLE_MESSAGE;
+//    }
 }
 
 - (void)loadData
@@ -305,7 +311,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70.0f;
+    return 64.0f;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

@@ -26,6 +26,11 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,6 +42,7 @@
     
     UIButton *button = [UIButton primaryButtonWithTitle:@"登录"];
     button.left = 15;
+    button.height = 40;
     button.centerY = self.view.centerY;
     button.width = self.view.width - 30;
     [self.view addSubview:button];

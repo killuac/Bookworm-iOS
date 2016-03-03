@@ -18,8 +18,8 @@
 
 + (instancetype)primaryColor
 {
-//    return [UIColor colorWithRed:102/255.0 green:153/255.0 blue:161/255.0 alpha:1.0];   // 青浅葱
-    return [UIColor colorWithRed:218/255.0 green:201/255.0 blue:166/255.0 alpha:1.0];   // TORINOKO
+    return [UIColor colorWithRed:102/255.0 green:153/255.0 blue:161/255.0 alpha:1.0];   // 青浅葱
+//    return [UIColor colorWithRed:218/255.0 green:201/255.0 blue:166/255.0 alpha:1.0];   // TORINOKO
 }
 
 #pragma mark - Background color
