@@ -10,6 +10,18 @@
 
 @implementation UIView (Utility)
 
+- (id)superViewController
+{
+    for (UIView *view = self.superview; view; view = view.superview) {
+        UIResponder* nextResponder = view.nextResponder;
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return nextResponder;
+        }
+    }
+    
+    return nil;
+}
+
 #pragma mark - Super and sub view
 - (id)superTableView
 {

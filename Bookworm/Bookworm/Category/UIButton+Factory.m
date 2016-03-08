@@ -67,11 +67,13 @@
             self.size = [self fittedSize];
             break;
     }
+    
+    
 }
 
 - (CGSize)fittedSize
 {
-    return CGSizeMake(MAX(self.imageView.width, self.titleLabel.width), self.imageView.height+self.titleLabel.height+DEFAULT_INSET*2);
+    return CGSizeMake(self.width, self.imageView.height+self.titleLabel.height+DEFAULT_INSET*2);
 }
 
 - (void)addTarget:(nullable id)target action:(SEL)action

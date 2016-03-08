@@ -38,14 +38,18 @@
     [self updateNavigationBar];
     [self addSubviews];
     [self loadData];
-//    [self addTapGesture];
-    
-    UIButton *button = [UIButton primaryButtonWithTitle:@"登录"];
-    button.left = 15;
-    button.height = 40;
-    button.centerY = self.view.centerY;
-    button.width = self.view.width - 30;
-    [self.view addSubview:button];
+    [self addTapGesture];
+}
+
+- (void)singleTap:(UITapGestureRecognizer *)recognizer
+{
+    UIButton *cycle = [UIButton buttonWithTitle:@"朋友圈" imageName:@"button_cycle_normal"];
+    UIButton *qzone = [UIButton buttonWithTitle:@"QQ空间" imageName:@"button_qzone_normal"];
+    UIButton *weibo = [UIButton buttonWithTitle:@"新浪微博" imageName:@"button_weibo_normal"];
+    [cycle setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+    [qzone setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+    [weibo setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+    [[UIAlertController actionSheetControllerWithButtons:@[cycle, qzone, weibo]] show];
 }
 
 - (void)updateNavigationBar
@@ -70,16 +74,6 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.scrollView = self.collectionView;
-}
-
-- (void)singleTap:(UITapGestureRecognizer *)recognizer
-{
-    UIBarButtonItem *buttonItem = [UIBarButtonItem barButtonItemWithTitle:@"Test" target:nil action:nil];
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
-    toolbar.size = CGSizeMake(SCREEN_WIDTH, 70);
-    toolbar.items = @[buttonItem];
-    UIAlertController *ac = [UIAlertController actionSheetControllerWithToolbar:toolbar];
-    [ac show];
 }
 
 - (void)loadData

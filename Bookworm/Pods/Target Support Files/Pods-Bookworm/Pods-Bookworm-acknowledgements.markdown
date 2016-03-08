@@ -293,7 +293,7 @@ THE SOFTWARE.
 
 ## SVProgressHUD
 
-Copyright (c) 2011-2016 Sam Vermette and contributors.
+Copyright (c) 2011-2016 Sam Vermette, Tobias Tiemerding and contributors.
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

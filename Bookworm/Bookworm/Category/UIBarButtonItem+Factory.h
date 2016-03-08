@@ -10,6 +10,7 @@
 
 @interface UIBarButtonItem (Factory)
 
++ (instancetype)barButtonWithButton:(UIButton *)button;
 + (instancetype)barButtonItemWithTitle:(NSString *)title target:(id)target action:(SEL)action;
 + (instancetype)barButtonItemWithImageName:(NSString *)imageName target:(id)target action:(SEL)action;
 

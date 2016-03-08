@@ -22,6 +22,8 @@
 
 @interface UIView (Utility) <SYViewProtocol>
 
+@property (nonatomic, strong, readonly) id superViewController;
+
 @property (nonatomic, strong, readonly) id superTableView;
 @property (nonatomic, strong, readonly) id superCollectionView;
 @property (nonatomic, strong, readonly) id superTableViewCell;

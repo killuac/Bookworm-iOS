@@ -12,7 +12,7 @@
 
 + (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message
 {
-    UIAlertAction *okay = [UIAlertAction actionWithTitle:nil style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *okay = [UIAlertAction actionWithTitle:BUTTON_TITLE_OKAY style:UIAlertActionStyleCancel handler:nil];
     return [self alertControllerWithTitle:title message:message actions:@[okay]];
 }
 
@@ -27,31 +27,35 @@
 
 + (instancetype)actionSheetControllerWithActions:(NSArray<UIAlertAction*> *)actions
 {
-    return [self actionSheetControllerWithTitle:nil actions:actions];
-}
-
-+ (instancetype)actionSheetControllerWithTitle:(NSString *)title actions:(NSArray<UIAlertAction*> *)actions
-{
-    UIAlertController *AC = [self alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *AC = [self alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [actions enumerateObjectsUsingBlock:^(UIAlertAction * _Nonnull action, NSUInteger idx, BOOL * _Nonnull stop) {
         [AC addAction:action];
     }];
     return AC;
 }
 
-+ (instancetype)actionSheetControllerWithToolbar:(UIToolbar *)toolbar
++ (instancetype)actionSheetControllerWithButtons:(NSArray<UIButton *> *)buttons
 {
-    return [self actionSheetControllerWithTitle:@"" toolbar:toolbar];
-}
-
-+ (instancetype)actionSheetControllerWithTitle:(NSString *)title toolbar:(UIToolbar *)toolbar
-{
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:nil];
-    UIAlertController *AC = [UIAlertController actionSheetControllerWithActions:@[cancel]];
-    [AC.view.subviews.firstObject setHidden:YES];
-    [toolbar setShadowImage:[UIImage new] forToolbarPosition:UIBarPositionAny];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *empty = [UIAlertAction actionWithTitle:@"" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertController *AC = [UIAlertController actionSheetControllerWithActions:@[empty, cancel]];
+    [AC.view.subviews setValue:@(YES) forKey:@"hidden"];
+    
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
+    toolbar.size = CGSizeMake(SCREEN_WIDTH, 80);
     toolbar.left = -MEDIUM_MARGIN;
+    toolbar.top = 52;
+    toolbar.clipsToBounds = YES;    // Remove top hairline
+    
+    NSMutableArray *barButtonItems = [NSMutableArray arrayWithObject:[UIBarButtonItem flexibleSpaceBarButtonItem]];
+    [buttons enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [barButtonItems addObject:[UIBarButtonItem barButtonWithButton:obj]];
+        [barButtonItems addObject:[UIBarButtonItem flexibleSpaceBarButtonItem]];
+    }];
+    toolbar.items = barButtonItems;
+    
     [AC.view addSubview:toolbar];
+    
     return AC;
 }
 

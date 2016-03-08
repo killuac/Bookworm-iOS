@@ -242,7 +242,7 @@
                     break;
                     
                 case SYHTTPErrorCodeAppVersionUnavailable: {
-                    UIAlertAction *okay = [UIAlertAction actionWithTitle:BUTTON_TITLE_OKAY style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                    UIAlertAction *okay = [UIAlertAction actionWithTitle:BUTTON_TITLE_OKAY style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
                         [[UIApplication sharedApplication] openURL:[SYAppSetting defaultAppSetting].appStoreURL];
                     }];
                     [[UIAlertController alertControllerWithTitle:TITLE_VERSION_INVALID message:MSG_APP_VERSION_UNAVAILABLE actions:@[okay]] show];

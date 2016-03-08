@@ -10,6 +10,11 @@
 
 @implementation UIBarButtonItem (Factory)
 
++ (instancetype)barButtonWithButton:(UIButton *)button
+{
+    return [[self alloc] initWithCustomView:button];
+}
+
 + (instancetype)barButtonItemWithTitle:(NSString *)title target:(id)target action:(SEL)action
 {
     return [[self alloc] initWithTitle:title
