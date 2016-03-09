@@ -82,13 +82,16 @@
 "CreatingUser" = "Creating user...";
 "ThanksFeedback" = "Thanks for your support";
 
+"Photos" = "Photos";
+"Camera" = "Camera";
+"Microphone" = "Microphone";
 "Setting" = "Settings";
 "KickOut" = "Kick out";
 "VersionError" = "Version error";
 
-"AccessPhotosSetting" = "Please allow \"Bookworm\" access your photos in your phone \"Settings-Privacy-Photos\"";
-"AccessCameraSetting" = "Please allow \"Bookworm\" access your camera in your phone \"Settings-Privacy-Camera\"";
-"AccessMicrophoneSetting" = "Please allow \"Bookworm\" access your microphone in your phone \"Settings-Privacy-Microphone\"";
+"AccessPhotosSetting" = "Please allow \"Bookworm\" access your photos in your system \"Settings-Privacy-Photos\"";
+"AccessCameraSetting" = "Please allow \"Bookworm\" access your camera in your system \"Settings-Privacy-Camera\"";
+"AccessMicrophoneSetting" = "Please allow \"Bookworm\" access your microphone in your system \"Settings-Privacy-Microphone\"";
 "AskForSignOut" = "Are you sure sign out?";
 "SignInAgain" = "Your account already login from other device, please re-login.";
 "AppVersionUnavailable" = "Your App version is old, please update from App Store.";

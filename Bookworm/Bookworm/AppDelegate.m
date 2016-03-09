@@ -106,8 +106,7 @@
 #pragma mark - Notification
 - (void)registerNotification
 {
-    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-    
+    // Reply category
     UIMutableUserNotificationAction *replyAction = [[UIMutableUserNotificationAction alloc] init];
     replyAction.identifier = NOTIFICATION_ACTION_REPLY;
     replyAction.title = BUTTON_TITLE_REPLY;
@@ -119,8 +118,28 @@
     [replyCategory setActions:@[replyAction] forContext:UIUserNotificationActionContextDefault];
     [replyCategory setActions:@[replyAction] forContext:UIUserNotificationActionContextMinimal];
     
-    UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:types categories:[NSSet setWithObject:replyCategory]];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:setting];
+    // Exhange category
+    UIMutableUserNotificationAction *acceptAction = [[UIMutableUserNotificationAction alloc] init];
+    acceptAction.identifier = NOTIFICATION_ACTION_ACCEPT;
+    acceptAction.title = BUTTON_TITLE_ACCEPT;
+    acceptAction.activationMode = UIUserNotificationActivationModeBackground;
+    acceptAction.authenticationRequired = NO;
+    
+    UIMutableUserNotificationAction *rejectAction = [[UIMutableUserNotificationAction alloc] init];
+    rejectAction.identifier = NOTIFICATION_ACTION_REJECT;
+    rejectAction.title = BUTTON_TITLE_REJECT;
+    rejectAction.activationMode = UIUserNotificationActivationModeBackground;
+    rejectAction.authenticationRequired = NO;
+    
+    UIMutableUserNotificationCategory *exchangeCategory = [[UIMutableUserNotificationCategory alloc] init];
+    exchangeCategory.identifier = NOTIFICATION_CATEGORY_EXCHANGE;
+    [exchangeCategory setActions:@[acceptAction, rejectAction] forContext:UIUserNotificationActionContextDefault];
+    [exchangeCategory setActions:@[acceptAction, rejectAction] forContext:UIUserNotificationActionContextMinimal];
+    
+    NSSet *categories = [NSSet setWithObjects:replyCategory, exchangeCategory, nil];
+    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
 }
 
@@ -153,7 +172,6 @@
 
 //- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler
 //{
-//    if (application.applicationState == UIApplicationStateActive) return;
 //    completionHandler(UIBackgroundFetchResultNoData);
 //}
 
@@ -161,7 +179,7 @@
 {
     if ([GVUserDefaults standardUserDefaults].isSignedIn) {
         if ([identifier isEqualToString:NOTIFICATION_ACTION_REPLY]) {
-            // TODO: Replay message
+            // TODO: Reply message
         } else if ([identifier isEqualToString:NOTIFICATION_ACTION_ACCEPT]) {
             
         } else if ([identifier isEqualToString:NOTIFICATION_ACTION_REJECT]) {

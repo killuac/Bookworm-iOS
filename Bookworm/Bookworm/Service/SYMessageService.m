@@ -92,7 +92,7 @@
 }
 
 #pragma mark - Find
-- (void)findAllPendingMessages:(SYServiceBlockType)result
+- (void)findAllOutgoingMessages:(SYServiceBlockType)result
 {
 //  TODO:
 }

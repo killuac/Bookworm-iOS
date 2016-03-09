@@ -19,7 +19,7 @@
 - (void)updateInboxWithSenderID:(NSString *)userID;
 - (void)updateOutboxWithModel:(SYMessageModel *)messageModel;
 
-- (void)findAllPendingMessages:(SYServiceBlockType)result;
+- (void)findAllOutgoingMessages:(SYServiceBlockType)result;
 - (void)findLastOneWithContactID:(NSString *)userID result:(SYServiceBlockType)result;
 
 @end

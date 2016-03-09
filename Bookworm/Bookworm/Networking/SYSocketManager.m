@@ -165,10 +165,10 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
     [self postNotificationName:SYSocketDidSendMessageNotification object:model];
 }
 
-// Don't need post notification again while sending pending messages
-- (void)sendPendingMessages
+// Don't need post notification again while sending outgoing messages
+- (void)sendOutgoingMessages
 {
-    [self.messageService findAllPendingMessages:^(NSArray *result) {
+    [self.messageService findAllOutgoingMessages:^(NSArray *result) {
         [self sendMessage:result withMethod:SYSocketMethodChat];
     }];
 }
@@ -226,7 +226,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
     switch (responseModel.statusCode) {
         case SYSocketStatusCodeConnected:
             [self synchronizeMessages];
-            [self sendPendingMessages];
+            [self sendOutgoingMessages];
             break;
             
         case SYSocketStatusCodeReceipt: {
