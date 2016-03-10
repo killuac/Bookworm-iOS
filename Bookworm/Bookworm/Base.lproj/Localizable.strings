@@ -6,12 +6,11 @@
   Copyright (c) 2015 Syzygy. All rights reserved.
 */
 
-"MobileSignUp" = "Mobile sign up";
-"EmailSignUp" = "Email sign up";
-"SetPassword" = "Set password";
-"EditProfile" = "Edit profile";
-"ChangeNickname" = "Change nickname";
-"ChangePassword" = "Change password";
+"MobileSignUp" = "Mobile Sign Up";
+"EmailSignUp" = "Email Sign Up";
+"EditProfile" = "Edit Profile";
+"ChangeNickname" = "Change Nickname";
+"ChangePassword" = "Change Password";
 
 "Home" = "Bookworm";
 "Wish" = "Wish";
@@ -26,17 +25,17 @@
 "Exit" = "Exit";
 "Save" = "Save";
 "Send" = "Send";
-"SignIn" = "Log in";
-"SignUp" = "Sign up";
-"SignOut" = "Sign out";
+"SignIn" = "Log In";
+"SignUp" = "Sign Up";
+"SignOut" = "Sign Out";
 "Next" = "Next";
 "Skip" = "Skip";
 "SendSMS" = "Send SMS";
 "Resend" = "Resend";
 "RemainingTime" = "%.f Second";
-"EmailSignUp" = "Email sign up";
-"NoSMSCode" = "Not receive SMS code";
-"ForgotPassword" = "ForgotPassword";
+"EmailSignUp" = "Email Sign Up";
+"NoSMSCode" = "No SMS Code?";
+"ForgotPassword" = "Forgot Password?";
 "Delete" = "Delete";
 "Refresh" = "Refresh";
 "MarkRead" = "Read";
@@ -45,20 +44,22 @@
 "Unfollow" = "Unfollow";
 "Exchange" = "Exchange";
 "Chat" = "Chat";
-"Play" = "Play";
 "Reply" = "Reply";
 "Accept" = "Accept";
 "Reject" = "Reject";
 "Rating" = "Rating";
 "Report" = "Report";
 "Share" = "Share";
-"Weibo" = "Weibo";
 "Wechat" = "Wechat";
+"Moments" = "Moments";
+"QQ" = "QQ";
+"Weibo" = "Weibo";
 "Qzone" = "Qzone";
-"TakePhoto" = "Take photo";
-"SelectFromAlbum" = "Select from album";
-"SetChatBackground" = "Set chat background";
-"RestoreDefaultBackground" = "Restore default background";
+"Douban" = "Douban";
+"TakePhoto" = "Take Photo";
+"ChoosePhoto" = "Choose Photo";
+"SetChatBackground" = "Chat Background";
+"RestoreDefaultBackground" = "Restore Default Background";
 
 "ClearingCache" = "Clearing cache...";
 "CacheClearDone" = "Cache clear done";
@@ -74,7 +75,7 @@
 "EmailTooLong" = "Email length maximum 32";
 "EmailNotFound" = "Email not signed up";
 "PasswordWrong" = "Wrong password";
-"PasswordTooShort" = "Password length minimum 6";
+"PasswordTooShort" = "Password length minimum 8";
 "PasswordInvalid" = "Invalid password";
 "SMSCodeWrong" = "Wrong SMS code";
 "NicknameTooLong" = "Nickname length maximum 32";
@@ -85,9 +86,9 @@
 "Photos" = "Photos";
 "Camera" = "Camera";
 "Microphone" = "Microphone";
-"Setting" = "Settings";
-"KickOut" = "Kick out";
-"VersionError" = "Version error";
+"Settings" = "Settings";
+"KickOut" = "Kick Out";
+"VersionInvalid" = "Version Invalid";
 
 "AccessPhotosSetting" = "Please allow \"Bookworm\" access your photos in your system \"Settings-Privacy-Photos\"";
 "AccessCameraSetting" = "Please allow \"Bookworm\" access your camera in your system \"Settings-Privacy-Camera\"";
@@ -98,9 +99,9 @@
 
 "Male" = "Male";
 "Female" = "Female";
-"UserAgreement" = "User agreement";
+"UserAgreement" = "User Agreement";
 "AgreeUserAgreement" = "Click \"Sign up\" means have read and agree with ";
-"SingleTapRefresh" = "Single tap screen to refresh";
+"SingleTapRefresh" = "Single Tap Screen to Refresh";
 
 "ReportOtherReason" = "Other reason...";
 "Feedback" = "Please fill your suggestion about \"Bookworm\", we will improve continuously, thanks for you support.";

@@ -6,3 +6,102 @@
   Copyright (c) 2015 Syzygy. All rights reserved.
 */
 
+"MobileSignUp" = "手机号注册";
+"EmailSignUp" = "邮箱注册";
+"EditProfile" = "编辑资料";
+"ChangeNickname" = "更改昵称";
+"ChangePassword" = "更改密码";
+
+"Home" = "书虫";
+"Wish" = "想看";
+"Message" = "消息";
+"Me" = "我的";
+
+"Yes" = "是";
+"No" = "否";
+"Cancel" = "取消";
+"Done" = "完成";
+"Okay" = "好的";
+"Exit" = "退出";
+"Save" = "保存";
+"Send" = "发送";
+"SignIn" = "登录";
+"SignUp" = "注册";
+"SignOut" = "退出登录";
+"Next" = "下一步";
+"Skip" = "跳过";
+"SendSMS" = "获取验证码";
+"Resend" = "重新发送";
+"RemainingTime" = "剩余%.f秒";
+"EmailSignUp" = "邮箱注册";
+"NoSMSCode" = "没收到验证码?";
+"ForgotPassword" = "忘记密码?";
+"Delete" = "删除";
+"Refresh" = "刷新";
+"MarkRead" = "标记已读";
+"MarkUnread" = "标记未读";
+"Follow" = "关注";
+"Unfollow" = "取消关注";
+"Exchange" = "交换";
+"Chat" = "私聊";
+"Reply" = "回复";
+"Accept" = "同意";
+"Reject" = "拒绝";
+"Rating" = "评分";
+"Report" = "举报";
+"Share" = "分享";
+"Wechat" = "微信好友";
+"Moments" = "朋友圈";
+"QQ" = "QQ好友";
+"Weibo" = "新浪微博";
+"Qzone" = "QQ空间";
+"Douban" = "豆瓣";
+"TakePhoto" = "拍照";
+"ChoosePhoto" = "选取照片";
+"SetChatBackground" = "设置聊天背景";
+"RestoreDefaultBackground" = "恢复默认背景";
+
+"ClearingCache" = "正在清除缓存...";
+"CacheClearDone" = "缓存已清除";
+"NetworkUnstable" = "你当前的网络不稳定，请切换网络。";
+"CannotConnectToHost" = "服务器正在维护中，请稍后再试。";
+"NotConnectedToInternet" = "似乎已断开与互联网的连接";
+"ConnectingIMServer" = "收取中...";
+"MobileInvalid" = "手机号码无效";
+"MobileTaken" = "手机号码已经被注册";
+"MobileNotFound" = "手机号码尚未注册";
+"EmailInvalid" = "邮箱地址无效";
+"EmailTaken" = "邮箱已经被注册";
+"EmailTooLong" = "邮箱长度不能大于32位";
+"EmailNotFound" = "邮箱尚未注册";
+"PasswordWrong" = "密码错误";
+"PasswordTooShort" = "密码长度不能小于8位";
+"PasswordInvalid" = "密码含有非法字符";
+"SMSCodeWrong" = "验证码错误";
+"NicknameTooLong" = "昵称长度不能大于32位";
+"SigningIn" = "登录中...";
+"CreatingUser" = "账号创建中...";
+"ThanksFeedback" = "感谢您对“书虫”的支持";
+
+"Photos" = "照片";
+"Camera" = "相机";
+"Microphone" = "麦克风";
+"Settings" = "设置";
+"KickOut" = "注销";
+"VersionInvalid" = "版本过低";
+
+"AccessPhotosSetting" = "请在系统的“设置-隐私-照片”选项中，允许”书虫“访问你的照片。";
+"AccessCameraSetting" = "请在系统的“设置-隐私-相机”选项中，允许”书虫“访问你的相机。";
+"AccessMicrophoneSetting" = "请在系统的“设置-隐私-麦克风”选项中，允许”书虫“访问你的麦克风。";
+"AskForSignOut" = "确定退出登录？";
+"SignInAgain" = "账号已在其他设备登录，请重新登录。";
+"AppVersionUnavailable" = "应用版本过低，请到App Store更新。";
+
+"Male" = "男";
+"Female" = "女";
+"UserAgreement" = "用户协议";
+"AgreeUserAgreement" = "点击\"注册\"表示已阅读并同意";
+"SingleTapRefresh" = "点击屏幕重新加载";
+
+"ReportOtherReason" = "其他原因...";
+"Feedback" = "请写下关于“书虫”的意见和建议，我们将不断完善，感谢您的支持！";

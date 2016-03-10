@@ -39,6 +39,11 @@
                              error:nil];
 }
 
+- (NSString *)signatureSalt
+{
+    return @"6d7fc1d86e4f0cdf5f3321f393702f89dbecb691";
+}
+
 - (NSString *)referer
 {
     NSString *prefix = [self.httpServer stringByAppendingPathComponent:[GVUserDefaults standardUserDefaults].userID];

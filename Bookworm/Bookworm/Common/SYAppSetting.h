@@ -15,8 +15,8 @@
 @property (nonatomic, assign) BOOL isAppUpdated;
 @property (nonatomic, assign) BOOL isShowUserGuide;
 
-@property (nonatomic, copy) NSString *signatureSalt;
 @property (nonatomic, copy) NSString *umengAppKey;
+@property (nonatomic, copy, readonly) NSString *signatureSalt;
 
 @property (nonatomic, copy) NSString *httpServer;
 @property (nonatomic, copy, readonly) NSString *referer;

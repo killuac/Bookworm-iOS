@@ -27,7 +27,7 @@
 
 + (instancetype)boldTitleFont
 {
-    return [UIFont boldSystemFontOfSize:18.0f];
+    return [UIFont boldSystemFontOfSize:17.0f];
 }
 
 + (instancetype)subtitleFont

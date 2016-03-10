@@ -12,6 +12,7 @@
 
 @optional
 - (void)addSubviews;
+- (void)addSubviews:(NSArray *)subviews;
 
 - (void)addTapGesture;
 - (void)removeTapGesture;

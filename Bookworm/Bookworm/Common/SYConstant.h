@@ -69,6 +69,6 @@ typedef void (^SYNoParameterBlockType)(void);
 #define IMG_GENDER_ICON(gender)         [UIImage imageNamed:(gender) ? @"icon_male.png" : @"icon_female.png"]
 #define IMG_AVATAR_PLACEHOLDER(gender)  [UIImage imageNamed:(gender) ? @"image_male_avatar.png" : @"image_female_avatar.png"]
 
-#define LocalizedString(key, text)      [[NSBundle mainBundle] localizedStringForKey:(key) value:text table:nil]
+#define SYLocalizedString(key)          NSLocalizedString(key, "")
 
 #endif /* SYConstant_h */

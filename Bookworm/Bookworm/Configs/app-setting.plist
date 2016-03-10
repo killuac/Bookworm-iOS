@@ -6,8 +6,6 @@
 	<true/>
 	<key>isShowUserGuide</key>
 	<true/>
-	<key>signatureSalt</key>
-	<string>6d7fc1d86e4f0cdf5f3321f393702f89dbecb691</string>
 	<key>umengAppKey</key>
 	<string>5335438f6c738f4e13000039</string>
 	<key>httpServer</key>

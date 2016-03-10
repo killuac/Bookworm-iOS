@@ -41,15 +41,20 @@
     [self addTapGesture];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)singleTap:(UITapGestureRecognizer *)recognizer
 {
-    UIButton *cycle = [UIButton buttonWithTitle:@"朋友圈" imageName:@"button_cycle_normal"];
+    UIButton *moments = [UIButton buttonWithTitle:@"朋友圈" imageName:@"button_moments_normal" disabledImageName:@"button_moments_disabled"];
     UIButton *qzone = [UIButton buttonWithTitle:@"QQ空间" imageName:@"button_qzone_normal"];
     UIButton *weibo = [UIButton buttonWithTitle:@"新浪微博" imageName:@"button_weibo_normal"];
-    [cycle setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+    [moments setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
     [qzone setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
     [weibo setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-    [[UIAlertController actionSheetControllerWithButtons:@[cycle, qzone, weibo]] show];
+    [[UIAlertController actionSheetControllerWithButtons:@[moments, qzone, weibo]] show];
 }
 
 - (void)updateNavigationBar

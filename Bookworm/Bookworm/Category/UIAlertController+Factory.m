@@ -41,20 +41,13 @@
     UIAlertController *AC = [UIAlertController actionSheetControllerWithActions:@[empty, cancel]];
     [AC.view.subviews setValue:@(YES) forKey:@"hidden"];
     
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
-    toolbar.size = CGSizeMake(SCREEN_WIDTH, 80);
-    toolbar.left = -MEDIUM_MARGIN;
-    toolbar.top = 52;
-    toolbar.clipsToBounds = YES;    // Remove top hairline
-    
-    NSMutableArray *barButtonItems = [NSMutableArray arrayWithObject:[UIBarButtonItem flexibleSpaceBarButtonItem]];
-    [buttons enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [barButtonItems addObject:[UIBarButtonItem barButtonWithButton:obj]];
-        [barButtonItems addObject:[UIBarButtonItem flexibleSpaceBarButtonItem]];
-    }];
-    toolbar.items = barButtonItems;
-    
-    [AC.view addSubview:toolbar];
+    SYStackView *stackView = [[SYStackView alloc] initWithFrame:CGRectZero];
+    stackView.backgroundColor = [UIColor whiteColor];
+    stackView.size = CGSizeMake(AC.view.width, 80);
+    stackView.left = -MEDIUM_MARGIN;
+    stackView.top = 52;
+    [stackView addSubviews:buttons];
+    [AC.view addSubview:stackView];
     
     return AC;
 }

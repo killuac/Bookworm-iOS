@@ -15,6 +15,7 @@
 
 + (instancetype)actionSheetControllerWithActions:(NSArray<UIAlertAction*> *)actions;
 + (instancetype)actionSheetControllerWithButtons:(NSArray<UIButton*> *)buttons;
+//+ (instancetype)actionSheetControllerWithButtonCollection:(NSArray<UIButton*> *)buttons;    // Add buttons to collection view
 
 - (void)show;
 

@@ -22,6 +22,9 @@
 		E31DBAF21C2801A000FD5F36 /* SYMessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = E31DBAF11C2801A000FD5F36 /* SYMessageService.m */; };
 		E31DBAF51C2801BA00FD5F36 /* SYUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = E31DBAF41C2801BA00FD5F36 /* SYUserService.m */; };
 		E31F8D8C1C3CC1AD0079D9BA /* SYScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E31F8D8B1C3CC1AD0079D9BA /* SYScrollViewController.m */; };
+		E32F00E21C9111F70024086B /* social-share.plist in Resources */ = {isa = PBXBuildFile; fileRef = E32F00E11C9111F70024086B /* social-share.plist */; };
+		E32F00FC1C9149330024086B /* SYSocialShare.m in Sources */ = {isa = PBXBuildFile; fileRef = E32F00FB1C9149330024086B /* SYSocialShare.m */; };
+		E32F00FF1C9170520024086B /* SYStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32F00FE1C9170520024086B /* SYStackView.m */; };
 		E332FBC81C59FFE500063AEA /* SYUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E332FBC71C59FFE500063AEA /* SYUserModel.m */; };
 		E33928051C6301C00004346C /* SYContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33928041C6301C00004346C /* SYContactViewController.m */; };
 		E345813B1C2115CF0088BDA5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E345813A1C2115CF0088BDA5 /* main.m */; };
@@ -132,6 +135,19 @@
 		E31DBAF41C2801BA00FD5F36 /* SYUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserService.m; sourceTree = "<group>"; };
 		E31F8D8A1C3CC1AD0079D9BA /* SYScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYScrollViewController.h; sourceTree = "<group>"; };
 		E31F8D8B1C3CC1AD0079D9BA /* SYScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYScrollViewController.m; sourceTree = "<group>"; };
+		E32F00E11C9111F70024086B /* social-share.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "social-share.plist"; sourceTree = "<group>"; };
+		E32F00F21C9131820024086B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E32F00F31C9131820024086B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E32F00F41C9131970024086B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E32F00F51C91319D0024086B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E32F00F61C9133060024086B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E32F00F71C9133080024086B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E32F00F81C9133160024086B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E32F00F91C9133170024086B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E32F00FA1C9149330024086B /* SYSocialShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSocialShare.h; sourceTree = "<group>"; };
+		E32F00FB1C9149330024086B /* SYSocialShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSocialShare.m; sourceTree = "<group>"; };
+		E32F00FD1C9170520024086B /* SYStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYStackView.h; sourceTree = "<group>"; };
+		E32F00FE1C9170520024086B /* SYStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYStackView.m; sourceTree = "<group>"; };
 		E332FBC61C59FFE500063AEA /* SYUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYUserModel.h; sourceTree = "<group>"; };
 		E332FBC71C59FFE500063AEA /* SYUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUserModel.m; sourceTree = "<group>"; };
 		E33928031C6301C00004346C /* SYContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYContactViewController.h; sourceTree = "<group>"; };
@@ -140,9 +156,7 @@
 		E345813A1C2115CF0088BDA5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E345813C1C2115CF0088BDA5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E345813D1C2115CF0088BDA5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E34581431C2115CF0088BDA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E34581451C2115CF0088BDA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E34581481C2115CF0088BDA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E345814A1C2115CF0088BDA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E345814F1C2115CF0088BDA5 /* BookwormTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookwormTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E34581531C2115CF0088BDA5 /* BookwormTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookwormTests.m; sourceTree = "<group>"; };
@@ -189,12 +203,6 @@
 		E34581B91C2158E00088BDA5 /* SYDeviceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYDeviceModel.h; sourceTree = "<group>"; };
 		E34581BA1C2158E00088BDA5 /* SYDeviceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYDeviceModel.m; sourceTree = "<group>"; };
 		E34581BC1C21634A0088BDA5 /* SYTextConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYTextConstant.h; sourceTree = "<group>"; };
-		E34581C81C2169EA0088BDA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E34581CB1C2169F20088BDA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		E34581CD1C216A010088BDA5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		E34581CE1C216A010088BDA5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		E34581CF1C216A080088BDA5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		E34581D01C216A080088BDA5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E34581D11C216C510088BDA5 /* SYServerAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYServerAPI.h; sourceTree = "<group>"; };
 		E34581D21C216C510088BDA5 /* SYServerAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYServerAPI.m; sourceTree = "<group>"; };
 		E34581D51C216E860088BDA5 /* app-setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "app-setting.plist"; sourceTree = "<group>"; };
@@ -416,6 +424,8 @@
 				E345817D1C2136E80088BDA5 /* SYConstant.h */,
 				E34581D11C216C510088BDA5 /* SYServerAPI.h */,
 				E34581D21C216C510088BDA5 /* SYServerAPI.m */,
+				E32F00FA1C9149330024086B /* SYSocialShare.h */,
+				E32F00FB1C9149330024086B /* SYSocialShare.m */,
 				E3D5C65B1C5D3C4900ADDCA4 /* SYSoundPlayer.h */,
 				E3D5C65C1C5D3C4900ADDCA4 /* SYSoundPlayer.m */,
 				E34581BC1C21634A0088BDA5 /* SYTextConstant.h */,
@@ -430,6 +440,7 @@
 			children = (
 				E34581D51C216E860088BDA5 /* app-setting.plist */,
 				E31DBAEE1C27DAD600FD5F36 /* Bookworm.sql */,
+				E32F00E11C9111F70024086B /* social-share.plist */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -521,6 +532,8 @@
 			isa = PBXGroup;
 			children = (
 				E3EB14A41C52166700D10026 /* Cell */,
+				E32F00FD1C9170520024086B /* SYStackView.h */,
+				E32F00FE1C9170520024086B /* SYStackView.m */,
 				E3EB149B1C520EF000D10026 /* SYTextView.h */,
 				E3EB149C1C520EF000D10026 /* SYTextView.m */,
 			);
@@ -687,9 +700,9 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				"zh-Hans",
 				"zh-Hant",
+				Base,
 			);
 			mainGroup = E345812D1C2115CF0088BDA5;
 			productRefGroup = E34581371C2115CF0088BDA5 /* Products */;
@@ -715,6 +728,7 @@
 				E31DBAEF1C27DAD600FD5F36 /* Bookworm.sql in Resources */,
 				E34581461C2115CF0088BDA5 /* Assets.xcassets in Resources */,
 				E34581441C2115CF0088BDA5 /* Main.storyboard in Resources */,
+				E32F00E21C9111F70024086B /* social-share.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,6 +856,7 @@
 				E37E76B51C80078800AE7D47 /* SYNotificationModel.m in Sources */,
 				E34581AF1C21455C0088BDA5 /* UIViewController+Utility.m in Sources */,
 				E34581A91C2142960088BDA5 /* CLLocationManager+Factory.m in Sources */,
+				E32F00FC1C9149330024086B /* SYSocialShare.m in Sources */,
 				E3D5C65D1C5D3C4900ADDCA4 /* SYSoundPlayer.m in Sources */,
 				E3957CE21C5137B30017E31F /* GVUserDefaults+Properties.m in Sources */,
 				E3EB14AF1C52166F00D10026 /* SYTextTableViewCell.m in Sources */,
@@ -849,6 +864,7 @@
 				E30A49EC1C5B1257009BD684 /* SYMessageViewController.m in Sources */,
 				E34581801C21395B0088BDA5 /* SYUtility.m in Sources */,
 				E34581971C213A7D0088BDA5 /* UIView+Frame.m in Sources */,
+				E32F00FF1C9170520024086B /* SYStackView.m in Sources */,
 				E3EB14B61C52171400D10026 /* UITableViewCell+Common.m in Sources */,
 				E34581A51C213FFB0088BDA5 /* JSONValueTransformer+Mapper.m in Sources */,
 				E30A49F51C5B193E009BD684 /* SYWishViewController.m in Sources */,
@@ -890,7 +906,7 @@
 		E34581421C2115CF0088BDA5 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E34581431C2115CF0088BDA5 /* Base */,
+				E32F00F31C9131820024086B /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -898,7 +914,7 @@
 		E34581471C2115CF0088BDA5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E34581481C2115CF0088BDA5 /* Base */,
+				E32F00F21C9131820024086B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -906,9 +922,9 @@
 		E34581C91C2169EA0088BDA5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E34581C81C2169EA0088BDA5 /* Base */,
-				E34581CD1C216A010088BDA5 /* zh-Hans */,
-				E34581CF1C216A080088BDA5 /* zh-Hant */,
+				E32F00F41C9131970024086B /* Base */,
+				E32F00F61C9133060024086B /* zh-Hans */,
+				E32F00F71C9133080024086B /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -916,9 +932,9 @@
 		E34581CC1C2169F20088BDA5 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E34581CB1C2169F20088BDA5 /* Base */,
-				E34581CE1C216A010088BDA5 /* zh-Hans */,
-				E34581D01C216A080088BDA5 /* zh-Hant */,
+				E32F00F51C91319D0024086B /* Base */,
+				E32F00F81C9133160024086B /* zh-Hans */,
+				E32F00F91C9133170024086B /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

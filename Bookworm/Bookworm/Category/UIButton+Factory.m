@@ -67,8 +67,6 @@
             self.size = [self fittedSize];
             break;
     }
-    
-    
 }
 
 - (CGSize)fittedSize
@@ -91,7 +89,10 @@
     UIButton *button = [UIButton buttonWithType:buttonType];
     [button setTintColor:[UIColor tintColor]];
     [button setTitle:title forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor tintColor] forState:UIControlStateNormal];
+    
     if (imageName.length) {
+        button.titleLabel.font = [UIFont defaultFont];
         [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
         [button setLayoutStyle:SYButtonLayoutStyleHorizontalImageLeft];
     }
@@ -101,6 +102,7 @@
     if (disabledImageName.length) {
         [button setImage:[UIImage imageNamed:disabledImageName] forState:UIControlStateDisabled];
     }
+    
     [button sizeToFit];
     
     button.KVOController = [FBKVOController controllerWithObserver:button];
