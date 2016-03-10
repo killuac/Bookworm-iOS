@@ -18,6 +18,8 @@
 - (void)removeTapGesture;
 - (void)singleTap:(UITapGestureRecognizer *)recognizer;
 
+- (void)addObservers;
+
 @end
 
 

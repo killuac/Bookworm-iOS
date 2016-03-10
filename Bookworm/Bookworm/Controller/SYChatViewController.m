@@ -26,23 +26,27 @@ NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControlle
 {
     if (self = [super init]) {
         _messages = [NSMutableArray array];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(didSendMessage:)
-                                                     name:SYSocketDidSendMessageNotification
-                                                   object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(didReceiveReceipt:)
-                                                     name:SYSocketDidReceiveReceiptNotification
-                                                   object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(didReceiveMessage:)
-                                                     name:SYSocketDidReceiveMessageNotification
-                                                   object:nil];
+        [self addObservers];
     }
     return self;
+}
+
+- (void)addObservers
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didSendMessage:)
+                                                 name:SYSocketDidSendMessageNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveReceipt:)
+                                                 name:SYSocketDidReceiveReceiptNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveMessage:)
+                                                 name:SYSocketDidReceiveMessageNotification
+                                               object:nil];
 }
 
 - (void)dealloc
