@@ -39,6 +39,11 @@
     [self addSubviews];
     [self loadData];
     [self addTapGesture];
+    
+    UIButton *wechat = [UIButton buttonWithTitle:@"微信好友" imageName:@"button_wechat"];
+    [wechat setLayoutStyle:SYButtonLayoutStyleHorizontalImageLeft];
+    wechat.center = self.view.center;
+    [self.view addSubview:wechat];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -48,13 +53,19 @@
 
 - (void)singleTap:(UITapGestureRecognizer *)recognizer
 {
-    UIButton *moments = [UIButton buttonWithTitle:@"朋友圈" imageName:@"button_moments_normal" disabledImageName:@"button_moments_disabled"];
-    UIButton *qzone = [UIButton buttonWithTitle:@"QQ空间" imageName:@"button_qzone_normal"];
-    UIButton *weibo = [UIButton buttonWithTitle:@"新浪微博" imageName:@"button_weibo_normal"];
+    UIButton *wechat = [UIButton buttonWithTitle:@"微信好友" imageName:@"button_wechat"];
+    UIButton *moments = [UIButton buttonWithTitle:@"朋友圈" imageName:@"button_wechat_moments"];
+    UIButton *qq = [UIButton buttonWithTitle:@"QQ好友" imageName:@"button_qq"];
+    UIButton *weibo = [UIButton buttonWithTitle:@"新浪微博" imageName:@"button_weibo"];
+    UIButton *qzone = [UIButton buttonWithTitle:@"QQ空间" imageName:@"button_qzone"];
+    UIButton *douban = [UIButton buttonWithTitle:@"豆瓣" imageName:@"button_douban"];
+    [wechat setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
     [moments setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-    [qzone setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+    [qq setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
     [weibo setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-    [[UIAlertController actionSheetControllerWithButtons:@[moments, qzone, weibo]] show];
+    [qzone setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+    [douban setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+    [[UIAlertController actionSheetControllerWithButtons:@[wechat, moments, qq, weibo]] show];
 }
 
 - (void)updateNavigationBar

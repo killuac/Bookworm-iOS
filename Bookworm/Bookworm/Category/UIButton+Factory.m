@@ -35,43 +35,53 @@
 
 - (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle
 {
-    [self setLayoutStyle:layoutStyle inset:DEFAULT_INSET * 2];
+    [self setLayoutStyle:layoutStyle spacing:DEFAULT_INSET * 2];
 }
 
-- (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle inset:(CGFloat)inset
+- (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle spacing:(CGFloat)spacing
 {
-    inset /= 2.0f;
+    if (SYButtonLayoutStyleVerticalImageUp == layoutStyle || SYButtonLayoutStyleVerticalImageDown == layoutStyle) {
+        self.titleLabel.font = [UIFont defaultFont];
+    }
+    
+    CGFloat inset = spacing / 2;
+    CGFloat imageWidth = self.imageView.width;
+    CGSize titleSize = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
+    CGFloat titleWidth = titleSize.width;
+    CGFloat imageInset = (titleWidth > imageWidth) ? (titleWidth - imageWidth) / 2 : 0;
     
     switch (layoutStyle) {
         case SYButtonLayoutStyleHorizontalImageLeft:
-            self.titleEdgeInsets = UIEdgeInsetsMake(0, inset, 0, -inset);
-            self.imageEdgeInsets = UIEdgeInsetsMake(0, -inset, 0, inset);
+            self.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
+            self.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
+            self.size = CGSizeMake(self.width+spacing, self.height);
             break;
             
         case SYButtonLayoutStyleHorizontalImageRight:
-            self.titleEdgeInsets = UIEdgeInsetsMake(0, -(self.imageView.width+inset), 0, self.imageView.width+inset);
-            self.imageEdgeInsets = UIEdgeInsetsMake(0, self.titleLabel.width+inset, 0, -(self.titleLabel.width+inset));
+            self.imageEdgeInsets = UIEdgeInsetsMake(0, titleWidth+spacing, 0, 0);
+            self.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageWidth+inset), 0, imageWidth+inset);
+            self.size = CGSizeMake(self.width+spacing, self.height);
             break;
             
         case SYButtonLayoutStyleVerticalImageUp:
-            inset = self.imageView.height / 4 + inset;
-            self.imageEdgeInsets = UIEdgeInsetsMake(-inset, self.titleLabel.width/2, inset, -self.titleLabel.width/2);
-            self.titleEdgeInsets = UIEdgeInsetsMake(inset * 2, -self.imageView.width/2, -inset, self.imageView.width/2);
-            self.size = [self fittedSize];
+            self.size = CGSizeMake(titleWidth, self.imageView.height+titleSize.height+spacing);
+            inset += self.height / 2;
+            self.imageEdgeInsets = UIEdgeInsetsMake(-(inset-spacing), imageInset, 0, 0);
+            self.titleEdgeInsets = UIEdgeInsetsMake(inset+spacing, -imageWidth, 0, 0);
             break;
             
         case SYButtonLayoutStyleVerticalImageDown:
+            self.size = CGSizeMake(self.maxWidth, self.imageView.height+titleSize.height+spacing);
             inset = self.imageView.height / 4 + inset;
             self.titleEdgeInsets = UIEdgeInsetsMake(-inset, self.imageView.width/2, inset, -self.imageView.width/2);
             self.imageEdgeInsets = UIEdgeInsetsMake(inset * 2, -self.titleLabel.width/2, -inset, self.titleLabel.width/2);
-            self.size = [self fittedSize];
             break;
     }
 }
 
-- (CGSize)fittedSize
+- (CGFloat)maxWidth
 {
-    return CGSizeMake(self.width, self.imageView.height+self.titleLabel.height+DEFAULT_INSET*2);
+    return MAX(self.imageView.width, self.titleLabel.width);
 }
 
 - (void)addTarget:(nullable id)target action:(SEL)action
@@ -92,9 +102,7 @@
     [button setTitleColor:[UIColor tintColor] forState:UIControlStateNormal];
     
     if (imageName.length) {
-        button.titleLabel.font = [UIFont defaultFont];
         [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-        [button setLayoutStyle:SYButtonLayoutStyleHorizontalImageLeft];
     }
     if (selImageName.length) {
         [button setImage:[UIImage imageNamed:selImageName] forState:UIControlStateSelected];
@@ -180,12 +188,12 @@
 
 + (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selImageName
 {
-    return [UIButton buttonWithType:UIButtonTypeSystem title:title imageName:imageName selectedImageName:selImageName disabledImageName:nil];
+    return [UIButton buttonWithType:UIButtonTypeCustom title:title imageName:imageName selectedImageName:selImageName disabledImageName:nil];
 }
 
 + (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName disabledImageName:(NSString *)disabledImageName
 {
-    return [UIButton buttonWithType:UIButtonTypeSystem title:title imageName:imageName selectedImageName:nil disabledImageName:disabledImageName];
+    return [UIButton buttonWithType:UIButtonTypeCustom title:title imageName:imageName selectedImageName:nil disabledImageName:disabledImageName];
 }
 
 + (instancetype)buttonWithImageName:(NSString *)imageName

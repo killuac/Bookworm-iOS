@@ -5,50 +5,38 @@
 	<dict>
 		<key>title</key>
 		<string>Wechat</string>
-		<key>normalImageName</key>
-		<string>button_wechat_normal</string>
-		<key>disabledImageName</key>
-		<string>button_wechat_disabled</string>
+		<key>imageName</key>
+		<string>button_wechat</string>
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>Moments</string>
-		<key>normalImageName</key>
-		<string>button_moments_normal</string>
-		<key>disabledImageName</key>
-		<string>button_moments_disabled</string>
+		<string>WechatMoments</string>
+		<key>imageName</key>
+		<string>button_wechat_moments</string>
 	</dict>
 	<dict>
 		<key>title</key>
 		<string>QQ</string>
-		<key>normalImageName</key>
-		<string>button_qq_normal</string>
-		<key>disabledImageName</key>
-		<string>button_qq_disabled</string>
+		<key>imageName</key>
+		<string>button_qq</string>
 	</dict>
 	<dict>
 		<key>title</key>
 		<string>Weibo</string>
-		<key>normalImageName</key>
-		<string>button_weibo_normal</string>
-		<key>disabledImageName</key>
-		<string>button_weibo_disabled</string>
+		<key>imageName</key>
+		<string>button_weibo</string>
 	</dict>
 	<dict>
 		<key>title</key>
 		<string>Qzone</string>
-		<key>normalImageName</key>
-		<string>button_qzone_normal</string>
-		<key>disabledImageName</key>
-		<string>button_qzone_disabled</string>
+		<key>imageName</key>
+		<string>button_qzone</string>
 	</dict>
 	<dict>
 		<key>title</key>
 		<string>Douban</string>
-		<key>normalImageName</key>
-		<string>button_douban_normal</string>
-		<key>disabledImageName</key>
-		<string>button_douban_disabled</string>
+		<key>imageName</key>
+		<string>button_douban</string>
 	</dict>
 </array>
 </plist>

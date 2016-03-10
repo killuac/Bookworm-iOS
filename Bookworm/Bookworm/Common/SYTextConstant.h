@@ -54,7 +54,7 @@
 #define BUTTON_TITLE_REPORT             SYLocalizedString(@"Report")
 #define BUTTON_TITLE_SHARE              SYLocalizedString(@"Share")
 #define BUTTON_TITLE_WECHAT             SYLocalizedString(@"Wechat")
-#define BUTTON_TITLE_MOMENTS            SYLocalizedString(@"Moments")
+#define BUTTON_TITLE_WECHAT_MOMENTS     SYLocalizedString(@"WechatMoments")
 #define BUTTON_TITLE_QQ                 SYLocalizedString(@"QQ")
 #define BUTTON_TITLE_WEIBO              SYLocalizedString(@"Weibo")
 #define BUTTON_TITLE_QZONE              SYLocalizedString(@"Qzone")

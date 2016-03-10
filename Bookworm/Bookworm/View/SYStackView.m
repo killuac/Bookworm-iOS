@@ -22,10 +22,8 @@
     [super layoutSubviews];
     
     NSArray *subviews = self.subviews;
-    CGFloat maxWidth = [[subviews valueForKeyPath:@"@max.width"] floatValue];
-    CGSize size = CGSizeMake(maxWidth, self.height);
-    [subviews setValue:[NSValue valueWithCGSize:size] forKey:@"size"];
-    CGFloat spacing = (self.width - maxWidth * subviews.count) / (subviews.count + 1);
+    CGFloat totalWidth = [[subviews valueForKeyPath:@"@sum.width"] floatValue];
+    CGFloat spacing = (self.width - totalWidth) / (subviews.count + 1);
     
     [subviews enumerateObjectsUsingBlock:^(UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
         CGFloat baseX = (idx > 0) ? ((UIView *)subviews[idx-1]).right : 0.0f;

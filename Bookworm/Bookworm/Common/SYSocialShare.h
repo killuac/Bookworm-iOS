@@ -11,8 +11,7 @@
 @interface SYSocialShareModel : JSONModel
 
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *normalImageName;
-@property (nonatomic, copy) NSString *disabledImageName;
+@property (nonatomic, copy) NSString *imageName;
 
 @end
 
