@@ -13,8 +13,13 @@
 + (instancetype)customSwitch
 {
     UISwitch *switchButton = [[UISwitch alloc] init];
-    switchButton.onTintColor = [UIColor primaryButtonColor];
+    switchButton.onTintColor = [UIColor primaryColor];
     return switchButton;
+}
+
+- (void)addTarget:(nullable id)target action:(SEL)action
+{
+    [self addTarget:target action:action forControlEvents:UIControlEventValueChanged];
 }
 
 @end

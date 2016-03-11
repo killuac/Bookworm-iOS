@@ -40,10 +40,9 @@
     [self loadData];
     [self addTapGesture];
     
-    UIButton *wechat = [UIButton buttonWithTitle:@"微信好友" imageName:@"button_wechat"];
-    [wechat setLayoutStyle:SYButtonLayoutStyleHorizontalImageLeft];
-    wechat.center = self.view.center;
-    [self.view addSubview:wechat];
+    UISwitch *button = [UISwitch customSwitch];
+    button.center = self.view.center;
+    [self.view addSubview:button];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle

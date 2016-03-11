@@ -10,6 +10,22 @@
 
 @implementation UIColor (Factory)
 
+- (UIColor *)lighterColor
+{
+    CGFloat h, s, b, a;
+    if ([self getHue:&h saturation:&s brightness:&b alpha:&a])
+        return [UIColor colorWithHue:h saturation:s brightness:MIN(b * 1.3, 1.0) alpha:a];
+    return self;
+}
+
+- (UIColor *)darkerColor
+{
+    CGFloat h, s, b, a;
+    if ([self getHue:&h saturation:&s brightness:&b alpha:&a])
+        return [UIColor colorWithHue:h saturation:s brightness:b * 0.75 alpha:a];
+    return self;
+}
+
 #pragma mark - Tint color
 + (instancetype)tintColor
 {
@@ -92,7 +108,7 @@
 
 + (instancetype)linkButtonColor
 {
-    return [UIColor colorWithRed:0/255.0 green:145/255.0 blue:255/255.0 alpha:1.0];
+    return [[UIColor blueColor] colorWithAlphaComponent:0.6];
 }
 
 @end

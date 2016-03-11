@@ -30,4 +30,7 @@
 + (instancetype)disabledButtonColor;
 + (instancetype)linkButtonColor;
 
+- (UIColor *)lighterColor;
+- (UIColor *)darkerColor;
+
 @end

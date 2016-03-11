@@ -63,8 +63,8 @@
 
 "ClearingCache" = "正在清除缓存...";
 "CacheClearDone" = "缓存已清除";
-"NetworkUnstable" = "你当前的网络不稳定，请切换网络。";
-"CannotConnectToHost" = "服务器正在维护中，请稍后再试。";
+"NetworkUnstable" = "当前网络不稳定，请切换网络。";
+"CannotConnectToHost" = "服务器正在维护，请稍后再试。";
 "NotConnectedToInternet" = "似乎已断开与互联网的连接";
 "ConnectingIMServer" = "收取中...";
 "MobileInvalid" = "手机号码无效";

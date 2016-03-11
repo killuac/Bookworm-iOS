@@ -28,7 +28,7 @@
 
 - (void)addSubview:(UIView *)view
 {
-    //  Don't add separator line
+    // Don't add separator line
     if (view.height > 0.5) {
         [super addSubview:view];
     }

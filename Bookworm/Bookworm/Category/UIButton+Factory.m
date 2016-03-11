@@ -35,20 +35,14 @@
 
 - (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle
 {
-    [self setLayoutStyle:layoutStyle spacing:DEFAULT_INSET * 2];
-}
-
-- (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle spacing:(CGFloat)spacing
-{
     if (SYButtonLayoutStyleVerticalImageUp == layoutStyle || SYButtonLayoutStyleVerticalImageDown == layoutStyle) {
         self.titleLabel.font = [UIFont defaultFont];
     }
     
-    CGFloat inset = spacing / 2;
+    CGFloat inset = DEFAULT_INSET;
+    CGFloat spacing = inset * 2;
     CGFloat imageWidth = self.imageView.width;
-    CGSize titleSize = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
-    CGFloat titleWidth = titleSize.width;
-    CGFloat imageInset = (titleWidth > imageWidth) ? (titleWidth - imageWidth) / 2 : 0;
+    CGFloat titleWidth = self.titleLabelSize.width;
     
     switch (layoutStyle) {
         case SYButtonLayoutStyleHorizontalImageLeft:
@@ -64,24 +58,33 @@
             break;
             
         case SYButtonLayoutStyleVerticalImageUp:
-            self.size = CGSizeMake(titleWidth, self.imageView.height+titleSize.height+spacing);
-            inset += self.height / 2;
-            self.imageEdgeInsets = UIEdgeInsetsMake(-(inset-spacing), imageInset, 0, 0);
-            self.titleEdgeInsets = UIEdgeInsetsMake(inset+spacing, -imageWidth, 0, 0);
+            self.size = [self fittedSize];
+            self.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
+            inset = self.height / 2 - inset;
+            self.imageEdgeInsets = UIEdgeInsetsMake(0, (self.width-imageWidth)/2, inset, 0);
+            self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, 0, 0);
             break;
             
         case SYButtonLayoutStyleVerticalImageDown:
-            self.size = CGSizeMake(self.maxWidth, self.imageView.height+titleSize.height+spacing);
-            inset = self.imageView.height / 4 + inset;
-            self.titleEdgeInsets = UIEdgeInsetsMake(-inset, self.imageView.width/2, inset, -self.imageView.width/2);
-            self.imageEdgeInsets = UIEdgeInsetsMake(inset * 2, -self.titleLabel.width/2, -inset, self.titleLabel.width/2);
+            self.size = [self fittedSize];
+            self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+            inset = self.height / 2 - inset;
+            self.imageEdgeInsets = UIEdgeInsetsMake(inset, (self.width-imageWidth)/2, 0, 0);
+            self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, 0, 0);
             break;
     }
 }
 
-- (CGFloat)maxWidth
+- (CGSize)titleLabelSize
 {
-    return MAX(self.imageView.width, self.titleLabel.width);
+    return [self.titleLabel.text sizeWithFont:self.titleLabel.font];
+}
+
+- (CGSize)fittedSize
+{
+    CGFloat width = MAX(self.imageView.width, self.titleLabel.width);
+    CGFloat height = self.imageView.height + self.titleLabelSize.height + DEFAULT_INSET * 2;
+    return CGSizeMake(width, height);
 }
 
 - (void)addTarget:(nullable id)target action:(SEL)action
@@ -137,12 +140,10 @@
 
 - (void)setBackgroundColorForState:(UIControlState)state
 {
-    CGFloat alpha = 0.8f;
-    
     switch (self.style) {
         case SYButonStyleDefault:
             if (UIControlStateHighlighted == state) {
-                self.backgroundColor = [[UIColor defaultButtonColor] colorWithAlphaComponent:alpha];
+                self.backgroundColor = [[UIColor defaultButtonColor] darkerColor];
             } else if (UIControlStateDisabled == state) {
                 self.backgroundColor = [UIColor disabledButtonColor];
             } else {
@@ -152,7 +153,7 @@
             
         case SYButonStylePrimary:
             if (UIControlStateHighlighted == state) {
-                self.backgroundColor = [[UIColor primaryButtonColor] colorWithAlphaComponent:alpha];
+                self.backgroundColor = [[UIColor primaryButtonColor] darkerColor];
             } else if (UIControlStateDisabled == state) {
                 self.backgroundColor = [UIColor disabledButtonColor];
             } else {
@@ -162,7 +163,7 @@
             
         case SYButonStyleDestructive:
             if (UIControlStateHighlighted == state) {
-                self.backgroundColor = [[UIColor destructiveButtonColor] colorWithAlphaComponent:alpha];
+                self.backgroundColor = [[UIColor destructiveButtonColor] darkerColor];
             } else if (UIControlStateDisabled == state) {
                 self.backgroundColor = [UIColor disabledButtonColor];
             } else {
@@ -213,8 +214,12 @@
 
 + (instancetype)linkButtonWithTitle:(NSString *)title
 {
-    UIButton *button = [UIButton buttonWithTitle:title];
-    [button setTintColor:[UIColor linkButtonColor]];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.tintColor = [UIColor linkButtonColor];
+    button.titleLabel.font = [UIFont defaultFont];
+    [button setTitle:title forState:UIControlStateNormal];
+    [button sizeToFit];
+    
     return button;
 }
 

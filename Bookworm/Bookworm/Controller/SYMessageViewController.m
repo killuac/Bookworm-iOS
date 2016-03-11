@@ -89,7 +89,7 @@
 
 - (void)addSubviews
 {
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[SYMessageTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COMMON];
@@ -142,6 +142,7 @@
     model.nickname = @"云中行走";
     model.lastMessage.dateTime = [NSDate date];
     model.unreadMessageCount = 10;
+    [self.contacts addObject:model];
     [self.contacts addObject:model];
     
     [self.contactService findByKey:self.userID result:^(NSArray<SYContactModel*> *result) {

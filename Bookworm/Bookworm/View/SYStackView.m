@@ -22,12 +22,10 @@
     [super layoutSubviews];
     
     NSArray *subviews = self.subviews;
-    CGFloat totalWidth = [[subviews valueForKeyPath:@"@sum.width"] floatValue];
-    CGFloat spacing = (self.width - totalWidth) / (subviews.count + 1);
+    CGFloat width = self.width / subviews.count;
     
     [subviews enumerateObjectsUsingBlock:^(UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
-        CGFloat baseX = (idx > 0) ? ((UIView *)subviews[idx-1]).right : 0.0f;
-        view.left = baseX + spacing;
+        view.centerX = width * idx + width / 2;
         view.centerY = self.height / 2;
     }];
 }
