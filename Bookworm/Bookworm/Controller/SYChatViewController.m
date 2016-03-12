@@ -58,9 +58,16 @@ NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControlle
 {
     [super viewDidLoad];
     
+    [self updateNavigationBar];
     [self addSubviews];
     [self loadData];
     [self readAllMessages];
+}
+
+- (void)updateNavigationBar
+{
+    self.navigationItem.rightBarButtonItem =
+    [UIBarButtonItem barButtonItemWithImageName:@"button_more" target:self action:@selector(moreActionInChatViewController:)];
 }
 
 - (void)addSubviews
@@ -74,9 +81,9 @@ NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControlle
 
 - (void)loadData
 {
-    [self.messageService findByParameters:@[self.contact.contactID, [NSDate date]] result:^(NSArray *result) {
-        [self.messages addObjectsFromArray:result];
-    }];
+//    [self.messageService findByParameters:@[self.contact.contactID, [NSDate date]] result:^(NSArray *result) {
+//        [self.messages addObjectsFromArray:result];
+//    }];
 }
 
 - (void)refreshUI
@@ -146,6 +153,12 @@ NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControlle
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_COMMON forIndexPath:indexPath];
+}
+
+#pragma mark - Event handling
+- (void)moreActionInChatViewController:(UIBarButtonItem *)barButtonItem
+{
+    
 }
 
 @end

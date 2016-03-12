@@ -7,6 +7,7 @@
 //
 
 #import "SYHomeViewController.h"
+#import "SYSignInViewController.h"
 
 @interface SYHomeViewController ()
 
@@ -52,19 +53,28 @@
 
 - (void)singleTap:(UITapGestureRecognizer *)recognizer
 {
-    UIButton *wechat = [UIButton buttonWithTitle:@"微信好友" imageName:@"button_wechat"];
-    UIButton *moments = [UIButton buttonWithTitle:@"朋友圈" imageName:@"button_wechat_moments"];
-    UIButton *qq = [UIButton buttonWithTitle:@"QQ好友" imageName:@"button_qq"];
-    UIButton *weibo = [UIButton buttonWithTitle:@"新浪微博" imageName:@"button_weibo"];
-    UIButton *qzone = [UIButton buttonWithTitle:@"QQ空间" imageName:@"button_qzone"];
-    UIButton *douban = [UIButton buttonWithTitle:@"豆瓣" imageName:@"button_douban"];
-    [wechat setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-    [moments setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-    [qq setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-    [weibo setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-    [qzone setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-    [douban setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-    [[UIAlertController actionSheetControllerWithButtons:@[wechat, moments, qq, weibo]] show];
+//    UIButton *wechat = [UIButton buttonWithTitle:@"微信好友" imageName:@"button_wechat"];
+//    UIButton *moments = [UIButton buttonWithTitle:@"朋友圈" imageName:@"button_wechat_moments"];
+//    UIButton *qq = [UIButton buttonWithTitle:@"QQ好友" imageName:@"button_qq"];
+//    UIButton *weibo = [UIButton buttonWithTitle:@"新浪微博" imageName:@"button_weibo"];
+//    UIButton *qzone = [UIButton buttonWithTitle:@"QQ空间" imageName:@"button_qzone"];
+//    UIButton *douban = [UIButton buttonWithTitle:@"豆瓣" imageName:@"button_douban"];
+//    UIButton *camera = [UIButton buttonWithTitle:@"拍照" imageName:@"button_camera"];
+//    UIButton *photos = [UIButton buttonWithTitle:@"选取照片" imageName:@"button_photos"];
+//    [wechat setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+//    [moments setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+//    [qq setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+//    [weibo setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+//    [qzone setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+//    [douban setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+//    [camera setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+//    [photos setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+////    [[UIAlertController actionSheetControllerWithButtons:@[wechat, moments, qq, weibo]] show];
+//    [[UIAlertController actionSheetControllerWithButtons:@[camera, photos]] show];
+    
+    SYSignInViewController *VC = [[SYSignInViewController alloc] init];
+    UINavigationController *NAV = [[UINavigationController alloc] initWithRootViewController:VC];
+    [self presentViewController:NAV animated:YES completion:nil];
 }
 
 - (void)updateNavigationBar

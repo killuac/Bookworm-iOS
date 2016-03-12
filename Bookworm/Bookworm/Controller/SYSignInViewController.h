@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SYSignInViewController : UIViewController
+@interface SYSignInViewController : UITableViewController
 
 @end

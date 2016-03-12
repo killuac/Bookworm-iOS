@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,28 +18,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bookworm" translatesAutoresizingMaskIntoConstraints="NO" id="0LK-LF-55d">
+                                <rect key="frame" x="275" y="150" width="50" height="70"/>
+                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2016 Syzygy. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="11s-hZ-1JU">
-                                <rect key="frame" x="20" y="559" width="561" height="20.5"/>
+                                <rect key="frame" x="20" y="559" width="561" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Bef-Qp-gYL"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FAC845D2-CB96-4FF9-8A9F-F0CED0CBDAC3" translatesAutoresizingMaskIntoConstraints="NO" id="0LK-LF-55d">
-                                <rect key="frame" x="243.5" y="151" width="113" height="75"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享最精品的书" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="HHD-WC-VGV">
+                                <rect key="frame" x="19" y="240" width="561" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="113" id="MlL-4E-fc6"/>
-                                    <constraint firstAttribute="height" constant="75" id="eMB-4f-QJn"/>
+                                    <constraint firstAttribute="height" constant="21" id="AbF-j2-Jza"/>
                                 </constraints>
-                            </imageView>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.25098039215686274" green="0.35686274509803922" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.40000000000000002" green="0.59999999999999998" blue="0.63137254901960782" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="11s-hZ-1JU" secondAttribute="bottom" constant="20" id="4C4-e9-Gr0"/>
-                            <constraint firstAttribute="bottom" secondItem="0LK-LF-55d" secondAttribute="bottom" constant="374" id="HiE-N4-aLd"/>
-                            <constraint firstAttribute="centerX" secondItem="11s-hZ-1JU" secondAttribute="centerX" id="LrC-DT-noB"/>
-                            <constraint firstItem="11s-hZ-1JU" firstAttribute="leading" secondItem="sNn-DJ-xJx" secondAttribute="leading" constant="20" symbolic="YES" id="atl-m4-Z1Q"/>
-                            <constraint firstItem="0LK-LF-55d" firstAttribute="top" secondItem="sNn-DJ-xJx" secondAttribute="top" constant="151" id="de9-a7-fNG"/>
-                            <constraint firstItem="0LK-LF-55d" firstAttribute="centerX" secondItem="sNn-DJ-xJx" secondAttribute="centerX" id="uqT-Oc-MaQ"/>
+                            <constraint firstItem="0LK-LF-55d" firstAttribute="centerX" secondItem="sNn-DJ-xJx" secondAttribute="centerX" id="Bhe-Mj-Zr7"/>
+                            <constraint firstItem="HHD-WC-VGV" firstAttribute="top" secondItem="0LK-LF-55d" secondAttribute="bottom" constant="20" id="ESl-dV-Z1x"/>
+                            <constraint firstItem="11s-hZ-1JU" firstAttribute="leading" secondItem="sNn-DJ-xJx" secondAttribute="leadingMargin" id="IMO-bt-4a7"/>
+                            <constraint firstItem="0LK-LF-55d" firstAttribute="centerX" secondItem="HHD-WC-VGV" secondAttribute="centerX" id="ctx-91-OHP"/>
+                            <constraint firstItem="0LK-LF-55d" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="130" id="dl1-zR-Psu"/>
+                            <constraint firstItem="11s-hZ-1JU" firstAttribute="centerX" secondItem="0LK-LF-55d" secondAttribute="centerX" id="g22-hU-qHB"/>
+                            <constraint firstItem="HHD-WC-VGV" firstAttribute="trailing" secondItem="sNn-DJ-xJx" secondAttribute="trailingMargin" id="iHQ-CD-JIX"/>
+                            <constraint firstAttribute="bottom" secondItem="11s-hZ-1JU" secondAttribute="bottom" constant="20" symbolic="YES" id="zUz-se-KRj"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -48,21 +59,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="FAC845D2-CB96-4FF9-8A9F-F0CED0CBDAC3" width="76" height="50">
-            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBMU
-GR4fJSYsLzU4VSRudWxs1QkKCwwNDg8QERJWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBz
-V05TQ29sb3KAAoAMEiTAAACAA4AKWHs3NiwgNTB90hUKFhhaTlMub2JqZWN0c6EXgASACdIVChoYohsc
-gAWABoAJEAXTIAohIiMkV05TLmJhc2VbTlMucmVsYXRpdmWAAIAIgAdfEHxmaWxlOi8vL0FwcGxpY2F0
-aW9ucy9YY29kZS5hcHAvQ29udGVudHMvUGx1Z0lucy9JREVJbnRlcmZhY2VCdWlsZGVyS2l0LmlkZXBs
-dWdpbi9Db250ZW50cy9SZXNvdXJjZXMvSUJNaXNzaW5nSW1hZ2VHbHlwaC50aWZm0icoKSpaJGNsYXNz
-bmFtZVgkY2xhc3Nlc1VOU1VSTKIpK1hOU09iamVjdNInKC0uV05TQXJyYXmiLSvTMDEKMjM0V05TV2hp
-dGVcTlNDb2xvclNwYWNlRDAgMAAQA4AL0icoNjdXTlNDb2xvcqI2K9InKDk6V05TSW1hZ2WiOStfEA9O
-U0tleWVkQXJjaGl2ZXLRPT5Ucm9vdIABAAgAEQAaACMALQAyADcARQBLAFYAXQBkAHEAeACAAIIAhACJ
-AIsAjQCWAJsApgCoAKoArACxALQAtgC4ALoAvADDAMsA1wDZANsA3QFcAWEBbAF1AXsBfgGHAYwBlAGX
-AZ4BpgGzAbgBugG8AcEByQHMAdEB2QHcAe4B8QH2AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAAAAAAAAAA
-Afg
-</mutableData>
-        </image>
+        <image name="Bookworm" width="50" height="70"/>
     </resources>
 </document>

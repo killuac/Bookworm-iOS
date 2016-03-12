@@ -97,6 +97,9 @@
     [UINavigationBar appearance].tintColor = [UIColor tintColor];
 //    [UINavigationBar appearance].barTintColor = [UIColor primaryColor];
     [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName:[UIFont boldTitleFont], NSForegroundColorAttributeName:[UIColor titleColor]};
+    UIImage *image = [UIImage imageNamed:@"button_back"];
+    [UINavigationBar appearance].backIndicatorImage = image;
+    [UINavigationBar appearance].backIndicatorTransitionMaskImage = image;
     
     [UIPageControl appearance].pageIndicatorTintColor = [UIColor whiteColor];
     [UIPageControl appearance].currentPageIndicatorTintColor = [UIColor grayColor];

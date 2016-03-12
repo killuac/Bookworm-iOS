@@ -6,12 +6,6 @@
   Copyright (c) 2015 Syzygy. All rights reserved.
 */
 
-"MobileSignUp" = "Mobile Sign Up";
-"EmailSignUp" = "Email Sign Up";
-"EditProfile" = "Edit Profile";
-"ChangeNickname" = "Change Nickname";
-"ChangePassword" = "Change Password";
-
 "Home" = "Bookworm";
 "Wish" = "Wish";
 "Message" = "Message";
@@ -30,11 +24,8 @@
 "SignOut" = "Sign Out";
 "Next" = "Next";
 "Skip" = "Skip";
-"SendSMS" = "Send SMS";
+"Send" = "Send";
 "Resend" = "Resend";
-"RemainingTime" = "%.f Second";
-"EmailSignUp" = "Email Sign Up";
-"NoSMSCode" = "No SMS Code?";
 "ForgotPassword" = "Forgot Password?";
 "Delete" = "Delete";
 "Refresh" = "Refresh";
@@ -61,6 +52,14 @@
 "SetChatBackground" = "Chat Background";
 "RestoreDefaultBackground" = "Restore Default Background";
 
+"EditProfile" = "Edit Profile";
+"ChangeNickname" = "Change Nickname";
+"ChangePassword" = "Change Password";
+
+"Nickname" = "Nickname";
+"Gender" = "Gender";
+"Location" = "Location";
+
 "ClearingCache" = "Clearing cache...";
 "CacheClearDone" = "Cache clear done";
 "NetworkUnstable" = "Current network is unstable, please switch network.";
@@ -75,7 +74,7 @@
 "EmailTooLong" = "Email length maximum 32";
 "EmailNotFound" = "Email not signed up";
 "PasswordWrong" = "Wrong password";
-"PasswordTooShort" = "Password length minimum 8";
+"PasswordTooShort" = "Password length minimum 6";
 "PasswordInvalid" = "Invalid password";
 "SMSCodeWrong" = "Wrong SMS code";
 "NicknameTooLong" = "Nickname length maximum 32";
@@ -93,7 +92,6 @@
 "AccessPhotosSetting" = "Please allow \"Bookworm\" access your photos in your system \"Settings-Privacy-Photos\"";
 "AccessCameraSetting" = "Please allow \"Bookworm\" access your camera in your system \"Settings-Privacy-Camera\"";
 "AccessMicrophoneSetting" = "Please allow \"Bookworm\" access your microphone in your system \"Settings-Privacy-Microphone\"";
-"AskForSignOut" = "Are you sure sign out?";
 "SignInAgain" = "Your account already login from other device, please re-login.";
 "AppVersionUnavailable" = "Your App version is old, please update from App Store.";
 

@@ -9,12 +9,6 @@
 #ifndef Bookworm_SYTextConstant_h
 #define Bookworm_SYTextConstant_h
 
-#define NAV_TITLE_MOBILE_SIGNUP         SYLocalizedString(@"MobileSignUp")
-#define NAV_TITLE_EMAIL_SIGNUP          SYLocalizedString(@"EmailSignUp")
-#define NAV_TITLE_EDIT_PROFILE          SYLocalizedString(@"EditProfile")
-#define NAV_TITLE_CHANGE_NICKNAME       SYLocalizedString(@"ChangeNickname")
-#define NAV_TITLE_CHANGE_PASSWORD       SYLocalizedString(@"ChangePassword")
-
 #define TAB_TITLE_HOME                  SYLocalizedString(@"Home")
 #define TAB_TITLE_WISH                  SYLocalizedString(@"Wish")
 #define TAB_TITLE_MESSAGE               SYLocalizedString(@"Message")
@@ -64,6 +58,23 @@
 #define BUTTON_TITLE_SET_CHAT_BG        SYLocalizedString(@"SetChatBackground")
 #define BUTTON_TITLE_RESTORE_DEFAULT_BG SYLocalizedString(@"RestoreDefaultBackground")
 
+#define TITLE_EDIT_PROFILE              SYLocalizedString(@"EditProfile")
+#define TITLE_CHANGE_NICKNAME           SYLocalizedString(@"ChangeNickname")
+#define TITLE_CHANGE_PASSWORD           SYLocalizedString(@"ChangePassword")
+
+#define TITLE_NICKNAME                  SYLocalizedString(@"Nickname")
+#define TITLE_GENDER                    SYLocalizedString(@"Gender")
+#define TITLE_LOCATION                  SYLocalizedString(@"Location")
+
+#define TEXT_GENDER_MALE                SYLocalizedString(@"Male")
+#define TEXT_GENDER_FEMALE              SYLocalizedString(@"Female")
+#define TEXT_USER_AGREEMENT             SYLocalizedString(@"UserAgreement")
+#define TEXT_AGREE_USER_AGREEMENT       SYLocalizedString(@"AgreeUserAgreement")
+#define TEXT_SINGLE_TAP_REFRESH         SYLocalizedString(@"SingleTapRefresh")
+
+#define PH_REPORT_OTHER_REASON          SYLocalizedString(@"ReportOtherReason")
+#define PH_FEEDBACK                     SYLocalizedString(@"Feedback")
+
 #define HUD_CLEARING_CACHE              SYLocalizedString(@"ClearingCache")
 #define HUD_CACHE_CLEAR_DONE            SYLocalizedString(@"CacheClearDone")
 #define HUD_NETWORK_UNSTABLE            SYLocalizedString(@"NetworkUnstable")
@@ -96,17 +107,7 @@
 #define MSG_ACCESS_PHOTOS_SETTING       SYLocalizedString(@"AccessPhotosSetting")
 #define MSG_ACCESS_CAMERA_SETTING       SYLocalizedString(@"AccessCameraSetting")
 #define MSG_ACCESS_MICROPHONE_SETTING   SYLocalizedString(@"AccessMicrophoneSetting")
-#define MSG_ASK_FOR_SIGN_OUT            SYLocalizedString(@"AskForSignOut")
 #define MSG_SIGNIN_AGAIN                SYLocalizedString(@"SignInAgain")
 #define MSG_APP_VERSION_UNAVAILABLE     SYLocalizedString(@"AppVersionUnavailable")
-
-#define TEXT_GENDER_MALE                SYLocalizedString(@"Male")
-#define TEXT_GENDER_FEMALE              SYLocalizedString(@"Female")
-#define TEXT_USER_AGREEMENT             SYLocalizedString(@"UserAgreement")
-#define TEXT_AGREE_USER_AGREEMENT       SYLocalizedString(@"AgreeUserAgreement")
-#define TEXT_SINGLE_TAP_REFRESH         SYLocalizedString(@"SingleTapRefresh")
-
-#define PH_REPORT_OTHER_REASON          SYLocalizedString(@"ReportOtherReason")
-#define PH_FEEDBACK                     SYLocalizedString(@"Feedback")
 
 #endif

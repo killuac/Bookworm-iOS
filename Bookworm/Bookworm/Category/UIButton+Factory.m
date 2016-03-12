@@ -102,7 +102,7 @@
     UIButton *button = [UIButton buttonWithType:buttonType];
     [button setTintColor:[UIColor tintColor]];
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor tintColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor titleColor] forState:UIControlStateNormal];
     
     if (imageName.length) {
         [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];

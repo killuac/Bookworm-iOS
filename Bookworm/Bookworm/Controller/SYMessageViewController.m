@@ -97,7 +97,7 @@
 }
 
 - (void)updateNavigationBar
-{
+{    
     self.navigationItem.rightBarButtonItem =
     [UIBarButtonItem barButtonItemWithImageName:@"button_contact_list" target:self action:@selector(showContactViewControllerFromMessageViewController:)];
     
@@ -351,7 +351,6 @@
 {
     SYChatViewController *chatVC = [[SYChatViewController alloc] init];
     chatVC.contact = self.contacts[self.selectedIndexPath.row];
-    self.hidesBottomBarWhenPushed = YES;
     [self showViewController:chatVC sender:self];
 }
 
