@@ -187,22 +187,22 @@
 
 - (void)showMainViewController
 {
-//    UITabBarController *VC = [[SYTabBarController alloc] init];
-//    
-//    UIWindow *window = [[UIApplication sharedApplication].delegate window];
-//    window.rootViewController = VC;
-//    [window makeKeyAndVisible];
-//    
-//    window.transform = CGAffineTransformMakeScale(0.9, 0.9);
-//    [UIView animateWithDuration:1.0
-//                          delay:0.0
-//         usingSpringWithDamping:0.5
-//          initialSpringVelocity:10
-//                        options:UIViewAnimationOptionCurveEaseInOut
-//                     animations:^{
-//                         window.transform = CGAffineTransformIdentity;
-//                     }
-//                     completion:nil];
+    UITabBarController *VC = [[SYTabBarController alloc] init];
+    
+    UIWindow *window = [[UIApplication sharedApplication].delegate window];
+    window.rootViewController = VC;
+    [window makeKeyAndVisible];
+    
+    window.transform = CGAffineTransformMakeScale(0.9, 0.9);
+    [UIView animateWithDuration:1.0
+                          delay:0.0
+         usingSpringWithDamping:0.5
+          initialSpringVelocity:10
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         window.transform = CGAffineTransformIdentity;
+                     }
+                     completion:nil];
 }
 
 #pragma mark - Utility methods

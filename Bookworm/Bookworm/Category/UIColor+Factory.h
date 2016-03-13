@@ -11,7 +11,7 @@
 @interface UIColor (Factory)
 
 + (instancetype)tintColor;
-+ (instancetype)primaryColor;
++ (instancetype)barTintColor;
 
 + (instancetype)backgroundColor;
 + (instancetype)bookWhileBackgroundColor;

@@ -30,10 +30,10 @@
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.window makeKeyAndVisible];
 #else
-    if ([GVUserDefaults standardUserDefaults].isSignedIn) {
-        [self.window.rootViewController showMainViewController];
-    } else {
+    if ([SYAppSetting defaultAppSetting].isShowUserGuide) {
         [self.window.rootViewController showInitialViewController];
+    } else {
+        [self.window.rootViewController showMainViewController];
     }
 #endif
     
@@ -95,7 +95,7 @@
     
     [UINavigationBar appearance].translucent = NO;
     [UINavigationBar appearance].tintColor = [UIColor tintColor];
-//    [UINavigationBar appearance].barTintColor = [UIColor primaryColor];
+    [UINavigationBar appearance].barTintColor = [UIColor whiteColor];
     [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName:[UIFont boldTitleFont], NSForegroundColorAttributeName:[UIColor titleColor]};
     UIImage *image = [UIImage imageNamed:@"button_back"];
     [UINavigationBar appearance].backIndicatorImage = image;

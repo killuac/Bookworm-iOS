@@ -26,7 +26,7 @@
 "Skip" = "Skip";
 "Send" = "Send";
 "Resend" = "Resend";
-"ForgotPassword" = "Forgot Password?";
+"ForgotPassword" = "Forgot Password";
 "Delete" = "Delete";
 "Refresh" = "Refresh";
 "MarkRead" = "Read";
@@ -42,7 +42,7 @@
 "Report" = "Report";
 "Share" = "Share";
 "Wechat" = "Wechat";
-"Moments" = "Moments";
+"WechatMoments" = "Moments";
 "QQ" = "QQ";
 "Weibo" = "Weibo";
 "Qzone" = "Qzone";

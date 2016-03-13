@@ -40,10 +40,6 @@
     [self addSubviews];
     [self loadData];
     [self addTapGesture];
-    
-    UISwitch *button = [UISwitch customSwitch];
-    button.center = self.view.center;
-    [self.view addSubview:button];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -53,14 +49,14 @@
 
 - (void)singleTap:(UITapGestureRecognizer *)recognizer
 {
-//    UIButton *wechat = [UIButton buttonWithTitle:@"微信好友" imageName:@"button_wechat"];
-//    UIButton *moments = [UIButton buttonWithTitle:@"朋友圈" imageName:@"button_wechat_moments"];
-//    UIButton *qq = [UIButton buttonWithTitle:@"QQ好友" imageName:@"button_qq"];
-//    UIButton *weibo = [UIButton buttonWithTitle:@"新浪微博" imageName:@"button_weibo"];
-//    UIButton *qzone = [UIButton buttonWithTitle:@"QQ空间" imageName:@"button_qzone"];
-//    UIButton *douban = [UIButton buttonWithTitle:@"豆瓣" imageName:@"button_douban"];
-//    UIButton *camera = [UIButton buttonWithTitle:@"拍照" imageName:@"button_camera"];
-//    UIButton *photos = [UIButton buttonWithTitle:@"选取照片" imageName:@"button_photos"];
+//    UIButton *wechat = [UIButton buttonWithTitle:BUTTON_TITLE_WECHAT imageName:@"button_wechat"];
+//    UIButton *moments = [UIButton buttonWithTitle:BUTTON_TITLE_WECHAT_MOMENTS imageName:@"button_wechat_moments"];
+//    UIButton *qq = [UIButton buttonWithTitle:BUTTON_TITLE_QQ imageName:@"button_qq"];
+//    UIButton *weibo = [UIButton buttonWithTitle:BUTTON_TITLE_WEIBO imageName:@"button_weibo"];
+//    UIButton *qzone = [UIButton buttonWithTitle:BUTTON_TITLE_QZONE imageName:@"button_qzone"];
+//    UIButton *douban = [UIButton buttonWithTitle:BUTTON_TITLE_DOUBAN imageName:@"button_douban"];
+//    UIButton *camera = [UIButton buttonWithTitle:BUTTON_TITLE_TAKE_PHOTO imageName:@"button_camera"];
+//    UIButton *photos = [UIButton buttonWithTitle:BUTTON_TITLE_CHOOSE_PHOTO imageName:@"button_photos"];
 //    [wechat setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
 //    [moments setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
 //    [qq setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];

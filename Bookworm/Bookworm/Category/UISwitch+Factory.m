@@ -13,7 +13,7 @@
 + (instancetype)customSwitch
 {
     UISwitch *switchButton = [[UISwitch alloc] init];
-    switchButton.onTintColor = [UIColor primaryColor];
+    switchButton.onTintColor = [UIColor tintColor];
     return switchButton;
 }
 

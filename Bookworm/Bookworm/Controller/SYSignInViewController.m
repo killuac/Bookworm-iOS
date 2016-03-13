@@ -35,7 +35,7 @@
     
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithImageName:@"button_close" target:self action:@selector(close:)];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonItemWithTitle:BUTTON_TITLE_SIGNUP target:self action:@selector(flipToSignUpView:)];
-    NSDictionary *attributes = @{NSFontAttributeName:[UIFont boldTitleFont], NSForegroundColorAttributeName:[UIColor tintColor]};
+    NSDictionary *attributes = @{NSFontAttributeName:[UIFont boldTitleFont]};
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:attributes forState:UIControlStateNormal];
 }
 
