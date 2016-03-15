@@ -20,7 +20,7 @@
 @property (nonatomic, strong) SYMeViewController *meVC;
 
 @property (nonatomic, assign) NSUInteger previousSelectedIndex;
-@property (nonatomic, strong) NSArray<__kindof UIView*> *tabBarButtons;  // For animation
+@property (nonatomic, strong) NSArray<__kindof UIView *> *tabBarButtons;  // For animation
 
 @end
 

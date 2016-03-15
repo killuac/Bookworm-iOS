@@ -16,7 +16,7 @@
     return [self alertControllerWithTitle:title message:message actions:@[okay]];
 }
 
-+ (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message actions:(NSArray<UIAlertAction*> *)actions
++ (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message actions:(NSArray<UIAlertAction *> *)actions
 {
     UIAlertController *AC = [self alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     [actions enumerateObjectsUsingBlock:^(UIAlertAction * _Nonnull action, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -25,7 +25,7 @@
     return AC;
 }
 
-+ (instancetype)actionSheetControllerWithActions:(NSArray<UIAlertAction*> *)actions
++ (instancetype)actionSheetControllerWithActions:(NSArray<UIAlertAction *> *)actions
 {
     UIAlertController *AC = [self alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [actions enumerateObjectsUsingBlock:^(UIAlertAction * _Nonnull action, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -44,8 +44,7 @@
     SYStackView *stackView = [[SYStackView alloc] initWithFrame:CGRectZero];
     stackView.backgroundColor = [UIColor whiteColor];
     stackView.size = CGSizeMake(AC.view.width, 80);
-    stackView.left = -MEDIUM_MARGIN;
-    stackView.top = 52;
+    stackView.origin = CGPointMake(-MEDIUM_MARGIN, 52);
     [stackView addSubviews:buttons];
     [AC.view addSubview:stackView];
     

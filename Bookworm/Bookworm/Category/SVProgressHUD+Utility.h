@@ -10,4 +10,6 @@
 
 @interface SVProgressHUD (Utility)
 
++ (SVProgressHUD*)sharedView;
+
 @end

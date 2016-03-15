@@ -117,12 +117,12 @@
 
 - (CGFloat)navigationBarHeight
 {
-    return self.navigationController.navigationBar.height;
+    return [self isKindOfClass:[UINavigationController class]] ? self.navigationBar.height : self.navigationController.navigationBar.height;
 }
 
 - (CGFloat)tabBarHeight
 {
-    return self.tabBarController.tabBar.height;
+    return [self isKindOfClass:[UITabBarController class]] ? self.tabBar.height : self.tabBarController.tabBar.height;
 }
 
 #pragma mark - Gesture
@@ -209,7 +209,6 @@
 - (void)loadData
 {
     [self performSelector:@selector(showLoadingActivity) withObject:nil afterDelay:1.0];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(HTTPRequestDidComplete:)
                                                  name:AFNetworkingTaskDidCompleteNotification

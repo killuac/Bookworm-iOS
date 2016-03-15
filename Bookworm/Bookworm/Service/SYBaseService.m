@@ -19,9 +19,7 @@
 {
     if (self = [super init]) {
         _dbQueue = [FMDatabaseQueue databaseQueueWithPath:DATABASE_FILE_PATH];
-        #if DEBUG
-//            NSLog(@"%@", DATABASE_FILE_PATH);
-        #endif
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancelRequest) name:SVProgressHUDDidTouchDownInsideNotification object:nil];
     }
     
     return self;
@@ -53,6 +51,12 @@
 - (void)cancelRequest
 {
     [self.sessionDataTask cancel];
+}
+
+- (void)dealloc
+{
+    [self.dbQueue close];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

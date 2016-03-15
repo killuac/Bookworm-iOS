@@ -8,7 +8,10 @@
 
 #import "SVProgressHUD+Utility.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincomplete-implementation"
 @implementation SVProgressHUD (Utility)
+#pragma clang diagnostic pop
 
 + (void)load
 {
@@ -34,24 +37,21 @@
 + (void)swizzle_showWithStatus:(NSString *)status
 {
     if (status.length > 0) {
-        [self setDefaultMaskType:SVProgressHUDMaskTypeClear];
+        [self setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     } else {
         [self setDefaultStyle:SVProgressHUDStyleCustom];
     }
-    
     [self swizzle_showWithStatus:status];
 }
 
 - (void)swizzle_showImage:(UIImage *)image status:(NSString *)status
 {
-    [self setDefaultStyle:SVProgressHUDStyleDark];
     [self setDefaultMaskType:SVProgressHUDMaskTypeNone];
     [self swizzle_showImage:image status:status];
 }
 
 - (void)swizzle_dismiss
 {
-    [self setDefaultStyle:SVProgressHUDStyleDark];
     [self setDefaultMaskType:SVProgressHUDMaskTypeNone];
     [self swizzle_dismiss];
 }

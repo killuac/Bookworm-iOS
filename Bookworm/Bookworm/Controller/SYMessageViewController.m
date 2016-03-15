@@ -12,7 +12,7 @@
 
 @interface SYMessageViewController ()
 
-@property (nonatomic, strong) NSMutableArray<SYContactModel*> *contacts;
+@property (nonatomic, strong) NSMutableArray<SYContactModel *> *contacts;
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -145,7 +145,7 @@
     [self.contacts addObject:model];
     [self.contacts addObject:model];
     
-    [self.contactService findByKey:self.userID result:^(NSArray<SYContactModel*> *result) {
+    [self.contactService findByKey:self.userID result:^(NSArray<SYContactModel *> *result) {
         [self.contacts addObjectsFromArray:result];
         [self refreshUI];
         if (completion) completion();

@@ -237,7 +237,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
         }
             
         case SYSocketStatusCodeMessage: {
-            NSMutableArray<SYMessageModel*> *messageModels = [JSONModel arrayOfModelsFromString:responseModel.messageData error:nil];
+            NSMutableArray<SYMessageModel *> *messageModels = [JSONModel arrayOfModelsFromString:responseModel.messageData error:nil];
             [messageModels sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES]]];
             [self.messageService saveWithModels:messageModels result:^(id result) {
                 [self postNotificationName:SYSocketDidReceiveMessageNotification object:messageModels];

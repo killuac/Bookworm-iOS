@@ -42,35 +42,30 @@
     [self addTapGesture];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
-
 - (void)singleTap:(UITapGestureRecognizer *)recognizer
 {
-//    UIButton *wechat = [UIButton buttonWithTitle:BUTTON_TITLE_WECHAT imageName:@"button_wechat"];
-//    UIButton *moments = [UIButton buttonWithTitle:BUTTON_TITLE_WECHAT_MOMENTS imageName:@"button_wechat_moments"];
-//    UIButton *qq = [UIButton buttonWithTitle:BUTTON_TITLE_QQ imageName:@"button_qq"];
-//    UIButton *weibo = [UIButton buttonWithTitle:BUTTON_TITLE_WEIBO imageName:@"button_weibo"];
-//    UIButton *qzone = [UIButton buttonWithTitle:BUTTON_TITLE_QZONE imageName:@"button_qzone"];
-//    UIButton *douban = [UIButton buttonWithTitle:BUTTON_TITLE_DOUBAN imageName:@"button_douban"];
-//    UIButton *camera = [UIButton buttonWithTitle:BUTTON_TITLE_TAKE_PHOTO imageName:@"button_camera"];
-//    UIButton *photos = [UIButton buttonWithTitle:BUTTON_TITLE_CHOOSE_PHOTO imageName:@"button_photos"];
-//    [wechat setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-//    [moments setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-//    [qq setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-//    [weibo setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-//    [qzone setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-//    [douban setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-//    [camera setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-//    [photos setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-////    [[UIAlertController actionSheetControllerWithButtons:@[wechat, moments, qq, weibo]] show];
-//    [[UIAlertController actionSheetControllerWithButtons:@[camera, photos]] show];
+    UIButton *wechat = [UIButton buttonWithTitle:BUTTON_TITLE_WECHAT imageName:@"button_wechat"];
+    UIButton *moments = [UIButton buttonWithTitle:BUTTON_TITLE_WECHAT_MOMENTS imageName:@"button_wechat_moments"];
+    UIButton *qq = [UIButton buttonWithTitle:BUTTON_TITLE_QQ imageName:@"button_qq"];
+    UIButton *weibo = [UIButton buttonWithTitle:BUTTON_TITLE_WEIBO imageName:@"button_weibo"];
+    UIButton *qzone = [UIButton buttonWithTitle:BUTTON_TITLE_QZONE imageName:@"button_qzone"];
+    UIButton *douban = [UIButton buttonWithTitle:BUTTON_TITLE_DOUBAN imageName:@"button_douban"];
+    UIButton *camera = [UIButton buttonWithTitle:BUTTON_TITLE_TAKE_PHOTO imageName:@"button_camera"];
+    UIButton *photos = [UIButton buttonWithTitle:BUTTON_TITLE_CHOOSE_PHOTO imageName:@"button_photos"];
+    [wechat setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+    [moments setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+    [qq setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+    [weibo setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+    [qzone setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+    [douban setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+    [camera setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+    [photos setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
+//    [[UIAlertController actionSheetControllerWithButtons:@[wechat, moments, qq, weibo]] show];
+    [[UIAlertController actionSheetControllerWithButtons:@[camera, photos]] show];
     
-    SYSignInViewController *VC = [[SYSignInViewController alloc] init];
-    UINavigationController *NAV = [[UINavigationController alloc] initWithRootViewController:VC];
-    [self presentViewController:NAV animated:YES completion:nil];
+//    SYSignInViewController *VC = [[SYSignInViewController alloc] init];
+//    UINavigationController *NAV = [[UINavigationController alloc] initWithRootViewController:VC];
+//    [self presentViewController:NAV animated:YES completion:nil];
 }
 
 - (void)updateNavigationBar

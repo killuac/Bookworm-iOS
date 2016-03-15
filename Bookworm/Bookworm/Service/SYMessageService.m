@@ -58,7 +58,7 @@
     [[SYSocketManager manager] sendMessageWithModel:messageModel];
 }
 
-- (void)saveWithModels:(NSArray<SYMessageModel*> *)models result:(SYServiceBlockType)result
+- (void)saveWithModels:(NSArray<SYMessageModel *> *)models result:(SYServiceBlockType)result
 {
 //  TODO: Save data to database
     
