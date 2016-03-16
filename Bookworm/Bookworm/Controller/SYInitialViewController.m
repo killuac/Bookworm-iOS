@@ -69,8 +69,9 @@
     [self.pageViewController didMoveToParentViewController:self];
     
     self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectZero];
-    self.pageControl.top = self.view.height - 100;
-    self.pageControl.size = CGSizeMake(self.view.width, 20);
+    self.pageControl.enabled = NO;
+    self.pageControl.top = self.view.height - 70;
+    self.pageControl.size = CGSizeMake(self.view.width, 10);
     self.pageControl.numberOfPages = self.imageNames.count;
     [self.view addSubview:self.pageControl];
 }
@@ -104,7 +105,7 @@
     UIButton *skipButton = [UIButton systemButtonWithTitle:BUTTON_TITLE_LOOK_AROUND];
     skipButton.tintColor = [UIColor tintColor];
     skipButton.center = self.view.center;
-    skipButton.bottom = toolbar.top - SMALL_MARGIN;
+    skipButton.bottom = self.pageControl.top;
     [skipButton addTarget:self action:@selector(lookAround:)];
     [self.view addSubview:skipButton];
 }
