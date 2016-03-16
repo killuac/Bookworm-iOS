@@ -93,6 +93,8 @@
     [UITabBar appearance].translucent = NO;
     [UITabBar appearance].tintColor = [UIColor tintColor];
     
+    [UIToolbar appearance].tintColor = [UIColor tintColor];
+    
     [UINavigationBar appearance].translucent = NO;
     [UINavigationBar appearance].tintColor = [UIColor tintColor];
     [UINavigationBar appearance].barTintColor = [UIColor whiteColor];
@@ -101,9 +103,9 @@
     [UINavigationBar appearance].backIndicatorImage = image;
     [UINavigationBar appearance].backIndicatorTransitionMaskImage = image;
     
-    [UIPageControl appearance].pageIndicatorTintColor = [UIColor whiteColor];
-    [UIPageControl appearance].currentPageIndicatorTintColor = [UIColor grayColor];
-    [UIPageControl appearance].backgroundColor = [UIColor backgroundColor];
+    [UIPageControl appearance].pageIndicatorTintColor = [UIColor grayColor];
+    [UIPageControl appearance].currentPageIndicatorTintColor = [UIColor whiteColor];
+    [UIPageControl appearance].backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark - Notification

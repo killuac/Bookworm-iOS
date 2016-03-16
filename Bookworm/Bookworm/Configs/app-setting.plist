@@ -5,7 +5,7 @@
 	<key>isAppUpdated</key>
 	<true/>
 	<key>isShowUserGuide</key>
-	<false/>
+	<true/>
 	<key>umengAppKey</key>
 	<string>5335438f6c738f4e13000039</string>
 	<key>httpServer</key>

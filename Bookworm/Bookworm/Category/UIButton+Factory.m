@@ -176,7 +176,7 @@
     }
 }
 
-#pragma mark - System button
+#pragma mark - Custom button
 + (instancetype)buttonWithTitle:(NSString *)title
 {
     return [UIButton buttonWithTitle:title imageName:nil selectedImageName:nil];
@@ -212,12 +212,22 @@
     return [UIButton buttonWithTitle:nil imageName:imageName disabledImageName:disabledImageName];
 }
 
-+ (instancetype)linkButtonWithTitle:(NSString *)title
+#pragma mark - System button
+
++ (instancetype)systemButtonWithTitle:(NSString *)title
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button setTitle:title forState:UIControlStateNormal];
+    [button sizeToFit];
+    
+    return button;
+}
+
++ (instancetype)linkButtonWithTitle:(NSString *)title
+{
+    UIButton *button = [self systemButtonWithTitle:title];
     button.tintColor = [UIColor linkButtonColor];
     button.titleLabel.font = [UIFont defaultFont];
-    [button setTitle:title forState:UIControlStateNormal];
     [button sizeToFit];
     
     return button;

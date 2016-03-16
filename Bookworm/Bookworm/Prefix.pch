@@ -41,6 +41,7 @@
 #import "UILabel+Factory.h"
 #import "UIButton+Factory.h"
 #import "UISwitch+Factory.h"
+#import "UIToolbar+Factory.h"
 #import "UIImage+Utility.h"
 #import "UIImageView+Utility.h"
 #import "UIBarButtonItem+Factory.h"

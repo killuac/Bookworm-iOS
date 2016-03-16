@@ -20,4 +20,19 @@
     [super viewDidLoad];
 }
 
+- (void)updateNavigationBar
+{
+    [super updateNavigationBar];
+    
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonItemWithTitle:BUTTON_TITLE_SIGNIN target:self action:@selector(flipToSignInView:)];
+    NSDictionary *attributes = @{NSFontAttributeName:[UIFont boldTitleFont]};
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:attributes forState:UIControlStateNormal];
+}
+
+#pragma mark - Event handling
+- (void)flipToSignInView:(UIBarButtonItem *)barButtonItem
+{
+    
+}
+
 @end

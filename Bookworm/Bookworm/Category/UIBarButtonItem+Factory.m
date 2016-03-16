@@ -10,7 +10,7 @@
 
 @implementation UIBarButtonItem (Factory)
 
-+ (instancetype)barButtonWithButton:(UIButton *)button
++ (instancetype)barButtonItemWithButton:(UIButton *)button
 {
     return [[self alloc] initWithCustomView:button];
 }

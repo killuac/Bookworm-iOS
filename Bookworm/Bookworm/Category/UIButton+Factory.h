@@ -33,6 +33,7 @@ typedef NS_ENUM(NSUInteger, SYButtonLayoutStyle) {
 + (instancetype)buttonWithImageName:(NSString *)imageName selectedImageName:(NSString *)selImageName;
 + (instancetype)buttonWithImageName:(NSString *)imageName disabledImageName:(NSString *)disabledImageName;
 
++ (instancetype)systemButtonWithTitle:(NSString *)title;
 + (instancetype)linkButtonWithTitle:(NSString *)title;
 
 + (instancetype)defaultButtonWithTitle:(NSString *)title;

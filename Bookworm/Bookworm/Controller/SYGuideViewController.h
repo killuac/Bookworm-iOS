@@ -10,4 +10,9 @@
 
 @interface SYGuideViewController : UIViewController
 
+@property (nonatomic, assign, readonly) NSUInteger pageIndex;
+@property (nonatomic, strong, readonly) UIImageView *bgImageView;
+
++ (instancetype)guideViewControllerWithPageIndex:(NSUInteger)index;
+
 @end

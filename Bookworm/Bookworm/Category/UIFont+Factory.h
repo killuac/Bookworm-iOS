@@ -11,7 +11,8 @@
 @interface UIFont (Factory)
 
 + (instancetype)defaultFont;
-+ (instancetype)defaultBigFont;
++ (instancetype)bigFont;
++ (instancetype)boldBigFont;
 + (instancetype)titleFont;
 + (instancetype)boldTitleFont;
 + (instancetype)subtitleFont;

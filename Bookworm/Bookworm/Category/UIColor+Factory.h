@@ -22,7 +22,7 @@
 
 + (instancetype)titleColor;
 + (instancetype)subtitleColor;
-+ (instancetype)separatorLineColor;
++ (instancetype)separatorColor;
 
 + (instancetype)defaultButtonColor;
 + (instancetype)primaryButtonColor;

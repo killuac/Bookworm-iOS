@@ -26,6 +26,7 @@
 "Skip" = "Skip";
 "Send" = "Send";
 "Resend" = "Resend";
+"LookAround" = "Look Around";
 "ForgotPassword" = "Forgot Password";
 "Delete" = "Delete";
 "Refresh" = "Refresh";

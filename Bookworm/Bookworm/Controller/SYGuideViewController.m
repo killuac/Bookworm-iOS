@@ -8,16 +8,24 @@
 
 #import "SYGuideViewController.h"
 
-@interface SYGuideViewController ()
-
-@end
-
 @implementation SYGuideViewController
 
-#pragma mark - Life cycle
-- (void)viewDidLoad
++ (instancetype)guideViewControllerWithPageIndex:(NSUInteger)index
 {
-    [super viewDidLoad];
+    return [[self alloc] initWithPageIndex:index];
+}
+
+- (instancetype)initWithPageIndex:(NSUInteger)index
+{
+    if (self = [super init]) {
+        _pageIndex = index;
+        
+        _bgImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
+        _bgImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self.view addSubview:self.bgImageView];
+    }
+    
+    return self;
 }
 
 @end

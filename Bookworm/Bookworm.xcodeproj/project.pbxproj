@@ -72,6 +72,11 @@
 		E39B45A01C5B843800FEAFC8 /* SYSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B459F1C5B843800FEAFC8 /* SYSignInViewController.m */; };
 		E39C12E41C574BDC00F0FF10 /* SYSocketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E39C12E31C574BDC00F0FF10 /* SYSocketModel.m */; };
 		E39FB1891C60881600EB5052 /* SYBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E39FB1881C60881600EB5052 /* SYBubbleTableViewCell.m */; };
+		E3B0CAE21C981B3F009950B2 /* SYInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B0CAE11C981B3F009950B2 /* SYInitialViewController.m */; };
+		E3B0CAEC1C994A6D009950B2 /* UIToolbar+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B0CAEB1C994A6D009950B2 /* UIToolbar+Factory.m */; };
+		E3B0CAF01C9966C1009950B2 /* guide0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E3B0CAED1C9966C1009950B2 /* guide0.jpg */; };
+		E3B0CAF11C9966C1009950B2 /* guide1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E3B0CAEE1C9966C1009950B2 /* guide1.jpg */; };
+		E3B0CAF21C9966C1009950B2 /* guide2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E3B0CAEF1C9966C1009950B2 /* guide2.jpg */; };
 		E3BBDCA21C5916630012834A /* UILabel+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BBDCA11C5916630012834A /* UILabel+Factory.m */; };
 		E3BBDCE81C5938DE0012834A /* Bookworm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3BBDCE61C5938DE0012834A /* Bookworm.xcdatamodeld */; };
 		E3BEDFC71C23FC8F00E6DB58 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BEDFC61C23FC8F00E6DB58 /* libz.tbd */; };
@@ -239,6 +244,13 @@
 		E39C12E31C574BDC00F0FF10 /* SYSocketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSocketModel.m; sourceTree = "<group>"; };
 		E39FB1871C60881600EB5052 /* SYBubbleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYBubbleTableViewCell.h; sourceTree = "<group>"; };
 		E39FB1881C60881600EB5052 /* SYBubbleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYBubbleTableViewCell.m; sourceTree = "<group>"; };
+		E3B0CAE01C981B3F009950B2 /* SYInitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYInitialViewController.h; sourceTree = "<group>"; };
+		E3B0CAE11C981B3F009950B2 /* SYInitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYInitialViewController.m; sourceTree = "<group>"; };
+		E3B0CAEA1C994A6D009950B2 /* UIToolbar+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+Factory.h"; sourceTree = "<group>"; };
+		E3B0CAEB1C994A6D009950B2 /* UIToolbar+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+Factory.m"; sourceTree = "<group>"; };
+		E3B0CAED1C9966C1009950B2 /* guide0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guide0.jpg; sourceTree = "<group>"; };
+		E3B0CAEE1C9966C1009950B2 /* guide1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guide1.jpg; sourceTree = "<group>"; };
+		E3B0CAEF1C9966C1009950B2 /* guide2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guide2.jpg; sourceTree = "<group>"; };
 		E3BBDCA01C5916630012834A /* UILabel+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Factory.h"; sourceTree = "<group>"; };
 		E3BBDCA11C5916630012834A /* UILabel+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Factory.m"; sourceTree = "<group>"; };
 		E3BBDCE71C5938DE0012834A /* Bookworm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bookworm.xcdatamodel; sourceTree = "<group>"; };
@@ -357,6 +369,7 @@
 				E34581471C2115CF0088BDA5 /* LaunchScreen.storyboard */,
 				E34581421C2115CF0088BDA5 /* Main.storyboard */,
 				E34581451C2115CF0088BDA5 /* Assets.xcassets */,
+				E3B0CAE31C99145C009950B2 /* Images */,
 				E34581391C2115CF0088BDA5 /* Supporting Files */,
 			);
 			path = Bookworm;
@@ -458,6 +471,8 @@
 				E39B458D1C5B78CB00FEAFC8 /* SYGuideViewController.m */,
 				E30A49ED1C5B12C3009BD684 /* SYHomeViewController.h */,
 				E30A49EE1C5B12C3009BD684 /* SYHomeViewController.m */,
+				E3B0CAE01C981B3F009950B2 /* SYInitialViewController.h */,
+				E3B0CAE11C981B3F009950B2 /* SYInitialViewController.m */,
 				E30A49EA1C5B1257009BD684 /* SYMessageViewController.h */,
 				E30A49EB1C5B1257009BD684 /* SYMessageViewController.m */,
 				E30A49F01C5B12EB009BD684 /* SYMeViewController.h */,
@@ -553,6 +568,16 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		E3B0CAE31C99145C009950B2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E3B0CAED1C9966C1009950B2 /* guide0.jpg */,
+				E3B0CAEE1C9966C1009950B2 /* guide1.jpg */,
+				E3B0CAEF1C9966C1009950B2 /* guide2.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		E3EB14A41C52166700D10026 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -593,6 +618,8 @@
 				E3FF2EED1C35007E00A6C7BF /* UISwitch+Factory.m */,
 				E3EB14B41C52171400D10026 /* UITableViewCell+Common.h */,
 				E3EB14B51C52171400D10026 /* UITableViewCell+Common.m */,
+				E3B0CAEA1C994A6D009950B2 /* UIToolbar+Factory.h */,
+				E3B0CAEB1C994A6D009950B2 /* UIToolbar+Factory.m */,
 				E345818D1C213A7D0088BDA5 /* UIView+Frame.h */,
 				E345818E1C213A7D0088BDA5 /* UIView+Frame.m */,
 				E345818F1C213A7D0088BDA5 /* UIView+Utility.h */,
@@ -721,13 +748,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3B0CAF11C9966C1009950B2 /* guide1.jpg in Resources */,
 				E34581CA1C2169F20088BDA5 /* Localizable.strings in Resources */,
 				E34581491C2115CF0088BDA5 /* LaunchScreen.storyboard in Resources */,
 				E34581C71C2169EA0088BDA5 /* InfoPlist.strings in Resources */,
 				E34581D71C216E860088BDA5 /* app-setting.plist in Resources */,
 				E31DBAEF1C27DAD600FD5F36 /* Bookworm.sql in Resources */,
+				E3B0CAF01C9966C1009950B2 /* guide0.jpg in Resources */,
 				E34581461C2115CF0088BDA5 /* Assets.xcassets in Resources */,
 				E34581441C2115CF0088BDA5 /* Main.storyboard in Resources */,
+				E3B0CAF21C9966C1009950B2 /* guide2.jpg in Resources */,
 				E32F00E21C9111F70024086B /* social-share.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -821,6 +851,7 @@
 				E39B458B1C5B789F00FEAFC8 /* SYSettingViewController.m in Sources */,
 				E39B45941C5B7A3000FEAFC8 /* SYPageViewController.m in Sources */,
 				E34581911C213A7D0088BDA5 /* NSDate+Utility.m in Sources */,
+				E3B0CAEC1C994A6D009950B2 /* UIToolbar+Factory.m in Sources */,
 				E3EB14941C51E6B300D10026 /* NSData+Utility.m in Sources */,
 				E39B45911C5B794300FEAFC8 /* SYFollowListViewController.m in Sources */,
 				E34581DB1C216FD40088BDA5 /* SYBaseService.m in Sources */,
@@ -866,6 +897,7 @@
 				E34581971C213A7D0088BDA5 /* UIView+Frame.m in Sources */,
 				E32F00FF1C9170520024086B /* SYStackView.m in Sources */,
 				E3EB14B61C52171400D10026 /* UITableViewCell+Common.m in Sources */,
+				E3B0CAE21C981B3F009950B2 /* SYInitialViewController.m in Sources */,
 				E34581A51C213FFB0088BDA5 /* JSONValueTransformer+Mapper.m in Sources */,
 				E30A49F51C5B193E009BD684 /* SYWishViewController.m in Sources */,
 			);

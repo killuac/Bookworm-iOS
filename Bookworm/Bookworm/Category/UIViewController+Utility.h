@@ -42,6 +42,7 @@
 @property (nonatomic, assign, readonly) CGFloat tabBarHeight;
 
 - (void)showInitialViewController;
+- (void)showSignInViewController;
 - (void)showMainViewController;
 
 - (void)HTTPRequestDidComplete:(NSNotification *)notification;

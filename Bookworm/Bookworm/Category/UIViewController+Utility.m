@@ -7,6 +7,8 @@
 //
 
 #import "UIViewController+Utility.h"
+#import "SYInitialViewController.h"
+#import "SYSignInViewController.h"
 
 @implementation UIViewController (Utility)
 
@@ -179,10 +181,17 @@
 #pragma mark - Show view controller
 - (void)showInitialViewController
 {
-//    UIViewController *VC = [[SYInitialViewController alloc] init];
-//    UIWindow *window = [[UIApplication sharedApplication].delegate window];
-//    window.rootViewController = VC;
-//    [window makeKeyAndVisible];
+    UIViewController *VC = [[SYInitialViewController alloc] init];
+    UIWindow *window = [[UIApplication sharedApplication].delegate window];
+    window.rootViewController = VC;
+    [window makeKeyAndVisible];
+}
+
+- (void)showSignInViewController
+{
+    SYSignInViewController *VC = [[SYSignInViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:VC];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)showMainViewController

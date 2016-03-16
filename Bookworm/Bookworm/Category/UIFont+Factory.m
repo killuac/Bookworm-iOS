@@ -15,9 +15,14 @@
     return [UIFont systemFontOfSize:12.0f];
 }
 
-+ (instancetype)defaultBigFont
++ (instancetype)bigFont
 {
     return [UIFont systemFontOfSize:20.0f];
+}
+
++ (instancetype)boldBigFont
+{
+    return [UIFont boldSystemFontOfSize:20.0f];
 }
 
 + (instancetype)titleFont

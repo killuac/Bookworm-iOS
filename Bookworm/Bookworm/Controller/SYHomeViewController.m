@@ -62,10 +62,6 @@
     [photos setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
 //    [[UIAlertController actionSheetControllerWithButtons:@[wechat, moments, qq, weibo]] show];
     [[UIAlertController actionSheetControllerWithButtons:@[camera, photos]] show];
-    
-//    SYSignInViewController *VC = [[SYSignInViewController alloc] init];
-//    UINavigationController *NAV = [[UINavigationController alloc] initWithRootViewController:VC];
-//    [self presentViewController:NAV animated:YES completion:nil];
 }
 
 - (void)updateNavigationBar

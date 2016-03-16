@@ -26,7 +26,7 @@
     _viewControllerClasses = [NSMutableArray array];
     [SYClassGetSubClasses([UIViewController class]) enumerateObjectsUsingBlock:^(Class class, NSUInteger idx, BOOL *stop) {
         NSString *className = NSStringFromClass(class);
-        if ([className hasPrefix:@"SY"] && ![className isEqual:@"SYScrollViewController"]) {
+        if ([className hasPrefix:@"SY"] && ![className isEqualToString:@"SYScrollViewController"]) {
             [_viewControllerClasses addObject:NSStringFromClass(class)];
         }
     }];

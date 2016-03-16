@@ -100,11 +100,21 @@
 }
 
 #pragma mark - Tab bar controller delegate
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    if ([GVUserDefaults standardUserDefaults].isSignedIn) return YES;
+    
+    if (viewController == self.messageVC || viewController == self.meVC) {
+        [self showSignInViewController]; return NO;
+    }
+    return YES;
+}
+
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
     if (tabBarController.selectedIndex == self.previousSelectedIndex) {
         UIViewController *visibleVC = viewController.visibleViewController;
-        if ([visibleVC isEqual:self.homeVC] || [visibleVC isEqual:self.wishVC]) {
+        if (visibleVC == self.homeVC || visibleVC == self.wishVC) {
             [visibleVC reloadData];
         }
     }

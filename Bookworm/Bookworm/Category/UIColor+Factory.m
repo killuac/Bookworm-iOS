@@ -79,7 +79,7 @@
     return [UIColor colorWithRed:145/255.0 green:152/255.0 blue:159/255.0 alpha:1.0];   // 银鼠
 }
 
-+ (instancetype)separatorLineColor
++ (instancetype)separatorColor
 {
     return [UIColor lightGrayColor];
 }
