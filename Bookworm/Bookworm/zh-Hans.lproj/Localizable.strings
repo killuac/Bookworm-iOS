@@ -96,7 +96,7 @@
 "Male" = "男";
 "Female" = "女";
 "UserAgreement" = "用户协议";
-"AgreeUserAgreement" = "点击\"注册\"表示已阅读并同意";
+"AgreeUserAgreement" = "点击“注册”表示已阅读并同意";
 "SingleTapRefresh" = "点击屏幕重新加载";
 
 "ReportOtherReason" = "其他原因...";
