@@ -18,7 +18,6 @@
 "Okay" = "Okay";
 "Exit" = "Exit";
 "Save" = "Save";
-"Send" = "Send";
 "SignIn" = "Log In";
 "SignUp" = "Sign Up";
 "SignOut" = "Sign Out";
@@ -72,13 +71,11 @@
 "MobileNotFound" = "Mobile not signed up";
 "EmailInvalid" = "Invalid email address";
 "EmailTaken" = "Email has been taken";
-"EmailTooLong" = "Email length maximum 32";
 "EmailNotFound" = "Email not signed up";
 "PasswordWrong" = "Wrong password";
 "PasswordTooShort" = "Password length minimum 6";
 "PasswordInvalid" = "Invalid password";
 "SMSCodeWrong" = "Wrong SMS code";
-"NicknameTooLong" = "Nickname length maximum 32";
 "SigningIn" = "Loging in...";
 "CreatingUser" = "Creating user...";
 "ThanksFeedback" = "Thanks for your support";

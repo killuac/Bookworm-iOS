@@ -30,7 +30,7 @@
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.window makeKeyAndVisible];
 #else
-    if ([SYAppSetting defaultAppSetting].isShowUserGuide) {
+    if ([GVUserDefaults standardUserDefaults].isShowInitialView) {
         [self.window.rootViewController showInitialViewController];
     } else {
         [self.window.rootViewController showMainViewController];

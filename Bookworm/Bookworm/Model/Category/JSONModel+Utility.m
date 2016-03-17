@@ -10,14 +10,9 @@
 
 @implementation JSONModel (Utility)
 
-+ (void)load
+- (NSDictionary *)toDictionaryWithSignature
 {
-    SYSwizzleMethod(self, @selector(toDictionary), @selector(swizzle_toDictionary), NO);
-}
-
-- (NSDictionary *)swizzle_toDictionary
-{
-    NSMutableDictionary *dictionary = [[self swizzle_toDictionary] mutableCopy];
+    NSMutableDictionary *dictionary = [[self toDictionary] mutableCopy];
     NSArray *sortedKeys = [dictionary.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         return [obj1 compare:obj2];
     }];
@@ -30,6 +25,7 @@
     
     NSString *paramString = [keyValuePairs componentsJoinedByString:@","];
     dictionary[@"signature"] = [[NSString stringWithFormat:@"%@+%@", paramString, [SYAppSetting defaultAppSetting].signatureSalt] toSHA1String];
+    
     return dictionary;
 }
 

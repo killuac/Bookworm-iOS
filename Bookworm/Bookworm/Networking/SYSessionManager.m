@@ -67,7 +67,7 @@
     if (!parameters) parameters = [JSONModel model];    // Pass "signature" at least
     
     return [self HEAD:URLString
-           parameters:[parameters toDictionary]
+           parameters:[parameters toDictionaryWithSignature]
               success:success
               failure:^(NSURLSessionDataTask * task, NSError * error) {
                   [self handleFailure:task error:error];
@@ -90,7 +90,7 @@
     if (!parameters) parameters = [JSONModel model];
     
     return [self GET:URLString
-          parameters:[parameters toDictionary]
+          parameters:[parameters toDictionaryWithSignature]
             progress:nil
              success:^(NSURLSessionDataTask * task, id responseObject) {
                  [self handleSuccess:task responseObject:responseObject completion:^{
@@ -122,7 +122,7 @@
     [self setHTTPHeaderFields];
     
     return [self PATCH:URLString
-            parameters:[parameters toDictionary]
+            parameters:[parameters toDictionaryWithSignature]
                success:^(NSURLSessionDataTask * task, id responseObject) {
                    [self handleSuccess:task responseObject:responseObject completion:^{
                        if (success) success(task, responseObject);
@@ -141,7 +141,7 @@
     [self setHTTPHeaderFields];
     
     return [self POST:URLString
-           parameters:[parameters toDictionary]
+           parameters:[parameters toDictionaryWithSignature]
              progress:nil
               success:^(NSURLSessionDataTask * task, id responseObject) {
                   [self handleSuccess:task responseObject:responseObject completion:^{
@@ -164,7 +164,7 @@
     if (!parameters) parameters = [JSONModel model];
     
     return [self POST:URLString
-           parameters:[parameters toDictionary] constructingBodyWithBlock:block
+           parameters:[parameters toDictionaryWithSignature] constructingBodyWithBlock:block
              progress:uploadProgress
               success:^(NSURLSessionDataTask * task, id responseObject) {
                   [self handleSuccess:task responseObject:responseObject completion:^{

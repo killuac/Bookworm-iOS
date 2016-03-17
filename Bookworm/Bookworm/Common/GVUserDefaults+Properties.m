@@ -10,9 +10,10 @@
 
 @implementation GVUserDefaults (Properties)
 
+@dynamic isFirstLaunch;
+@dynamic isShowInitialView;
 @dynamic userID;
 @dynamic isSignedIn;
-@dynamic isFirstLaunch;
 @dynamic maxOutboxMessageID;
 @dynamic accessToken;
 @dynamic deviceToken;
@@ -20,7 +21,8 @@
 - (NSDictionary *)setupDefaults
 {
     return @{
-        @"isFirstLaunch": @(YES)
+        @"isFirstLaunch": @(YES),
+        @"isShowInitialView": @(YES)
     };
 }
 

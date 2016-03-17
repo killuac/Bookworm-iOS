@@ -19,4 +19,6 @@
 + (instancetype)modelWithDictionary:(NSDictionary *)dict;
 + (instancetype)modelWithData:(NSData *)data;
 
+- (NSDictionary *)toDictionaryWithSignature;
+
 @end

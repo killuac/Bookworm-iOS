@@ -132,18 +132,15 @@
 #pragma mark - Size
 - (CGSize)sizeWithFont:(UIFont *)font maxWidth:(CGFloat)width
 {
-    NSDictionary *attributes = @{NSFontAttributeName:font};
-    CGSize maxSize = CGSizeMake(width, CGFLOAT_MAX);
-    
-    return [self boundingRectWithSize:maxSize
+    return [self boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
                               options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
-                           attributes:attributes
+                           attributes:@{ NSFontAttributeName:font }
                               context:nil].size;
 }
 
 - (CGSize)sizeWithFont:(UIFont *)font
 {
-    return [self sizeWithFont:font maxWidth:SCREEN_WIDTH - DEFAULT_MARGIN * 2];
+    return [self sizeWithAttributes:@{ NSFontAttributeName:font }];
 }
 
 - (CGFloat)widthWithFont:(UIFont *)font

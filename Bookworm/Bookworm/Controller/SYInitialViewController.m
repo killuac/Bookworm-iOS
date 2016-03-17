@@ -24,6 +24,7 @@
     return NO;
 }
 
+#pragma mark - Life cycle
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -195,7 +196,7 @@
 - (void)lookAround:(id)sender
 {
     [self showMainViewController];
-    [SYAppSetting defaultAppSetting].isShowUserGuide = NO;
+    [GVUserDefaults standardUserDefaults].isShowInitialView = NO;
 }
 
 @end

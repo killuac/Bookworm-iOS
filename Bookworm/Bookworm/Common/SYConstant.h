@@ -7,7 +7,7 @@
 //
 
 #import "SYUtility.h"
-#import "SYTextConstant.h"
+#import "SYLocalizableConstant.h"
 
 #ifndef SYConstant_h
 #define SYConstant_h

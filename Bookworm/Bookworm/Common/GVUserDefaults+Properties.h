@@ -11,6 +11,8 @@
 @interface GVUserDefaults (Properties)
 
 @property (nonatomic, assign) BOOL isFirstLaunch;
+@property (nonatomic, assign) BOOL isShowInitialView;
+
 @property (nonatomic, assign) BOOL isSignedIn;
 @property (nonatomic, copy) NSString *userID;
 @property (nonatomic, copy, readonly) NSString *language;

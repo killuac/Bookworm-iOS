@@ -207,7 +207,7 @@
 		E34581B71C2152F20088BDA5 /* SYAppSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYAppSetting.m; sourceTree = "<group>"; };
 		E34581B91C2158E00088BDA5 /* SYDeviceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYDeviceModel.h; sourceTree = "<group>"; };
 		E34581BA1C2158E00088BDA5 /* SYDeviceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYDeviceModel.m; sourceTree = "<group>"; };
-		E34581BC1C21634A0088BDA5 /* SYTextConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYTextConstant.h; sourceTree = "<group>"; };
+		E34581BC1C21634A0088BDA5 /* SYLocalizableConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYLocalizableConstant.h; sourceTree = "<group>"; };
 		E34581D11C216C510088BDA5 /* SYServerAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYServerAPI.h; sourceTree = "<group>"; };
 		E34581D21C216C510088BDA5 /* SYServerAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYServerAPI.m; sourceTree = "<group>"; };
 		E34581D51C216E860088BDA5 /* app-setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "app-setting.plist"; sourceTree = "<group>"; };
@@ -435,13 +435,13 @@
 				E34581B61C2152F20088BDA5 /* SYAppSetting.h */,
 				E34581B71C2152F20088BDA5 /* SYAppSetting.m */,
 				E345817D1C2136E80088BDA5 /* SYConstant.h */,
+				E34581BC1C21634A0088BDA5 /* SYLocalizableConstant.h */,
 				E34581D11C216C510088BDA5 /* SYServerAPI.h */,
 				E34581D21C216C510088BDA5 /* SYServerAPI.m */,
 				E32F00FA1C9149330024086B /* SYSocialShare.h */,
 				E32F00FB1C9149330024086B /* SYSocialShare.m */,
 				E3D5C65B1C5D3C4900ADDCA4 /* SYSoundPlayer.h */,
 				E3D5C65C1C5D3C4900ADDCA4 /* SYSoundPlayer.m */,
-				E34581BC1C21634A0088BDA5 /* SYTextConstant.h */,
 				E345817E1C21395B0088BDA5 /* SYUtility.h */,
 				E345817F1C21395B0088BDA5 /* SYUtility.m */,
 			);

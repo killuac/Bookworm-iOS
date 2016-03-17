@@ -55,12 +55,12 @@ typedef void (^SYAspectHandlerBlock)(id<AspectInfo> aspectInfo);
                     SYLogTrackedEvents: @[
                             @{ SYLogEventName: @"HomeVC_Search", SYLogEventSelectorName: @"searchInHomeViewController:",
                                SYLogEventHandlerBlock: ^(id<AspectInfo> aspectInfo) { NSLog(@"Seach"); } },
-                            @{ SYLogEventName: @"HomeVC_Exchange", SYLogEventSelectorName: @"exchangeBook:" } ]
+                            @{ SYLogEventName: @"HomeVC_Exchange", SYLogEventSelectorName: @"exchangeBook:" }]
                     },
             @"SYMessageViewController": @{
                     SYLogTrackedEvents: @[
                             @{ SYLogEventName: @"MessageVC_FollowOrUnfollow", SYLogEventSelectorName: @"followOrUnfollowInMessageViewControllerAtIndexPath:" },
-                            @{ SYLogEventName: @"MessageVC_DeleteContactMessages", SYLogEventSelectorName: @"deleteContactMessagesAtIndexPath:" } ]
+                            @{ SYLogEventName: @"MessageVC_DeleteContactMessages", SYLogEventSelectorName: @"deleteContactMessagesAtIndexPath:" }]
                     }
             };
 }

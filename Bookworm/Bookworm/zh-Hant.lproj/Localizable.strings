@@ -6,3 +6,92 @@
   Copyright (c) 2015 Syzygy. All rights reserved.
 */
 
+"Home" = "書蟲";
+"Wish" = "想看";
+"Message" = "訊息";
+"Me" = "我的";
+
+"Yes" = "是";
+"No" = "否";
+"Cancel" = "取消";
+"Done" = "完成";
+"Okay" = "好的";
+"Exit" = "退出";
+"Save" = "儲存";
+"SignIn" = "登入";
+"SignUp" = "註冊";
+"SignOut" = "登出";
+"Next" = "下一步";
+"Skip" = "跳過";
+"Send" = "傳送";
+"Resend" = "重傳";
+"LookAround" = "隨便看看";
+"ForgotPassword" = "忘記密碼";
+"Delete" = "刪除";
+"Refresh" = "刷新";
+"MarkRead" = "標記已讀";
+"MarkUnread" = "標記未讀";
+"Follow" = "關注";
+"Unfollow" = "取消關注";
+"Exchange" = "交換";
+"Chat" = "私聊";
+"Reply" = "回復";
+"Accept" = "同意";
+"Reject" = "拒絕";
+"Rating" = "評分";
+"Report" = "舉報";
+"Share" = "分享";
+"Wechat" = "微信好友";
+"WechatMoments" = "朋友圈";
+"QQ" = "QQ好友";
+"Weibo" = "新浪微博";
+"Qzone" = "QQ空間";
+"Douban" = "豆瓣";
+"TakePhoto" = "拍攝照片";
+"ChoosePhoto" = "選取照片";
+"SetChatBackground" = "設定聊天背景";
+"RestoreDefaultBackground" = "恢復預設背景";
+
+"EditProfile" = "編輯資料";
+"ChangeNickname" = "更改暱稱";
+"ChangePassword" = "更改密碼";
+
+"Nickname" = "暱稱";
+"Gender" = "性別";
+"Location" = "地區";
+
+"ClearingCache" = "正在清除緩存...";
+"CacheClearDone" = "緩存已清除";
+"NetworkUnstable" = "當前網絡不穩定，請切換網絡。";
+"CannotConnectToHost" = "服務器正在維護，請稍後再試。";
+"NotConnectedToInternet" = "似乎已斷開與互聯網的連接";
+"ConnectingIMServer" = "收取中...";
+"MobileInvalid" = "手機號碼無效";
+"EmailInvalid" = "郵箱地址無效";
+"PasswordTooShort" = "密碼長度不能小於6位";
+"PasswordInvalid" = "密碼不能含有非法字符";
+"SigningIn" = "登入中...";
+"CreatingUser" = "賬號創建中...";
+"ThanksFeedback" = "感謝您對“書蟲”的支持";
+
+"Photos" = "照片";
+"Camera" = "相機";
+"Microphone" = "麥克風";
+"Settings" = "設定";
+"KickOut" = "註銷";
+"VersionInvalid" = "版本過低";
+
+"AccessPhotosSetting" = "請在系統的“設定-隱私權-照片”選項中，允許”書蟲“訪問你的照片。";
+"AccessCameraSetting" = "請在系統的“設定-隱私權-相機”選項中，允許”書蟲“訪問你的相機。";
+"AccessMicrophoneSetting" = "請在系統的“設定-隱私權-麥克風”選項中，允許”書蟲“訪問你的麥克風。";
+"SignInAgain" = "賬號已在其他設備登入，請重新登入。";
+"AppVersionUnavailable" = "應用版本過低，請到App Store更新。";
+
+"Male" = "男";
+"Female" = "女";
+"UserAgreement" = "用戶協議";
+"AgreeUserAgreement" = "點擊\"註冊\"表示已閱讀并同意";
+"SingleTapRefresh" = "點擊熒幕重新加載";
+
+"ReportOtherReason" = "其他原因...";
+"Feedback" = "請寫下關於“書蟲”的意見和建議，我們將不斷完善，感謝您的支持！";

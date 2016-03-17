@@ -1,13 +1,13 @@
 //
-//  SYTextConstant.h
+//  SYLocalizableConstant.h
 //  Bookworm
 //
 //  Created by Killua Liu on 12/16/15.
 //  Copyright (c) 2015 Syzygy. All rights reserved.
 //
 
-#ifndef Bookworm_SYTextConstant_h
-#define Bookworm_SYTextConstant_h
+#ifndef Bookworm_SYLocalizableConstant_h
+#define Bookworm_SYLocalizableConstant_h
 
 #define TAB_TITLE_HOME                  SYLocalizedString(@"Home")
 #define TAB_TITLE_WISH                  SYLocalizedString(@"Wish")
