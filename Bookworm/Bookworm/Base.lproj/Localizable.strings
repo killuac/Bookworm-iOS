@@ -87,17 +87,17 @@
 "KickOut" = "Kick Out";
 "VersionInvalid" = "Version Invalid";
 
-"AccessPhotosSetting" = "Please allow \"Bookworm\" access your photos in your system \"Settings-Privacy-Photos\"";
-"AccessCameraSetting" = "Please allow \"Bookworm\" access your camera in your system \"Settings-Privacy-Camera\"";
-"AccessMicrophoneSetting" = "Please allow \"Bookworm\" access your microphone in your system \"Settings-Privacy-Microphone\"";
+"AccessPhotosSetting" = "Please allow Bookworm access your photos in your system Settings-Privacy-Photos";
+"AccessCameraSetting" = "Please allow Bookworm access your camera in your system Settings-Privacy-Camera";
+"AccessMicrophoneSetting" = "Please allow Bookworm access your microphone in your system Settings-Privacy-Microphone";
 "SignInAgain" = "Your account already login from other device, please re-login.";
 "AppVersionUnavailable" = "Your App version is old, please update from App Store.";
 
 "Male" = "Male";
 "Female" = "Female";
 "UserAgreement" = "User Agreement";
-"AgreeUserAgreement" = "Click \"Sign up\" means have read and agree with ";
+"AgreeUserAgreement" = "Click Sign Up means have read and agree with ";
 "SingleTapRefresh" = "Single Tap Screen to Refresh";
 
 "ReportOtherReason" = "Other reason...";
-"Feedback" = "Please fill your suggestion about \"Bookworm\", we will improve continuously, thanks for you support.";
+"Feedback" = "Please fill your suggestion about Bookworm, we will improve continuously, thanks for you support.";

@@ -65,7 +65,7 @@
 
 - (void)updateApplication
 {
-    _deviceService = [SYDeviceService service];
+    self.deviceService = [SYDeviceService service];
     
     if ([SYAppSetting defaultAppSetting].isAppUpdated) {
         [self updateLocalDatabase];

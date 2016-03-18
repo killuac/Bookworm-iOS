@@ -11,7 +11,7 @@
 @interface SYScrollViewController ()
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -23,7 +23,7 @@
     _scrollView = scrollView;
     [self.view addSubview:scrollView];
     
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.activityIndicator.center = self.view.center;
     [self.scrollView addSubview:self.activityIndicator];
 }

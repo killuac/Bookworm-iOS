@@ -66,7 +66,6 @@
 		E39B458B1C5B789F00FEAFC8 /* SYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B458A1C5B789F00FEAFC8 /* SYSettingViewController.m */; };
 		E39B458E1C5B78CB00FEAFC8 /* SYGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B458D1C5B78CB00FEAFC8 /* SYGuideViewController.m */; };
 		E39B45911C5B794300FEAFC8 /* SYFollowListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B45901C5B794300FEAFC8 /* SYFollowListViewController.m */; };
-		E39B45941C5B7A3000FEAFC8 /* SYPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B45931C5B7A3000FEAFC8 /* SYPageViewController.m */; };
 		E39B45971C5B7A7800FEAFC8 /* SYProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B45961C5B7A7800FEAFC8 /* SYProfileViewController.m */; };
 		E39B459D1C5B841D00FEAFC8 /* SYSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B459C1C5B841D00FEAFC8 /* SYSignUpViewController.m */; };
 		E39B45A01C5B843800FEAFC8 /* SYSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B459F1C5B843800FEAFC8 /* SYSignInViewController.m */; };
@@ -232,8 +231,6 @@
 		E39B458D1C5B78CB00FEAFC8 /* SYGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SYGuideViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E39B458F1C5B794300FEAFC8 /* SYFollowListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SYFollowListViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		E39B45901C5B794300FEAFC8 /* SYFollowListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SYFollowListViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		E39B45921C5B7A3000FEAFC8 /* SYPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SYPageViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		E39B45931C5B7A3000FEAFC8 /* SYPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SYPageViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E39B45951C5B7A7800FEAFC8 /* SYProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SYProfileViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		E39B45961C5B7A7800FEAFC8 /* SYProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SYProfileViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E39B459B1C5B841D00FEAFC8 /* SYSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSignUpViewController.h; sourceTree = "<group>"; };
@@ -477,8 +474,6 @@
 				E30A49EB1C5B1257009BD684 /* SYMessageViewController.m */,
 				E30A49F01C5B12EB009BD684 /* SYMeViewController.h */,
 				E30A49F11C5B12EB009BD684 /* SYMeViewController.m */,
-				E39B45921C5B7A3000FEAFC8 /* SYPageViewController.h */,
-				E39B45931C5B7A3000FEAFC8 /* SYPageViewController.m */,
 				E39B45951C5B7A7800FEAFC8 /* SYProfileViewController.h */,
 				E39B45961C5B7A7800FEAFC8 /* SYProfileViewController.m */,
 				E31F8D8A1C3CC1AD0079D9BA /* SYScrollViewController.h */,
@@ -849,7 +844,6 @@
 				E30A49F21C5B12EB009BD684 /* SYMeViewController.m in Sources */,
 				E3FF2EEE1C35007E00A6C7BF /* UISwitch+Factory.m in Sources */,
 				E39B458B1C5B789F00FEAFC8 /* SYSettingViewController.m in Sources */,
-				E39B45941C5B7A3000FEAFC8 /* SYPageViewController.m in Sources */,
 				E34581911C213A7D0088BDA5 /* NSDate+Utility.m in Sources */,
 				E3B0CAEC1C994A6D009950B2 /* UIToolbar+Factory.m in Sources */,
 				E3EB14941C51E6B300D10026 /* NSData+Utility.m in Sources */,

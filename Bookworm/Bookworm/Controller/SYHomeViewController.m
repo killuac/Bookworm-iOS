@@ -11,6 +11,7 @@
 
 @interface SYHomeViewController ()
 
+@property (nonatomic, strong) UIPageViewController *pageViewController;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *books;
 
@@ -22,7 +23,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        
+        self.books = [NSMutableArray array];
     }
     return self;
 }

@@ -64,7 +64,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 {
     NSURL *serverURL = [NSURL URLWithString:[SYServerAPI sharedServerAPI].imServerAddress];
     if (serverURL) {
-        _webSocket = [[SRWebSocket alloc] initWithURL:serverURL];
+        self.webSocket = [[SRWebSocket alloc] initWithURL:serverURL];
         self.webSocket.delegate = self;
         [self.webSocket setDelegateOperationQueue:[[NSOperationQueue alloc] init]];
     }
@@ -127,7 +127,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 - (void)scheduleHeartBeat
 {
     [self invalidateHeartBeat];
-    _timer = [NSTimer scheduledRepeatTimerWithTimeInterval:HEART_BEAT_INTERVAL target:self selector:@selector(heartBeat)];
+    self.timer = [NSTimer scheduledRepeatTimerWithTimeInterval:HEART_BEAT_INTERVAL target:self selector:@selector(heartBeat)];
 }
 
 - (void)heartBeat
