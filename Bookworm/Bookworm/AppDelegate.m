@@ -65,8 +65,6 @@
 
 - (void)updateApplication
 {
-    self.deviceService = [SYDeviceService service];
-    
     if ([SYAppSetting defaultAppSetting].isAppUpdated) {
         [self updateLocalDatabase];
         [SYServerAPI fetchAndSave];
@@ -165,6 +163,15 @@
         [GVUserDefaults standardUserDefaults].deviceToken = @"";
         [self updateDeviceToken];
     }
+}
+
+// Lazy loading
+- (SYDeviceService *)deviceService
+{
+    if (!_deviceService) {
+        _deviceService = [SYDeviceService service];
+    }
+    return _deviceService;
 }
 
 - (void)updateDeviceToken

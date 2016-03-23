@@ -40,6 +40,7 @@
     UIAlertAction *empty = [UIAlertAction actionWithTitle:@"" style:UIAlertActionStyleDefault handler:nil];
     UIAlertController *AC = [UIAlertController actionSheetControllerWithActions:@[empty, cancel]];
     [AC.view.subviews setValue:@(YES) forKey:@"hidden"];
+//    [AC.view.subviews makeObjectsPerformSelector:@selector(setHidden:) withObject:(__bridge id)((void *)YES)];
     
     SYStackView *stackView = [[SYStackView alloc] initWithFrame:CGRectZero];
     stackView.backgroundColor = [UIColor whiteColor];

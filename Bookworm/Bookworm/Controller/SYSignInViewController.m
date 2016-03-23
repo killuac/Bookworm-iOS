@@ -14,6 +14,11 @@
 
 @implementation SYSignInViewController
 
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
 #pragma mark - Life cycle
 - (void)viewDidLoad
 {

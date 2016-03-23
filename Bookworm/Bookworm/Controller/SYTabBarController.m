@@ -26,6 +26,15 @@
 
 @implementation SYTabBarController
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    if (self.visibleViewController == self.meVC) {
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+    } else {
+        return UIInterfaceOrientationMaskPortrait;
+    }
+}
+
 #pragma mark - Life cycle
 - (void)viewDidLoad
 {
@@ -112,6 +121,18 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
+    // Orientation
+    if (viewController == self.meVC.navigationController) {
+        [self.class attemptRotationToDeviceOrientation];
+    } else {
+        [UIView setAnimationsEnabled:NO];
+        UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+        [[UIDevice currentDevice] setValue:@(UIDeviceOrientationPortrait) forKey:@"orientation"];
+        [[UIDevice currentDevice] setValue:@(orientation) forKey:@"orientation"];
+        [UIView setAnimationsEnabled:YES];
+    }
+    
+    // Reload data
     if (tabBarController.selectedIndex == self.previousSelectedIndex) {
         UIViewController *visibleVC = viewController.visibleViewController;
         if (visibleVC == self.homeVC || visibleVC == self.wishVC) {
