@@ -13,6 +13,18 @@
 + (void)load
 {
     SYSwizzleMethod([self class], @selector(layoutSubviews), @selector(swizzle_layoutSubviews), NO);
+    SYSwizzleMethod([self class], @selector(initWithStyle:reuseIdentifier:), @selector(swizzle_initWithStyle:reuseIdentifier:), NO);
+}
+
+- (instancetype)swizzle_initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    UITableViewCell *cell = [self swizzle_initWithStyle:style reuseIdentifier:reuseIdentifier];
+    cell.textLabel.font = [UIFont titleFont];
+    cell.textLabel.textColor = [UIColor titleColor];
+    cell.detailTextLabel.font = [UIFont titleFont];
+    cell.detailTextLabel.textColor = [UIColor subtitleColor];
+    
+    return cell;
 }
 
 - (void)swizzle_layoutSubviews
