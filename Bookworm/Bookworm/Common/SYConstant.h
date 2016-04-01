@@ -16,7 +16,7 @@ typedef void (^SYNoParameterBlockType)(void);
 
 //#define TEST_MODE
 
-#define IS_IOS_VERSION_9                __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0
+#define IS_IOS_VERSION_9                (TARGET_OS_IOS && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_9_0)
 #define UUID_STRING                     [UIDevice currentDevice].identifierForVendor.UUIDString
 
 #define APP_VERSION                     [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"]
@@ -41,7 +41,7 @@ typedef void (^SYNoParameterBlockType)(void);
 #define DEFAULT_INSET                   5.0f
 #define SMALL_MARGIN                    5.0f
 #define MEDIUM_MARGIN                   10.0
-#define DEFAULT_MARGIN                  15.0
+#define DEFAULT_MARGIN                  16.0
 #define DEFAULT_HEADER_HEIGHT           20.0
 #define DEFAULT_FOOTER_HEIGHT           20.0
 #define DEFAULT_ROW_HEIGHT              44.0
