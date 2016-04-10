@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SYMessageViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SYMessageViewController : UIViewController
 
 @end

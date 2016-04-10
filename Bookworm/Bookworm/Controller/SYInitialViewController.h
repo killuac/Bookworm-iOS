@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SYInitialViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
+@interface SYInitialViewController : UIViewController
 
 @property (nonatomic, strong) UIPageViewController *pageViewController;
 

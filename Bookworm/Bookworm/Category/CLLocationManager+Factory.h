@@ -10,7 +10,7 @@
 
 typedef void (^LocationBlockType)(CLLocationManager *manager);
 
-@interface CLLocationManager (Factory) <CLLocationManagerDelegate>
+@interface CLLocationManager (Factory)
 
 + (instancetype)managerWithBlock:(LocationBlockType)block;  // Must use "weakSelf" in block
 

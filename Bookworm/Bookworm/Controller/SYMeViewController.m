@@ -8,7 +8,7 @@
 
 #import "SYMeViewController.h"
 
-@interface SYMeViewController ()
+@interface SYMeViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UICollectionView *collectionView;

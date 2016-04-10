@@ -11,7 +11,7 @@
 
 FOUNDATION_EXPORT NSString *const SYChatViewControllerDidDeleteLastMessage;
 
-@interface SYChatViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SYChatViewController : UIViewController
 
 @property (nonatomic, strong) SYContactModel *contact;
 

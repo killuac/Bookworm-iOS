@@ -11,7 +11,7 @@
 
 NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControllerDidDeleteLastMessage";
 
-@interface SYChatViewController ()
+@interface SYChatViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray<SYMessageModel *> *messages;
 

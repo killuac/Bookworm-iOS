@@ -8,6 +8,6 @@
 
 #import "SYScrollViewController.h"
 
-@interface SYMeViewController : SYScrollViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SYMeViewController : SYScrollViewController
 
 @end

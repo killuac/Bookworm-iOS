@@ -8,7 +8,7 @@
 
 #import "SYWishViewController.h"
 
-@interface SYWishViewController ()
+@interface SYWishViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 

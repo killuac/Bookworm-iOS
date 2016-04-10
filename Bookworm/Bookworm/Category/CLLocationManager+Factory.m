@@ -9,7 +9,7 @@
 #import "CLLocationManager+Factory.h"
 #import "AppDelegate.h"
 
-@interface CLLocationManager (Private)
+@interface CLLocationManager (Private) <CLLocationManagerDelegate>
 
 @property (nonatomic, copy) LocationBlockType block;
 

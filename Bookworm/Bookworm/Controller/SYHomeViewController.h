@@ -8,6 +8,6 @@
 
 #import "SYScrollViewController.h"
 
-@interface SYHomeViewController : SYScrollViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface SYHomeViewController : SYScrollViewController
 
 @end

@@ -32,7 +32,7 @@
         self.receiver = userID;
         self.content = content;
         self.isPending = YES;
-        self.dateTime = [NSDate date];
+        _dateTime = [NSDate date];
     }
     return self;
 }
@@ -42,10 +42,15 @@
     return ([propertyName isEqualToString:@"isPending"] || [propertyName isEqualToString:@"isRead"]);
 }
 
+- (NSComparisonResult)compare:(SYMessageModel *)object
+{
+    return [@(self.timestamp) compare:@(object.timestamp)];
+}
+
 - (void)setTimestamp:(NSUInteger)timestamp
 {
     _timestamp = timestamp;
-    self.dateTime = [NSDate dateWithTimeIntervalSince1970:timestamp];
+    _dateTime = [NSDate dateWithTimeIntervalSince1970:timestamp];
 }
 
 - (BOOL)isInboxMessage

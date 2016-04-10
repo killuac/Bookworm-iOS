@@ -9,7 +9,7 @@
 #import "SYHomeViewController.h"
 #import "SYSignInViewController.h"
 
-@interface SYHomeViewController ()
+@interface SYHomeViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UIPageViewController *pageViewController;
 @property (nonatomic, strong) UICollectionView *collectionView;

@@ -10,7 +10,7 @@
 #import "SYGuideViewController.h"
 #import "SYSignUpViewController.h"
 
-@interface SYInitialViewController ()
+@interface SYInitialViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic, strong) NSMutableArray *imageNames;

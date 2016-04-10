@@ -10,7 +10,7 @@
 #import "SYMessageTableViewCell.h"
 #import "SYChatViewController.h"
 
-@interface SYMessageViewController ()
+@interface SYMessageViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray<SYContactModel *> *contacts;
 
@@ -140,7 +140,7 @@
     model.lastMessage.content = @"最后一条消息";
     model.lastMessage.isPending = YES;
     model.nickname = @"云中行走";
-    model.lastMessage.dateTime = [NSDate date];
+    model.lastMessage.timestamp = [NSDate date].timeIntervalSince1970;
     model.unreadMessageCount = 10;
     [self.contacts addObject:model];
     [self.contacts addObject:model];

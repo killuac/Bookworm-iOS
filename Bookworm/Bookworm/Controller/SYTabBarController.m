@@ -12,7 +12,7 @@
 #import "SYMessageViewController.h"
 #import "SYMeViewController.h"
 
-@interface SYTabBarController ()
+@interface SYTabBarController () <UITabBarControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) SYHomeViewController *homeVC;
 @property (nonatomic, strong) SYWishViewController *wishVC;
