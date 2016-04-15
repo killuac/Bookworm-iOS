@@ -37,9 +37,9 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 
 + (instancetype)manager
 {
-    static dispatch_once_t predicate;
+    static dispatch_once_t onceToken;
     static SYSocketManager *sharedInstance = nil;
-    dispatch_once(&predicate, ^{
+    dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
     });
     

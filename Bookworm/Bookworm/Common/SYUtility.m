@@ -67,20 +67,32 @@ NSArray* SYClassGetSubClasses(Class superClass)
 {
     NSMutableArray *classArray = [NSMutableArray array];
     
-    int classCount = objc_getClassList(NULL, 0);
-    Class *classes = NULL;
-    classes = (__unsafe_unretained Class*) malloc(sizeof(Class) * classCount);
-    classCount = objc_getClassList(classes, classCount);
+//    int classCount = objc_getClassList(NULL, 0);
+//    Class *classes = (__unsafe_unretained Class*) malloc(sizeof(Class) * classCount);
+//    classCount = objc_getClassList(classes, classCount);
+//    for (int i = 0; i < classCount; i++) {
+//        Class class = classes[i];
+//        do{
+//            class = class_getSuperclass(class);
+//        } while(class && class != superClass);
+//
+//        if (!class) continue;
+//        
+//        [classArray addObject:classes[i]];
+//    }
+//    free(classes);
     
+    unsigned int classCount = 0;
+    Class *classes = objc_copyClassList(&classCount);
     for (int i = 0; i < classCount; i++) {
         Class class = classes[i];
         do{
             class = class_getSuperclass(class);
         } while(class && class != superClass);
-        
-        if (!class) continue;
-        
-        [classArray addObject:classes[i]];
+
+        if (class) {
+            [classArray addObject:classes[i]];
+        }
     }
     free(classes);
     

@@ -25,7 +25,7 @@ NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControlle
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.messages = [NSMutableArray array];
+        _messages = [NSMutableArray array];
         [self addObservers];
     }
     return self;

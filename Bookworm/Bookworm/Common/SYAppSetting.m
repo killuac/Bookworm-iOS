@@ -14,9 +14,9 @@
 
 + (instancetype)defaultAppSetting
 {
-    static dispatch_once_t predicate;
+    static dispatch_once_t onceToken;
     static SYAppSetting *sharedInstance = nil;
-    dispatch_once(&predicate, ^{
+    dispatch_once(&onceToken, ^{
         sharedInstance = [self modelWithDictionary:[NSDictionary dictionaryWithContentsOfFile:SYPlistFilePath(APP_SETTING)]];
         
         sharedInstance.KVOController = [FBKVOController controllerWithObserver:sharedInstance];

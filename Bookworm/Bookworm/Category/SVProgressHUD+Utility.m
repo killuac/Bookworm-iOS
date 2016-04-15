@@ -15,16 +15,19 @@
 
 + (void)load
 {
-    [self setDefaultStyle:SVProgressHUDStyleDark];
-    [self setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
-    [self setInfoImage:[UIImage imageNamed:@"icon_hud_info"]];
-    [self setErrorImage:[UIImage imageNamed:@"icon_hud_error"]];
-    [self setSuccessImage:[UIImage imageNamed:@"icon_hud_success"]];
-    
-    SYSwizzleMethod([self class], @selector(displayDurationForString:), @selector(swizzle_displayDurationForString:), YES);
-    SYSwizzleMethod([self class], @selector(showWithStatus:), @selector(swizzle_showWithStatus:), YES);
-    SYSwizzleMethod([self class], @selector(showImage:status:), @selector(swizzle_showImage:status:), YES);
-    SYSwizzleMethod([self class], @selector(dismiss), @selector(swizzle_dismiss), NO);
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self setDefaultStyle:SVProgressHUDStyleDark];
+        [self setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
+        [self setInfoImage:[UIImage imageNamed:@"icon_hud_info"]];
+        [self setErrorImage:[UIImage imageNamed:@"icon_hud_error"]];
+        [self setSuccessImage:[UIImage imageNamed:@"icon_hud_success"]];
+        
+        SYSwizzleMethod([self class], @selector(displayDurationForString:), @selector(swizzle_displayDurationForString:), YES);
+        SYSwizzleMethod([self class], @selector(showWithStatus:), @selector(swizzle_showWithStatus:), YES);
+        SYSwizzleMethod([self class], @selector(showImage:status:), @selector(swizzle_showImage:status:), YES);
+        SYSwizzleMethod([self class], @selector(dismiss), @selector(swizzle_dismiss), NO);
+    });
 }
 
 + (NSTimeInterval)swizzle_displayDurationForString:(NSString *)string

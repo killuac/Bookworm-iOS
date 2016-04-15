@@ -31,8 +31,8 @@
         self.sender = [GVUserDefaults standardUserDefaults].userID;
         self.receiver = userID;
         self.content = content;
+        self.timestamp = [NSDate date].timeIntervalSince1970;
         self.isPending = YES;
-        _dateTime = [NSDate date];
     }
     return self;
 }

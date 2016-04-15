@@ -8,6 +8,13 @@
 
 #import "UIButton+Factory.h"
 
+@interface UIButton ()
+
+@property (nonatomic, assign) SYButonStyle style;
+
+@end
+
+
 @implementation UIButton (Factory)
 
 - (void)setStyle:(SYButonStyle)style

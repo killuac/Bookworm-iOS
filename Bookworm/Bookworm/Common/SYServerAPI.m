@@ -25,8 +25,8 @@
 static SYServerAPI *sharedInstance = nil;
 + (instancetype)sharedServerAPI
 {
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         sharedInstance = [self modelWithData:[NSData dataWithContentsOfFile:SYApplicationSupportFilePath(JSON_SERVER_API)]];
     });
     

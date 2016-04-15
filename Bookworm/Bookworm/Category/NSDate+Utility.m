@@ -16,8 +16,8 @@ static NSDateFormatter *sharedDateFormatter = nil;
 
 + (void)load
 {
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         sharedDateFormatter = [[NSDateFormatter alloc] init];
         
         [[NSNotificationCenter defaultCenter] addObserverForName:NSCurrentLocaleDidChangeNotification

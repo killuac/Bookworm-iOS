@@ -23,7 +23,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.books = [NSMutableArray array];
+        _books = [NSMutableArray array];
     }
     return self;
 }

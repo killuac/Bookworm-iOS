@@ -24,7 +24,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.contacts = [NSMutableArray array];
+        _contacts = [NSMutableArray array];
         [self addObservers];
     }
     return self;

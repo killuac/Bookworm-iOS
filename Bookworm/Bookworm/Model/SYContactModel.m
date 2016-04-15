@@ -20,17 +20,23 @@
     return (SYContactRelationshipFollowing == self.relationship || SYContactRelationshipFriend == self.relationship);
 }
 
-- (BOOL)isEqual:(id)object
+- (BOOL)isEqual:(id)other
 {
-    NSMutableArray *selfKeys = [[self toDictionary].allKeys mutableCopy];
-    [selfKeys removeObject:@"bgImageData"];
-    NSData *selfData = [self toJSONDataWithKeys:selfKeys];
-    
-    NSMutableArray *objectKeys = [[object toDictionary].allKeys mutableCopy];
-    [objectKeys removeObject:@"bgImageData"];
-    NSData *otherData = [self toJSONDataWithKeys:selfKeys];
-    
-    return [[selfData toMD5String] isEqualToString:[otherData toMD5String]];
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else {
+        NSMutableArray *selfKeys = [[self toDictionary].allKeys mutableCopy];
+        [selfKeys removeObject:@"bgImageData"];
+        NSData *selfData = [self toJSONDataWithKeys:selfKeys];
+        
+        NSMutableArray *objectKeys = [[other toDictionary].allKeys mutableCopy];
+        [objectKeys removeObject:@"bgImageData"];
+        NSData *otherData = [self toJSONDataWithKeys:selfKeys];
+        
+        return [[selfData toMD5String] isEqualToString:[otherData toMD5String]];
+    }
 }
 
 @end
