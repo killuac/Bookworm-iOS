@@ -24,8 +24,6 @@ typedef NS_ENUM(NSUInteger, SYButtonLayoutStyle) {
 
 @interface UIButton (Factory)
 
-@property (nonatomic, assign) BOOL isAnimationEnabled;  // Default is NO
-
 + (instancetype)buttonWithTitle:(NSString *)title;
 + (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName;
 + (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName disabledImageName:(NSString *)disabledImageName;

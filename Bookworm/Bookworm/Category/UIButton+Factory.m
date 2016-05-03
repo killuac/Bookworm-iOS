@@ -126,20 +126,6 @@
     button.KVOController = [FBKVOController controllerWithObserver:button];
     [button.KVOController observe:button keyPaths:@[@"highlighted", @"enabled"] options:0 block:^(id observer, id object, NSDictionary *change) {
         [button setBackgroundColorForState:button.state];
-        if (button.isAnimationEnabled) {
-            if (UIControlStateHighlighted == button.state) {
-                CGFloat scale = 1.5f;
-                [UIView animateWithDuration:DEFAULT_ANIMATION_DURATION animations:^{
-                    button.imageView.transform = CGAffineTransformMakeScale(scale, scale);
-                    button.titleLabel.transform = CGAffineTransformMakeScale(scale, scale);
-                }];
-            } else {
-                [UIView animateWithDuration:DEFAULT_ANIMATION_DURATION animations:^{
-                    button.imageView.transform = CGAffineTransformIdentity;
-                    button.titleLabel.transform = CGAffineTransformIdentity;
-                }];
-            }
-        }
     }];
     
     return button;

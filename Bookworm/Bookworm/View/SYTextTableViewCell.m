@@ -106,23 +106,17 @@
     tipCell.textLabel.text = text;
     
     self.transform = CGAffineTransformMakeTranslation(10.0f, 0);
-    [UIView animateWithDuration:1.0f
-                          delay:0.0f
-         usingSpringWithDamping:0.2f
-          initialSpringVelocity:10.0f
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         self.transform = CGAffineTransformIdentity;
-                     }
-                     completion:nil];
+    [UIView animateWithDuration:1.0f delay:0.0f usingSpringWithDamping:0.2f initialSpringVelocity:10.0f options:0 animations:^{
+        self.transform = CGAffineTransformIdentity;
+    } completion:nil];
 }
 
 - (void)showTip
 {
-    [UIView animateWithDuration:DEFAULT_ANIMATION_DURATION animations:^{
+    [UIView animateWithDuration:[CATransaction animationDuration] animations:^{
         self.accessoryView.transform = CGAffineTransformMakeTranslation(-(_tipIconView.width + DEFAULT_MARGIN), 0);
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:DEFAULT_ANIMATION_DURATION animations:^{
+        [UIView animateWithDuration:[CATransaction animationDuration] animations:^{
             _tipIconView.alpha = 1;
         }];
     }];
@@ -130,7 +124,7 @@
 
 - (void)dismissTip
 {
-    [UIView animateWithDuration:DEFAULT_ANIMATION_DURATION animations:^{
+    [UIView animateWithDuration:[CATransaction animationDuration] animations:^{
         self.accessoryView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         _tipIconView.image = nil;

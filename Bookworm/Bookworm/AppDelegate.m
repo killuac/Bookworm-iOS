@@ -51,7 +51,7 @@
 //  Observe user sign in or sign out
     GVUserDefaults *userDefaults = [GVUserDefaults standardUserDefaults];
     self.KVOController = [FBKVOController controllerWithObserver:self];
-    [self.KVOController observe:userDefaults keyPath:@"isSignedIn" options:NSKeyValueObservingOptionNew
+    [self.KVOController observe:userDefaults keyPath:NSStringFromSelector(@selector(isSignedIn)) options:NSKeyValueObservingOptionNew
                           block:^(id observer, id object, NSDictionary *change) {
                               if (userDefaults.isSignedIn) {
                                   [[SYSocketManager manager] connect];

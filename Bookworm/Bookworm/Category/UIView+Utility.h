@@ -25,17 +25,32 @@
 
 @interface UIView (Utility) <SYViewProtocol>
 
-@property (nonatomic, strong, readonly) id superViewController;
+@property (nonatomic, assign) CGFloat left;
+@property (nonatomic, assign) CGFloat right;
+@property (nonatomic, assign) CGFloat top;
+@property (nonatomic, assign) CGFloat bottom;
+@property (nonatomic, assign) CGFloat centerX;
+@property (nonatomic, assign) CGFloat centerY;
 
-@property (nonatomic, strong, readonly) id superTableView;
-@property (nonatomic, strong, readonly) id superCollectionView;
-@property (nonatomic, strong, readonly) id superTableViewCell;
-@property (nonatomic, strong, readonly) id superCollectionViewCell;
+@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, assign) CGPoint origin;
+@property (nonatomic, assign) CGSize size;
 
-@property (nonatomic, strong, readonly) id subTableView;
-@property (nonatomic, strong, readonly) id subCollectionView;
+@property (nonatomic, assign, readonly) CGFloat statusBarHeight;
+@property (nonatomic, strong, readonly) UIViewController *viewController;
+
+@property (nonatomic, strong, readonly) UITableView *superTableView;
+@property (nonatomic, strong, readonly) UICollectionView *superCollectionView;
+
+@property (nonatomic, strong, readonly) UITableViewCell *superTableViewCell;
+@property (nonatomic, strong, readonly) UICollectionViewCell *superCollectionViewCell;
+
+@property (nonatomic, strong, readonly) UITableView *subTableView;
+@property (nonatomic, strong, readonly) UICollectionView *subCollectionView;
 
 - (void)findAndResignFirstResponder;
+- (void)animateSpringScale;
 
 - (void)addBlurBackground;
 - (void)removeBlurBackground;

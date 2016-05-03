@@ -96,14 +96,24 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
     UIView *touchedImageView = touch.view.subviews.firstObject;
-    [UIView animateKeyframesWithDuration:0.3 delay:0 options:0 animations:^{
-        [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.8 animations:^{
-            touchedImageView.transform = CGAffineTransformMakeScale(0.7, 0.7);
-        }];
-        [UIView addKeyframeWithRelativeStartTime:0.8 relativeDuration:1.0 animations:^{
-            touchedImageView.transform = CGAffineTransformIdentity;
-        }];
+    CGFloat duration = 0.2;
+    
+    [UIView animateWithDuration:duration animations:^{
+        touchedImageView.transform = CGAffineTransformMakeScale(0.8, 0.8);
+    }];
+    
+    [UIView animateWithDuration:duration delay:duration usingSpringWithDamping:0.5 initialSpringVelocity:10 options:0 animations:^{
+             touchedImageView.transform = CGAffineTransformIdentity;
     } completion:nil];
+    
+//    [UIView animateKeyframesWithDuration:0.5 delay:0 options:0 animations:^{
+//        [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 animations:^{
+//            touchedImageView.transform = CGAffineTransformMakeScale(0.7, 0.7);
+//        }];
+//        [UIView addKeyframeWithRelativeStartTime:0.5 relativeDuration:1.0 animations:^{
+//            touchedImageView.transform = CGAffineTransformIdentity;
+//        }];
+//    } completion:nil];
     
     return NO;
 }

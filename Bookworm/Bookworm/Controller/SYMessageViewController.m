@@ -58,7 +58,10 @@
                                                object:nil];
     
     self.KVOController = [FBKVOController controllerWithObserver:self];
-    [self.KVOController observe:self.messageService keyPath:@"totalUnreadMessageCount" options:0 action:@selector(updateAppIconBadgeNumber)];
+    [self.KVOController observe:self.messageService
+                        keyPath:NSStringFromSelector(@selector(totalUnreadMessageCount))
+                        options:0
+                         action:@selector(updateAppIconBadgeNumber)];
 }
 
 - (void)updateAppIconBadgeNumber
@@ -102,7 +105,7 @@
     [UIBarButtonItem barButtonItemWithImageName:@"button_contact_list" target:self action:@selector(showContactViewControllerFromMessageViewController:)];
     
     self.KVOController = [FBKVOController controllerWithObserver:self];
-    [self.KVOController observe:[SYSocketManager manager] keyPath:@"readyState" options:0 action:@selector(updateNavigationTitle)];
+    [self.KVOController observe:[SYSocketManager manager] keyPath:NSStringFromSelector(@selector(readyState)) options:0 action:@selector(updateNavigationTitle)];
 }
 
 - (void)updateNavigationTitle

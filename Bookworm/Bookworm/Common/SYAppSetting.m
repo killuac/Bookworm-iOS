@@ -19,11 +19,9 @@
     dispatch_once(&onceToken, ^{
         sharedInstance = [self modelWithDictionary:[NSDictionary dictionaryWithContentsOfFile:SYPlistFilePath(APP_SETTING)]];
         
+        NSArray *keyPaths = @[NSStringFromSelector(@selector(isAppUpdated)), NSStringFromSelector(@selector(isShowUserGuide))];
         sharedInstance.KVOController = [FBKVOController controllerWithObserver:sharedInstance];
-        [sharedInstance.KVOController observe:sharedInstance
-                                     keyPaths:@[@"isAppUpdated", @"isShowUserGuide"]
-                                      options:NSKeyValueObservingOptionNew
-                                       action:@selector(save)];
+        [sharedInstance.KVOController observe:sharedInstance keyPaths:keyPaths options:NSKeyValueObservingOptionNew action:@selector(save)];
     });
     
     return sharedInstance;

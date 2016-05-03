@@ -41,7 +41,6 @@
 		E34581941C213A7D0088BDA5 /* UIButton+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E34581881C213A7D0088BDA5 /* UIButton+Factory.m */; };
 		E34581951C213A7D0088BDA5 /* UIColor+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E345818A1C213A7D0088BDA5 /* UIColor+Factory.m */; };
 		E34581961C213A7D0088BDA5 /* UIFont+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = E345818C1C213A7D0088BDA5 /* UIFont+Factory.m */; };
-		E34581971C213A7D0088BDA5 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = E345818E1C213A7D0088BDA5 /* UIView+Frame.m */; };
 		E34581981C213A7D0088BDA5 /* UIView+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E34581901C213A7D0088BDA5 /* UIView+Utility.m */; };
 		E34581A41C213FFB0088BDA5 /* JSONModel+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E345819F1C213FFB0088BDA5 /* JSONModel+Utility.m */; };
 		E34581A51C213FFB0088BDA5 /* JSONValueTransformer+Mapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E34581A11C213FFB0088BDA5 /* JSONValueTransformer+Mapper.m */; };
@@ -184,8 +183,6 @@
 		E345818A1C213A7D0088BDA5 /* UIColor+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Factory.m"; sourceTree = "<group>"; };
 		E345818B1C213A7D0088BDA5 /* UIFont+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Factory.h"; sourceTree = "<group>"; };
 		E345818C1C213A7D0088BDA5 /* UIFont+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Factory.m"; sourceTree = "<group>"; };
-		E345818D1C213A7D0088BDA5 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
-		E345818E1C213A7D0088BDA5 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		E345818F1C213A7D0088BDA5 /* UIView+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Utility.h"; sourceTree = "<group>"; };
 		E34581901C213A7D0088BDA5 /* UIView+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utility.m"; sourceTree = "<group>"; };
 		E345819E1C213FFB0088BDA5 /* JSONModel+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONModel+Utility.h"; sourceTree = "<group>"; };
@@ -615,8 +612,6 @@
 				E3EB14B51C52171400D10026 /* UITableViewCell+Common.m */,
 				E3B0CAEA1C994A6D009950B2 /* UIToolbar+Factory.h */,
 				E3B0CAEB1C994A6D009950B2 /* UIToolbar+Factory.m */,
-				E345818D1C213A7D0088BDA5 /* UIView+Frame.h */,
-				E345818E1C213A7D0088BDA5 /* UIView+Frame.m */,
 				E345818F1C213A7D0088BDA5 /* UIView+Utility.h */,
 				E34581901C213A7D0088BDA5 /* UIView+Utility.m */,
 				E34581AD1C21455C0088BDA5 /* UIViewController+Utility.h */,
@@ -888,7 +883,6 @@
 				E3EB14B01C52166F00D10026 /* SYTipTableViewCell.m in Sources */,
 				E30A49EC1C5B1257009BD684 /* SYMessageViewController.m in Sources */,
 				E34581801C21395B0088BDA5 /* SYUtility.m in Sources */,
-				E34581971C213A7D0088BDA5 /* UIView+Frame.m in Sources */,
 				E32F00FF1C9170520024086B /* SYStackView.m in Sources */,
 				E3EB14B61C52171400D10026 /* UITableViewCell+Common.m in Sources */,
 				E3B0CAE21C981B3F009950B2 /* SYInitialViewController.m in Sources */,
