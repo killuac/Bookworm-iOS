@@ -12,6 +12,12 @@
 #import "SYNotificationModel.h"
 #import "TestViewController.h"
 
+NSString *const SYIdentifierCategoryChat = @"CATEGORY_CHAT";
+NSString *const SYIdentifierCategoryExchange = @"CATEGORY_EXCHANGE";
+NSString *const SYIdentifierActionReply = @"ACTION_REPLY";
+NSString *const SYIdentifierActionAccept = @"ACTION_ACCEPT";
+NSString *const SYIdentifierActionReject = @"ACTION_REJECT";
+
 @interface AppDelegate ()
 
 @property (nonatomic, strong) SYDeviceService *deviceService;
@@ -66,21 +72,9 @@
 - (void)updateApplication
 {
     if ([SYAppSetting defaultAppSetting].isAppUpdated) {
-        [self updateLocalDatabase];
+//        [self updateLocalDatabase];
         [SYServerAPI fetchAndSave];
     }
-}
-
-- (void)updateLocalDatabase
-{
-    FMDatabase *database = [FMDatabase databaseWithPath:DATABASE_FILE_PATH];
-    [database open];
-    [database setShouldCacheStatements:YES];
-    
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Bookworm" ofType:@"sql"];
-    NSString *sql = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    [database executeStatements:sql];
-    [database close];
 }
 
 - (void)setupAppearance
@@ -111,31 +105,31 @@
 {
     // Reply category
     UIMutableUserNotificationAction *replyAction = [[UIMutableUserNotificationAction alloc] init];
-    replyAction.identifier = NOTIFICATION_ACTION_REPLY;
+    replyAction.identifier = SYIdentifierActionReply;
     replyAction.title = BUTTON_TITLE_REPLY;
     replyAction.activationMode = UIUserNotificationActivationModeBackground;
     replyAction.authenticationRequired = NO;
     
     UIMutableUserNotificationCategory *replyCategory = [[UIMutableUserNotificationCategory alloc] init];
-    replyCategory.identifier = NOTIFICATION_CATEGORY_CHAT;
+    replyCategory.identifier = SYIdentifierCategoryChat;
     [replyCategory setActions:@[replyAction] forContext:UIUserNotificationActionContextDefault];
     [replyCategory setActions:@[replyAction] forContext:UIUserNotificationActionContextMinimal];
     
     // Exhange category
     UIMutableUserNotificationAction *acceptAction = [[UIMutableUserNotificationAction alloc] init];
-    acceptAction.identifier = NOTIFICATION_ACTION_ACCEPT;
+    acceptAction.identifier = SYIdentifierActionAccept;
     acceptAction.title = BUTTON_TITLE_ACCEPT;
     acceptAction.activationMode = UIUserNotificationActivationModeBackground;
     acceptAction.authenticationRequired = NO;
     
     UIMutableUserNotificationAction *rejectAction = [[UIMutableUserNotificationAction alloc] init];
-    rejectAction.identifier = NOTIFICATION_ACTION_REJECT;
+    rejectAction.identifier = SYIdentifierActionReject;
     rejectAction.title = BUTTON_TITLE_REJECT;
     rejectAction.activationMode = UIUserNotificationActivationModeBackground;
     rejectAction.authenticationRequired = NO;
     
     UIMutableUserNotificationCategory *exchangeCategory = [[UIMutableUserNotificationCategory alloc] init];
-    exchangeCategory.identifier = NOTIFICATION_CATEGORY_EXCHANGE;
+    exchangeCategory.identifier = SYIdentifierCategoryExchange;
     [exchangeCategory setActions:@[acceptAction, rejectAction] forContext:UIUserNotificationActionContextDefault];
     [exchangeCategory setActions:@[acceptAction, rejectAction] forContext:UIUserNotificationActionContextMinimal];
     
@@ -190,11 +184,11 @@
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler
 {
     if ([GVUserDefaults standardUserDefaults].isSignedIn) {
-        if ([identifier isEqualToString:NOTIFICATION_ACTION_REPLY]) {
+        if ([identifier isEqualToString:SYIdentifierActionReply]) {
             // TODO: Reply message
-        } else if ([identifier isEqualToString:NOTIFICATION_ACTION_ACCEPT]) {
+        } else if ([identifier isEqualToString:SYIdentifierActionAccept]) {
             
-        } else if ([identifier isEqualToString:NOTIFICATION_ACTION_REJECT]) {
+        } else if ([identifier isEqualToString:SYIdentifierActionReject]) {
             
         } else {
             SYNotificationModel *payload = [SYNotificationModel modelWithDictionary:userInfo];

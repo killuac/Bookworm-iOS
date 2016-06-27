@@ -13,10 +13,10 @@
 + (instancetype)sharedServerAPI;
 + (void)fetchAndSave;
 
-- (void)fetchIMServerAddressCompletion:(SYNoParameterBlockType)completion;
+- (void)fetchIMServerAddressCompletion:(SYVoidBlockType)completion;
 
-@property (nonatomic, copy) NSString *imServer;             // Fetch IM server address(use IP to accelerate connect) by HTTP API
-@property (nonatomic, copy) NSString *imServerAddress;      // Available IM server address
+@property (nonatomic, copy) NSString *imServers;            // Fetch IM server address by HTTP API
+@property (nonatomic, copy, readonly) NSURL *imServerURL;   // Available IM server address(use IP to accelerate connect)
 
 @property (nonatomic, copy) NSString *signIn;
 @property (nonatomic, copy) NSString *devices;

@@ -19,10 +19,10 @@
 
 @implementation SYInitialViewController
 
-- (BOOL)shouldAutorotate
-{
-    return NO;
-}
+//- (BOOL)shouldAutorotate
+//{
+//    return NO;
+//}
 
 #pragma mark - Life cycle
 - (void)viewWillAppear:(BOOL)animated
@@ -35,7 +35,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor backgroundColor];
-    self.view.layer.cornerRadius = DEFAULT_CORNER_RADIUS;
+    self.view.layer.cornerRadius = SYViewDefaultCornerRadius;
     self.view.clipsToBounds = YES;
     
     [self loadData];
@@ -47,7 +47,7 @@
 {
     self.imageNames = [NSMutableArray array];
     for (NSUInteger i = 0; i < 3; i++) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"guide%tu", i] ofType:@"jpg"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"guide%lu", i] ofType:@"jpg"];
         [self.imageNames addObject:path];
     }
 }
@@ -69,7 +69,7 @@
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     
-    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectZero];
+    self.pageControl = [[UIPageControl alloc] init];
     self.pageControl.enabled = NO;
     self.pageControl.top = self.view.height - 70;
     self.pageControl.size = CGSizeMake(self.view.width, 10);

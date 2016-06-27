@@ -35,12 +35,13 @@ typedef void (^SYAspectHandlerBlock)(id<AspectInfo> aspectInfo);
 
 - (void)setupUMeng
 {
-    NSString *appKey = [SYAppSetting defaultAppSetting].umengAppKey;
+    UMConfigInstance.appKey = [SYAppSetting defaultAppSetting].umengAppKey;
 #if DEBUG
-    [MobClick startWithAppkey:appKey reportPolicy:REALTIME channelId:@"Development"];
+    UMConfigInstance.channelId = @"Development";
 #else
-    [MobClick startWithAppkey:appKey reportPolicy:BATCH channelId:@"App Store"];
+    UMConfigInstance.channelId = @"App Store";
 #endif
+    [MobClick startWithConfigure:UMConfigInstance];
     [MobClick setAppVersion:XcodeAppVersion];
     
     if ([GVUserDefaults standardUserDefaults].isSignedIn) {
@@ -90,7 +91,7 @@ typedef void (^SYAspectHandlerBlock)(id<AspectInfo> aspectInfo);
     [UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> aspectInfo) {
         if ([self isNeedLoggingForAspectInfo:aspectInfo]) {
             NSString *pageViewName = [self pageViewNameForAspectInfo:aspectInfo];
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            SYDispatchGlobalAsync(^{
                 [MobClick beginLogPageView:pageViewName];
             });
         }
@@ -99,7 +100,7 @@ typedef void (^SYAspectHandlerBlock)(id<AspectInfo> aspectInfo);
     [UIViewController aspect_hookSelector:@selector(viewWillDisappear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> aspectInfo) {
         if ([self isNeedLoggingForAspectInfo:aspectInfo]) {
             NSString *pageViewName = [self pageViewNameForAspectInfo:aspectInfo];
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            SYDispatchGlobalAsync(^{
                 [MobClick endLogPageView:pageViewName];
             });
         }
@@ -115,7 +116,7 @@ typedef void (^SYAspectHandlerBlock)(id<AspectInfo> aspectInfo);
             SYAspectHandlerBlock block = event[SYLogEventHandlerBlock];
             
             [clazz aspect_hookSelector:selector withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> aspectInfo) {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                SYDispatchGlobalAsync(^{
                     if (block) {
                         block(aspectInfo);
                     } else {

@@ -21,7 +21,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"Test View Contollers";
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COMMON];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
     
     _viewControllerClasses = [NSMutableArray array];
     [SYClassGetSubClasses([UIViewController class]) enumerateObjectsUsingBlock:^(Class class, NSUInteger idx, BOOL *stop) {
@@ -44,7 +44,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //    UITableViewCell *cell = [UITableViewCell cellWithTableView:tableView forIndexPath:indexPath];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_COMMON forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class]) forIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = _viewControllerClasses[indexPath.row];
     

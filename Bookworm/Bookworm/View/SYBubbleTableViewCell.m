@@ -12,8 +12,9 @@
 
 - (void)showSendingActivityIndicator
 {
-    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    UIActivityIndicatorView *activityIndicator = [UIActivityIndicatorView newAutoLayoutView];
     activityIndicator.tag = 1000;
+    activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     [activityIndicator startAnimating];
     [self.contentView addSubview:activityIndicator];
 }

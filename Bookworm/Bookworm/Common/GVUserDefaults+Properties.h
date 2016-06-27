@@ -15,7 +15,7 @@
 
 @property (nonatomic, assign) BOOL isSignedIn;
 @property (nonatomic, copy) NSString *userID;
-@property (nonatomic, copy, readonly) NSString *language;
+@property (nonatomic, copy, readonly) NSString *languageID;
 @property (nonatomic, assign) NSUInteger maxOutboxMessageID;
 
 @property (nonatomic, copy) NSString *accessToken;  // UserID + Password + Timestamp + Salt

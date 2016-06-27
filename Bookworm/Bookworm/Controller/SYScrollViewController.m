@@ -12,23 +12,44 @@
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) NSLayoutConstraint *activityIndicatorVConstraint;
 
 @end
 
 @implementation SYScrollViewController
 
 #pragma mark - Life cycle
+
 - (void)setScrollView:(UIScrollView *)scrollView
 {
     _scrollView = scrollView;
-    [self.view addSubview:scrollView];
+    _scrollView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:_scrollView];
     
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.activityIndicator.center = self.view.center;
-    [self.scrollView addSubview:self.activityIndicator];
+    _refreshControl = [[UIRefreshControl alloc] init];
+    [_refreshControl addTarget:self action:@selector(loadNewData) forControlEvents:UIControlEventValueChanged];
+    [_scrollView addSubview:_refreshControl];
+    [_scrollView sendSubviewToBack:_refreshControl];
+    
+    _activityIndicator = [UIActivityIndicatorView newAutoLayoutView];
+    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    [_scrollView addSubview:_activityIndicator];
+    [_scrollView sendSubviewToBack:_activityIndicator];
+    
+    [self setupConstraints];
 }
 
-- (void)startLoadingData:(SYNoParameterBlockType)completion
+- (void)setupConstraints
+{
+    [self.scrollView constraintsEqualWithSuperView];
+    
+    NSLayoutConstraint *hConstraint = [NSLayoutConstraint constraintCenterXWithItem:_activityIndicator];
+    NSLayoutConstraint *vConstraint = [NSLayoutConstraint constraintTopWithItem:_activityIndicator];
+    [NSLayoutConstraint activateConstraints:@[hConstraint, vConstraint]];
+    _activityIndicatorVConstraint = vConstraint;
+}
+
+- (void)startLoadingData:(SYVoidBlockType)completion
 {
     if (!self.isLoadingData) {
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -58,37 +79,38 @@
 #pragma mark - Load data
 - (void)loadNewData
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self startLoadingData:^{
-            [self.refreshControl endRefreshing];
-        }];
-    });
+    [self startLoadingData:^{
+        [self.refreshControl endRefreshing];
+    }];
 }
 
 - (void)loadEarlierData
 {
-    if (self.scrollView.contentSize.height <= self.view.height) {
-        return;
-    }
+    self.activityIndicatorVConstraint.constant = self.scrollView.contentSize.height + SYViewDefaultMargin;
+    CGFloat footerSpacing = self.activityIndicator.height + SYViewDefaultMargin * 2;
+    CGSize contentSize = self.scrollView.contentSize;
+    [UIView animateWithDuration:SYViewDefaultAnimationDuration animations:^{
+        self.scrollView.contentSize = CGSizeMake(contentSize.width, contentSize.height + footerSpacing);
+    }];
     
-    self.activityIndicator.bottom = self.scrollView.contentSize.height + DEFAULT_MARGIN * 2;
     [self.activityIndicator startAnimating];
-    
     [self startLoadingData:^{
+        [UIView animateWithDuration:SYViewDefaultAnimationDuration animations:^{
+            self.scrollView.contentSize = contentSize;
+        }];
         [self.activityIndicator stopAnimating];
     }];
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
+    if (scrollView.contentSize.height <= self.view.height) return;
+    
     CGFloat yVelocity = [scrollView.panGestureRecognizer velocityInView:scrollView].y;
-    CGFloat yOffset = MAX(scrollView.height, scrollView.contentSize.height - scrollView.height);
+    if (yVelocity >= 0 ) return;
     
-    if (scrollView.contentSize.height < scrollView.height * 2.0f) {
-        yOffset = targetContentOffset->y;
-    }
-    
-    if (yVelocity < 0 && targetContentOffset->y >= yOffset && yOffset && !self.isLoadingData) {
+    CGFloat yOffset = MAX(scrollView.contentSize.height - scrollView.height * 2, 0.0f);
+    if (scrollView.contentOffset.y >= yOffset && !self.isLoadingData) {
         [self loadEarlierData];
     }
 }

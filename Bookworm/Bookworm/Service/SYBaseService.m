@@ -18,7 +18,6 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        _dbQueue = [FMDatabaseQueue databaseQueueWithPath:DATABASE_FILE_PATH];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancelRequest) name:SVProgressHUDDidTouchDownInsideNotification object:nil];
     }
     
@@ -33,19 +32,19 @@
 - (NSString *)valueForURLString:(NSString *)URLString
 {
     __block NSString *value;
-    [self.dbQueue inDatabase:^(FMDatabase *db) {
-        value = [db stringForQuery:@"SELECT value FROM KeyValue WHERE key = ?" , [URLString toSHA1String]];
-    }];
+//    [self.dbQueue inDatabase:^(FMDatabase *db) {
+//        value = [db stringForQuery:@"SELECT value FROM KeyValue WHERE key = ?" , [URLString toSHA1String]];
+//    }];
     return value;
 }
 
 - (void)setValue:(NSString *)value forURLString:(NSString *)URLString
 {
-    if (value.length == 0 || URLString.length == 0) return;
-    
-    [self.dbQueue inDatabase:^(FMDatabase *db) {
-        [db executeUpdate:@"INSERT OR REPLACE INTO KeyValue VALUES (?, ?)" , [URLString toSHA1String], value];
-    }];
+//    if (value.length == 0 || URLString.length == 0) return;
+//    
+//    [self.dbQueue inDatabase:^(FMDatabase *db) {
+//        [db executeUpdate:@"INSERT OR REPLACE INTO KeyValue VALUES (?, ?)" , [URLString toSHA1String], value];
+//    }];
 }
 
 - (void)cancelRequest
@@ -55,7 +54,6 @@
 
 - (void)dealloc
 {
-    [self.dbQueue close];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

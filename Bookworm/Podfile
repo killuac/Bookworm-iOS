@@ -5,19 +5,17 @@ inhibit_all_warnings!
 target 'Bookworm' do
 
 pod 'AFNetworking'
-pod 'SocketRocket'
 pod 'SDWebImage'
+pod 'SocketRocket'
 pod 'RegExCategories'
 pod 'pop'
-pod 'FMDB'
-pod 'Masonry'
 pod 'Aspects'
 pod 'JSONModel'
 pod 'MagicalRecord'
 pod 'KVOController'
 pod 'GVUserDefaults'
 pod 'NYXImagesKit'
-pod 'SVProgressHUD', :head
+pod 'SVProgressHUD'
 pod 'UMengAnalytics-NO-IDFA'
 
 end

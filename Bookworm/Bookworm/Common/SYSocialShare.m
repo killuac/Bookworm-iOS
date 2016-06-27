@@ -12,7 +12,7 @@
 
 - (NSString *)title
 {
-    return SYLocalizedString(_title);
+    return NSLocalizedString(_title, "");
 }
 
 @end

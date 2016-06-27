@@ -95,7 +95,7 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerClass:[SYMessageTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER_COMMON];
+    [self.tableView registerClass:[SYMessageTableViewCell class] forCellReuseIdentifier:NSStringFromClass([SYMessageTableViewCell class])];
     self.view = self.tableView;
 }
 
@@ -111,7 +111,7 @@
 - (void)updateNavigationTitle
 {
 //    if ([SYSocketManager manager].isConnecting) {
-//        UIView *titleView = [[UIView alloc] initWithFrame:CGRectZero];
+//        UIView *titleView = [[UIView alloc] init];
 //        UILabel *titleLabel = [UILabel labelWithText:HUD_CONNECTING_IM_SERVER attributes:self.navigationBar.titleTextAttributes];
 //        [titleView addSubview:titleLabel];
 //        
@@ -136,17 +136,19 @@
     [self loadData:nil];
 }
 
-- (void)loadData:(SYNoParameterBlockType)completion
+- (void)loadData:(SYVoidBlockType)completion
 {
     SYContactModel *model = [SYContactModel model];
     model.lastMessage = [SYMessageModel model];
-    model.lastMessage.content = @"最后一条消息";
+    model.lastMessage.content = @"收到的最后一条消息";
     model.lastMessage.isPending = YES;
     model.nickname = @"云中行走";
+    model.gender = SYGenderTypeMale;
     model.lastMessage.timestamp = [NSDate date].timeIntervalSince1970;
     model.unreadMessageCount = 10;
-    [self.contacts addObject:model];
-    [self.contacts addObject:model];
+    for (NSUInteger i = 0; i < 1000; i++) {
+        [self.contacts addObject:model];
+    }
     
     [self.contactService findByKey:self.userID result:^(NSArray<SYContactModel *> *result) {
         [self.contacts addObjectsFromArray:result];
@@ -280,11 +282,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SYContactModel *contact = self.contacts[indexPath.row];
-    SYMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER_COMMON forIndexPath:indexPath];
+    SYMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SYMessageTableViewCell class]) forIndexPath:indexPath];
     cell.titleLabel.text = contact.nickname;
     cell.subtitleLabel.text = contact.lastMessage.content;
-    cell.genderIconView.image = IMG_GENDER_ICON(contact.gender);
-    [cell.avatarImageView sy_setImageWithURL:contact.avatarURL];
+    cell.genderIconView.image = SYImageIconByGender(contact.gender);
+    [cell.avatarImageView sy_setImageWithURL:contact.avatarURL
+                            placeholderImage:SYImageAvatarByGender(contact.gender)
+                                  completion:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [cell.avatarImageView setCornerRadius:cell.avatarImageView.width / 2];
+    }];
     
     if ([[NSDate date] timeIntervalSinceDate:contact.lastMessage.dateTime] > 2 * 24 * 3600) {
         cell.timeLabel.text = [contact.lastMessage.dateTime toShortDateString];
@@ -322,7 +328,7 @@
     return 64.0f;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView willDisplayCell:(SYMessageTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
         [cell setSeparatorInset:UIEdgeInsetsZero];

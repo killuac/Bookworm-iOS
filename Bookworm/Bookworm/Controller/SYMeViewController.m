@@ -54,6 +54,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.scrollView = self.tableView;
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
 }
 
 - (void)loadData
@@ -61,30 +62,35 @@
     
 }
 
+- (void)loadData:(SYVoidBlockType)completion
+{
+    
+}
+
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 15;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell =  [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CELL_IDENTIFIER_COMMON];
+    UITableViewCell *cell =  [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:NSStringFromClass([UITableViewCell class])];
     cell.imageView.image = [UIImage imageNamed:@"icon_history"];
-    cell.textLabel.textColor = [UIColor titleColor];
     cell.textLabel.text = @"昵称";
-    cell.detailTextLabel.textColor = [UIColor subtitleColor];
     cell.detailTextLabel.text = @"云中行走";
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    [cell setNeedsLayout];
-    [cell layoutIfNeeded];
-    cell.imageView.size = cell.imageView.image.size;
-    cell.imageView.centerY = cell.contentView.centerY;
+    return CGFLOAT_MIN;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return CGFLOAT_MIN;
 }
 
 #pragma mark - Event handling

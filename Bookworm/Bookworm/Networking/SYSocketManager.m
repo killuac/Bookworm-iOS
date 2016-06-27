@@ -9,9 +9,9 @@
 #import "SYSocketManager.h"
 #import "SYMessageService.h"
 
-#define HEART_BEAT_INTERVAL     25.0
-#define RECONNECT_DELAY         2.0
-#define RECONNNECT_MAX_COUNT    15
+NSUInteger const SYReconnectMaxCount = 15;
+NSTimeInterval const SYReconnectDelay = 2.0;
+NSTimeInterval const SYHeartBeatInterval = 25.0;
 
 NSString *const SYSocketMethodChat = @"CHAT";
 NSString *const SYSocketMethodSync = @"SYNC";
@@ -62,9 +62,9 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 
 - (void)instantiateWebSocket
 {
-    NSURL *serverURL = [NSURL URLWithString:[SYServerAPI sharedServerAPI].imServerAddress];
+    NSURL *serverURL = [SYServerAPI sharedServerAPI].imServerURL;
     if (serverURL) {
-        self.webSocket = [[SRWebSocket alloc] initWithURL:serverURL];
+        self.webSocket = [[SRWebSocket alloc] initWithURL:[SYServerAPI sharedServerAPI].imServerURL];
         self.webSocket.delegate = self;
         [self.webSocket setDelegateOperationQueue:[[NSOperationQueue alloc] init]];
     }
@@ -77,7 +77,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 
 - (void)setReadyState:(SRReadyState)readyState
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    SYDispatchMainAsync(^{
         [self willChangeValueForKey:@"readyState"];
         _readyState = readyState;
         [self didChangeValueForKey:@"readyState"];
@@ -114,7 +114,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
     [self invalidateHeartBeat];
     
     [[SYServerAPI sharedServerAPI] fetchIMServerAddressCompletion:^{
-        [self performSelector:@selector(connect) withObject:nil afterDelay:RECONNECT_DELAY];
+        [self performSelector:@selector(connect) withObject:nil afterDelay:SYReconnectDelay];
     }];
 }
 
@@ -127,7 +127,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 - (void)scheduleHeartBeat
 {
     [self invalidateHeartBeat];
-    self.timer = [NSTimer scheduledRepeatTimerWithTimeInterval:HEART_BEAT_INTERVAL target:self selector:@selector(heartBeat)];
+    self.timer = [NSTimer scheduledRepeatTimerWithTimeInterval:SYHeartBeatInterval target:self selector:@selector(heartBeat)];
 }
 
 - (void)heartBeat
@@ -197,7 +197,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 
 - (void)postNotificationName:(NSString *)name object:(nullable id)object
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    SYDispatchMainAsync(^{
         [[NSNotificationCenter defaultCenter] postNotificationName:name object:object];
     });
 }
@@ -256,7 +256,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
     NSLog(@"Websocket failed with error: %@" , error);
 #endif
     
-    if (self.reconnectCount < RECONNNECT_MAX_COUNT) {
+    if (self.reconnectCount < SYReconnectMaxCount) {
         [self reconnect];
     } else {
         self.readyState = self.webSocket.readyState;
@@ -266,7 +266,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean;
 {
 #ifdef DEBUG
-    NSLog(@"WebSocket closed: Code: %zd and Reason: %@", code, reason);
+    NSLog(@"WebSocket closed: Code: %ld and Reason: %@", code, reason);
 #endif
     
     [self invalidateHeartBeat];

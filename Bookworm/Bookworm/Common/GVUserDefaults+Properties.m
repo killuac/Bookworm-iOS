@@ -26,7 +26,7 @@
     };
 }
 
-- (NSString *)language
+- (NSString *)languageID
 {
     return [[NSBundle mainBundle] preferredLocalizations].firstObject;
 }

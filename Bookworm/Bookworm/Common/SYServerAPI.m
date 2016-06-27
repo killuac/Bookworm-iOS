@@ -8,17 +8,17 @@
 
 #import "SYServerAPI.h"
 
-#define JSON_SERVER_API     @"server-api.json"
+NSString *const SYFileNameServerAPI = @"server-api.json";
 
 @implementation SYServerAPI
 
 + (JSONKeyMapper *)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@ {
-        @"_links.devices.href": @"devicesURLString",
-        @"_links.signIn.href": @"signInURLString",
-        @"_links.users.href": @"usersURLString",
-        @"_links.imServerURL.href": @"imServerURLString"
+        @"_links.devices.href": @"devices",
+        @"_links.signIn.href": @"signIn",
+        @"_links.users.href": @"users",
+        @"_links.imServers.href": @"imServers"
     }];
 }
 
@@ -27,7 +27,7 @@ static SYServerAPI *sharedInstance = nil;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [self modelWithData:[NSData dataWithContentsOfFile:SYApplicationSupportFilePath(JSON_SERVER_API)]];
+        sharedInstance = [self modelWithData:[NSData dataWithContentsOfURL:SYApplicationSupportFileURL(SYFileNameServerAPI)]];
     });
     
     return sharedInstance;
@@ -40,22 +40,23 @@ static SYServerAPI *sharedInstance = nil;
         [[self modelWithDictionary:responseObject] save];
         
 //      If App is updated, need fetch API again and reset the sharedInstance with new API file.
-        sharedInstance = [self modelWithData:[NSData dataWithContentsOfFile:SYDocumentFilePath(JSON_SERVER_API)]];
+        sharedInstance = [self modelWithData:[NSData dataWithContentsOfURL:SYApplicationSupportFileURL(SYFileNameServerAPI)]];
     }];
 }
 
 // Protecting Data Using On-Disk Encryption
 - (void)save
 {
-    [[self toJSONData] writeToFile:SYApplicationSupportFilePath(JSON_SERVER_API)
-                           options:NSDataWritingAtomic | NSDataWritingFileProtectionComplete
-                             error:nil];
+    [[self toJSONData] writeToURL:SYApplicationSupportFileURL(SYFileNameServerAPI)
+                          options:NSDataWritingAtomic | NSDataWritingFileProtectionComplete
+                            error:nil];
 }
 
-- (void)fetchIMServerAddressCompletion:(SYNoParameterBlockType)completion
+- (void)fetchIMServerAddressCompletion:(SYVoidBlockType)completion
 {
-    [[SYSessionManager manager] HEAD:self.imServer parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
-        self.imServerAddress = ((NSHTTPURLResponse *)task.response).allHeaderFields[kHTTPHeaderFieldIMServer];
+    [[SYSessionManager manager] HEAD:self.imServers parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
+        NSString *serverAddress = ((NSHTTPURLResponse *)task.response).allHeaderFields[kHTTPHeaderFieldIMServer];
+        _imServerURL = [NSURL URLWithString:serverAddress];
         [self save];
         if (completion) completion();
     }];

@@ -10,14 +10,6 @@
 
 @implementation SYTextView
 
-- (id)init
-{
-    if (self = [super init]) {
-        [self addObservers];
-    }
-    return self;
-}
-
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {

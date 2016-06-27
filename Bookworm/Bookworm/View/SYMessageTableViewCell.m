@@ -8,102 +8,113 @@
 
 #import "SYMessageTableViewCell.h"
 
+@interface SYMessageTableViewCell ()
+
+@property (nonatomic, strong) NSLayoutConstraint *sendingMarkConstraint;
+@property (nonatomic, assign) CGFloat badgeLabelHeight;
+
+@end
+
 @implementation SYMessageTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.backgroundColor = [UIColor whiteColor];
         [self addSubviews];
+        [self addConstraints];
     }
     return self;
 }
 
 - (void)addSubviews
 {
-    _avatarImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _avatarImageView.clipsToBounds = YES;
+    _avatarImageView = [UIImageView newAutoLayoutView];
     _avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
-    _avatarImageView.size = CGSizeMake(50, 50);
-    _avatarImageView.layer.cornerRadius = _avatarImageView.width / 2;
     [self.contentView addSubview:_avatarImageView];
     
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _titleLabel = [UILabel newAutoLayoutView];
     _titleLabel.font = [UIFont titleFont];
     _titleLabel.textColor = [UIColor titleColor];
+    _titleLabel.backgroundColor = self.backgroundColor;
+    _titleLabel.clipsToBounds = YES;
     [self.contentView addSubview:_titleLabel];
     
-    _genderIconView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _genderIconView = [UIImageView newAutoLayoutView];
+    _genderIconView.contentMode = UIViewContentModeCenter;
     [self.contentView addSubview:_genderIconView];
     
-    _sendingMark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_sending_mark"]];
+    _sendingMark = [UIImageView newAutoLayoutView];
     _sendingMark.hidden = YES;
+    _sendingMark.image = [UIImage imageNamed:@"icon_sending_mark"];
+    _sendingMark.contentMode = UIViewContentModeLeft;
     [self.contentView addSubview:_sendingMark];
     
-    _subtitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _subtitleLabel = [UILabel newAutoLayoutView];
     _subtitleLabel.font = [UIFont subtitleFont];
     _subtitleLabel.textColor = [UIColor subtitleColor];
+    _subtitleLabel.backgroundColor = self.backgroundColor;
+    _subtitleLabel.clipsToBounds = YES;
     [self.contentView addSubview:_subtitleLabel];
     
-    _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _timeLabel = [UILabel newAutoLayoutView];
     _timeLabel.textColor = [UIColor subtitleColor];
     _timeLabel.font = [UIFont defaultFont];
     _timeLabel.textAlignment = NSTextAlignmentRight;
+    _timeLabel.backgroundColor = self.backgroundColor;
+    _timeLabel.clipsToBounds = YES;
     [self.contentView addSubview:_timeLabel];
     
-    _badgeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    _badgeLabel.clipsToBounds = YES;
+    _badgeLabel = [UILabel newAutoLayoutView];
+    _badgeLabel.text = @""; // For get font height
     _badgeLabel.font = [UIFont defaultFont];
     _badgeLabel.textColor = [UIColor whiteColor];
     _badgeLabel.textAlignment = NSTextAlignmentCenter;
+    _badgeLabelHeight = _badgeLabel.fontHeight + 5;
+    _badgeLabel.layer.cornerRadius = _badgeLabelHeight / 2;
     _badgeLabel.layer.backgroundColor = [UIColor redColor].CGColor;
-    _badgeLabel.size = CGSizeMake(20, 20);
-    _badgeLabel.layer.cornerRadius = _badgeLabel.width / 2;
     [self.contentView addSubview:_badgeLabel];
 }
 
-- (void)layoutSubviews
+- (void)addConstraints
 {
-    [super layoutSubviews];
+    NSDictionary *views = NSDictionaryOfVariableBindings(_avatarImageView, _titleLabel, _genderIconView, _sendingMark, _subtitleLabel, _timeLabel, _badgeLabel);
+    NSDictionary *metrics = @{ @"margin": @(10.0), @"badgeWidth": @(_badgeLabelHeight) };
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_avatarImageView]" options:0 metrics:metrics views:views]];
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[_avatarImageView]-margin-|" options:0 metrics:metrics views:views]];
     
-    CGFloat width, margin = MEDIUM_MARGIN;
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_avatarImageView]-margin-[_titleLabel]-0-[_genderIconView]-margin-[_timeLabel]-margin-|" options:NSLayoutFormatAlignAllTop metrics:metrics views:views]];
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[_titleLabel]" options:0 metrics:metrics views:views]];
     
-    _avatarImageView.origin = CGPointMake(margin, margin);
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_avatarImageView]-margin-[_sendingMark(20@900)]-0-[_subtitleLabel]-margin-[_badgeLabel(badgeWidth)]-margin-|" options:0 metrics:metrics views:views]];
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_titleLabel]->=2-[_subtitleLabel]-margin-|" options:0 metrics:metrics views:views]];
     
-    [_timeLabel sizeToFit];
-    _timeLabel.top = _avatarImageView.top;
-    _timeLabel.right = self.width - _avatarImageView.left;
+    _sendingMarkConstraint = [NSLayoutConstraint constraintWidthWithItem:_sendingMark constant:0];
+    self.sendingMarkConstraint.priority = 999;
+    [NSLayoutConstraint activateConstraints:@[_sendingMarkConstraint]];
     
-    [_titleLabel sizeToFit];
-    width = _timeLabel.left - _avatarImageView.right - margin * 2;
-    _titleLabel.width = MIN(_titleLabel.width, width);
-    _titleLabel.origin = CGPointMake(_avatarImageView.right + margin, _avatarImageView.top);
+    [_avatarImageView constraintsEqualWidthAndHeight];
+    [_genderIconView constraintsEqualWidthAndHeight];
+    [_badgeLabel constraintsEqualWidthAndHeight];
+    [_genderIconView constraintsCenterYWithView:_titleLabel];
+    [_sendingMark constraintsCenterYWithView:_subtitleLabel];
+    [_badgeLabel constraintsCenterYWithView:_subtitleLabel];
     
-    _genderIconView.size = _genderIconView.image.size;
-    _genderIconView.center = _titleLabel.center;
-    _genderIconView.left =  _titleLabel.right + margin / 2;
-    
-    [_subtitleLabel sizeToFit];
-    _subtitleLabel.width = self.width - _avatarImageView.right - margin * 2;
-    _subtitleLabel.left = (_sendingMark.hidden) ? _titleLabel.left : _titleLabel.left + _sendingMark.width + margin / 2;
-    _subtitleLabel.bottom = self.height - margin;
-    
-    _sendingMark.center = _subtitleLabel.center;
-    _sendingMark.left = _titleLabel.left;
-    
-    _badgeLabel.center = _subtitleLabel.center;
-    _badgeLabel.right = _timeLabel.right;
+    [_titleLabel setContentHuggingPriority:251 forAxis:UILayoutConstraintAxisHorizontal];
+    [_genderIconView setContentCompressionResistancePriority:751 forAxis:UILayoutConstraintAxisHorizontal];
+    [_timeLabel setContentCompressionResistancePriority:751 forAxis:UILayoutConstraintAxisHorizontal];
 }
 
 - (void)showSendingMark
 {
     self.sendingMark.hidden = NO;
-    [self setNeedsLayout];
+    self.sendingMarkConstraint.priority = UILayoutPriorityDefaultLow;
 }
 
 - (void)hideSendingMark
 {
     self.sendingMark.hidden = YES;
-    [self setNeedsLayout];
+    self.sendingMarkConstraint.priority = 999;
 }
 
 @end

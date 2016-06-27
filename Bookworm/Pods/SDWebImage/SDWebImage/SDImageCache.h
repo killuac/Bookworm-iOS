@@ -135,6 +135,14 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
 - (void)storeImage:(UIImage *)image recalculateFromImage:(BOOL)recalculate imageData:(NSData *)imageData forKey:(NSString *)key toDisk:(BOOL)toDisk;
 
 /**
+ * Store image NSData into disk cache at the given key.
+ *
+ * @param imageData The image data to store
+ * @param key   The unique image cache key, usually it's image absolute URL
+ */
+- (void)storeImageDataToDisk:(NSData *)imageData forKey:(NSString *)key;
+
+/**
  * Query the disk cache asynchronously.
  *
  * @param key The unique key used to store the wanted image
@@ -156,7 +164,7 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
 - (UIImage *)imageFromDiskCacheForKey:(NSString *)key;
 
 /**
- * Remove the image from memory and disk cache synchronously
+ * Remove the image from memory and disk cache asynchronously
  *
  * @param key The unique image cache key
  */
@@ -235,7 +243,7 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
 /**
  *  Async check if image exists in disk cache already (does not load the image)
  *
- *  @param key             the key descriKillua the url
+ *  @param key             the key describing the url
  *  @param completionBlock the block to be executed when the check is done.
  *  @note the completion block will be always executed on the main queue
  */
@@ -244,7 +252,7 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
 /**
  *  Check if image exists in disk cache already (does not load the image)
  *
- *  @param key the key descriKillua the url
+ *  @param key the key describing the url
  *
  *  @return YES if an image exists for the given key
  */

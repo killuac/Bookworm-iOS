@@ -20,7 +20,6 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-//        self.separatorInset = UIEdgeInsetsMake(0, DEFAULT_MARGIN*2+IMAGE_WH, 0, 0);
         [self addSubviews];
     }
     return self;
@@ -36,13 +35,13 @@
 
 - (void)addSubviews
 {
-    _textField = [[UITextField alloc] initWithFrame:CGRectZero];
+    _textField = [[UITextField alloc] init];
     [self.contentView addSubview:_textField];
     
-    _textView = [[SYTextView alloc] initWithFrame:CGRectZero];
+    _textView = [[SYTextView alloc] init];
     [self.contentView addSubview:_textView];
     
-    _tipIconView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _tipIconView = [[UIImageView alloc] init];
     _tipIconView.alpha = 0;
     self.accessoryView = _tipIconView;
 }
@@ -51,7 +50,7 @@
 {
     [super layoutSubviews];
     
-    CGFloat x, width, margin = DEFAULT_MARGIN;
+    CGFloat x, width, margin = 16;
     
     if (self.textLabel.text.length) {
         self.separatorInset = UIEdgeInsetsZero;
@@ -114,7 +113,7 @@
 - (void)showTip
 {
     [UIView animateWithDuration:[CATransaction animationDuration] animations:^{
-        self.accessoryView.transform = CGAffineTransformMakeTranslation(-(_tipIconView.width + DEFAULT_MARGIN), 0);
+        self.accessoryView.transform = CGAffineTransformMakeTranslation(-(_tipIconView.width + 16), 0);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:[CATransaction animationDuration] animations:^{
             _tipIconView.alpha = 1;

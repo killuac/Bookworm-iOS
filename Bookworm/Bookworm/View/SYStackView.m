@@ -10,13 +10,6 @@
 
 @implementation SYStackView
 
-- (void)addSubviews:(NSArray *)subviews
-{
-    [subviews enumerateObjectsUsingBlock:^(UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self addSubview:view];
-    }];
-}
-
 - (void)layoutSubviews
 {
     [super layoutSubviews];

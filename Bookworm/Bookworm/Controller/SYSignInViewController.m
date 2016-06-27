@@ -27,7 +27,7 @@
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.scrollEnabled = NO;
     self.tableView.allowsSelection = NO;
-    self.tableView.layer.cornerRadius = DEFAULT_CORNER_RADIUS;
+    self.tableView.layer.cornerRadius = SYViewDefaultCornerRadius;
     
     [self updateNavigationBar];
     [self loadData];

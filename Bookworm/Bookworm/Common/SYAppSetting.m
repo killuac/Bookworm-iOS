@@ -8,7 +8,7 @@
 
 #import "SYAppSetting.h"
 
-#define APP_SETTING     @"app-setting"
+NSString *const SYFileNameAppSetting = @"app-setting";
 
 @implementation SYAppSetting
 
@@ -17,7 +17,7 @@
     static dispatch_once_t onceToken;
     static SYAppSetting *sharedInstance = nil;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [self modelWithDictionary:[NSDictionary dictionaryWithContentsOfFile:SYPlistFilePath(APP_SETTING)]];
+        sharedInstance = [self modelWithDictionary:[NSDictionary dictionaryWithContentsOfURL:SYPlistFileURL(SYFileNameAppSetting)]];
         
         NSArray *keyPaths = @[NSStringFromSelector(@selector(isAppUpdated)), NSStringFromSelector(@selector(isShowUserGuide))];
         sharedInstance.KVOController = [FBKVOController controllerWithObserver:sharedInstance];
@@ -30,11 +30,11 @@
 // Protecting Data Using On-Disk Encryption
 - (void)save
 {
-//    [[self toDictionary] writeToFile:SYPlistFilePath(APP_SETTING) atomically:YES];
+//    [[self toDictionary] writeToURL:SYApplicationSupportFileURL(SYFileNameAppSetting) atomically:YES];
     
-    [[self toJSONData] writeToFile:SYApplicationSupportFilePath(APP_SETTING)
-                           options:NSDataWritingAtomic | NSDataWritingFileProtectionComplete
-                             error:nil];
+    [[self toJSONData] writeToURL:SYApplicationSupportFileURL(SYFileNameAppSetting)
+                          options:NSDataWritingAtomic | NSDataWritingFileProtectionComplete
+                            error:nil];
 }
 
 - (NSString *)signatureSalt
@@ -50,7 +50,7 @@
 
 - (NSURL *)appStoreURL
 {
-    return [NSURL URLWithString:[NSString stringWithFormat:self.appAddress, [GVUserDefaults standardUserDefaults].language]];
+    return [NSURL URLWithString:[NSString stringWithFormat:self.appAddress, [GVUserDefaults standardUserDefaults].languageID]];
 }
 
 @end

@@ -38,7 +38,7 @@ typedef void (^SYServiceBlockType)(id result);
 + (instancetype)service;
 
 @property (nonatomic, strong) NSURLSessionDataTask *sessionDataTask;
-@property (nonatomic, copy, readonly) NSString *urlString;
+@property (nonatomic, copy, readonly) NSString *URLString;
 
 @property (nonatomic, strong, readonly) FMDatabaseQueue *dbQueue;
 @property (nonatomic, copy, readonly) NSString *userID;

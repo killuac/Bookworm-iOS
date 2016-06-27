@@ -51,7 +51,7 @@
     [super layoutSubviews];
     
     _normalButton.center = self.center;
-    _normalButton.size = CGSizeMake(self.width - 2*DEFAULT_MARGIN, DEFAULT_BUTTON_HEIGHT);
+    _normalButton.size = CGSizeMake(self.width - 2*16, SYViewDefaultHeight);
     
     _topLinkButton.centerX = self.centerX;
     _topLinkButton.centerY = (self.height - _normalButton.height) / 4;

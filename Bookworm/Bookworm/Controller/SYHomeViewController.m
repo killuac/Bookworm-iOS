@@ -41,6 +41,17 @@
     [self addSubviews];
     [self loadData];
     [self addTapGesture];
+    
+//    UIBarButtonItem *barItem1 = [UIBarButtonItem barButtonItemWithTitle:@"Button1" target:nil action:nil];
+//    UIBarButtonItem *barItem2 = [UIBarButtonItem barButtonItemWithTitle:@"Button2" target:nil action:nil];
+//    UIBarButtonItem *barItem3 = [UIBarButtonItem barButtonItemWithTitle:@"Button3" target:nil action:nil];
+//    
+//    UIToolbar *toolbar = [UIToolbar toolbarWithItems:@[barItem1, barItem2, barItem3]];
+//    toolbar.backgroundColor = [UIColor whiteColor];
+//    [self.view addSubview:toolbar];
+//    NSDictionary *views = NSDictionaryOfVariableBindings(toolbar);
+//    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[toolbar]|" views:views]];
+//    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[toolbar]" views:views]];
 }
 
 - (void)singleTap:(UITapGestureRecognizer *)recognizer
@@ -76,7 +87,7 @@
 
 - (void)addSubviews
 {
-    CGFloat lineSpaing = SMALL_MARGIN;
+    CGFloat lineSpaing = 5.0;
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     CGFloat WH = (self.view.width - lineSpaing * 2) / 3;
     flowLayout.itemSize = CGSizeMake(WH, WH);
@@ -108,7 +119,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[UICollectionViewCell alloc] initWithFrame:CGRectZero];
+    return [[UICollectionViewCell alloc] init];
 }
 
 #pragma mark - Event handling

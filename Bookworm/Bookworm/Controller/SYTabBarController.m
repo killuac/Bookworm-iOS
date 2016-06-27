@@ -26,14 +26,14 @@
 
 @implementation SYTabBarController
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    if (self.visibleViewController == self.meVC) {
-        return UIInterfaceOrientationMaskAllButUpsideDown;
-    } else {
-        return UIInterfaceOrientationMaskPortrait;
-    }
-}
+//- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+//{
+//    if (self.visibleViewController == self.meVC) {
+//        return UIInterfaceOrientationMaskAllButUpsideDown;
+//    } else {
+//        return UIInterfaceOrientationMaskPortrait;
+//    }
+//}
 
 #pragma mark - Life cycle
 - (void)viewDidLoad

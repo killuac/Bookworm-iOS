@@ -10,7 +10,7 @@
 #import "SYDeviceModel.h"
 #import "SYBaseService.h"
 
-#define REQUEST_TIMEOUT_INTERVAL    30
+CGFloat const SYRequestTimeoutInterval = 30.0;
 
 @interface SYSessionManager ()
 
@@ -45,7 +45,7 @@
 {
     NSString *networkStatus = [[AFNetworkReachabilityManager sharedManager] localizedNetworkReachabilityStatusString];
     NSString *userAgent = [NSString stringWithFormat:@"%@/%@ (%@; %@) %@", APP_BUNDLE_NAME, APP_VERSION,
-                           [SYDeviceModel model].description, [GVUserDefaults standardUserDefaults].language, networkStatus];
+                           [SYDeviceModel model].description, [GVUserDefaults standardUserDefaults].languageID, networkStatus];
     [self.requestSerializer setValue:userAgent forHTTPHeaderField:kHTTPHeaderFieldUserAgent];
     
     NSString *accessToken = [GVUserDefaults standardUserDefaults].accessToken;
@@ -189,7 +189,7 @@
                        completionHandler:completionHandler];
 }
 
-- (void)handleSuccess:(NSURLSessionDataTask *)task responseObject:(id)responseObject completion:(SYNoParameterBlockType)completion
+- (void)handleSuccess:(NSURLSessionDataTask *)task responseObject:(id)responseObject completion:(SYVoidBlockType)completion
 {
     [SVProgressHUD dismiss];
     if (completion) completion();
