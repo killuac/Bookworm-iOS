@@ -59,7 +59,7 @@
             break;
             
         case SYButtonLayoutStyleHorizontalImageRight:
-            self.imageEdgeInsets = UIEdgeInsetsMake(0, titleWidth+spacing, 0, 0);
+            self.imageEdgeInsets = UIEdgeInsetsMake(0, titleWidth+hInset, 0, -(titleWidth+hInset));
             self.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageWidth+hInset), 0, imageWidth+hInset);
             self.size = CGSizeMake(self.width+spacing, self.height);
             break;
