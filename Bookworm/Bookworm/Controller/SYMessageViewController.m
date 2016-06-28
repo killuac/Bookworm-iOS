@@ -84,14 +84,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self updateNavigationBar];
-    [self addSubviews];
+    [self prepareForUI];
     [self loadData];
 }
 
-- (void)addSubviews
+- (void)prepareForUI
 {
+    [self setupNavigationBar];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -99,7 +98,7 @@
     self.view = self.tableView;
 }
 
-- (void)updateNavigationBar
+- (void)setupNavigationBar
 {    
     self.navigationItem.rightBarButtonItem =
     [UIBarButtonItem barButtonItemWithImageName:@"button_contact_list" target:self action:@selector(showContactViewControllerFromMessageViewController:)];

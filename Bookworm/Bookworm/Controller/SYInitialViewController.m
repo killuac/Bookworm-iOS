@@ -12,8 +12,10 @@
 
 @interface SYInitialViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate>
 
-@property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic, strong) NSMutableArray *imageNames;
+@property (nonatomic, strong) UIPageControl *pageControl;
+@property (nonatomic, strong) UIToolbar *toolbar;
+@property (nonatomic, strong) UIButton *skipButton;
 
 @end
 
@@ -34,13 +36,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self loadData];
+    [self prepareForUI];
+}
+
+- (void)prepareForUI
+{
     self.view.backgroundColor = [UIColor backgroundColor];
     self.view.layer.cornerRadius = SYViewDefaultCornerRadius;
     self.view.clipsToBounds = YES;
     
-    [self loadData];
     [self addPageViewController];
     [self addSubviews];
+    [self addConstraints];
 }
 
 - (void)loadData
@@ -68,13 +76,6 @@
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-    
-    self.pageControl = [[UIPageControl alloc] init];
-    self.pageControl.enabled = NO;
-    self.pageControl.top = self.view.height - 70;
-    self.pageControl.size = CGSizeMake(self.view.width, 10);
-    self.pageControl.numberOfPages = self.imageNames.count;
-    [self.view addSubview:self.pageControl];
 }
 
 - (UIScrollView *)scrollView
@@ -89,26 +90,36 @@
 
 - (void)addSubviews
 {
+//  Page control
+    _pageControl = [UIPageControl newAutoLayoutView];
+    _pageControl.enabled = NO;
+    _pageControl.numberOfPages = self.imageNames.count;
+    [self.view addSubview:_pageControl];
+    
 //  Toolbar
     UIBarButtonItem *signUp = [UIBarButtonItem barButtonItemWithTitle:BUTTON_TITLE_SIGNUP target:self action:@selector(signUp:)];
     UIBarButtonItem *signIn = [UIBarButtonItem barButtonItemWithTitle:BUTTON_TITLE_SIGNIN target:self action:@selector(signIn:)];
     NSDictionary *attributes = @{ NSFontAttributeName:[UIFont boldBigFont] };
     [signUp setTitleTextAttributes:attributes forState:UIControlStateNormal];
     [signIn setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    
-    UIToolbar *toolbar = [UIToolbar toolbarWithItems:@[signUp, signIn]];
-    toolbar.clipsToBounds = YES;
-    toolbar.size = CGSizeMake(self.view.width, 50);
-    toolbar.top = self.view.height - toolbar.height;
-    [self.view addSubview:toolbar];
+    _toolbar = [UIToolbar toolbarWithItems:@[signUp, signIn]];
+    [self.view addSubview:_toolbar];
     
 //  Skip button
-    UIButton *skipButton = [UIButton systemButtonWithTitle:BUTTON_TITLE_LOOK_AROUND];
-    skipButton.tintColor = [UIColor tintColor];
-    skipButton.center = self.view.center;
-    skipButton.bottom = self.pageControl.top;
-    [skipButton addTarget:self action:@selector(lookAround:)];
-    [self.view addSubview:skipButton];
+    _skipButton = [UIButton systemButtonWithTitle:BUTTON_TITLE_LOOK_AROUND];
+    _skipButton.tintColor = [UIColor tintColor];
+    _skipButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [_skipButton addTarget:self action:@selector(lookAround:)];
+    [self.view addSubview:_skipButton];
+}
+
+- (void)addConstraints
+{
+    NSDictionary *views = NSDictionaryOfVariableBindings(_pageControl, _toolbar, _skipButton);
+    NSDictionary *metrics = @{ @"margin": @(10.0) };
+    
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_toolbar]|" views:views]];
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_skipButton(10)]-margin-[_pageControl(10)]-margin-[_toolbar]|" options:NSLayoutFormatAlignAllCenterX metrics:metrics views:views]];
 }
 
 #pragma mark - Page view controller datasource

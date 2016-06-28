@@ -42,16 +42,20 @@
     self.delegate = self;
     
     [self instantiateServices];
-    [self addViewControllers];
-    
-    [self.tabBar addTapGesture];
-    [self.tabBar.gestureRecognizers.lastObject setDelegate:self];
+    [self prepareForUI];
 }
 
 - (void)instantiateServices
 {
     _userService = [SYUserService service];
     _contactService = [SYContactService service];
+}
+
+- (void)prepareForUI
+{
+    [self addViewControllers];
+    [self.tabBar addTapGesture];
+    [self.tabBar.gestureRecognizers.lastObject setDelegate:self];
 }
 
 - (void)addViewControllers

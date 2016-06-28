@@ -33,12 +33,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self addSubviews];
+    [self prepareForUI];
     [self loadData];
 }
 
-- (void)addSubviews
+- (void)prepareForUI
 {
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;

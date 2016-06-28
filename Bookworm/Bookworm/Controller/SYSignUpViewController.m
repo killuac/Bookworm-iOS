@@ -20,9 +20,9 @@
     [super viewDidLoad];
 }
 
-- (void)updateNavigationBar
+- (void)setupNavigationBar
 {
-    [super updateNavigationBar];
+    [super setupNavigationBar];
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonItemWithTitle:BUTTON_TITLE_SIGNIN target:self action:@selector(flipToSignInView:)];
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont boldTitleFont]};

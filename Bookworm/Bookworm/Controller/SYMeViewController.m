@@ -34,20 +34,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self updateNavigationBar];
-    [self addSubviews];
+    [self prepareForUI];
     [self loadData];
 }
 
-- (void)updateNavigationBar
+- (void)setupNavigationBar
 {
     self.navigationItem.rightBarButtonItem =
     [UIBarButtonItem barButtonItemWithImageName:@"button_setting" target:self action:@selector(settings:)];
 }
 
-- (void)addSubviews
+- (void)prepareForUI
 {
+    [self setupNavigationBar];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     self.tableView.allowsSelection = NO;

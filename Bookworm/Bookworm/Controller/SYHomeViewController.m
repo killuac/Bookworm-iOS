@@ -36,11 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self updateNavigationBar];
-    [self addSubviews];
+    [self prepareForUI];
     [self loadData];
-    [self addTapGesture];
     
 //    UIBarButtonItem *barItem1 = [UIBarButtonItem barButtonItemWithTitle:@"Button1" target:nil action:nil];
 //    UIBarButtonItem *barItem2 = [UIBarButtonItem barButtonItemWithTitle:@"Button2" target:nil action:nil];
@@ -52,6 +49,8 @@
 //    NSDictionary *views = NSDictionaryOfVariableBindings(toolbar);
 //    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[toolbar]|" views:views]];
 //    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[toolbar]" views:views]];
+    
+    [self addTapGesture];
 }
 
 - (void)singleTap:(UITapGestureRecognizer *)recognizer
@@ -76,7 +75,7 @@
     [[UIAlertController actionSheetControllerWithButtons:@[camera, photos]] show];
 }
 
-- (void)updateNavigationBar
+- (void)setupNavigationBar
 {
     self.navigationItem.leftBarButtonItem =
     [UIBarButtonItem barButtonItemWithImageName:@"button_category_list" target:self action:@selector(showBookCategoryList:)];
@@ -85,8 +84,10 @@
     [UIBarButtonItem barButtonItemWithImageName:@"button_search" target:self action:@selector(searchInHomeViewController:)];
 }
 
-- (void)addSubviews
+- (void)prepareForUI
 {
+    [self setupNavigationBar];
+    
     CGFloat lineSpaing = 5.0;
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     CGFloat WH = (self.view.width - lineSpaing * 2) / 3;

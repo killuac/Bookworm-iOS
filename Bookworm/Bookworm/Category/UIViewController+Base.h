@@ -12,7 +12,8 @@
 @protocol SYViewControllerProtocol <SYViewProtocol>
 
 @optional
-- (void)updateNavigationBar;
+- (void)prepareForUI;
+- (void)setupNavigationBar;
 
 - (void)loadData;
 - (void)loadData:(SYVoidBlockType)completion;

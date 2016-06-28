@@ -57,26 +57,25 @@ NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControlle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self updateNavigationBar];
-    [self addSubviews];
+    [self prepareForUI];
     [self loadData];
     [self readAllMessages];
 }
 
-- (void)updateNavigationBar
+- (void)prepareForUI
 {
-    self.navigationItem.rightBarButtonItem =
-    [UIBarButtonItem barButtonItemWithImageName:@"button_more" target:self action:@selector(moreActionInChatViewController:)];
-}
-
-- (void)addSubviews
-{
+    [self setupNavigationBar];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
     self.view = self.tableView;
+}
+
+- (void)setupNavigationBar
+{
+    self.navigationItem.rightBarButtonItem =
+    [UIBarButtonItem barButtonItemWithImageName:@"button_more" target:self action:@selector(moreActionInChatViewController:)];
 }
 
 - (void)loadData

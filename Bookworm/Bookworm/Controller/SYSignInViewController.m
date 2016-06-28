@@ -23,17 +23,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    self.tableView.scrollEnabled = NO;
-    self.tableView.allowsSelection = NO;
-    self.tableView.layer.cornerRadius = SYViewDefaultCornerRadius;
-    
-    [self updateNavigationBar];
+    [self prepareForUI];
     [self loadData];
 }
 
-- (void)updateNavigationBar
+- (void)prepareForUI
+{
+    [self setupNavigationBar];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    self.tableView.scrollEnabled = NO;
+    self.tableView.allowsSelection = NO;
+    self.tableView.layer.cornerRadius = SYViewDefaultCornerRadius;
+}
+
+- (void)setupNavigationBar
 {
     self.navigationBar.translucent = YES;
     [self.navigationBar setShadowImage:[UIImage new]];

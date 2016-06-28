@@ -20,9 +20,10 @@
     if (self = [super init]) {
         _pageIndex = index;
         
-        _bgImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
+        _bgImageView = [UIImageView newAutoLayoutView];
         _bgImageView.contentMode = UIViewContentModeScaleAspectFit;
-        [self.view addSubview:self.bgImageView];
+        [self.view addSubview:_bgImageView];
+        [self.bgImageView constraintsEqualWithSuperView];
     }
     
     return self;

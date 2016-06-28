@@ -30,7 +30,7 @@
 - (instancetype)initWithItems:(NSArray<UIBarButtonItem *> *)items
 {
     if (self = [super init]) {
-//        self.translatesAutoresizingMaskIntoConstraints = NO;
+        self.translatesAutoresizingMaskIntoConstraints = NO;
         self.seperators = [NSMutableArray array];
         self.barButtonItems = items;
         NSMutableArray *barItems = [NSMutableArray arrayWithObject:[UIBarButtonItem flexibleSpaceBarButtonItem]];

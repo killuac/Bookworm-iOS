@@ -17,6 +17,11 @@
 
 @implementation UIButton (Base)
 
++ (void)load
+{
+    SYSwizzleMethod([self class], @selector(intrinsicContentSize), @selector(swizzle_intrinsicContentSize), NO);
+}
+
 - (void)setStyle:(SYButonStyle)style
 {
     objc_setAssociatedObject(self, @selector(style), @(style), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -40,14 +45,30 @@
     return [objc_getAssociatedObject(self, @selector(isAnimationEnabled)) boolValue];
 }
 
+- (void)setContentSize:(CGSize)size
+{
+    objc_setAssociatedObject(self, @selector(contentSize), [NSValue valueWithCGSize:size], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CGSize)contentSize
+{
+    return [objc_getAssociatedObject(self, @selector(contentSize)) CGSizeValue];
+}
+
 - (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle
 {
+    CGFloat hInset = 5.0, vInset = 8.0, spacing;
     if (SYButtonLayoutStyleVerticalImageUp == layoutStyle || SYButtonLayoutStyleVerticalImageDown == layoutStyle) {
+        self.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
         self.titleLabel.font = [UIFont defaultFont];
+        [self contentSizeToFit];
+        self.size = self.contentSize;
+        spacing = self.height / 2 - vInset;
+    } else {
+        self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        self.size = self.contentSize = CGSizeMake(self.width+spacing, self.height);
+        spacing = hInset * 2;
     }
-    
-    CGFloat hInset = 5.0, vInset = 8.0;
-    CGFloat spacing = hInset * 2;
     CGFloat imageWidth = self.imageView.image.width;
     CGFloat titleWidth = self.titleLabelSize.width;
     
@@ -55,29 +76,21 @@
         case SYButtonLayoutStyleHorizontalImageLeft:
             self.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
             self.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
-            self.size = CGSizeMake(self.width+spacing, self.height);
             break;
             
         case SYButtonLayoutStyleHorizontalImageRight:
             self.imageEdgeInsets = UIEdgeInsetsMake(0, titleWidth+hInset, 0, -(titleWidth+hInset));
             self.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageWidth+hInset), 0, imageWidth+hInset);
-            self.size = CGSizeMake(self.width+spacing, self.height);
             break;
             
         case SYButtonLayoutStyleVerticalImageUp:
-            self.size = [self fittedSize];
-            self.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
-            spacing = self.height / 2 - vInset;
             self.imageEdgeInsets = UIEdgeInsetsMake(0, titleWidth/2, spacing, -titleWidth/2);
             self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, 0, 0);
             break;
             
         case SYButtonLayoutStyleVerticalImageDown:
-            self.size = [self fittedSize];
-            self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
-            spacing = self.height / 2 - vInset;
-            self.imageEdgeInsets = UIEdgeInsetsMake(spacing, titleWidth/2, 0, -titleWidth/2);
-            self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, 0, 0);
+            self.imageEdgeInsets = UIEdgeInsetsMake(-spacing, titleWidth/2, 0, -titleWidth/2);
+            self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, spacing*2, 0);
             break;
     }
 }
@@ -87,16 +100,21 @@
     return [self.titleLabel.text sizeWithFont:self.titleLabel.font];
 }
 
-- (CGSize)fittedSize
+// Only for vertical layout
+- (void)contentSizeToFit
 {
     CGFloat width = MAX(self.imageView.image.width, self.titleLabelSize.width) + 1.0;   // Must increment 1 when use auto layout
     CGFloat height = self.imageView.image.height + self.titleLabelSize.height + 10.0;
-    return CGSizeMake(width, height);
+    self.contentSize = CGSizeMake(width, height);
 }
 
-- (CGSize)intrinsicContentSize
+- (CGSize)swizzle_intrinsicContentSize
 {
-    return self.size;
+    if (self.imageView.image && self.titleLabel.text.length) {
+        return self.contentSize;
+    } else {
+        return [self swizzle_intrinsicContentSize];
+    }
 }
 
 - (void)addTarget:(nullable id)target action:(SEL)action

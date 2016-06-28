@@ -18,7 +18,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self prepareForUI];
+}
+
+- (void)prepareForUI
+{
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
 }
 
