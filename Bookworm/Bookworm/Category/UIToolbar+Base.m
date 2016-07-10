@@ -11,7 +11,8 @@
 @interface UIToolbar ()
 
 @property (nonatomic, strong) NSArray *barButtonItems;      // Exclude flexible space bar button
-@property (nonatomic, strong) NSMutableArray *seperators;
+@property (nonatomic, strong) NSMutableArray *separators;
+@property (nonatomic, assign) BOOL isDistributed;
 
 @end
 
@@ -24,14 +25,26 @@
 
 + (instancetype)toolbarWithItems:(NSArray<UIBarButtonItem *> *)items
 {
-    return [[UIToolbar alloc] initWithItems:items];
+    return [[self alloc] initWithItems:items isDistributed:NO separator:NO];
 }
 
-- (instancetype)initWithItems:(NSArray<UIBarButtonItem *> *)items
++ (instancetype)toolbarWithDistributedItems:(NSArray<UIBarButtonItem *> *)items
+{
+    return [self toolbarWithDistributedItems:items separator:NO];
+}
+
++ (instancetype)toolbarWithDistributedItems:(NSArray<UIBarButtonItem *> *)items separator:(BOOL)separator
+{
+    return [[self alloc] initWithItems:items isDistributed:YES separator:separator];
+}
+
+- (instancetype)initWithItems:(NSArray<UIBarButtonItem *> *)items isDistributed:(BOOL)isDistributed separator:(BOOL)separator
 {
     if (self = [super init]) {
+        self.translucent = NO;
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        self.seperators = [NSMutableArray array];
+        self.isDistributed = isDistributed;
+        self.separators = [NSMutableArray array];
         self.barButtonItems = items;
         NSMutableArray *barItems = [NSMutableArray arrayWithObject:[UIBarButtonItem flexibleSpaceBarButtonItem]];
         
@@ -39,19 +52,33 @@
             [barItems addObject:obj];
             [barItems addObject:[UIBarButtonItem flexibleSpaceBarButtonItem]];
             
-            if (idx > 0) {
+            if (idx > 0 && separator) {
                 UIView *separator = [UIView newAutoLayoutView];
-                separator.backgroundColor = [UIColor blackColor];
+                separator.backgroundColor = [UIColor separatorColor];
                 [self addSubview:separator];
-                [self.seperators addObject:separator];
+                [self.separators addObject:separator];
             }
         }];
-        self.items = barItems;
         
-//        [self addConstraints];
+        if (!self.isDistributed) {
+            [barItems removeObjectAtIndex:0];
+            [barItems removeLastObject];
+        }
+        
+        self.items = barItems;
     }
     
     return self;
+}
+
+- (void)setIsDistributed:(BOOL)isDistributed
+{
+    objc_setAssociatedObject(self, @selector(isDistributed), @(isDistributed), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)isDistributed
+{
+    return [objc_getAssociatedObject(self, @selector(isDistributed)) boolValue];
 }
 
 - (void)setBarButtonItems:(NSMutableArray<UIBarButtonItem *> *)barButtonItems
@@ -64,51 +91,29 @@
     return objc_getAssociatedObject(self, @selector(barButtonItems));
 }
 
-- (void)setSeperators:(NSMutableArray<UIView *> *)seperators
+- (void)setSeparators:(NSMutableArray<UIView *> *)separators
 {
-    objc_setAssociatedObject(self, @selector(seperators), seperators, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(separators), separators, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSMutableArray<UIView *> *)seperators
+- (NSMutableArray<UIView *> *)separators
 {
-    return objc_getAssociatedObject(self, @selector(seperators));
+    return objc_getAssociatedObject(self, @selector(separators));
 }
-
-//- (void)addConstraints
-//{
-//    NSMutableDictionary *views = [NSMutableDictionary dictionary];
-//    [self.seperators enumerateObjectsUsingBlock:^(UIView *separator, NSUInteger idx, BOOL *stop) {
-//        NSString *key = [NSString stringWithFormat:@"seperator%lu", idx];
-//        views[key] = separator;
-//    }];
-//    
-//    __block NSString *visualFormat = @"H:|-";
-//    NSArray *allKeys = [views.allKeys sortedArrayUsingSelector:@selector(compare:)];
-//    [allKeys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL * stop) {
-//        NSString *nextKey = (idx+1 < allKeys.count) ? allKeys[idx+1] : nil;
-//        if (nextKey) {
-//            visualFormat = [visualFormat stringByAppendingFormat:@"[%@(%@)]-", key, nextKey];
-//        } else {
-//            visualFormat = [visualFormat stringByAppendingFormat:@"[%@(0.5)]-|", key];
-//        }
-//    }];
-//    
-//    NSDictionary *metrics = @{ @"margin": @(5) };
-//    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:visualFormat options:NSLayoutFormatAlignAllTop|NSLayoutFormatAlignAllBottom metrics:metrics views:views]];
-//    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[seperator0]-margin-|" options:0 metrics:metrics views:views]];
-//}
 
 - (void)swizzle_layoutSubviews
 {
     [self swizzle_layoutSubviews];
     
+    if (!self.isDistributed) return;
+    
     CGFloat width = self.width / self.barButtonItems.count;
     [self.barButtonItems enumerateObjectsUsingBlock:^(UIBarButtonItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
         item.width = width;
         
-        if (idx > 0) {
+        if (idx > 0 && self.separators.count) {
             CGFloat margin = 10.0f;
-            [self.seperators[idx-1] setFrame:CGRectMake(width * idx, margin, 0.5, self.height-margin*2)];
+            [self.separators[idx-1] setFrame:CGRectMake(width * idx, margin, 0.5, self.height-margin*2)];
         }
     }];
 }

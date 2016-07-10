@@ -42,19 +42,19 @@
     [AC.view.subviews setValue:@(YES) forKey:@"hidden"];
 //    [AC.view.subviews makeObjectsPerformSelector:@selector(setHidden:) withObject:(__bridge id)((void *)YES)];
     
-    UIView *stackView = [UIView newAutoLayoutView];
-    stackView.backgroundColor = [UIColor whiteColor];
-    [stackView addSubviews:buttons];
-    [AC.view addSubview:stackView];
+    NSMutableArray *barButtonItems = [NSMutableArray arrayWithCapacity:buttons.count];
+    for (UIButton *button in buttons) {
+        button.translatesAutoresizingMaskIntoConstraints = YES;
+        [barButtonItems addObject:[UIBarButtonItem barButtonItemWithButton:button]];
+    }
+    UIToolbar *toolbar = [UIToolbar toolbarWithDistributedItems:barButtonItems];
+    toolbar.clipsToBounds = YES;
+    [AC.view addSubview:toolbar];
     
-    CGSize buttonSize = [buttons.firstObject size];
-    NSDictionary *views = @{ @"stackView": stackView, @"button1": buttons.firstObject, @"button2":buttons.lastObject };
-    NSDictionary *metrics = @{ @"margin": @(-10.0), @"buttonHeight": @(buttonSize.height) };
-    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[stackView]-margin-|" options:0 metrics:metrics views:views]];
-    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[stackView(70)]-margin-|" options:0 metrics:metrics views:views]];
-    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[button1(button2)]-[button2]-|" options:NSLayoutFormatAlignAllCenterY metrics:metrics views:views]];
-    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[button1(buttonHeight)]" options:NSLayoutFormatAlignAllCenterY metrics:metrics views:views]];
-    [buttons.firstObject constraintsCenterYWithView:stackView];
+    NSDictionary *views = NSDictionaryOfVariableBindings(toolbar);
+    NSDictionary *metrics = @{ @"margin": @(-10.0) };
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[toolbar]-margin-|" options:0 metrics:metrics views:views]];
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[toolbar(70)]-margin-|" options:0 metrics:metrics views:views]];
     
     return AC;
 }

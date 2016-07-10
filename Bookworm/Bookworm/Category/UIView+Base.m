@@ -365,17 +365,41 @@ const NSTimeInterval SYViewDefaultAnimationDuration = 0.25;
 }
 
 #pragma mark - Animation
++ (void)animateWithDefaultDuration:(SYVoidBlockType)animations
+{
+    [UIView animateWithDefaultDuration:animations completion:nil];
+}
+
++ (void)animateWithDefaultDuration:(SYVoidBlockType)animations completion:(void (^)(BOOL finished))completion
+{
+    [UIView animateWithDuration:SYViewDefaultAnimationDuration animations:animations completion:completion];
+}
+
++ (void)animateSpringWithDefaultDuration:(SYVoidBlockType)animations
+{
+    [UIView animateSpringWithDefaultDuration:animations completion:nil];
+}
+
++ (void)animateSpringWithDefaultDuration:(SYVoidBlockType)animations completion:(void (^)(BOOL finished))completion
+{
+    [UIView animateWithDuration:SYViewDefaultAnimationDuration
+                          delay:0
+         usingSpringWithDamping:0.5
+          initialSpringVelocity:10
+                        options:0
+                     animations:animations
+                     completion:completion];
+}
+
 - (void)animateSpringScale
 {
-    CGFloat duration = 0.2f;
-    
-    [UIView animateWithDuration:duration animations:^{
+    [UIView animateWithDefaultDuration:^{
         self.transform = CGAffineTransformMakeScale(1.1, 1.1);
+    } completion:^(BOOL finished) {
+        [UIView animateSpringWithDefaultDuration:^{
+            self.transform = CGAffineTransformIdentity;
+        }];
     }];
-    
-    [UIView animateWithDuration:duration delay:duration usingSpringWithDamping:0.5 initialSpringVelocity:10 options:0 animations:^{
-        self.transform = CGAffineTransformIdentity;
-    } completion:nil];
 }
 
 @end

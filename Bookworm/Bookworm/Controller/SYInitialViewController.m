@@ -102,7 +102,7 @@
     NSDictionary *attributes = @{ NSFontAttributeName:[UIFont boldBigFont] };
     [signUp setTitleTextAttributes:attributes forState:UIControlStateNormal];
     [signIn setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    _toolbar = [UIToolbar toolbarWithItems:@[signUp, signIn]];
+    _toolbar = [UIToolbar toolbarWithDistributedItems:@[signUp, signIn] separator:YES];
     [self.view addSubview:_toolbar];
     
 //  Skip button
@@ -119,7 +119,7 @@
     NSDictionary *metrics = @{ @"margin": @(10.0) };
     
     [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_toolbar]|" views:views]];
-    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_skipButton(10)]-margin-[_pageControl(10)]-margin-[_toolbar]|" options:NSLayoutFormatAlignAllCenterX metrics:metrics views:views]];
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_skipButton(20)]-margin-[_pageControl(10)]-margin-[_toolbar]|" options:NSLayoutFormatAlignAllCenterX metrics:metrics views:views]];
 }
 
 #pragma mark - Page view controller datasource

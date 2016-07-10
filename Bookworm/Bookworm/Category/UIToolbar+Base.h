@@ -11,5 +11,7 @@
 @interface UIToolbar (Base)
 
 + (instancetype)toolbarWithItems:(NSArray<UIBarButtonItem *> *)items;
++ (instancetype)toolbarWithDistributedItems:(NSArray<UIBarButtonItem *> *)items;   // No separator by default
++ (instancetype)toolbarWithDistributedItems:(NSArray<UIBarButtonItem *> *)items separator:(BOOL)separator;  // Distribution fill equally
 
 @end

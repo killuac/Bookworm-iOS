@@ -71,8 +71,8 @@
     [douban setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
     [camera setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
     [photos setLayoutStyle:SYButtonLayoutStyleVerticalImageUp];
-//    [[UIAlertController actionSheetControllerWithButtons:@[wechat, moments, qq, weibo]] show];
-    [[UIAlertController actionSheetControllerWithButtons:@[camera, photos]] show];
+    [[UIAlertController actionSheetControllerWithButtons:@[wechat, moments, qq, weibo]] show];
+//    [[UIAlertController actionSheetControllerWithButtons:@[camera, photos]] show];
 }
 
 - (void)setupNavigationBar

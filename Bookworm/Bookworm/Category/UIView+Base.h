@@ -75,6 +75,10 @@ UIKIT_EXTERN const NSTimeInterval SYViewDefaultAnimationDuration;
 - (void)addBlurBackground;
 - (void)removeBlurBackground;
 
++ (void)animateWithDefaultDuration:(SYVoidBlockType)animations;
++ (void)animateWithDefaultDuration:(SYVoidBlockType)animations completion:(void (^)(BOOL finished))completion;
++ (void)animateSpringWithDefaultDuration:(SYVoidBlockType)animations;
++ (void)animateSpringWithDefaultDuration:(SYVoidBlockType)animations completion:(void (^)(BOOL finished))completion;
 - (void)animateSpringScale;
 
 @end
