@@ -55,10 +55,12 @@
     return [objc_getAssociatedObject(self, @selector(contentSize)) CGSizeValue];
 }
 
-- (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle
+- (void)setLayout:(SYButtonLayout)layout
 {
+    if (SYButtonLayoutHorizontalNone == layout || !self.imageView || !self.titleLabel) return;
+    
     CGFloat hInset = 5.0, vInset = 8.0, spacing;
-    if (SYButtonLayoutStyleVerticalImageUp == layoutStyle || SYButtonLayoutStyleVerticalImageDown == layoutStyle) {
+    if (SYButtonLayoutVerticalImageUp == layout || SYButtonLayoutVerticalImageDown == layout) {
         self.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
         self.titleLabel.font = [UIFont defaultFont];
         [self contentSizeToFit];
@@ -69,28 +71,34 @@
         self.size = self.contentSize = CGSizeMake(self.width+spacing, self.height);
         spacing = hInset * 2;
     }
+    
     CGFloat imageWidth = self.imageView.image.width;
     CGFloat titleWidth = self.titleLabelSize.width;
     
-    switch (layoutStyle) {
-        case SYButtonLayoutStyleHorizontalImageLeft:
+    switch (layout) {
+        case SYButtonLayoutHorizontalImageLeft:
             self.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
             self.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
             break;
             
-        case SYButtonLayoutStyleHorizontalImageRight:
+        case SYButtonLayoutHorizontalImageRight:
             self.imageEdgeInsets = UIEdgeInsetsMake(0, titleWidth+hInset, 0, -(titleWidth+hInset));
             self.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageWidth+hInset), 0, imageWidth+hInset);
             break;
             
-        case SYButtonLayoutStyleVerticalImageUp:
+        case SYButtonLayoutVerticalImageUp:
             self.imageEdgeInsets = UIEdgeInsetsMake(0, titleWidth/2, spacing, -titleWidth/2);
             self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, 0, 0);
+            self.contentEdgeInsets = UIEdgeInsetsMake(0, -hInset, 0, -hInset);  // For solve iphone5/5s issue
             break;
             
-        case SYButtonLayoutStyleVerticalImageDown:
+        case SYButtonLayoutVerticalImageDown:
             self.imageEdgeInsets = UIEdgeInsetsMake(-spacing, titleWidth/2, 0, -titleWidth/2);
             self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, spacing*2, 0);
+            self.contentEdgeInsets = UIEdgeInsetsMake(0, -hInset, 0, -hInset);
+            break;
+            
+        default:
             break;
     }
 }
@@ -103,7 +111,7 @@
 // Only for vertical layout
 - (void)contentSizeToFit
 {
-    CGFloat width = MAX(self.imageView.image.width, self.titleLabelSize.width) + 1.0;   // Must increment 1 when use auto layout
+    CGFloat width = MAX(self.imageView.image.width, self.titleLabelSize.width);
     CGFloat height = self.imageView.image.height + self.titleLabelSize.height + 10.0;
     self.contentSize = CGSizeMake(width, height);
 }
@@ -128,6 +136,7 @@
                      imageName:(NSString *)imageName
              selectedImageName:(NSString *)selImageName
              disabledImageName:(NSString *)disabledImageName
+                        layout:(SYButtonLayout)layout
 {
     UIButton *button = [UIButton buttonWithType:buttonType];
     button.translatesAutoresizingMaskIntoConstraints = NO;
@@ -146,6 +155,7 @@
     }
     
     [button sizeToFit];
+    [button setLayout:layout];
     
     button.KVOController = [FBKVOController controllerWithObserver:button];
     [button.KVOController observe:button keyPaths:@[@"highlighted", @"enabled"] options:0 block:^(id observer, id object, NSDictionary *change) {
@@ -196,27 +206,42 @@
 #pragma mark - Custom button
 + (instancetype)buttonWithTitle:(NSString *)title
 {
-    return [UIButton buttonWithTitle:title imageName:nil selectedImageName:nil];
+    return [UIButton buttonWithTitle:title imageName:nil];
 }
 
 + (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName
 {
-    return [UIButton buttonWithTitle:title imageName:imageName selectedImageName:nil];
+    return [UIButton buttonWithTitle:title imageName:imageName layout:SYButtonLayoutHorizontalImageLeft];
+}
+
++ (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName layout:(SYButtonLayout)layout
+{
+    return [UIButton buttonWithTitle:title imageName:imageName selectedImageName:nil layout:layout];
 }
 
 + (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selImageName
 {
-    return [UIButton buttonWithType:UIButtonTypeCustom title:title imageName:imageName selectedImageName:selImageName disabledImageName:nil];
+    return [UIButton buttonWithType:UIButtonTypeCustom title:title imageName:imageName selectedImageName:selImageName disabledImageName:nil layout:SYButtonLayoutHorizontalImageLeft];
+}
+
++ (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selImageName layout:(SYButtonLayout)layout
+{
+    return [UIButton buttonWithType:UIButtonTypeCustom title:title imageName:imageName selectedImageName:selImageName disabledImageName:nil layout:layout];
 }
 
 + (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName disabledImageName:(NSString *)disabledImageName
 {
-    return [UIButton buttonWithType:UIButtonTypeCustom title:title imageName:imageName selectedImageName:nil disabledImageName:disabledImageName];
+    return [UIButton buttonWithType:UIButtonTypeCustom title:title imageName:imageName selectedImageName:nil disabledImageName:disabledImageName layout:SYButtonLayoutHorizontalImageLeft];
+}
+
++ (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName disabledImageName:(NSString *)disabledImageName layout:(SYButtonLayout)layout
+{
+    return [UIButton buttonWithType:UIButtonTypeCustom title:title imageName:imageName selectedImageName:nil disabledImageName:disabledImageName layout:layout];
 }
 
 + (instancetype)buttonWithImageName:(NSString *)imageName
 {
-    return [UIButton buttonWithTitle:nil imageName:imageName selectedImageName:nil];
+    return [UIButton buttonWithTitle:nil imageName:imageName];
 }
 
 + (instancetype)buttonWithImageName:(NSString *)imageName selectedImageName:(NSString *)selImageName
@@ -253,7 +278,7 @@
 #pragma mark - Default, primary, destructive buttons
 + (instancetype)customButtonWithTitle:(NSString *)title
 {
-    return [UIButton buttonWithType:UIButtonTypeCustom title:title imageName:nil selectedImageName:nil disabledImageName:nil];
+    return [UIButton buttonWithType:UIButtonTypeCustom title:title imageName:nil selectedImageName:nil disabledImageName:nil layout:SYButtonLayoutHorizontalNone];
 }
 
 + (instancetype)defaultButtonWithTitle:(NSString *)title

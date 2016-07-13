@@ -15,18 +15,21 @@ typedef NS_ENUM(NSUInteger, SYButonStyle) {
     SYButonStyleDestructive
 };
 
-typedef NS_ENUM(NSUInteger, SYButtonLayoutStyle) {
-    SYButtonLayoutStyleHorizontalImageLeft,     // Default
-    SYButtonLayoutStyleHorizontalImageRight,
-    SYButtonLayoutStyleVerticalImageUp,
-    SYButtonLayoutStyleVerticalImageDown
+typedef NS_ENUM(NSUInteger, SYButtonLayout) {
+    SYButtonLayoutHorizontalNone,
+    SYButtonLayoutHorizontalImageLeft,      // Default for image and title
+    SYButtonLayoutHorizontalImageRight,
+    SYButtonLayoutVerticalImageUp,
+    SYButtonLayoutVerticalImageDown
 };
 
 @interface UIButton (Base)
 
 + (instancetype)buttonWithTitle:(NSString *)title;
 + (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName;
++ (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName layout:(SYButtonLayout)layout;
 + (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName disabledImageName:(NSString *)disabledImageName;
++ (instancetype)buttonWithTitle:(NSString *)title imageName:(NSString *)imageName disabledImageName:(NSString *)disabledImageName layout:(SYButtonLayout)layout;
 + (instancetype)buttonWithImageName:(NSString *)imageName;
 + (instancetype)buttonWithImageName:(NSString *)imageName selectedImageName:(NSString *)selImageName;
 + (instancetype)buttonWithImageName:(NSString *)imageName disabledImageName:(NSString *)disabledImageName;
@@ -38,7 +41,7 @@ typedef NS_ENUM(NSUInteger, SYButtonLayoutStyle) {
 + (instancetype)primaryButtonWithTitle:(NSString *)title;
 + (instancetype)destructiveButtonWithTitle:(NSString *)title;
 
-- (void)setLayoutStyle:(SYButtonLayoutStyle)layoutStyle;
+- (void)setLayout:(SYButtonLayout)layout;
 - (void)addTarget:(id)target action:(SEL)action;
 
 @end
