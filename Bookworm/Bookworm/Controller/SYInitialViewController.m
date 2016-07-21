@@ -55,7 +55,7 @@
 {
     self.imageNames = [NSMutableArray array];
     for (NSUInteger i = 0; i < 3; i++) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"guide%lu", i] ofType:@"jpg"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"guide%tu", i] ofType:@"jpg"];
         [self.imageNames addObject:path];
     }
 }

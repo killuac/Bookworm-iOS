@@ -32,36 +32,14 @@
 
 - (void)addObservers
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didSendMessage:)
-                                                 name:SYSocketDidSendMessageNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveReceipt:)
-                                                 name:SYSocketDidReceiveReceiptNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveMessage:)
-                                                 name:SYSocketDidReceiveMessageNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReadMessage:)
-                                                 name:SYSocketDidReadMessageNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didDeleteLastMessage:)
-                                                 name:SYChatViewControllerDidDeleteLastMessage
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSendMessage:) name:SYSocketDidSendMessageNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveReceipt:) name:SYSocketDidReceiveReceiptNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMessage:) name:SYSocketDidReceiveMessageNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReadMessage:) name:SYSocketDidReadMessageNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDeleteLastMessage:) name:SYChatViewControllerDidDeleteLastMessage object:nil];
     
     self.KVOController = [FBKVOController controllerWithObserver:self];
-    [self.KVOController observe:self.messageService
-                        keyPath:NSStringFromSelector(@selector(totalUnreadMessageCount))
-                        options:0
-                         action:@selector(updateAppIconBadgeNumber)];
+    [self.KVOController observe:self.messageService keyPath:NSStringFromSelector(@selector(totalUnreadMessageCount)) options:0 action:@selector(updateAppIconBadgeNumber)];
 }
 
 - (void)updateAppIconBadgeNumber

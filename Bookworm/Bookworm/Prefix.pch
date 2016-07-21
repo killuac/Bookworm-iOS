@@ -15,8 +15,6 @@
 @import Aspects;
 @import SDWebImage;
 @import NYXImagesKit;
-@import MagicalRecord;
-@import KVOController;
 
 #import "SYUtilities.h"
 #import "SYAppSetting.h"
@@ -46,10 +44,13 @@
 #import "UITableViewCell+Base.h"
 #import "UIViewController+Base.h"
 #import "UIAlertController+Base.h"
+#import "CLLocationManager+Base.h"
 
 #import "JSONModel+Base.h"
-#import "UMMobClick/MobClick.h"
 #import "SVProgressHUD+Base.h"
-#import "GVUserDefaults+Properties.h"
+#import "GVUserDefaults+Base.h"
+#import <UMMobClick/MobClick.h>
+#import <KVOController/KVOController.h>
+#import <MagicalRecord/MagicalRecord.h>
 
 #endif

@@ -33,20 +33,9 @@ NSString *const SYChatViewControllerDidDeleteLastMessage = @"SYChatViewControlle
 
 - (void)addObservers
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didSendMessage:)
-                                                 name:SYSocketDidSendMessageNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveReceipt:)
-                                                 name:SYSocketDidReceiveReceiptNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveMessage:)
-                                                 name:SYSocketDidReceiveMessageNotification
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSendMessage:) name:SYSocketDidSendMessageNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveReceipt:) name:SYSocketDidReceiveReceiptNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMessage:) name:SYSocketDidReceiveMessageNotification object:nil];
 }
 
 - (void)dealloc

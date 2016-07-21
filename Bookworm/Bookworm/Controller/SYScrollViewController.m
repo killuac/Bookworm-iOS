@@ -52,10 +52,7 @@
 - (void)startLoadingData:(SYVoidBlockType)completion
 {
     if (!self.isLoadingData) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(HTTPRequestDidComplete:)
-                                                     name:AFNetworkingTaskDidCompleteNotification
-                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HTTPRequestDidComplete:) name:AFNetworkingTaskDidCompleteNotification object:nil];
         
         self.isLoadingData = YES;
         [self loadData:^{

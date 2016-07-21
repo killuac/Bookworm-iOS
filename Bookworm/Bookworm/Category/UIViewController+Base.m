@@ -12,6 +12,19 @@
 
 @implementation UIViewController (Base)
 
++ (void)load
+{
+#if DEBUG
+    SYSwizzleMethod([self class], NSSelectorFromString(@"dealloc"), @selector(swizzle_dealloc), NO);
+#endif
+}
+
+- (void)swizzle_dealloc
+{
+    NSLog(@"FREE MEMORY: %@", NSStringFromClass([self class]));
+    [self swizzle_dealloc];
+}
+
 #pragma mark - Properties
 - (void)setIsLoadingData:(BOOL)isLoadingData
 {
@@ -218,10 +231,7 @@
 - (void)loadData
 {
     [self performSelector:@selector(showLoadingActivity) withObject:nil afterDelay:1.0];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(HTTPRequestDidComplete:)
-                                                 name:AFNetworkingTaskDidCompleteNotification
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HTTPRequestDidComplete:) name:AFNetworkingTaskDidCompleteNotification object:nil];
 }
 
 - (void)showLoadingActivity

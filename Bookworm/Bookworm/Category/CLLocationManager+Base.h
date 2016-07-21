@@ -8,10 +8,10 @@
 
 #import <CoreLocation/CoreLocation.h>
 
-typedef void (^LocationBlockType)(CLLocationManager *manager);
+typedef void (^SYLocationBlockType)(CLLocationManager *manager);
 
 @interface CLLocationManager (Base)
 
-+ (instancetype)managerWithBlock:(LocationBlockType)block;  // Must use "weakSelf" in block
++ (void)updateLocationsCompletion:(SYLocationBlockType)completion;
 
 @end

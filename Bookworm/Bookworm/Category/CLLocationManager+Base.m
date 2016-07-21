@@ -7,34 +7,35 @@
 //
 
 #import "CLLocationManager+Base.h"
-#import "AppDelegate.h"
 
 @interface CLLocationManager (Private) <CLLocationManagerDelegate>
 
-@property (nonatomic, copy) LocationBlockType block;
+@property (nonatomic, copy) SYLocationBlockType block;
 
 @end
 
 @implementation CLLocationManager (Base)
 
-- (void)setBlock:(LocationBlockType)block
+static void *kLocationManagerKey = &kLocationManagerKey;
+
+- (void)setBlock:(SYLocationBlockType)block
 {
     objc_setAssociatedObject(self, @selector(block), block, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (LocationBlockType)block
+- (SYLocationBlockType)block
 {
     return objc_getAssociatedObject(self, @selector(block));
 }
 
-+ (instancetype)managerWithBlock:(LocationBlockType)block
++ (void)updateLocationsCompletion:(SYLocationBlockType)completion
 {
     CLLocationManager *manager = [[CLLocationManager alloc] init];
     manager.distanceFilter = 100;
     manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     manager.delegate = manager;
-    manager.block = block;
-    [(id)[UIApplication sharedApplication].delegate setLocationManager:manager];
+    manager.block = completion;
+    objc_setAssociatedObject([UIApplication sharedApplication], kLocationManagerKey, manager, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     if ([CLLocationManager locationServicesEnabled]) {
         if ([manager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
@@ -43,7 +44,6 @@
             [manager startUpdatingLocation];
         }
     }
-    return manager;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
@@ -57,6 +57,7 @@
 {
     [manager stopUpdatingLocation];
     if (self.block) self.block(manager);
+    objc_setAssociatedObject([UIApplication sharedApplication], kLocationManagerKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

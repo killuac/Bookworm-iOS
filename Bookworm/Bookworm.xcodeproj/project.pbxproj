@@ -58,7 +58,7 @@
 		E361DEC31C4E2AF50042C75A /* UIAlertController+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = E361DEC21C4E2AF50042C75A /* UIAlertController+Base.m */; };
 		E361DEC71C4E34FE0042C75A /* AppDelegate+Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = E361DEC61C4E34FE0042C75A /* AppDelegate+Analytics.m */; };
 		E37E76B51C80078800AE7D47 /* SYNotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E37E76B41C80078800AE7D47 /* SYNotificationModel.m */; };
-		E3957CE21C5137B30017E31F /* GVUserDefaults+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = E3957CE11C5137B30017E31F /* GVUserDefaults+Properties.m */; };
+		E3957CE21C5137B30017E31F /* GVUserDefaults+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = E3957CE11C5137B30017E31F /* GVUserDefaults+Base.m */; };
 		E39B458B1C5B789F00FEAFC8 /* SYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B458A1C5B789F00FEAFC8 /* SYSettingViewController.m */; };
 		E39B458E1C5B78CB00FEAFC8 /* SYGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B458D1C5B78CB00FEAFC8 /* SYGuideViewController.m */; };
 		E39B45911C5B794300FEAFC8 /* SYFollowListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39B45901C5B794300FEAFC8 /* SYFollowListViewController.m */; };
@@ -216,8 +216,8 @@
 		E361DEC61C4E34FE0042C75A /* AppDelegate+Analytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Analytics.m"; sourceTree = "<group>"; };
 		E37E76B31C80078800AE7D47 /* SYNotificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYNotificationModel.h; sourceTree = "<group>"; };
 		E37E76B41C80078800AE7D47 /* SYNotificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYNotificationModel.m; sourceTree = "<group>"; };
-		E3957CE01C5137B30017E31F /* GVUserDefaults+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+Properties.h"; sourceTree = "<group>"; };
-		E3957CE11C5137B30017E31F /* GVUserDefaults+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+Properties.m"; sourceTree = "<group>"; };
+		E3957CE01C5137B30017E31F /* GVUserDefaults+Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+Base.h"; sourceTree = "<group>"; };
+		E3957CE11C5137B30017E31F /* GVUserDefaults+Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+Base.m"; sourceTree = "<group>"; };
 		E39B45891C5B789F00FEAFC8 /* SYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SYSettingViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		E39B458A1C5B789F00FEAFC8 /* SYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SYSettingViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E39B458C1C5B78CB00FEAFC8 /* SYGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SYGuideViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -428,8 +428,8 @@
 		E34581731C2135F30088BDA5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				E3957CE01C5137B30017E31F /* GVUserDefaults+Properties.h */,
-				E3957CE11C5137B30017E31F /* GVUserDefaults+Properties.m */,
+				E3957CE01C5137B30017E31F /* GVUserDefaults+Base.h */,
+				E3957CE11C5137B30017E31F /* GVUserDefaults+Base.m */,
 				E361DEC41C4E2EFF0042C75A /* HTTPHeaderField.h */,
 				E3FF2EEB1C34F0C600A6C7BF /* HTTPStatusCode.h */,
 				E34581B61C2152F20088BDA5 /* SYAppSetting.h */,
@@ -893,7 +893,7 @@
 				E34581A91C2142960088BDA5 /* CLLocationManager+Base.m in Sources */,
 				E32F00FC1C9149330024086B /* SYSocialShare.m in Sources */,
 				E3D5C65D1C5D3C4900ADDCA4 /* SYSoundPlayer.m in Sources */,
-				E3957CE21C5137B30017E31F /* GVUserDefaults+Properties.m in Sources */,
+				E3957CE21C5137B30017E31F /* GVUserDefaults+Base.m in Sources */,
 				E3EB14AF1C52166F00D10026 /* SYTextTableViewCell.m in Sources */,
 				E3EB14B01C52166F00D10026 /* SYTipTableViewCell.m in Sources */,
 				E30A49EC1C5B1257009BD684 /* SYMessageViewController.m in Sources */,

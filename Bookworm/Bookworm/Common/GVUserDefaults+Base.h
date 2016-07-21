@@ -1,5 +1,5 @@
 //
-//  GVUserDefaults+Properties.h
+//  GVUserDefaults+Base.h
 //  Bookworm
 //
 //  Created by Killua Liu on 12/16/15.
@@ -8,7 +8,7 @@
 
 #import <GVUserDefaults/GVUserDefaults.h>
 
-@interface GVUserDefaults (Properties)
+@interface GVUserDefaults (Base)
 
 @property (nonatomic, assign) BOOL isFirstLaunch;
 @property (nonatomic, assign) BOOL isShowInitialView;

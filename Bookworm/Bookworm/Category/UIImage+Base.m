@@ -27,8 +27,8 @@
 
 - (UIImage *)resizableCroppedImage
 {
+    CGFloat ratio;
     CGFloat width = self.width, height = self.height;
-    CGFloat ratio = height / width;
     CGRect cropRect = CGRectZero;
     
     if (width >= height) {

@@ -51,10 +51,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
     if (self = [super init]) {
         _messageService = [SYMessageService service];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(disconnect)
-                                                     name:UIApplicationDidEnterBackgroundNotification
-                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disconnect) name:UIApplicationDidEnterBackgroundNotification object:nil];
     }
     
     return self;
@@ -266,7 +263,7 @@ NSString *const SYSocketDidReceiveMessageNotification = @"SYSocketDidReceiveMess
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean;
 {
 #ifdef DEBUG
-    NSLog(@"WebSocket closed: Code: %ld and Reason: %@", code, reason);
+    NSLog(@"WebSocket closed: Code: %zd and Reason: %@", code, reason);
 #endif
     
     [self invalidateHeartBeat];

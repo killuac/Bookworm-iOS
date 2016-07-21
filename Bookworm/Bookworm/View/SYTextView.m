@@ -20,10 +20,7 @@
 
 - (void)addObservers
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(textViewDidChange:)
-                                                 name:UITextViewTextDidChangeNotification
-                                               object:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewDidChange:) name:UITextViewTextDidChangeNotification object:self];
 }
 
 - (void)textViewDidChange:(UITextView *)textView

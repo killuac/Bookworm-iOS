@@ -1,14 +1,14 @@
 //
-//  GVUserDefaults+Properties.m
+//  GVUserDefaults+Base.m
 //  Bookworm
 //
 //  Created by Killua Liu on 12/16/15.
 //  Copyright (c) 2015 Syzygy. All rights reserved.
 //
 
-#import "GVUserDefaults+Properties.h"
+#import "GVUserDefaults+Base.h"
 
-@implementation GVUserDefaults (Properties)
+@implementation GVUserDefaults (Base)
 
 @dynamic isFirstLaunch;
 @dynamic isShowInitialView;

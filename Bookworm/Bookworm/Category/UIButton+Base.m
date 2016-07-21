@@ -67,9 +67,9 @@
         self.size = self.contentSize;
         spacing = self.height / 2 - vInset;
     } else {
+        spacing = hInset * 2;
         self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         self.size = self.contentSize = CGSizeMake(self.width+spacing, self.height);
-        spacing = hInset * 2;
     }
     
     CGFloat imageWidth = self.imageView.image.width;
